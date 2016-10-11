@@ -13,6 +13,30 @@
         }
     }
 
+    var account = {};
+    account.getUserAccount = function(username, password, email, callback) {
+        var obj = {};
+        obj.username = username;
+        obj.password = password;
+        obj.email = email;
+        $.ajax({
+            url : '/SignUp',
+            type : 'PUT',
+            date : {
+                username : obj.username,
+                password : obj.password,
+                email : obj.email
+            },
+            success : function(data) {
+                callback(data);
+            },
+            error : function (error) {
+
+            }
+        });
+    }
+
+
 </script>
 <style>
     body {
@@ -94,6 +118,8 @@
             <input type="text" placeholder="Enter Username"  name="username" required><br>
             <input type="password" placeholder="Enter Password, at least 6 characters" id="password" name="password" required><br>
             <input type="password" placeholder="Re-Enter Password" id="repassword" name="password" required><br>
+            <input type="text" placeholder="Enter E-mail Address" name="email" required>
+
             <button type="submit" onclick = "checkPassword()" >Sign up!</button>
             <button type="submit" style="background-color: red">Cancel</button>
 
