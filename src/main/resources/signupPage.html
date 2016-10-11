@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+</head>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script>
 
     function checkPassword() {
@@ -14,20 +20,26 @@
     }
 
     var account = {};
- SignUp = function(username, password, email, callback) {
+    SignUp = function(username, password, email, callback) {
         console.log("222222222");
-        var obj = {};
-        obj.username = username;
-        obj.password = password;
-        obj.email = email;
-        console.log(obj.username);
+        var password1 = document.getElementById('password').value;
+        var username1 = document.getElementById('username').value;
+        var email1 = document.getElementById('email').value;
+
+        username = username1;
+        password = password1;
+        email = email1;
+        console.log(password1);
+        console.log(username1);
+        console.log(email1);
         $.ajax({
-            url : '127.0.0.1/SignUp',
-            type : 'PUT',
+            url : '/SignUp',
+            type : 'GET',
+            dataType: 'jsonp',
             date : {
-                username : obj.username,
-                password : obj.password,
-                email : obj.email
+                username : username,
+                password : password,
+                email : email
             },
             success : function(data) {
                 callback(data);
@@ -108,9 +120,7 @@
 
 
 </style>
-<head>
-    <script src="jquery-3.1.1.js"></script>
-</head>
+
 <body>
 
 <div class="middle">
@@ -120,10 +130,10 @@
         </div>
 
         <div class="container">
-            <input type="text" placeholder="Enter Username"  name="username" required><br>
+            <input type="text" placeholder="Enter Username"  id="username" required><br>
             <input type="password" placeholder="Enter Password, at least 6 characters" id="password" name="password" required><br>
             <input type="password" placeholder="Re-Enter Password" id="repassword" name="password" required><br>
-            <input type="text" placeholder="Enter E-mail Address" name="email" required>
+            <input type="text" placeholder="Enter E-mail Address" id="email" required>
 
             <button type="submit" onclick = "checkPassword(),SignUp()" >Sign up!</button>
             <button type="submit" style="background-color: red">Cancel</button>
