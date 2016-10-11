@@ -1,5 +1,7 @@
 package webdoctor.controller;
 
+import org.omg.CORBA.Request;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,12 +11,17 @@ import webdoctor.jooq.tables.pojos.User;
 /**
  * Created by IAN on 2016/10/10.
  */
-@RestController
+@Controller
 public class SignUpController {
 
-    @RequestMapping(path="/SignUp", method= RequestMethod.PUT)
-    public int SignUp(@RequestBody User user) {
+    @RequestMapping(path="/SignUpPage", method = RequestMethod.GET)
+    public String SignUp() {
+        return "signupPage.html";
+    }
 
+    @RequestMapping(path="/SignUp", method= RequestMethod.GET)
+    public int SignUp(@RequestBody User user) {
+        System.out.println("Success");
         return 0;
     }
 
