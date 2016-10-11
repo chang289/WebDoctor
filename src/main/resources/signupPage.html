@@ -14,13 +14,15 @@
     }
 
     var account = {};
-    account.getUserAccount = function(username, password, email, callback) {
+ SignUp = function(username, password, email, callback) {
+        console.log("222222222");
         var obj = {};
         obj.username = username;
         obj.password = password;
         obj.email = email;
+        console.log(obj.username);
         $.ajax({
-            url : '/SignUp',
+            url : '127.0.0.1/SignUp',
             type : 'PUT',
             date : {
                 username : obj.username,
@@ -106,6 +108,9 @@
 
 
 </style>
+<head>
+    <script src="jquery-3.1.1.js"></script>
+</head>
 <body>
 
 <div class="middle">
@@ -120,7 +125,7 @@
             <input type="password" placeholder="Re-Enter Password" id="repassword" name="password" required><br>
             <input type="text" placeholder="Enter E-mail Address" name="email" required>
 
-            <button type="submit" onclick = "checkPassword()" >Sign up!</button>
+            <button type="submit" onclick = "checkPassword(),SignUp()" >Sign up!</button>
             <button type="submit" style="background-color: red">Cancel</button>
 
         </div>

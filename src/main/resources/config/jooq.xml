@@ -21,8 +21,8 @@
             <validationAnnotations>true</validationAnnotations>
         </generate>
         <target>
-            <packageName>jooq</packageName>
-            <directory>src/main/java/webdoctor</directory>
+            <packageName>webdoctor.jooq</packageName>
+            <directory>src/main/java</directory>
         </target>
     </generator>
 </configuration>
