@@ -5,7 +5,7 @@
     <meta content="utf-8" http-equiv="encoding">
 
 </head>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
     function checkPassword() {
@@ -19,33 +19,33 @@
         }
     }
 
-    var account = {};
-    SignUp = function(username, password, email, callback) {
+    function SignUp(username, password, email, callback) {
         console.log("222222222");
         var password1 = document.getElementById('password').value;
         var username1 = document.getElementById('username').value;
         var email1 = document.getElementById('email').value;
 
-        username = username1;
-        password = password1;
-        email = email1;
+        var obj = {};
+
+        obj.username = username1;
+        obj.password = password1;
+        obj.email = email1;
         console.log(password1);
         console.log(username1);
         console.log(email1);
+
         $.ajax({
             url : '/SignUp',
-            type : 'GET',
-            dataType: 'jsonp',
-            date : {
-                username : username,
-                password : password,
-                email : email
-            },
+            type : 'POST',
+            dataType: 'json',
+            data : JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
             success : function(data) {
                 callback(data);
+                console.log("success");
             },
             error : function (error) {
-
+                console.log(error);
             }
         });
     }
@@ -135,7 +135,7 @@
             <input type="password" placeholder="Re-Enter Password" id="repassword" name="password" required><br>
             <input type="text" placeholder="Enter E-mail Address" id="email" required>
 
-            <button type="submit" onclick = "checkPassword(),SignUp()" >Sign up!</button>
+            <button type="submit" onclick = "SignUp()" >Sign up!</button>
             <button type="submit" style="background-color: red">Cancel</button>
 
         </div>

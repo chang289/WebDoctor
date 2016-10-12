@@ -19,10 +19,12 @@ public class SignUpController {
         return "signupPage.html";
     }
 
-    @RequestMapping(path="/SignUp", method= RequestMethod.GET)
-    public int SignUp(@RequestBody User user) {
+    @RequestMapping(path="/SignUp", method= RequestMethod.POST)
+    public void SignUp(@RequestBody User user) {
         System.out.println("Success");
-        return 0;
+        System.out.println(user);
+
+        return;
     }
 
     @RequestMapping(path="/Login", method=RequestMethod.GET)
