@@ -6,6 +6,7 @@ package webdoctor.jooq;
 
 import javax.annotation.Generated;
 
+import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 
@@ -35,6 +36,9 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<DiseaseRecord, Integer> IDENTITY_DISEASE = Identities0.IDENTITY_DISEASE;
+    public static final Identity<SymptomRecord, Integer> IDENTITY_SYMPTOM = Identities0.IDENTITY_SYMPTOM;
+    public static final Identity<UserRecord, Integer> IDENTITY_USER = Identities0.IDENTITY_USER;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -52,6 +56,12 @@ public class Keys {
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
+
+    private static class Identities0 extends AbstractKeys {
+        public static Identity<DiseaseRecord, Integer> IDENTITY_DISEASE = createIdentity(Disease.DISEASE, Disease.DISEASE.ID);
+        public static Identity<SymptomRecord, Integer> IDENTITY_SYMPTOM = createIdentity(Symptom.SYMPTOM, Symptom.SYMPTOM.ID);
+        public static Identity<UserRecord, Integer> IDENTITY_USER = createIdentity(User.USER, User.USER.ID);
+    }
 
     private static class UniqueKeys0 extends AbstractKeys {
         public static final UniqueKey<DiseaseRecord> KEY_DISEASE_PRIMARY = createUniqueKey(Disease.DISEASE, "KEY_disease_PRIMARY", Disease.DISEASE.ID);

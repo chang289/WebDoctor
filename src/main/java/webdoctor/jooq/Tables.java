@@ -7,6 +7,7 @@ package webdoctor.jooq;
 import javax.annotation.Generated;
 
 import webdoctor.jooq.tables.Disease;
+import webdoctor.jooq.tables.DiseaseSymptom;
 import webdoctor.jooq.tables.Symptom;
 import webdoctor.jooq.tables.User;
 
@@ -28,6 +29,11 @@ public class Tables {
      * The table <code>webdoctor.disease</code>.
      */
     public static final Disease DISEASE = webdoctor.jooq.tables.Disease.DISEASE;
+
+    /**
+     * The table <code>webdoctor.disease_symptom</code>.
+     */
+    public static final DiseaseSymptom DISEASE_SYMPTOM = webdoctor.jooq.tables.DiseaseSymptom.DISEASE_SYMPTOM;
 
     /**
      * The table <code>webdoctor.symptom</code>.

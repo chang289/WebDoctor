@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Field;
+import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -34,7 +35,7 @@ import webdoctor.jooq.tables.records.SymptomRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Symptom extends TableImpl<SymptomRecord> {
 
-    private static final long serialVersionUID = 293609644;
+    private static final long serialVersionUID = -449911817;
 
     /**
      * The reference instance of <code>webdoctor.symptom</code>
@@ -92,6 +93,14 @@ public class Symptom extends TableImpl<SymptomRecord> {
     @Override
     public Schema getSchema() {
         return Webdoctor.WEBDOCTOR;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<SymptomRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_SYMPTOM;
     }
 
     /**
