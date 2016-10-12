@@ -23,14 +23,29 @@ public class LogIn {
     public int checkValid(User user) {
         User checkedUser = create.select().from(USER).where(USER.USERNAME.equal(user.getUsername())).fetchOneInto(User.class);
         if (checkedUser == null) {
-            return 1;
+            return 1;//success
         }
         else {
-            return 0;
+            return 0;//fail
         }
     }
 
     public int signin(User user) {
         return create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY).values(user.getUsername(), user.getPassword(), user.getEmail(), "0").execute();
+    }
+
+    public int login(User user) {
+        User data = create.select().from(USER).where(USER.USERNAME.equal(user.getUsername())).fetchOneInto(User.class);
+        if (data == null) {
+            return 0;//fail
+        }
+        else {
+            if (user.getPassword().equals(data.getPassword())) {
+                return 1;//success
+            }
+            else {
+                return 0;
+            }
+        }
     }
 }

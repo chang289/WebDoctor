@@ -12,7 +12,7 @@ import webdoctor.service.LogIn;
 public class SignUpController {
 
     @Autowired
-    LogIn login;
+    LogIn li;
 
     @RequestMapping(path="/SignUpPage", method = RequestMethod.GET)
     public String SignUp() {
@@ -21,16 +21,16 @@ public class SignUpController {
 
     @RequestMapping(path="/SignUp", method= RequestMethod.GET)
     public @ResponseBody int SignUpCheck(@RequestBody User user) {
-        return login.checkValid(user);
+        return li.checkValid(user);
     }
 
     @RequestMapping(path="/SignUp", method = RequestMethod.POST)
     public @ResponseBody int SignUp(@RequestBody User user) {
-        return login.signin(user);
+        return li.signin(user);
     }
 
     @RequestMapping(path="/Login", method=RequestMethod.GET)
-    public int Login() {
-        return 0;
+    public @ResponseBody int Login(@RequestBody User user) {
+        return li.login(user);
     }
 }
