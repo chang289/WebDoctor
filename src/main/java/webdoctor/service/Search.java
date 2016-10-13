@@ -50,12 +50,11 @@ public class Search {
     public String searchByDepartment(String department) {
         String json = null;
 
-        List<String> symptom_list = create.select(SYMPTOM.NAME).from(SYMPTOM).where(SYMPTOM.DEPARTMENT.equal(department)).fetchInto(String.class);
+        List<Symptom> symptom_list = create.select().from(SYMPTOM).where(SYMPTOM.DEPARTMENT.equal(department)).fetchInto(Symptom.class);
 //        for ( String s : symptom_list) {
 //            System.out.println(s);
 //        }
         json = gson.toJson(symptom_list);
-        System.out.println(json);
 
         return json;
     }

@@ -40,8 +40,8 @@ public class SearchController {
 
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
     public @ResponseBody String searchByDepartment(@RequestBody String department) {
-        System.out.println(department);
         String s = search.searchByDepartment(department.substring(1, department.length()-1));
+        System.out.println(s);
         return s;
     }
 
