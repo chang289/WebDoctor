@@ -5,16 +5,21 @@ import org.jooq.*;
 import org.jooq.impl.*;
 import java.sql.*;
 import java.util.List;
-
-import org.jooq.util.derby.sys.Sys;
 import org.springframework.stereotype.Service;
 import webdoctor.jooq.tables.pojos.Disease;
+
+
+
 
 /**
  * Created by IAN on 2016/10/10.
  */
+
+
 @Service
 public class Search {
+
+
 
 
     public void searchByName(String name) {
@@ -34,6 +39,7 @@ public class Search {
     }
 
     public void searchByTags(String Json) {
+
         String userName = "root";
         String password = "webdoctor";
         String url = "jdbc:mysql://localhost:3306/library";
@@ -46,6 +52,7 @@ public class Search {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 
