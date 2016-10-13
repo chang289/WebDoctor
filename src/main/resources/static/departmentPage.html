@@ -202,13 +202,13 @@ window.onload = function(){
             var department = $(this).val();
             console.log(department);
 
-            var obj = {};
-            obj.department = department;
+            //var obj = {};
+            //obj.department = department;
             var res = $.ajax({
                 url : '/symptomsByDepartment',
                 type : 'POST',
                 dataType: 'json',
-                data : JSON.stringify(obj),
+                data : JSON.stringify(department),
                 contentType: "application/json; charset=utf-8",
                 success : function(data) {
                     callback(data);
@@ -219,7 +219,7 @@ window.onload = function(){
                 }
             });
             var res = res.done(function(result) {
-                console.log(result.department);
+                console.log(result);
             });
         });
     });
