@@ -196,7 +196,7 @@ window.onload = function(){
     var btn = document.getElementsByClassName('department')[0];
     var span = document.getElementsByClassName("close")[0];
 
-    $(function(){
+    $(function(callback){
         $(".department").find(":button").click(function() {
             modal.style.display = "block";
             var department = $(this).val();
@@ -204,7 +204,7 @@ window.onload = function(){
 
             var obj = {};
             obj.department = department;
-            $.ajax({
+            var res = $.ajax({
                 url : '/symptomsByDepartment',
                 type : 'POST',
                 dataType: 'json',
@@ -217,6 +217,9 @@ window.onload = function(){
                 error : function (error) {
                     console.log(error);
                 }
+            });
+            var res = res.done(function(result) {
+                console.log(result.department);
             });
         });
     });
