@@ -54,6 +54,9 @@ public class Search {
         }
 
     }
+    public static searchByDepartment(String department) {
+
+    }
 
 
 }
