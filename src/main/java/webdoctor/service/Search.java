@@ -25,7 +25,7 @@ public class Search {
     public void searchByName(String name) {
         String userName = "root";
         String password = "webdoctor";
-        String url = "jdbc:mysql://localhost:3306/library";
+        String url = "jdbc:mysql://localhost:3306/webdoctor";
 
         try(Connection conn = DriverManager.getConnection(url,userName,password)) {
             DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
@@ -38,25 +38,38 @@ public class Search {
 
     }
 
-//    public void searchByTags(String Json) {
-//
-//        String userName = "root";
-//        String password = "webdoctor";
-//        String url = "jdbc:mysql://localhost:3306/library";
-//
-//        try(Connection conn = DriverManager.getConnection(url,userName,password)) {
-//            DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
-//            List<Disease> disease_list = create.select().from(DISEASE).where(DISEASE.NAME.startsWith(Json)).fetchInto(Disease.class);
-//            System.out.println(disease_list.get(0));
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
-//    }
-//    public static searchByDepartment(String department) {
-//
-//    }
+    public void searchByTags(String Json) {
+
+        String userName = "root";
+        String password = "webdoctor";
+        String url = "jdbc:mysql://localhost:3306/webdoctor";
+
+        try(Connection conn = DriverManager.getConnection(url,userName,password)) {
+            DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void searchByDepartment(String department) {
+        String userName = "root";
+        String password = "webdoctor";
+        String url = "jdbc:mysql://localhost:3306/webdoctor";
+
+        try(Connection conn = DriverManager.getConnection(url,userName,password)) {
+            DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
+
+            List<String> symptom_list = create.select(SYMPTOM.NAME).from(SYMPTOM).where(SYMPTOM.DEPARTMENT.equal(department)).fetchInto(String.class);
+            System.out.println(symptom_list.get(0));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 }
