@@ -24,10 +24,12 @@ public class SearchController {
         return "departmentPage.html";
     }
 
-    @RequestMapping(path = "/searchByName", method= RequestMethod.GET)
+    @RequestMapping(path = "/searchByName", method= RequestMethod.POST)
     public @ResponseBody String searchByName(@RequestBody Disease disease) {
-        System.out.println("success");
-        return "searchByName";
+        System.out.println(disease.getName());
+        String json = search.searchByName(disease.getName());
+        System.out.println(json);
+        return json;
     }
 
     @RequestMapping(path = "/searchByTags", method=RequestMethod.PUT)
@@ -41,7 +43,7 @@ public class SearchController {
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
     public @ResponseBody String searchByDepartment(@RequestBody String department) {
         String s = search.searchByDepartment(department.substring(1, department.length()-1));
-        System.out.println(s);
+//        System.out.println(s);
         return s;
     }
 
