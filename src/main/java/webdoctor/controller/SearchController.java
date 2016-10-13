@@ -1,8 +1,7 @@
 package webdoctor.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import webdoctor.jooq.tables.pojos.Disease;
 
 /**
  * Created by IAN on 2016/10/9.
@@ -13,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class SearchController {
 
     @RequestMapping(path = "/searchByName", method= RequestMethod.GET)
-    public String searchByName() {
+    public @ResponseBody String searchByName(@RequestBody Disease disease) {
         System.out.println("success");
         return "searchByName";
     }
 
     @RequestMapping(path = "/searchByTags", method=RequestMethod.GET)
-    public String searchByTags() {
+    public @ResponseBody String searchByTags(@RequestBody Disease[] diseases) {
         return "searchByTags";
     }
 }

@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class WebDoctor {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         SpringApplication.run(WebDoctor.class, args);
     }
-    
 }
