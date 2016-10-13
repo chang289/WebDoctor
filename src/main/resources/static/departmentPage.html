@@ -206,7 +206,7 @@ window.onload = function(){
             obj.department = department;
             $.ajax({
                 url : '/symptomsByDepartment',
-                type : 'GET',
+                type : 'POST',
                 dataType: 'json',
                 data : JSON.stringify(obj),
                 contentType: "application/json; charset=utf-8",
