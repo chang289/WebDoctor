@@ -23,5 +23,8 @@ public class SearchController {
     }
 
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.GET)
-    public @ResponseBody String searchByDepartment
+    public @ResponseBody String searchByDepartment(@RequestBody String department) {
+        System.out.println(department);
+        return "success";
+    }
 }
