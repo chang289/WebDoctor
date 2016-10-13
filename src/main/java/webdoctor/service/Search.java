@@ -38,25 +38,25 @@ public class Search {
 
     }
 
-    public void searchByTags(String Json) {
+//    public void searchByTags(String Json) {
+//
+//        String userName = "root";
+//        String password = "webdoctor";
+//        String url = "jdbc:mysql://localhost:3306/library";
+//
+//        try(Connection conn = DriverManager.getConnection(url,userName,password)) {
+//            DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
+//            List<Disease> disease_list = create.select().from(DISEASE).where(DISEASE.NAME.startsWith(Json)).fetchInto(Disease.class);
+//            System.out.println(disease_list.get(0));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-        String userName = "root";
-        String password = "webdoctor";
-        String url = "jdbc:mysql://localhost:3306/library";
-
-        try(Connection conn = DriverManager.getConnection(url,userName,password)) {
-            DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
-            List<Disease> disease_list = create.select().from(DISEASE).where(DISEASE.NAME.startsWith(Json)).fetchInto(Disease.class);
-            System.out.println(disease_list.get(0));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-    public static searchByDepartment(String department) {
-
-    }
+//    }
+//    public static searchByDepartment(String department) {
+//
+//    }
 
 
 }

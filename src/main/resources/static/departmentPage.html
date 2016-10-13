@@ -201,25 +201,26 @@ window.onload = function(){
             modal.style.display = "block";
             var department = $(this).val();
             console.log(department);
+
+            var obj = {};
+            obj.department = department;
+            $.ajax({
+                url : '/symptomsByDepartment',
+                type : 'GET',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success : function(data) {
+                    callback(data);
+                    console.log("success");
+                },
+                    error : function (error) {
+                    console.log(error);
+                }
+            });
         });
     });
 
-    /*
-    $.ajax({
-        url : '/SignUp',
-        type : 'POST',
-        dataType: 'json',
-        data : JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8",
-        success : function(data) {
-            callback(data);
-            console.log("success");
-        },
-        error : function (error) {
-            console.log(error);
-        }
-    });
-    */
 
     span.onclick = function() {
         modal.style.display = "none";
