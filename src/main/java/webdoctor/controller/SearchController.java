@@ -21,4 +21,7 @@ public class SearchController {
     public @ResponseBody String searchByTags(@RequestBody Disease[] diseases) {
         return "searchByTags";
     }
+
+    @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.GET)
+    public @ResponseBody String searchByDepartment
 }
