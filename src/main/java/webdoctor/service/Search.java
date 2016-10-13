@@ -25,7 +25,7 @@ public class Search {
     public void searchByName(String name) {
         String userName = "root";
         String password = "webdoctor";
-        String url = "jdbc:mysql://localhost:3306/library";
+        String url = "jdbc:mysql://localhost:3306/webdoctor";
 
         try(Connection conn = DriverManager.getConnection(url,userName,password)) {
             DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
@@ -38,11 +38,12 @@ public class Search {
 
     }
 
+
     public void searchByTags(String Json) {
 
         String userName = "root";
         String password = "webdoctor";
-        String url = "jdbc:mysql://localhost:3306/library";
+        String url = "jdbc:mysql://localhost:3306/webdoctor";
 
         try(Connection conn = DriverManager.getConnection(url,userName,password)) {
             DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
@@ -55,7 +56,7 @@ public class Search {
     public void searchByDepartment(String department) {
         String userName = "root";
         String password = "webdoctor";
-        String url = "jdbc:mysql://localhost:3306/library";
+        String url = "jdbc:mysql://localhost:3306/webdoctor";
 
         try(Connection conn = DriverManager.getConnection(url,userName,password)) {
             DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
@@ -67,6 +68,8 @@ public class Search {
             e.printStackTrace();
         }
     }
+
+
 
 
 }
