@@ -148,12 +148,12 @@
             <li><button id="btn4" type="submit">ophtalmology</button></li>
             <li><button id="btn5" type="submit">psychiatry</button></li>
             <li><button id="btn6" type="submit">Cardiology</button></li>
+            <li><button id="btn7" type="submit">Cerebral surgery</button></li>
 
         </ul>
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
-
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">CLOSE</span>
@@ -206,7 +206,7 @@ window.onload = function(){
             obj.department = department;
             $.ajax({
                 url : '/symptomsByDepartment',
-                type : 'GET',
+                type : 'POST',
                 dataType: 'json',
                 data : JSON.stringify(obj),
                 contentType: "application/json; charset=utf-8",
@@ -214,13 +214,12 @@ window.onload = function(){
                     callback(data);
                     console.log("success");
                 },
-                    error : function (error) {
+                error : function (error) {
                     console.log(error);
                 }
             });
         });
     });
-
 
     span.onclick = function() {
         modal.style.display = "none";
