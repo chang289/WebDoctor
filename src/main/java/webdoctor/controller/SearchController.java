@@ -1,9 +1,12 @@
 package webdoctor.controller;
 
+import org.jooq.DSLContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.jooq.tables.pojos.Disease;
 import webdoctor.jooq.tables.pojos.Symptom;
+import webdoctor.service.Search;
 
 /**
  * Created by IAN on 2016/10/9.
@@ -12,6 +15,9 @@ import webdoctor.jooq.tables.pojos.Symptom;
 
 @Controller
 public class SearchController {
+
+    @Autowired
+    Search search;
 
     @RequestMapping(path="/DepartmentPage", method = RequestMethod.GET)
     public String departmentPage() {
@@ -24,18 +30,19 @@ public class SearchController {
         return "searchByName";
     }
 
-    @RequestMapping(path = "/searchByTags", method=RequestMethod.GET)
-    public @ResponseBody String searchByTags(@RequestBody Disease[] diseases) {
+    @RequestMapping(path = "/searchByTags", method=RequestMethod.PUT)
+    public @ResponseBody String searchByTags(@RequestBody Symptom[] symptoms) {
+        for (int i = 0; i < symptoms.length; i++) {
+            System.out.println(symptoms[i].getName());
+        }
         return "searchByTags";
     }
 
-    @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST)
-    public @ResponseBody Symptom searchByDepartment(@RequestBody String department) {
+    @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
+    public @ResponseBody String searchByDepartment(@RequestBody String department) {
         System.out.println(department);
-        Symptom s = new Symptom();
-        s.setId(1);
-        s.setDepartment("dick");
-        s.setName("dickache");
+        String s = search.searchByDepartment(department);
+        System.out.println(s);
         return s;
     }
 
