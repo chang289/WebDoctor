@@ -142,16 +142,13 @@
     <div class="grids">
         <h1 style="border-bottom: 4px solid #e3ae24">5 AVAILABLE DEPARTMENTS</h1>
         <ul class="department">
-            <li><button type="submit">Dermatology</button></li>
-            <li><button type="submit">Neurology</button></li>
-            <li><button type="submit">Osteology</button></li>
-            <li><button type="submit">Dick</button></li>
-            <li><button type="submit">Arm</button></li>
-            <li><button type="submit">Eye</button></li>
-            <li><button type="submit">Leg</button></li><br>
-            <li><button type="submit">Hand</button></li>
-            <li><button type="submit">Head</button></li>
-            <li><button type="submit">Face</button></li>
+            <li><button id="btn1" type="submit" value="Dermatology">Dermatology</button></li>
+            <li><button id="btn2" type="submit">Neurology</button></li>
+            <li><button id="btn3" type="submit">Osteology</button></li>
+            <li><button id="btn4" type="submit">ophtalmology</button></li>
+            <li><button id="btn5" type="submit">psychiatry</button></li>
+            <li><button id="btn6" type="submit">Cardiology</button></li>
+
         </ul>
 
         <!-- The Modal -->
@@ -162,10 +159,10 @@
                 <span class="close">CLOSE</span>
                 <h1 style="border-bottom: 4px solid #e3ae24">5 AVAILABLE DEPARTMENTS</h1>
                 <ul class="symptoms">
-                    <li><button type="submit" id="1" onclick="selectTag(this.id)" value="Dermatology">Dermatology</button></li>
-                    <li><button type="submit" id="2" onclick="selectTag(this.id)" value="Neurology">Neurology</button></li>
-                    <li><button type="submit" id="3" onclick="selectTag(this.id)" value="Osteology">Osteology</button></li>
-                    <li><button type="submit" id="4" onclick="selectTag(this.id)" value="Dick">Dick</button></li>
+                    <li><button type="submit" id="1" value="Dermatology">Dermatology</button></li>
+                    <li><button type="submit" id="2" value="Neurology">Neurology</button></li>
+                    <li><button type="submit" id="3" value="Osteology">Osteology</button></li>
+                    <li><button type="submit" id="4" value="Dick">Dick</button></li>
                     <li><button type="submit">Arm</button></li><br>
                     <li><button type="submit">Eye</button></li>
                     <li><button type="submit">Leg</button></li>
@@ -190,7 +187,7 @@
     </div>
 </div>
 
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
     // Get the modal
 
@@ -198,9 +195,31 @@ window.onload = function(){
     var modal = document.getElementById('myModal');
     var btn = document.getElementsByClassName('department')[0];
     var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+
+    $(function(){
+        $(".department").find(":button").click(function() {
+            modal.style.display = "block";
+            var department = $(this).val();
+            console.log(department);
+        });
+    });
+
+    /*
+    $.ajax({
+        url : '/SignUp',
+        type : 'POST',
+        dataType: 'json',
+        data : JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        success : function(data) {
+            callback(data);
+            console.log("success");
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    });
+    */
 
     span.onclick = function() {
         modal.style.display = "none";
@@ -224,8 +243,6 @@ var selectTag = function(clicked_id) {
     li.appendChild(btn);
     selected.appendChild(li);
 }
-
-
 
 </script>
 </body>
