@@ -3,6 +3,7 @@ package webdoctor.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.jooq.tables.pojos.Disease;
+import webdoctor.jooq.tables.pojos.Symptom;
 
 /**
  * Created by IAN on 2016/10/9.
@@ -29,9 +30,13 @@ public class SearchController {
     }
 
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST)
-    public @ResponseBody String searchByDepartment(@RequestBody String department) {
+    public @ResponseBody Symptom searchByDepartment(@RequestBody String department) {
         System.out.println(department);
-        return "success";
+        Symptom s = new Symptom();
+        s.setId(1);
+        s.setDepartment("dick");
+        s.setName("dickache");
+        return s;
     }
 
 }
