@@ -5,7 +5,10 @@ import com.google.gson.Gson;
 import org.jooq.*;
 import org.jooq.impl.*;
 import java.sql.*;
-import java.util.List;
+import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+
 import org.jooq.util.derby.sys.Sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +44,40 @@ public class Search {
 //        }
        return json;
     }
-    public void searchByTags(Symptom[] symptoms){
+    public String  searchByTags(Symptom[] symptoms){
+        String json = null;
+        List<String> disease_occurrence = new ArrayList<String>();
+        List<String> diseases_to_symptom;
+
+        final Map<String,Integer> diseases_map = new HashMap<String,Integer>();
+        for(Symptom s:symptoms) {
+            diseases_to_symptom = create.select(DISEASE.NAME).from(DISEASE_SYMPTOM)
+                    .join(SYMPTOM).on(DISEASE_SYMPTOM.TAGID.equal(SYMPTOM.ID))
+                    .join(DISEASE).on(DISEASE_SYMPTOM.DISEASEID.equal(DISEASE.ID))
+                    .where(SYMPTOM.NAME.equal(s.getName()))
+                    .fetchInto(String.class);
+            for(String d : diseases_to_symptom) {
+                disease_occurrence.add(d);
+            }
+        }
+
+        for(String s: disease_occurrence) {
+            System.out.println(s);
+        }
+        for(String str : disease_occurrence){
+            diseases_map.put(str,1+(diseases_map.containsKey(str) ?     diseases_map.get(str) : 0));
+        }
+        List<String>diseases = new ArrayList<String>(diseases_map.keySet());
+        Collections.sort(diseases,new Comparator<String>() {
+            @Override
+            public int compare(String a, String b){
+                return diseases_map.get(b) - diseases_map.get(a);
+            }
+        });
+
+        json = gson.toJson(diseases);
+        System.out.println(json);
+        return json;
 
     }
     public String searchByDepartment(String department) {
