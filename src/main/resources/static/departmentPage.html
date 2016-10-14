@@ -166,12 +166,19 @@ window.onload = function(){
                     console.log(result[k])
                     var li = document.createElement("li");
                     var btn = document.createElement("BUTTON");
+                    var a = document.createElement('a');
+                    var linkText = document.createTextNode("my title text");
+                    a.appendChild(linkText);
+                    a.title = "my title text";
+                    a.href = "localhost:8080/diseaseDescriptionPage";
                     btn.setAttribute("value", result[k]);
+                    //btn.appendChild(a);
                     btn.appendChild(document.createTextNode(result[k]));
                     li.appendChild(btn);
                     li.style.margin = "5px";
                     diseaseList.appendChild(li);
                     console.log("level3");
+
                 }
                 $("#diseaseList").find(":button").click(function() {
                     var tagText = $(this).val();
@@ -189,8 +196,9 @@ window.onload = function(){
                                     console.log(error);
                                 }
                         });
-                    });
 
+                    });
+                    window.location.replace('/diseaseDescriptionPage');
                 });
             });
         });

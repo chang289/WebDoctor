@@ -44,6 +44,11 @@ public class Search {
 //        }
        return json;
     }
+
+    public Disease diseaseByName(String name) {
+        return create.select().from(DISEASE).where(DISEASE.NAME.equal(name)).fetchOneInto(Disease.class);
+    }
+
     public String  searchByTags(Symptom[] symptoms){
         String json = null;
         List<String> disease_occurrence = new ArrayList<String>();

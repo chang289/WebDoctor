@@ -19,7 +19,7 @@ public class SearchController {
     @Autowired
     Search search;
 
-
+    String name;
     @RequestMapping(path="/DepartmentPage", method = RequestMethod.GET)
     public String departmentPage() {
         return "departmentPage.html";
@@ -43,12 +43,13 @@ public class SearchController {
     @RequestMapping(path="/Getdescription", method = RequestMethod.POST)
     public @ResponseBody String description() {
         Gson gson = new Gson();
-        Disease disease = new Disease();
-        disease.setName("dickache");
-        disease.setId(1);
-        disease.setDepartment("...");
-        disease.setDescription("serious pain");
+//        Disease disease = new Disease();
+//        disease.setName("dickache");
+//        disease.setId(1);
+//        disease.setDepartment("...");
+//        disease.setDescription("serious pain");
 //        System.out.println(gson.toJson(disease));
+        Disease disease = search.diseaseByName(name);
         return gson.toJson(disease);
     }
 
@@ -89,19 +90,13 @@ public class SearchController {
     }
 
     @RequestMapping(path="/getDisease", method=RequestMethod.POST)
-    public @ResponseBody String getDisease(@RequestBody String name) {
-        System.out.println(name);
-        name = name.substring(1,name.length()-1);
-        putDisease(name);
+    public @ResponseBody String getDisease(@RequestBody String diseaseName) {
 
+//        System.out.println(name);
+        diseaseName = diseaseName.substring(1,diseaseName.length()-1);
+        this.name = diseaseName;
         return name;
     }
-    @RequestMapping(path="/putDisease", method=RequestMethod.POST)
-    public @ResponseBody String putDisease(String name) {
 
-        diseaseDescriptionPage();
-        return name.substring(1, name.length()-1);
-
-    }
 
 }
