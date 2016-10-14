@@ -18,6 +18,7 @@ public class SearchController {
     @Autowired
     Search search;
 
+
     @RequestMapping(path="/DepartmentPage", method = RequestMethod.GET)
     public String departmentPage() {
         return "departmentPage.html";
@@ -48,10 +49,7 @@ public class SearchController {
 
     @RequestMapping(path = "/searchByTags", method=RequestMethod.PUT)
     public @ResponseBody String searchByTags(@RequestBody Symptom[] symptoms) {
-        for (int i = 0; i < symptoms.length; i++) {
-            System.out.println(symptoms[i].getName());
-        }
-        return "searchByTags";
+        return search.searchByTags(symptoms);
     }
 
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
