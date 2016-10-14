@@ -87,4 +87,21 @@ public class SearchController {
     public String diseaseDescriptionPage() {
         return "DiseaseDescriptionPage.html";
     }
+
+    @RequestMapping(path="/getDisease", method=RequestMethod.POST)
+    public @ResponseBody String getDisease(@RequestBody String name) {
+        System.out.println(name);
+        name = name.substring(1,name.length()-1);
+        putDisease(name);
+
+        return name;
+    }
+    @RequestMapping(path="/putDisease", method=RequestMethod.POST)
+    public @ResponseBody String putDisease(String name) {
+
+        diseaseDescriptionPage();
+        return name.substring(1, name.length()-1);
+
+    }
+
 }
