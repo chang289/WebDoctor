@@ -24,18 +24,41 @@
         left:278px; top:92px; right:0; bottom:0;
         color: #fefefe;
     }
+    a {
+        color: white;
+    }
 </style>
+<script>
+    var g;
+    var res = $.ajax({
+        url : '/Getdescription',
+        type : 'GET',
+        dataType: 'json',
+        data : JSON.stringify(g),
+        contentType: "application/json; charset=utf-8",
+        success : function(data) {
+            callback(data);
+            console.log("success");
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    });
+    var obj = JSON.parse(g);
+    document.getElementById("description").innerHTML = obj.description;
+    document.getElementById("path").innerHTML = obj.department+"<p>/</p>"+obj.disease;
+</script>
+
 <body style="background-color:#1aa8a8">
-<div class="top"><h1>/WebDoctor/Opathamology/Result</h1></div>
+<div class="top"><h1 id = "path"></h1></div>
+
 <div class="left">
     <a href="http://www.google.com" target="_blank">Related Articles</a><br>
-    <br>
-    <a href="http://www.google.com" target="_blank" style="margin-top: 1cm">What Is Glaucoma?</a><br>
-    <br>
-    <a href="http://www.google.com" target="_blank">Glaucoma Facts</a>
+
 </div>
+
 <div class="main"><h2>Description</h2>
-<p>........................................<br>.............<br>............<br>...........<br>.................</p>
+<p id="description"></p>
 </div>
 </body>
 </html>
