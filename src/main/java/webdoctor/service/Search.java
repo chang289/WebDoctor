@@ -55,8 +55,4 @@ public class Search {
 
         return json;
     }
-
-
-
-
 }

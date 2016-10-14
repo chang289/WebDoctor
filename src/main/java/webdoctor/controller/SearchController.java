@@ -1,6 +1,5 @@
 package webdoctor.controller;
 
-import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,21 @@ public class SearchController {
     @RequestMapping(path="/DepartmentPage", method = RequestMethod.GET)
     public String departmentPage() {
         return "departmentPage.html";
+    }
+
+    @RequestMapping(path="ModePage", method = RequestMethod.GET)
+    public String modePage() {
+        return "modePage.html";
+    }
+
+    @RequestMapping(path="LoginPage", method = RequestMethod.GET)
+    public String loginPage() {
+        return "loginPage.html";
+    }
+
+    @RequestMapping(path="SymptomPage", method = RequestMethod.GET)
+    public String symptomPage() {
+        return "symptomPage.html";
     }
 
     @RequestMapping(path = "/searchByName", method= RequestMethod.POST)
@@ -47,4 +61,8 @@ public class SearchController {
         return s;
     }
 
+    @RequestMapping(path="/diseaseDescriptionPage", method = RequestMethod.GET)
+    public String diseaseDescriptionPage() {
+        return "DiseaseDescriptionPage.html";
+    }
 }
