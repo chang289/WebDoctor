@@ -69,7 +69,8 @@
             console.log(res.responseText);
             var obj = JSON.parse(res.responseText);
             document.getElementById("description").innerHTML = obj.description;
-            document.getElementById("path").innerHTML = obj.department + "<p>/</p>" + obj.name;
+            document.getElementById("path1").innerHTML = obj.department
+            document.getElementById("path2").innerHTML = obj.name;
         });
 //        console.log(res);
     });
