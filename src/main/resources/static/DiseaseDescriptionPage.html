@@ -29,21 +29,23 @@
     }
 </style>
 <script>
-    var g;
-    var res = $.ajax({
-        url : '/Getdescription',
-        type : 'GET',
-        dataType: 'json',
-        data : JSON.stringify(g),
-        contentType: "application/json; charset=utf-8",
-        success : function(data) {
-            callback(data);
-            console.log("success");
-        },
-        error : function (error) {
-            console.log(error);
-        }
-    });
+    $(function(callback) {
+        var g;
+        var res = $.ajax({
+            url: '/Getdescription',
+            type: 'GET',
+            dataType: 'json',
+            data: JSON.stringify(g),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                callback(data);
+                console.log("success");
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
     var obj = JSON.parse(g);
     document.getElementById("description").innerHTML = obj.description;
     document.getElementById("path").innerHTML = obj.department+"<p>/</p>"+obj.disease;
