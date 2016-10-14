@@ -43,12 +43,6 @@ public class SearchController {
     @RequestMapping(path="/Getdescription", method = RequestMethod.POST)
     public @ResponseBody String description() {
         Gson gson = new Gson();
-//        Disease disease = new Disease();
-//        disease.setName("dickache");
-//        disease.setId(1);
-//        disease.setDepartment("...");
-//        disease.setDescription("serious pain");
-//        System.out.println(gson.toJson(disease));
         Disease disease = search.diseaseByName(name);
         return gson.toJson(disease);
     }
