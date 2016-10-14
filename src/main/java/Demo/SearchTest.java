@@ -67,14 +67,14 @@ public class SearchTest {
 //        test.departmentSearchTest("Dermatology");
 //        System.out.println();
 
-        Symptom acne = new Symptom();
+        Symptom acitretin = new Symptom();
         Symptom cadasil = new Symptom();
-        acne.setId(1);
+        acitretin.setId(1);
         cadasil.setId(4);
-        acne.setName("Acne");
+        acitretin.setName("Acitretin");
         cadasil.setName("Cadasil");
         Symptom [] symptom_list = new Symptom[2];
-        symptom_list[0] = acne;
+        symptom_list[0] = acitretin;
         symptom_list[1] = cadasil;
         test.tagsSearchTest(symptom_list);
 
