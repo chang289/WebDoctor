@@ -31,17 +31,14 @@ public class Search {
 
     public String searchByName(String name) {
 
-        String json = null;
 
         List<Disease> disease_list = create.select().from(DISEASE).where(DISEASE.NAME.startsWith(name)).fetchInto(Disease.class);
-        json = gson.toJson(disease_list);
-        System.out.println(json);
+        String json = gson.toJson(disease_list);
+//        System.out.println(json);
 //        for(Disease s : disease_list) {
 //            System.out.println(s.getName());
 //
 //        }
-
-
        return json;
     }
     public void searchByTags(Symptom[] symptoms){
@@ -58,8 +55,4 @@ public class Search {
 
         return json;
     }
-
-
-
-
 }

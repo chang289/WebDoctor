@@ -1,6 +1,5 @@
 package webdoctor.controller;
 
-import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +23,27 @@ public class SearchController {
         return "departmentPage.html";
     }
 
-    @RequestMapping(path = "/searchByName", method= RequestMethod.GET)
+    @RequestMapping(path="ModePage", method = RequestMethod.GET)
+    public String modePage() {
+        return "modePage.html";
+    }
+
+    @RequestMapping(path="LoginPage", method = RequestMethod.GET)
+    public String loginPage() {
+        return "loginPage.html";
+    }
+
+    @RequestMapping(path="SymptomPage", method = RequestMethod.GET)
+    public String symptomPage() {
+        return "symptomPage.html";
+    }
+
+    @RequestMapping(path = "/searchByName", method= RequestMethod.POST)
     public @ResponseBody String searchByName(@RequestBody Disease disease) {
-        System.out.println("success");
-        return "searchByName";
+        System.out.println(disease.getName());
+        String json = search.searchByName(disease.getName());
+        System.out.println(json);
+        return json;
     }
 
     @RequestMapping(path = "/searchByTags", method=RequestMethod.PUT)
@@ -41,8 +57,12 @@ public class SearchController {
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
     public @ResponseBody String searchByDepartment(@RequestBody String department) {
         String s = search.searchByDepartment(department.substring(1, department.length()-1));
-        System.out.println(s);
+//        System.out.println(s);
         return s;
     }
 
+    @RequestMapping(path="/diseaseDescriptionPage", method = RequestMethod.GET)
+    public String diseaseDescriptionPage() {
+        return "DiseaseDescriptionPage.html";
+    }
 }
