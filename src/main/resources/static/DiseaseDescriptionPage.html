@@ -21,18 +21,22 @@
     .main {
         position: absolute;
         font-size: 28px;
-        left:278px; top:92px; right:0; bottom:0;
+        left:218px; top:60px; right:0; bottom:0;
         color: #fefefe;
     }
     a {
         color: white;
+        font-size: medium;
     }
 </style>
 
 
 <body style="background-color:#1aa8a8">
-<div class="top"><h1 id = "path"></h1></div>
-
+<div class="top" style="float:left"><h1>WebDoctor</h1></div>
+<div class="top" style="float:left"><h1>/</h1></div>
+<div class="top" style="float:left"><h1 id = "path1"></h1></div>
+<div class="top" style="float:left"><h1>/</h1></div>
+<div class="top" style="float:left"><h1 id = "path2"></h1></div>
 <div class="left">
     <a href="http://www.google.com" target="_blank">Related Articles</a><br>
 
@@ -66,7 +70,8 @@
             console.log(res.responseText);
             var obj = JSON.parse(res.responseText);
             document.getElementById("description").innerHTML = obj.description;
-            document.getElementById("path").innerHTML = obj.department + "<p>/</p>" + obj.name;
+            document.getElementById("path1").innerHTML = obj.department
+            document.getElementById("path2").innerHTML = obj.name;
         });
 //        console.log(res);
     });
