@@ -179,7 +179,6 @@ window.onload = function(){
                         $.ajax({
                                 url : '/getDisease',
                                 type : 'POST',
-                                dataType: 'json',
                                 data : JSON.stringify(tagText),
                                 contentType: "application/json; charset=utf-8",
                                 success : function(data) {

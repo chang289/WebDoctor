@@ -98,8 +98,10 @@ public class SearchController {
     }
     @RequestMapping(path="/putDisease", method=RequestMethod.POST)
     public @ResponseBody String putDisease(String name) {
+
         diseaseDescriptionPage();
-        return name;
+        return name.substring(1, name.length()-1);
+
     }
 
 }
