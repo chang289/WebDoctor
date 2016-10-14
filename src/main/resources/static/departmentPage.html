@@ -63,7 +63,7 @@
     </div>
 
     <div id="footer">
-        <button type="submit" style="background-color: yellow; width: 80px; height: 50px">Continue</button>
+        <button type="submit" id="continue" style="background-color: yellow; width: 80px; height: 50px">Continue</button>
     </div>
 </div>
 
@@ -75,16 +75,13 @@ window.onload = function(){
     var modal = document.getElementById('myModal');
     var btn = document.getElementsByClassName('department')[0];
     var span = document.getElementsByClassName("close")[0];
-
+    var count = 0;
     $(function(callback){
 
         $(".department").find(":button").click(function() {
             modal.style.display = "block";
             var department = $(this).val();
-            console.log(department);
 
-            //var obj = {};
-            //obj.department = department;
             var res = $.ajax({
                 url : '/symptomsByDepartment',
                 type : 'POST',
@@ -99,16 +96,13 @@ window.onload = function(){
                     console.log(error);
                 }
             });
-                    console.log("level4");
+            console.log("level4");
 
             var res = res.done(function(result) {
                 console.log(result);
                 var symptomList = document.getElementById('symptomList');
-                console.log("jsjsjsjsjsjsjjsjs");
 
                 for (var k in result) {
-                    //console.log(result[0].name);
-                    console.log(result[k].name);
                     var li = document.createElement("li");
                     var btn = document.createElement("BUTTON");
                     btn.setAttribute("id", result[k].id);
@@ -117,31 +111,60 @@ window.onload = function(){
                     li.appendChild(btn);
                     li.style.margin = "5px";
                     symptomList.appendChild(li);
-                            console.log("level3");
-
+                    console.log("level3");
                 }
+
                 $("#symptomList").find(":button").click(function() {
+                    $(this).attr('disabled','disabled');
                     var tagText = $(this).val();
                     var selected = document.getElementById('selectedTags');
                     var li = document.createElement("li");
+
                     var btn = document.createElement("BUTTON");
                     btn.appendChild(document.createTextNode(tagText));
+                    btn.setAttribute("class", "finalTags");
+                    btn.setAttribute("value", tagText);
                     li.appendChild(btn);
                     selected.appendChild(li);
+                    count++;
                     console.log("level2");
-console.log("!!pppppppppppppppppp");
-        $("#selectedTags").find(":button").click(function() {
-                console.log("!!xxxxxxxxxxxx");
-                $(this).remove();
-         });
+                    $("#selectedTags").find(":button").click(function() {
+                        $(this).remove();
+                        count--;
+                    });
+
                 });
-        console.log("level1");
+                console.log("level1");
 
             });
         console.log("level0");
         });
     });
 
+    $ ("#footer").find(":button").click(function() {
+        console.log("hellothere!");
+        var elems = document.getElementsByClassName("finalTags");
+        var arr = new Array();
+
+        for (var i = 0; i < elems.length; i++) {
+            arr[i] = elems[i].value;
+        }
+        console.log(arr);
+        var res = $.ajax({
+                url : '/searchByTags',
+                type : 'POST',
+                dataType: 'json',
+                data : JSON.stringify(arr),
+                contentType: "application/json; charset=utf-8",
+                success : function(data) {
+                    callback(data);
+                    console.log("success");
+                },
+                error : function (error) {
+                    console.log(error);
+                }
+        });
+    });
     span.onclick = function() {
         modal.style.display = "none";
         var symptomList = document.getElementById('symptomList');
