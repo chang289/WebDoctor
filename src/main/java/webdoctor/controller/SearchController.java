@@ -40,7 +40,7 @@ public class SearchController {
         return "symptomPage.html";
     }
 
-    @RequestMapping(path="/Description", method = RequestMethod.POST)
+    @RequestMapping(path="/Getdescription", method = RequestMethod.POST)
     public @ResponseBody String description() {
         Gson gson = new Gson();
         Disease disease = new Disease();
@@ -48,6 +48,7 @@ public class SearchController {
         disease.setId(1);
         disease.setDepartment("...");
         disease.setDescription("serious pain");
+//        System.out.println(gson.toJson(disease));
         return gson.toJson(disease);
     }
 

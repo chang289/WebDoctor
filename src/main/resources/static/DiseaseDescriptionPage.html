@@ -28,28 +28,7 @@
         color: white;
     }
 </style>
-<script>
-    $(function(callback) {
-        var g;
-        var res = $.ajax({
-            url: '/Getdescription',
-            type: 'GET',
-            dataType: 'json',
-            data: JSON.stringify(g),
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                callback(data);
-                console.log("success");
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    }
-    var obj = JSON.parse(g);
-    document.getElementById("description").innerHTML = obj.description;
-    document.getElementById("path").innerHTML = obj.department+"<p>/</p>"+obj.disease;
-</script>
+
 
 <body style="background-color:#1aa8a8">
 <div class="top"><h1 id = "path"></h1></div>
@@ -63,4 +42,33 @@
 <p id="description"></p>
 </div>
 </body>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    var g;
+    var res;
+    $(function(callback) {
+
+        res = $.ajax({
+            url: '/Getdescription',
+            type: 'POST',
+            dataType: 'json',
+            data : JSON.stringify(g),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                callback(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+        var res = res.done(function(result) {
+            console.log(res.responseText);
+            var obj = JSON.parse(res.responseText);
+            document.getElementById("description").innerHTML = obj.description;
+            document.getElementById("path").innerHTML = obj.department + "<p>/</p>" + obj.name;
+        });
+//        console.log(res);
+    });
+</script>
 </html>
