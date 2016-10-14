@@ -141,7 +141,7 @@ window.onload = function(){
         });
     });
 
-    $ ("#footer").find(":button").click(function() {
+    $ ("#footer").find(":button").click(function(callback) {
         console.log("hellothere!");
         var elems = document.getElementsByClassName("finalTags");
         var arr = new Array();
