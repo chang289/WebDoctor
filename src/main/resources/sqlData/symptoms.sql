@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `symptom`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `symptom` (
-  `id` int(10) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `symptom` (
 
 LOCK TABLES `symptom` WRITE;
 /*!40000 ALTER TABLE `symptom` DISABLE KEYS */;
-INSERT INTO `symptom` VALUES (0,'Acne','Dermatology'),(1,'Acitretin','Dermatology'),(2,'Botox','Dermatology'),(3,'Epidermal Nevus','Dermatology'),(4,'Cadasil','Neurology'),(5,'Dermatomyositis','Neurology'),(6,'Erb\'s Palsy','Neurology'),(7,'Rickets','Osteology'),(8,'Fracture','Osteology');
+INSERT INTO `symptom` VALUES (1,'Acitretin','Dermatology'),(2,'Botox','Dermatology'),(3,'Epidermal Nevus','Dermatology'),(4,'Cadasil','Neurology'),(5,'Dermatomyositis','Neurology'),(6,'Erb\'s Palsy','Neurology'),(7,'Rickets','Osteology'),(8,'Fracture','Osteology'),(10,'pannus','ophtalmology'),(11,'chemosis','ophtalmology'),(12,'somopsychosis','psychiatry'),(13,'hysteria','psychiatry'),(14,'aquaphobia','psychiatry'),(15,'Arrhythmia','Cardiology'),(16,'Tachycardia','Cardiology'),(17,'Heart failure','Cardiology'),(18,'chylothorax','Cerebral surgery'),(20,'esophagocele','Cerebral surgery'),(21,'thymoma','Cerebral surgery');
 /*!40000 ALTER TABLE `symptom` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-11  2:21:30
+-- Dump completed on 2016-10-13 19:14:35

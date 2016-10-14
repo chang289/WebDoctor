@@ -34,17 +34,14 @@ public class Search {
 
     public String searchByName(String name) {
 
-        String json = null;
 
         List<Disease> disease_list = create.select().from(DISEASE).where(DISEASE.NAME.startsWith(name)).fetchInto(Disease.class);
-        json = gson.toJson(disease_list);
-        System.out.println(json);
+        String json = gson.toJson(disease_list);
+//        System.out.println(json);
 //        for(Disease s : disease_list) {
 //            System.out.println(s.getName());
 //
 //        }
-
-
        return json;
     }
     public String  searchByTags(Symptom[] symptoms){
@@ -86,17 +83,12 @@ public class Search {
     public String searchByDepartment(String department) {
         String json = null;
 
-        List<String> symptom_list = create.select(SYMPTOM.NAME).from(SYMPTOM).where(SYMPTOM.DEPARTMENT.equal(department)).fetchInto(String.class);
+        List<Symptom> symptom_list = create.select().from(SYMPTOM).where(SYMPTOM.DEPARTMENT.equal(department)).fetchInto(Symptom.class);
 //        for ( String s : symptom_list) {
 //            System.out.println(s);
 //        }
         json = gson.toJson(symptom_list);
-        System.out.println(json);
 
         return json;
     }
-
-
-
-
 }

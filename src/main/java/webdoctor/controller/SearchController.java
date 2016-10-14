@@ -1,9 +1,11 @@
 package webdoctor.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.jooq.tables.pojos.Disease;
 import webdoctor.jooq.tables.pojos.Symptom;
+import webdoctor.service.Search;
 
 /**
  * Created by IAN on 2016/10/9.
@@ -13,30 +15,54 @@ import webdoctor.jooq.tables.pojos.Symptom;
 @Controller
 public class SearchController {
 
+    @Autowired
+    Search search;
+
     @RequestMapping(path="/DepartmentPage", method = RequestMethod.GET)
     public String departmentPage() {
         return "departmentPage.html";
     }
 
-    @RequestMapping(path = "/searchByName", method= RequestMethod.GET)
-    public @ResponseBody String searchByName(@RequestBody Disease disease) {
-        System.out.println("success");
-        return "searchByName";
+    @RequestMapping(path="ModePage", method = RequestMethod.GET)
+    public String modePage() {
+        return "modePage.html";
     }
 
-    @RequestMapping(path = "/searchByTags", method=RequestMethod.GET)
-    public @ResponseBody String searchByTags(@RequestBody Disease[] diseases) {
+    @RequestMapping(path="LoginPage", method = RequestMethod.GET)
+    public String loginPage() {
+        return "loginPage.html";
+    }
+
+    @RequestMapping(path="SymptomPage", method = RequestMethod.GET)
+    public String symptomPage() {
+        return "symptomPage.html";
+    }
+
+    @RequestMapping(path = "/searchByName", method= RequestMethod.POST)
+    public @ResponseBody String searchByName(@RequestBody Disease disease) {
+        System.out.println(disease.getName());
+        String json = search.searchByName(disease.getName());
+        System.out.println(json);
+        return json;
+    }
+
+    @RequestMapping(path = "/searchByTags", method=RequestMethod.PUT)
+    public @ResponseBody String searchByTags(@RequestBody Symptom[] symptoms) {
+        for (int i = 0; i < symptoms.length; i++) {
+            System.out.println(symptoms[i].getName());
+        }
         return "searchByTags";
     }
 
-    @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST)
-    public @ResponseBody Symptom searchByDepartment(@RequestBody String department) {
-        System.out.println(department);
-        Symptom s = new Symptom();
-        s.setId(1);
-        s.setDepartment("dick");
-        s.setName("dickache");
+    @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
+    public @ResponseBody String searchByDepartment(@RequestBody String department) {
+        String s = search.searchByDepartment(department.substring(1, department.length()-1));
+//        System.out.println(s);
         return s;
     }
 
+    @RequestMapping(path="/diseaseDescriptionPage", method = RequestMethod.GET)
+    public String diseaseDescriptionPage() {
+        return "DiseaseDescriptionPage.html";
+    }
 }
