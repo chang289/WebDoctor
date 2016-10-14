@@ -1,5 +1,6 @@
 package webdoctor.controller;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -47,9 +48,20 @@ public class SearchController {
         return json;
     }
 
-    @RequestMapping(path = "/searchByTags", method=RequestMethod.PUT)
-    public @ResponseBody String searchByTags(@RequestBody Symptom[] symptoms) {
-        return search.searchByTags(symptoms);
+    @RequestMapping(path = "/searchByTags", method=RequestMethod.POST)
+    public @ResponseBody String searchByTags(@RequestBody String[] symptoms) {
+        for (int i = 0; i < symptoms.length; i++){
+            System.out.println(symptoms[i]);
+        }
+        System.out.println(symptoms.length);
+        Symptom[] symptomList = new Symptom[symptoms.length];
+        for (int i = 0; i < symptoms.length; i++) {
+            symptomList[i] = new Symptom();
+            System.out.println(i);
+            System.out.println(symptoms[i]);
+            symptomList[i].setName(symptoms[i]);
+        }
+        return search.searchByTags(symptomList);
     }
 
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
