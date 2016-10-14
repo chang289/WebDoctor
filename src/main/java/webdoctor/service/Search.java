@@ -1,7 +1,15 @@
 package webdoctor.service;
-
+import static webdoctor.jooq.Tables.*;
+import static org.jooq.impl.DSL.*;
 import com.google.gson.Gson;
+import org.jooq.*;
+import org.jooq.impl.*;
+import java.sql.*;
+import java.util.List;
+import org.jooq.util.derby.sys.Sys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webdoctor.jooq.tables.pojos.Disease;
 import webdoctor.jooq.tables.pojos.Symptom;
 
 
@@ -12,13 +20,43 @@ import webdoctor.jooq.tables.pojos.Symptom;
 
 @Service
 public class Search {
+
     Gson gson = new Gson();
-    public void searchByName(String name) {
-        return;
+
+    private final DSLContext create;
+    @Autowired
+    public Search(DSLContext dslContext) {
+        this.create = dslContext;
     }
 
-    public void searchByTags(String Json) {
-        Symptom[] symptoms = gson.fromJson(Json, Symptom[].class);
-        return;
+    public String searchByName(String name) {
+
+
+        List<Disease> disease_list = create.select().from(DISEASE).where(DISEASE.NAME.startsWith(name)).fetchInto(Disease.class);
+        String json = gson.toJson(disease_list);
+//        System.out.println(json);
+//        for(Disease s : disease_list) {
+//            System.out.println(s.getName());
+//
+//        }
+       return json;
     }
+    public void searchByTags(Symptom[] symptoms){
+
+    }
+    public String searchByDepartment(String department) {
+        String json = null;
+
+        List<Symptom> symptom_list = create.select().from(SYMPTOM).where(SYMPTOM.DEPARTMENT.equal(department)).fetchInto(Symptom.class);
+//        for ( String s : symptom_list) {
+//            System.out.println(s);
+//        }
+        json = gson.toJson(symptom_list);
+
+        return json;
+    }
+
+
+
+
 }
