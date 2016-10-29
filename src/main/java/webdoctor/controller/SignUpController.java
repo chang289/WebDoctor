@@ -34,5 +34,9 @@ public class SignUpController {
         return li.login(user);
     }
 
-
+    @RequestMapping(path="/ChangePassword", method=RequestMethod.POST)
+    public @ResponseBody int ChangePassword(@RequestBody User user) {
+        System.out.println(user.getPassword());
+        return li.changePassword(user);
+    }
 }
