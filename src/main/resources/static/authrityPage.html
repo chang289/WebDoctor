@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+    function SignUp(username, callback) {
+        console.log("222222222");
+        var username1 = document.getElementById('username').value;
+
+        var obj = {};
+
+        obj.username = username1;
+        console.log(username1);
+
+        $.ajax({
+            url : '/',
+            type : 'POST',
+            dataType: 'json',
+            data : JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            success : function(data) {
+                callback(data);
+                console.log("success");
+            },
+            error : function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+</script>
+
+<style>
+    body {
+    background-color: #1aa8a8;
+    }
+
+    .middle {
+    text-align: center;
+    margin-top: 100px;
+    }
+
+    form {
+    border: 3px solid #1aa8a8;
+    margin:0 auto;
+    vertical-align: middle;
+    }
+
+    input[type=text], input[type=password] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    }
+
+    button {
+    background-color: #0d57a0;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    }
+
+    .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    }
+
+</style>
+<body>
+
+<div class="middle">
+    <form action="action_page.php">
+        <div class="imgContainer">
+            <img src="logo.jpg" alt="logo" class="logo" style="width: 300px; height: 200px;">
+        </div>
+
+        <div class="container">
+            <input type="text" placeholder="Enter Username" id="username" name="username" required><br>
+            <button type="submit">Authority this user</button>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
