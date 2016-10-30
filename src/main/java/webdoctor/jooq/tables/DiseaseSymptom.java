@@ -29,7 +29,7 @@ import webdoctor.jooq.tables.records.DiseaseSymptomRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DiseaseSymptom extends TableImpl<DiseaseSymptomRecord> {
 
-    private static final long serialVersionUID = -1661191447;
+    private static final long serialVersionUID = -1343841711;
 
     /**
      * The reference instance of <code>webdoctor.disease_symptom</code>
@@ -45,14 +45,14 @@ public class DiseaseSymptom extends TableImpl<DiseaseSymptomRecord> {
     }
 
     /**
-     * The column <code>webdoctor.disease_symptom.tagid</code>.
+     * The column <code>webdoctor.disease_symptom.tag_id</code>.
      */
-    public final TableField<DiseaseSymptomRecord, Integer> TAGID = createField("tagid", org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<DiseaseSymptomRecord, Integer> TAG_ID = createField("tag_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>webdoctor.disease_symptom.diseaseid</code>.
+     * The column <code>webdoctor.disease_symptom.disease_id</code>.
      */
-    public final TableField<DiseaseSymptomRecord, Integer> DISEASEID = createField("diseaseid", org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<DiseaseSymptomRecord, Integer> DISEASE_ID = createField("disease_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>webdoctor.disease_symptom</code> table reference

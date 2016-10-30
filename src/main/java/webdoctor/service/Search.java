@@ -17,7 +17,7 @@ import webdoctor.jooq.tables.pojos.Symptom;
 
 
 /**
- * Created by IAN on 2016/10/10.
+ * Created by Yibin Wu on 2016/10/10.
  */
 
 
@@ -57,8 +57,8 @@ public class Search {
         final Map<String,Integer> diseases_map = new HashMap<String,Integer>();
         for(Symptom s:symptoms) {
             diseases_to_symptom = create.select(DISEASE.NAME).from(DISEASE_SYMPTOM)
-                    .join(SYMPTOM).on(DISEASE_SYMPTOM.TAGID.equal(SYMPTOM.ID))
-                    .join(DISEASE).on(DISEASE_SYMPTOM.DISEASEID.equal(DISEASE.ID))
+                    .join(SYMPTOM).on(DISEASE_SYMPTOM.TAG_ID.equal(SYMPTOM.ID))
+                    .join(DISEASE).on(DISEASE_SYMPTOM.DISEASE_ID.equal(DISEASE.ID))
                     .where(SYMPTOM.NAME.equal(s.getName()))
                     .fetchInto(String.class);
             for(String d : diseases_to_symptom) {

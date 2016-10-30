@@ -62,4 +62,17 @@ public class UserService {
         }
 
     }
+
+    public int changeEmail(User user) {
+        if (checkValid(user)== 1) {
+            create.update(USER)
+                    .set(USER.EMAIL, user.getEmail())
+                    .where(USER.USERNAME.equal(user.getUsername()))
+                    .execute();
+            return 1;
+            //success
+        }else {
+            return 0;
+        }
+    }
 }
