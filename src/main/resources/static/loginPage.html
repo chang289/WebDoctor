@@ -21,7 +21,6 @@ $(document).ready(function(){
         obj.password = password1;
         console.log(password1);
         console.log(username1);
-        console.log("jjjjj");
         $(function(callback) {
             var i = $.ajax({
                 url : '/Login',
@@ -39,6 +38,12 @@ $(document).ready(function(){
 
             }).done(function(result) {
                 console.log(result);
+                if (result == 0) {
+                    alert("Cannot find your user and password pair");
+                }
+                if (result == 1) {
+                    window.location.replace('/ModePage');
+                }
             });
         });
     });

@@ -2,8 +2,8 @@
 <html>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
-    function authority() {
+$(document).ready(function(){
+    $("#authbtn").click(function() {
         console.log("222222222");
         var username1 = document.getElementById('username').value;
 
@@ -11,7 +11,25 @@
 
         obj.username = username1;
         console.log(username1);
-    }
+
+        $(function(callback) {
+            var i = $.ajax({
+                url : '/Certification',
+                type : 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success : function(data) {
+                    callback(data);
+                    console.log("success");
+                },
+                error : function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+});
 
 </script>
 
@@ -66,9 +84,8 @@
 
         <div class="container">
             <input type="text" placeholder="Enter Username" id="username" name="username" required><br>
-            <button type="submit" onclick = "authority()">Authority this user</button>
+            <button id="authbtn" type="button">Authority this user</button>
         </div>
-
     </form>
 </div>
 </body>

@@ -36,14 +36,21 @@ public class UserController {
         return "signupPage.html";
     }
 
-    @RequestMapping(path="/SignUp", method= RequestMethod.GET)
-    public @ResponseBody int SignUpCheck(@RequestBody User user) {
-        return li.checkValid(user);
+    @RequestMapping(path="/ChangeProfilePage", method = RequestMethod.GET)
+    public String ChangeProfile() {
+        return "ChangeProfilePage.html";
     }
+
+
+
 
     @RequestMapping(path="/SignUp", method = RequestMethod.POST)
     public @ResponseBody int SignUp(@RequestBody User user) {
-        return li.signin(user);
+        if(li.checkValid(user) == 0) {
+            return li.signin(user);
+        }else {
+            return 0;
+        }
     }
 
     @RequestMapping(path="/Login", method=RequestMethod.POST)
@@ -54,5 +61,10 @@ public class UserController {
     @RequestMapping(path="/ChangePassword", method=RequestMethod.POST)
     public @ResponseBody int ChangePassword(@RequestBody User user) {
         return li.changePassword(user);
+    }
+
+    @RequestMapping(path="/ChangeMail", method=RequestMethod.POST)
+    public @ResponseBody int ChangeEmail(@RequestBody User user) {
+        return li.changeEmail(user);
     }
 }

@@ -14,7 +14,9 @@ import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
+import webdoctor.jooq.tables.Article;
 import webdoctor.jooq.tables.Disease;
+import webdoctor.jooq.tables.DiseaseArticle;
 import webdoctor.jooq.tables.DiseaseSymptom;
 import webdoctor.jooq.tables.Symptom;
 import webdoctor.jooq.tables.User;
@@ -33,7 +35,7 @@ import webdoctor.jooq.tables.User;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Webdoctor extends SchemaImpl {
 
-    private static final long serialVersionUID = -1752504269;
+    private static final long serialVersionUID = 1427466201;
 
     /**
      * The reference instance of <code>webdoctor</code>
@@ -41,9 +43,19 @@ public class Webdoctor extends SchemaImpl {
     public static final Webdoctor WEBDOCTOR = new Webdoctor();
 
     /**
+     * The table <code>webdoctor.article</code>.
+     */
+    public final Article ARTICLE = webdoctor.jooq.tables.Article.ARTICLE;
+
+    /**
      * The table <code>webdoctor.disease</code>.
      */
     public final Disease DISEASE = webdoctor.jooq.tables.Disease.DISEASE;
+
+    /**
+     * The table <code>webdoctor.disease_article</code>.
+     */
+    public final DiseaseArticle DISEASE_ARTICLE = webdoctor.jooq.tables.DiseaseArticle.DISEASE_ARTICLE;
 
     /**
      * The table <code>webdoctor.disease_symptom</code>.
@@ -85,7 +97,9 @@ public class Webdoctor extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            Article.ARTICLE,
             Disease.DISEASE,
+            DiseaseArticle.DISEASE_ARTICLE,
             DiseaseSymptom.DISEASE_SYMPTOM,
             Symptom.SYMPTOM,
             User.USER);

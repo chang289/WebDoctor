@@ -27,33 +27,33 @@ import webdoctor.jooq.tables.DiseaseSymptom;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> implements Record2<Integer, Integer> {
 
-    private static final long serialVersionUID = -1373004396;
+    private static final long serialVersionUID = -244351118;
 
     /**
-     * Setter for <code>webdoctor.disease_symptom.tagid</code>.
+     * Setter for <code>webdoctor.disease_symptom.tag_id</code>.
      */
-    public void setTagid(Integer value) {
+    public void setTagId(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>webdoctor.disease_symptom.tagid</code>.
+     * Getter for <code>webdoctor.disease_symptom.tag_id</code>.
      */
-    public Integer getTagid() {
+    public Integer getTagId() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>webdoctor.disease_symptom.diseaseid</code>.
+     * Setter for <code>webdoctor.disease_symptom.disease_id</code>.
      */
-    public void setDiseaseid(Integer value) {
+    public void setDiseaseId(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>webdoctor.disease_symptom.diseaseid</code>.
+     * Getter for <code>webdoctor.disease_symptom.disease_id</code>.
      */
-    public Integer getDiseaseid() {
+    public Integer getDiseaseId() {
         return (Integer) get(1);
     }
 
@@ -82,7 +82,7 @@ public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> 
      */
     @Override
     public Field<Integer> field1() {
-        return DiseaseSymptom.DISEASE_SYMPTOM.TAGID;
+        return DiseaseSymptom.DISEASE_SYMPTOM.TAG_ID;
     }
 
     /**
@@ -90,7 +90,7 @@ public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> 
      */
     @Override
     public Field<Integer> field2() {
-        return DiseaseSymptom.DISEASE_SYMPTOM.DISEASEID;
+        return DiseaseSymptom.DISEASE_SYMPTOM.DISEASE_ID;
     }
 
     /**
@@ -98,7 +98,7 @@ public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> 
      */
     @Override
     public Integer value1() {
-        return getTagid();
+        return getTagId();
     }
 
     /**
@@ -106,7 +106,7 @@ public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> 
      */
     @Override
     public Integer value2() {
-        return getDiseaseid();
+        return getDiseaseId();
     }
 
     /**
@@ -114,7 +114,7 @@ public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> 
      */
     @Override
     public DiseaseSymptomRecord value1(Integer value) {
-        setTagid(value);
+        setTagId(value);
         return this;
     }
 
@@ -123,7 +123,7 @@ public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> 
      */
     @Override
     public DiseaseSymptomRecord value2(Integer value) {
-        setDiseaseid(value);
+        setDiseaseId(value);
         return this;
     }
 
@@ -151,10 +151,10 @@ public class DiseaseSymptomRecord extends TableRecordImpl<DiseaseSymptomRecord> 
     /**
      * Create a detached, initialised DiseaseSymptomRecord
      */
-    public DiseaseSymptomRecord(Integer tagid, Integer diseaseid) {
+    public DiseaseSymptomRecord(Integer tagId, Integer diseaseId) {
         super(DiseaseSymptom.DISEASE_SYMPTOM);
 
-        set(0, tagid);
-        set(1, diseaseid);
+        set(0, tagId);
+        set(1, diseaseId);
     }
 }
