@@ -16,21 +16,6 @@ public class UserController {
     @Autowired
     UserService li;
 
-    @Autowired
-    Authorization authorization;
-
-    @RequestMapping(path = "/CertificationPage", method = RequestMethod.GET)
-    public String certificationPage() {
-        return "authorityPage";
-    }
-
-    @RequestMapping(path = "/Certification", method = RequestMethod.POST)
-    public @ResponseBody int certification(@RequestBody String username) {
-        User user = new User();
-        user.setUsername(username);
-        return authorization.authorize(user);
-    }
-
     @RequestMapping(path="/SignUpPage", method = RequestMethod.GET)
     public String SignUp() {
         return "signupPage.html";
