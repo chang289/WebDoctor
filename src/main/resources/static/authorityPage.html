@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta content="utf-8" http-equiv="encoding">
-
-</head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
-
 $(document).ready(function(){
-    $("#loginbtn").click(function() {
+    $("#authbtn").click(function() {
         console.log("222222222");
-        var password1 = document.getElementById('password').value;
         var username1 = document.getElementById('username').value;
 
         var obj = {};
 
         obj.username = username1;
-        obj.password = password1;
-        console.log(password1);
         console.log(username1);
+
         $(function(callback) {
             var i = $.ajax({
-                url : '/Login',
+                url : '/Certification',
                 type : 'POST',
                 dataType: 'json',
                 data : JSON.stringify(obj),
@@ -35,22 +26,13 @@ $(document).ready(function(){
                 error : function (error) {
                     console.log(error);
                 }
-
-            }).done(function(result) {
-                console.log(result);
-                if (result == 0) {
-                    alert("Cannot find your user and password pair");
-                }
-                if (result == 1) {
-                    window.location.replace('/ModePage');
-                }
             });
         });
     });
-
 });
 
 </script>
+
 <style>
     body {
     background-color: #1aa8a8;
@@ -91,54 +73,20 @@ $(document).ready(function(){
     margin: 24px 0 12px 0;
     }
 
-    .container {
-    padding: 16px;
-    }
-
-    .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    }
-
-
 </style>
-
 <body>
 
 <div class="middle">
-    <form>
+    <form action="action_page.php">
         <div class="imgContainer">
             <img src="logo.jpg" alt="logo" class="logo" style="width: 300px; height: 200px;">
         </div>
 
         <div class="container">
-            <input type="text" placeholder="Enter Username" id="username" required><br>
-            <input type="password" placeholder="Enter Password" id="password" name="password" required><br>
-
-            <button id="loginbtn" type="button">Login!</button>
-            <button type="submit" style="background-color: red">Cancel</button>
-
+            <input type="text" placeholder="Enter Username" id="username" name="username" required><br>
+            <button id="authbtn" type="button">Authority this user</button>
         </div>
-
     </form>
 </div>
-
 </body>
 </html>

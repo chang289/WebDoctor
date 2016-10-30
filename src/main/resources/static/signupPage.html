@@ -33,7 +33,7 @@
         console.log(password1);
         console.log(username1);
         console.log(email1);
-
+        $(function(callback) {
         $.ajax({
             url : '/SignUp',
             type : 'POST',
@@ -47,6 +47,7 @@
             error : function (error) {
                 console.log(error);
             }
+        });
         });
     }
 
@@ -126,7 +127,7 @@
 <div class="middle">
     <form>
         <div class="imgContainer">
-            <img src="../logo.jpg" alt="logo" class="logo" style="width: 300px; height: 200px;">
+            <img src="logo.jpg" alt="logo" class="logo" style="width: 300px; height: 200px;">
         </div>
 
         <div class="container">
@@ -135,7 +136,7 @@
             <input type="password" placeholder="Re-Enter Password" id="repassword" name="password" required><br>
             <input type="text" placeholder="Enter E-mail Address" id="email" required>
 
-            <button type="submit" onclick = "SignUp()" >Sign up!</button>
+            <button type="button" onclick = "SignUp()" >Sign up!</button>
             <button type="submit" style="background-color: red">Cancel</button>
 
         </div>

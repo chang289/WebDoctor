@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    console.log("000000");
+
+$(document).ready(function(){
+    console.log("111111");
+    $("#searchbysym").click(function() {
+        console.log("222222");
+        window.location.replace('/DepartmentPage');
+    });
+
+});
+</script>
+
 <style>
     body {
         background-color: #1aa8a8;
@@ -57,8 +71,8 @@
         </div>
 
         <div class="container">
-            <button type="submit">Search by symptoms</button>
-            <button type="submit">Search by diseases</button>
+            <button id="searchbysym" type="button">Search by symptoms</button>
+            <button id="searchbydis" type="button">Search by diseases</button>
         </div>
 
         <div class="container" style="background-color:#1aa8a8">
