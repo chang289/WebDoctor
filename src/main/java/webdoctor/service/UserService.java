@@ -11,12 +11,12 @@ import static webdoctor.jooq.Tables.USER;
  */
 
 @Service
-public class LogIn {
+public class UserService {
     //need to add dependency
     private final DSLContext create;
 
     @Autowired
-    public LogIn(DSLContext dslContext) {
+    public UserService(DSLContext dslContext) {
         this.create = dslContext;
     }
 
