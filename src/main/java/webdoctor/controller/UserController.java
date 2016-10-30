@@ -30,7 +30,7 @@ public class UserController {
         return li.signin(user);
     }
 
-    @RequestMapping(path="/Login", method=RequestMethod.GET)
+    @RequestMapping(path="/Login", method=RequestMethod.POST)
     public @ResponseBody int Login(@RequestBody User user) {
         return li.login(user);
     }
