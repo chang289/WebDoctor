@@ -11,22 +11,22 @@ import static webdoctor.jooq.Tables.USER;
  */
 
 @Service
-public class LogIn {
+public class UserService {
     //need to add dependency
     private final DSLContext create;
 
     @Autowired
-    public LogIn(DSLContext dslContext) {
+    public UserService(DSLContext dslContext) {
         this.create = dslContext;
     }
 
     public int checkValid(User user) {
         User checkedUser = create.select().from(USER).where(USER.USERNAME.equal(user.getUsername())).fetchOneInto(User.class);
         if (checkedUser == null) {
-            return 1;//success
+            return 0;//fail
         }
         else {
-            return 0;//fail
+            return 1;//success
         }
     }
 
@@ -47,5 +47,19 @@ public class LogIn {
                 return 0;
             }
         }
+    }
+    public int changePassword(User user) {
+        if (checkValid(user) == 1) {
+            create.update(USER)
+                    .set(USER.PASSWORD, user.getPassword())
+                    .where(USER.USERNAME.equal(user.getUsername()))
+                    .execute();
+            return 1;
+            //success
+        }else {
+            return 0;
+            //fail
+        }
+
     }
 }

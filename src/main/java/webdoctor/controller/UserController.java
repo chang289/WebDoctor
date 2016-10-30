@@ -4,15 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.jooq.tables.pojos.User;
-import webdoctor.service.LogIn;
+import webdoctor.service.UserService;
+
 /**
  * Created by IAN on 2016/10/10.
  */
 @Controller
-public class SignUpController {
+public class UserController {
 
     @Autowired
-    LogIn li;
+    UserService li;
 
     @RequestMapping(path="/SignUpPage", method = RequestMethod.GET)
     public String SignUp() {
@@ -34,5 +35,8 @@ public class SignUpController {
         return li.login(user);
     }
 
-
+    @RequestMapping(path="/ChangePassword", method=RequestMethod.POST)
+    public @ResponseBody int ChangePassword(@RequestBody User user) {
+        return li.changePassword(user);
+    }
 }
