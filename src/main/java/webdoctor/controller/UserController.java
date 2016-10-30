@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.jooq.tables.pojos.User;
+import webdoctor.service.Authorization;
 import webdoctor.service.UserService;
 
 /**
@@ -14,6 +15,21 @@ public class UserController {
 
     @Autowired
     UserService li;
+
+    @Autowired
+    Authorization authorization;
+
+    @RequestMapping(path = "/CertificationPage", method = RequestMethod.GET)
+    public String certificationPage() {
+        return "authorityPage";
+    }
+
+    @RequestMapping(path = "/Certification", method = RequestMethod.POST)
+    public @ResponseBody int certification(@RequestBody String username) {
+        User user = new User();
+        user.setUsername(username);
+        return authorization.authorize(user);
+    }
 
     @RequestMapping(path="/SignUpPage", method = RequestMethod.GET)
     public String SignUp() {
