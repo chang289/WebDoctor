@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <style>
     .close {
     color: black;
@@ -89,20 +96,44 @@
     }
 
 
-    #userbtn {
+    .upperbtn {
     background-color: #0d57a0;
     color: white;
     padding: 5px 5px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 12%;
+    }
+
+    #upperlevel {
+    width: 100%;
+    height: 50px;
+    }
+
+    #homesection {
+    width: 240px;
+    height: 123px;
+    float: left;
+    }
+
+    #usersection {
+    width: 240px;
+    height: 123px;
+    float: right;
     }
 
 </style>
 <body>
-<div id="usersection" align="right">
-    <button id="userbtn" type="button"></button>
+<div id="upperlevel">
+    <div class="uppersection" id="homesection">
+        <button class="upperbtn" type="button" id="homebtn">
+            <span class="glyphicon glyphicon-home"></span> Home
+        </button>
+    </div>
+
+    <div class="uppersection" id="usersection">
+        <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
+    </div>
 </div>
 
 <div class="middle">
@@ -274,10 +305,13 @@ $(document).ready(function(){
 
     $("#userbtn").click(function() {
         if (username != "") {
-            alert("略略略");
+            window.location.replace('/UserPage');
         } else {
             window.location.replace('/LoginPage');
         }
+    });
+    $("#homebtn").click(function() {
+        window.location.replace('/ModePage');
     });
 });
 </script>
