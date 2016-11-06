@@ -71,6 +71,7 @@
         <div class="container">
             <button id="searchbysym" type="button">Search by symptoms</button>
             <button id="searchbydis" type="button">Search by diseases</button>
+            <button id="nearby" type="button">See facilities nearby</button>
         </div>
 
         <div class="container" style="background-color:#1aa8a8">
@@ -112,6 +113,10 @@ $(document).ready(function(){
     console.log("111111");
     $("#searchbysym").click(function() {
         window.location.replace('/DepartmentPage');
+    });
+
+    $("#nearby").click(function() {
+        window.location.replace('/MapPage');
     });
 
     $("#userbtn").click(function() {

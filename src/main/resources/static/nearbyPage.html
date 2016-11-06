@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+    #allmap {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+    background-color: #1aa8b9;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 10%;
+    border: 1px solid #888;
+    width: 80%;
+    height: auto;
+    }
+
+    body {
+    background-color: #1aa8a8;
+    }
+
+    .middle {
+    text-align: center;
+    margin-top: 100px;
+    }
+
+    form {
+    border: 3px solid #1aa8a8;
+    margin:0 auto;
+    vertical-align: middle;
+    }
+
+    input[type=text], input[type=password] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    }
+
+    button {
+    background-color: #0d57a0;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    }
+
+    .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    }
+
+    .container {
+    padding: 16px;
+    }
+
+
+    #userbtn {
+    background-color: #0d57a0;
+    color: white;
+    padding: 5px 5px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 12%;
+    }
+
+</style>
+<body>
+<div id="usersection" align="right">
+    <button id="userbtn" type="button"></button>
+</div>
+
+<div class="middle">
+
+    <form action="action_page.php">
+        <div class="imgContainer">
+            <img src="logo.jpg" alt="logo" class="logo" style="width: 300px; height: 200px;">
+        </div>
+
+        <div class="container">
+            <button id="hosptialnearby" type="button">Hospitals nearby</button>
+            <button id="pharmacynearby" type="button">Pharmacy nearby</button>
+        </div>
+
+        <div class="container" style="background-color:#1aa8a8">
+            <a href="#">skip?</a>
+        </div>
+    </form>
+
+    <div class="modal fade" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="text-align: center;">
+        <div class="modal-dialog" role="document" style="width:auto">
+            <div class="modal-content" style="width: 700px;height:440px;margin-left: auto;margin-right: auto;margin-top: 120px;">
+                <div class="modal-body">
+                    <span class="close">CLOSE</span>
+                    <div class="clearfix"></div>
+                    <div  class="modify-content">
+                        <div id="allmap"></div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function getCookie(c_name)
+{
+    if (document.cookie.length>0)
+    {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        {
+            c_start=c_start + c_name.length+1
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+        }
+    }
+    return ""
+}
+
+var username = getCookie('username');
+console.log(username);
+var userbtn = document.getElementById('userbtn');
+if (username != "") {
+    userbtn.appendChild(document.createTextNode('welcome '));
+    userbtn.appendChild(document.createTextNode(username));
+} else {
+    userbtn.appendChild(document.createTextNode('Login'));
+}
+function initMap() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            map = new google.maps.Map(document.getElementById('allmap'), {
+                center: pos,
+                zoom: 12
+            });
+
+            infowindow = new google.maps.InfoWindow();
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: pos,
+                radius: 5000,
+                type: ['hospital']
+            }, callback);
+        });
+        function callback(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
+            }
+        }
+
+        function createMarker(place) {
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
+    }
+}
+
+function initMap2() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            map = new google.maps.Map(document.getElementById('allmap'), {
+                center: pos,
+                zoom: 12
+            });
+
+            infowindow = new google.maps.InfoWindow();
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: pos,
+                radius: 5000,
+                type: ['pharmacy']
+            }, callback);
+        });
+        function callback(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
+            }
+        }
+
+        function createMarker(place) {
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
+    }
+}
+
+var modal = document.getElementById('my-modify-modal');
+var span = document.getElementsByClassName("close")[0];
+
+$(document).ready(function(){
+    console.log("111111");
+    $("#hosptialnearby").click(function() {
+        modal.style.display = "block";
+        initMap();
+    });
+    $("#pharmacynearby").click(function() {
+        modal.style.display = "block";
+        initMap2();
+    });
+
+     span.onclick = function() {
+        modal.style.display = "none";
+     }
+
+    $("#userbtn").click(function() {
+        if (username != "") {
+            alert("略略略");
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkBCw71wgIwBuiEr8_OPDuN4yYJ9WVw0I&libraries=places&callback=initMap" async defer></script>
+</html>
