@@ -2,3 +2,4 @@
 .idea
 *.iml
 src\main\java\Demo\SearchTest.java
+src\main\resources\config\application.properties

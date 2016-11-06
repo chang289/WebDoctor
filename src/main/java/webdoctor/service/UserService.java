@@ -30,8 +30,11 @@ public class UserService {
         }
     }
 
-    public int signin(User user) {
-        return create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY).values(user.getUsername(), user.getPassword(), user.getEmail(), "0").execute();
+    public int signUp(User user) {
+
+        return create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY)
+                .values(user.getUsername(), user.getPassword(), user.getEmail(), "0").execute();
+
     }
 
     public int login(User user) {
@@ -62,7 +65,12 @@ public class UserService {
         }
 
     }
-
+    public User getUser(User user) {
+        return create.select()
+                .from(USER)
+                .where(USER.USERNAME.equal(user.getUsername()))
+                .fetchOneInto(User.class);
+    }
     public int changeEmail(User user) {
         if (checkValid(user)== 1) {
             create.update(USER)

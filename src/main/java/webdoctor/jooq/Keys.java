@@ -10,9 +10,13 @@ import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 
+import webdoctor.jooq.tables.Article;
+import webdoctor.jooq.tables.Comment;
 import webdoctor.jooq.tables.Disease;
 import webdoctor.jooq.tables.Symptom;
 import webdoctor.jooq.tables.User;
+import webdoctor.jooq.tables.records.ArticleRecord;
+import webdoctor.jooq.tables.records.CommentRecord;
 import webdoctor.jooq.tables.records.DiseaseRecord;
 import webdoctor.jooq.tables.records.SymptomRecord;
 import webdoctor.jooq.tables.records.UserRecord;
@@ -36,6 +40,8 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<ArticleRecord, Integer> IDENTITY_ARTICLE = Identities0.IDENTITY_ARTICLE;
+    public static final Identity<CommentRecord, Integer> IDENTITY_COMMENT = Identities0.IDENTITY_COMMENT;
     public static final Identity<DiseaseRecord, Integer> IDENTITY_DISEASE = Identities0.IDENTITY_DISEASE;
     public static final Identity<SymptomRecord, Integer> IDENTITY_SYMPTOM = Identities0.IDENTITY_SYMPTOM;
     public static final Identity<UserRecord, Integer> IDENTITY_USER = Identities0.IDENTITY_USER;
@@ -44,6 +50,8 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<ArticleRecord> KEY_ARTICLE_PRIMARY = UniqueKeys0.KEY_ARTICLE_PRIMARY;
+    public static final UniqueKey<CommentRecord> KEY_COMMENT_PRIMARY = UniqueKeys0.KEY_COMMENT_PRIMARY;
     public static final UniqueKey<DiseaseRecord> KEY_DISEASE_PRIMARY = UniqueKeys0.KEY_DISEASE_PRIMARY;
     public static final UniqueKey<SymptomRecord> KEY_SYMPTOM_PRIMARY = UniqueKeys0.KEY_SYMPTOM_PRIMARY;
     public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = UniqueKeys0.KEY_USER_PRIMARY;
@@ -58,12 +66,16 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class Identities0 extends AbstractKeys {
+        public static Identity<ArticleRecord, Integer> IDENTITY_ARTICLE = createIdentity(Article.ARTICLE, Article.ARTICLE.ID);
+        public static Identity<CommentRecord, Integer> IDENTITY_COMMENT = createIdentity(Comment.COMMENT, Comment.COMMENT.ID);
         public static Identity<DiseaseRecord, Integer> IDENTITY_DISEASE = createIdentity(Disease.DISEASE, Disease.DISEASE.ID);
         public static Identity<SymptomRecord, Integer> IDENTITY_SYMPTOM = createIdentity(Symptom.SYMPTOM, Symptom.SYMPTOM.ID);
         public static Identity<UserRecord, Integer> IDENTITY_USER = createIdentity(User.USER, User.USER.ID);
     }
 
     private static class UniqueKeys0 extends AbstractKeys {
+        public static final UniqueKey<ArticleRecord> KEY_ARTICLE_PRIMARY = createUniqueKey(Article.ARTICLE, "KEY_article_PRIMARY", Article.ARTICLE.ID);
+        public static final UniqueKey<CommentRecord> KEY_COMMENT_PRIMARY = createUniqueKey(Comment.COMMENT, "KEY_comment_PRIMARY", Comment.COMMENT.ID);
         public static final UniqueKey<DiseaseRecord> KEY_DISEASE_PRIMARY = createUniqueKey(Disease.DISEASE, "KEY_disease_PRIMARY", Disease.DISEASE.ID);
         public static final UniqueKey<SymptomRecord> KEY_SYMPTOM_PRIMARY = createUniqueKey(Symptom.SYMPTOM, "KEY_symptom_PRIMARY", Symptom.SYMPTOM.ID);
         public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = createUniqueKey(User.USER, "KEY_user_PRIMARY", User.USER.ID);
