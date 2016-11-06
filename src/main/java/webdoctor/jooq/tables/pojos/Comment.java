@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.annotation.Generated;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.jooq.types.UInteger;
@@ -26,9 +27,9 @@ import org.jooq.types.UInteger;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Comment implements Serializable {
 
-    private static final long serialVersionUID = 1667406231;
+    private static final long serialVersionUID = -56526008;
 
-    private UInteger  id;
+    private Integer   id;
     private UInteger  userId;
     private UInteger  articleId;
     private Timestamp timeStamp;
@@ -45,7 +46,7 @@ public class Comment implements Serializable {
     }
 
     public Comment(
-        UInteger  id,
+        Integer   id,
         UInteger  userId,
         UInteger  articleId,
         Timestamp timeStamp,
@@ -58,11 +59,12 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public UInteger getId() {
+    @NotNull
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(UInteger id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

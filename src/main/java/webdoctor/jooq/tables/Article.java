@@ -5,16 +5,20 @@ package webdoctor.jooq.tables;
 
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
 import org.jooq.Field;
+import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.UInteger;
 
+import webdoctor.jooq.Keys;
 import webdoctor.jooq.Webdoctor;
 import webdoctor.jooq.tables.records.ArticleRecord;
 
@@ -32,7 +36,7 @@ import webdoctor.jooq.tables.records.ArticleRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article extends TableImpl<ArticleRecord> {
 
-    private static final long serialVersionUID = 1305434835;
+    private static final long serialVersionUID = -1906759100;
 
     /**
      * The reference instance of <code>webdoctor.article</code>
@@ -50,17 +54,14 @@ public class Article extends TableImpl<ArticleRecord> {
     /**
      * The column <code>webdoctor.article.id</code>.
      */
-    public final TableField<ArticleRecord, UInteger> ID = createField("id", org.jooq.impl.SQLDataType.INTEGERUNSIGNED, this, "");
+    public final TableField<ArticleRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-<<<<<<< HEAD
-=======
      * The column <code>webdoctor.article.author_id</code>.
      */
     public final TableField<ArticleRecord, Integer> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
->>>>>>> yibin
      * The column <code>webdoctor.article.title</code>.
      */
     public final TableField<ArticleRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR.length(1000), this, "");
@@ -103,6 +104,30 @@ public class Article extends TableImpl<ArticleRecord> {
     @Override
     public Schema getSchema() {
         return Webdoctor.WEBDOCTOR;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<ArticleRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_ARTICLE;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<ArticleRecord> getPrimaryKey() {
+        return Keys.KEY_ARTICLE_PRIMARY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<ArticleRecord>> getKeys() {
+        return Arrays.<UniqueKey<ArticleRecord>>asList(Keys.KEY_ARTICLE_PRIMARY);
     }
 
     /**

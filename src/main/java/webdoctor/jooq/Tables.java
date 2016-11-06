@@ -7,10 +7,7 @@ package webdoctor.jooq;
 import javax.annotation.Generated;
 
 import webdoctor.jooq.tables.Article;
-<<<<<<< HEAD
-=======
 import webdoctor.jooq.tables.Comment;
->>>>>>> yibin
 import webdoctor.jooq.tables.Disease;
 import webdoctor.jooq.tables.DiseaseArticle;
 import webdoctor.jooq.tables.DiseaseSymptom;
@@ -38,14 +35,11 @@ public class Tables {
     public static final Article ARTICLE = webdoctor.jooq.tables.Article.ARTICLE;
 
     /**
-<<<<<<< HEAD
-=======
      * The table <code>webdoctor.comment</code>.
      */
     public static final Comment COMMENT = webdoctor.jooq.tables.Comment.COMMENT;
 
     /**
->>>>>>> yibin
      * The table <code>webdoctor.disease</code>.
      */
     public static final Disease DISEASE = webdoctor.jooq.tables.Disease.DISEASE;

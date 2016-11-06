@@ -8,9 +8,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.annotation.Generated;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.jooq.types.UInteger;
 
 
 /**
@@ -26,16 +25,10 @@ import org.jooq.types.UInteger;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article implements Serializable {
 
-<<<<<<< HEAD
-    private static final long serialVersionUID = 732273634;
+    private static final long serialVersionUID = 1010623990;
 
-    private UInteger  id;
-=======
-    private static final long serialVersionUID = 819413992;
-
-    private UInteger  id;
+    private Integer   id;
     private Integer   authorId;
->>>>>>> yibin
     private String    title;
     private Timestamp timeStamp;
     private String    content;
@@ -44,45 +37,35 @@ public class Article implements Serializable {
 
     public Article(Article value) {
         this.id = value.id;
-<<<<<<< HEAD
-=======
         this.authorId = value.authorId;
->>>>>>> yibin
         this.title = value.title;
         this.timeStamp = value.timeStamp;
         this.content = value.content;
     }
 
     public Article(
-        UInteger  id,
-<<<<<<< HEAD
-=======
+        Integer   id,
         Integer   authorId,
->>>>>>> yibin
         String    title,
         Timestamp timeStamp,
         String    content
     ) {
         this.id = id;
-<<<<<<< HEAD
-=======
         this.authorId = authorId;
->>>>>>> yibin
         this.title = title;
         this.timeStamp = timeStamp;
         this.content = content;
     }
 
-    public UInteger getId() {
+    @NotNull
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(UInteger id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-<<<<<<< HEAD
-=======
     public Integer getAuthorId() {
         return this.authorId;
     }
@@ -91,7 +74,6 @@ public class Article implements Serializable {
         this.authorId = authorId;
     }
 
->>>>>>> yibin
     @Size(max = 1000)
     public String getTitle() {
         return this.title;
@@ -123,10 +105,7 @@ public class Article implements Serializable {
         StringBuilder sb = new StringBuilder("Article (");
 
         sb.append(id);
-<<<<<<< HEAD
-=======
         sb.append(", ").append(authorId);
->>>>>>> yibin
         sb.append(", ").append(title);
         sb.append(", ").append(timeStamp);
         sb.append(", ").append(content);

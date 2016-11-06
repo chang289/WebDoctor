@@ -5,6 +5,7 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webdoctor.jooq.tables.pojos.Article;
+import webdoctor.jooq.tables.pojos.Comment;
 import webdoctor.jooq.tables.pojos.User;
 import static webdoctor.jooq.Tables.USER;
 import static webdoctor.jooq.Tables.ARTICLE;
@@ -29,13 +30,17 @@ public class ArticleService {
 
     public int postArticle(Article article) {
         return create.insertInto(ARTICLE,ARTICLE.AUTHOR_ID,ARTICLE.TITLE,ARTICLE.TIME_STAMP,ARTICLE.CONTENT)
-                .values(article.getAuthorId(), article.getTitle(), article.getTimeStamp(),article.getContent()).execute();
+                .values(article.getAuthorId(), article.getTitle(), article.getTimeStamp(),article.getContent())
+                .execute();
 
     }
 
-    public int postComment(){
-        
+    public int postComment(Comment comment){
+       return create.insertInto(COMMENT,COMMENT.USER_ID,COMMENT.ARTICLE_ID,COMMENT.TIME_STAMP,COMMENT.CONTENT)
+               .values(comment.getUserId(),comment.getArticleId(),comment.getTimeStamp(),comment.getContent())
+               .execute();
     }
+
 
 
 

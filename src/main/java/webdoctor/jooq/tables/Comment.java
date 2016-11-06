@@ -5,16 +5,21 @@ package webdoctor.jooq.tables;
 
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
 import org.jooq.Field;
+import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 import org.jooq.types.UInteger;
 
+import webdoctor.jooq.Keys;
 import webdoctor.jooq.Webdoctor;
 import webdoctor.jooq.tables.records.CommentRecord;
 
@@ -32,7 +37,7 @@ import webdoctor.jooq.tables.records.CommentRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Comment extends TableImpl<CommentRecord> {
 
-    private static final long serialVersionUID = 1586326070;
+    private static final long serialVersionUID = -1295812175;
 
     /**
      * The reference instance of <code>webdoctor.comment</code>
@@ -50,7 +55,7 @@ public class Comment extends TableImpl<CommentRecord> {
     /**
      * The column <code>webdoctor.comment.id</code>.
      */
-    public final TableField<CommentRecord, UInteger> ID = createField("id", org.jooq.impl.SQLDataType.INTEGERUNSIGNED, this, "");
+    public final TableField<CommentRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>webdoctor.comment.user_id</code>.
@@ -100,6 +105,30 @@ public class Comment extends TableImpl<CommentRecord> {
     @Override
     public Schema getSchema() {
         return Webdoctor.WEBDOCTOR;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<CommentRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_COMMENT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<CommentRecord> getPrimaryKey() {
+        return Keys.KEY_COMMENT_PRIMARY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<CommentRecord>> getKeys() {
+        return Arrays.<UniqueKey<CommentRecord>>asList(Keys.KEY_COMMENT_PRIMARY);
     }
 
     /**
