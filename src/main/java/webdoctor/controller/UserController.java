@@ -27,7 +27,7 @@ public class UserController {
 
     @RequestMapping(path="/SignUp", method = RequestMethod.POST)
     public @ResponseBody int SignUp(@RequestBody User user) {
-        return li.signin(user);
+        return li.signUp(user);
     }
 
     @RequestMapping(path="/Login", method=RequestMethod.GET)

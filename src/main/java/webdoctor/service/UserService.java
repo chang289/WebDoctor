@@ -30,7 +30,7 @@ public class UserService {
         }
     }
 
-    public int signin(User user) {
+    public int signUp(User user) {
         return create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY).values(user.getUsername(), user.getPassword(), user.getEmail(), "0").execute();
     }
 
