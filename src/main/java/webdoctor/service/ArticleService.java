@@ -33,6 +33,10 @@ public class ArticleService {
 
     }
 
+    public int postComment(){
+        
+    }
+
 
 
 }
