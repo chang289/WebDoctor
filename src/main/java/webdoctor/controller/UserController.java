@@ -31,11 +31,15 @@ public class UserController {
 
     @RequestMapping(path="/SignUp", method = RequestMethod.POST)
     public @ResponseBody int SignUp(@RequestBody User user) {
+<<<<<<< HEAD
         if(li.checkValid(user) == 0) {
             return li.signUp(user);
         }else {
             return 0;
         }
+=======
+        return li.signUp(user);
+>>>>>>> yibin
     }
 
     @RequestMapping(path="/Login", method=RequestMethod.POST)
