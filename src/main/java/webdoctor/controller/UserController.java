@@ -34,6 +34,7 @@ public class UserController {
 
     @RequestMapping(path = "/UserPage", method = RequestMethod.POST)
     public @ResponseBody String getUser(@RequestBody User user) {
+        System.out.println("username:"+user.getUsername());
         User res = li.getUser(user);
         if (res == null) {
             return null;
