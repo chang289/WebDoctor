@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.*;
 public class MapController {
 
     @RequestMapping(path = "/MapPage", method = RequestMethod.GET)
-    public String mapPage() {return "mapPage.html";}
+    public String mapPage() {return "nearbyPage.html";}
 }
