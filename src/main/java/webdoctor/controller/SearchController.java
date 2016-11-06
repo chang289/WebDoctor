@@ -20,6 +20,8 @@ public class SearchController {
     Search search;
     String name;
 
+
+
     @RequestMapping(path="/DepartmentPage", method = RequestMethod.GET)
     public String departmentPage() {
         return "departmentPage.html";

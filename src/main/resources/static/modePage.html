@@ -1,19 +1,5 @@
 <!DOCTYPE html>
 <html>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-    console.log("000000");
-
-$(document).ready(function(){
-    console.log("111111");
-    $("#searchbysym").click(function() {
-        console.log("222222");
-        window.location.replace('/DepartmentPage');
-    });
-
-});
-</script>
-
 <style>
     body {
         background-color: #1aa8a8;
@@ -40,7 +26,7 @@ $(document).ready(function(){
     }
 
     button {
-    background-color: #0d57a0;
+        background-color: #0d57a0;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -59,12 +45,24 @@ $(document).ready(function(){
     }
 
 
-
+    #userbtn {
+        background-color: #0d57a0;
+        color: white;
+        padding: 5px 5px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 12%;
     }
+
 </style>
 <body>
+<div id="usersection" align="right">
+    <button id="userbtn" type="button"></button>
+</div>
 
 <div class="middle">
+
     <form action="action_page.php">
         <div class="imgContainer">
             <img src="logo.jpg" alt="logo" class="logo" style="width: 300px; height: 200px;">
@@ -81,4 +79,50 @@ $(document).ready(function(){
     </form>
 </div>
 </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function getCookie(c_name)
+{
+    if (document.cookie.length>0)
+    {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        {
+            c_start=c_start + c_name.length+1
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+        }
+    }
+    return ""
+}
+
+console.log("000000");
+var username = getCookie('username');
+console.log(username);
+var userbtn = document.getElementById('userbtn');
+if (username != "") {
+    userbtn.appendChild(document.createTextNode('welcome '));
+    userbtn.appendChild(document.createTextNode(username));
+} else {
+    userbtn.appendChild(document.createTextNode('Login'));
+}
+
+$(document).ready(function(){
+    console.log("111111");
+    $("#searchbysym").click(function() {
+        window.location.replace('/DepartmentPage');
+    });
+
+    $("#userbtn").click(function() {
+        if (username != "") {
+            alert("略略略");
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+
+});
+</script>
+
 </html>

@@ -20,16 +20,15 @@ public class AuthorizationController {
     @Autowired
     Authorization A;
 
-    @RequestMapping(path="/AuthorizationPage", method = RequestMethod.GET)
-    public String authorizationPage() {
-        return "authorizationPage.html";
+    @RequestMapping(path = "/CertificationPage", method = RequestMethod.GET)
+    public String certificationPage() {
+        return "authorityPage.html";
     }
 
-    @RequestMapping(path="/authorization", method= RequestMethod.POST)
-    public @ResponseBody int authorize(@RequestBody User user) {
+    @RequestMapping(path = "/Certification", method = RequestMethod.POST)
+    public @ResponseBody int certification(@RequestBody User user) {
         return A.authorize(user);
     }
-
 
 
 

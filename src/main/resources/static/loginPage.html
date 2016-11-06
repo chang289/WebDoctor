@@ -7,7 +7,13 @@
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
+function setCookie(c_name,value,expiredays)
+{
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+}
 
 $(document).ready(function(){
     $("#loginbtn").click(function() {
@@ -42,6 +48,7 @@ $(document).ready(function(){
                     alert("Cannot find your user and password pair");
                 }
                 if (result == 1) {
+                    setCookie('username',username1,365);
                     window.location.replace('/ModePage');
                 }
             });
