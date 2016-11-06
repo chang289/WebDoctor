@@ -32,7 +32,7 @@ public class UserController {
     @RequestMapping(path="/SignUp", method = RequestMethod.POST)
     public @ResponseBody int SignUp(@RequestBody User user) {
         if(li.checkValid(user) == 0) {
-            return li.signin(user);
+            return li.signUp(user);
         }else {
             return 0;
         }

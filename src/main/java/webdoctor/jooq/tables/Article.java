@@ -32,11 +32,7 @@ import webdoctor.jooq.tables.records.ArticleRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article extends TableImpl<ArticleRecord> {
 
-<<<<<<< HEAD
-    private static final long serialVersionUID = -76083991;
-=======
     private static final long serialVersionUID = 1305434835;
->>>>>>> yibin
 
     /**
      * The reference instance of <code>webdoctor.article</code>

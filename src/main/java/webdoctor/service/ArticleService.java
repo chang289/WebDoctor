@@ -27,8 +27,6 @@ public class ArticleService {
         this.create = dslContext;
     }
 
-
-
     public int postArticle(Article article) {
         return create.insertInto(ARTICLE,ARTICLE.AUTHOR_ID,ARTICLE.TITLE,ARTICLE.TIME_STAMP,ARTICLE.CONTENT)
                 .values(article.getAuthorId(), article.getTitle(), article.getTimeStamp(),article.getContent()).execute();
