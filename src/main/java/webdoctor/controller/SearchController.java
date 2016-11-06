@@ -27,17 +27,17 @@ public class SearchController {
         return "departmentPage.html";
     }
 
-    @RequestMapping(path="ModePage", method = RequestMethod.GET)
+    @RequestMapping(path="/ModePage", method = RequestMethod.GET)
     public String modePage() {
         return "modePage.html";
     }
 
-    @RequestMapping(path="LoginPage", method = RequestMethod.GET)
+    @RequestMapping(path="/LoginPage", method = RequestMethod.GET)
     public String loginPage() {
         return "loginPage.html";
     }
 
-    @RequestMapping(path="SymptomPage", method = RequestMethod.GET)
+    @RequestMapping(path="/SymptomPage", method = RequestMethod.GET)
     public String symptomPage() {
         return "symptomPage.html";
     }
