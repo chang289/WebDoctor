@@ -22,48 +22,48 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DiseaseSymptom implements Serializable {
 
-    private static final long serialVersionUID = 456800902;
+    private static final long serialVersionUID = 1460526726;
 
-    private Integer tagid;
-    private Integer diseaseid;
+    private Integer tagId;
+    private Integer diseaseId;
 
     public DiseaseSymptom() {}
 
     public DiseaseSymptom(DiseaseSymptom value) {
-        this.tagid = value.tagid;
-        this.diseaseid = value.diseaseid;
+        this.tagId = value.tagId;
+        this.diseaseId = value.diseaseId;
     }
 
     public DiseaseSymptom(
-        Integer tagid,
-        Integer diseaseid
+        Integer tagId,
+        Integer diseaseId
     ) {
-        this.tagid = tagid;
-        this.diseaseid = diseaseid;
+        this.tagId = tagId;
+        this.diseaseId = diseaseId;
     }
 
-    public Integer getTagid() {
-        return this.tagid;
+    public Integer getTagId() {
+        return this.tagId;
     }
 
-    public void setTagid(Integer tagid) {
-        this.tagid = tagid;
+    public void setTagId(Integer tagId) {
+        this.tagId = tagId;
     }
 
-    public Integer getDiseaseid() {
-        return this.diseaseid;
+    public Integer getDiseaseId() {
+        return this.diseaseId;
     }
 
-    public void setDiseaseid(Integer diseaseid) {
-        this.diseaseid = diseaseid;
+    public void setDiseaseId(Integer diseaseId) {
+        this.diseaseId = diseaseId;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("DiseaseSymptom (");
 
-        sb.append(tagid);
-        sb.append(", ").append(diseaseid);
+        sb.append(tagId);
+        sb.append(", ").append(diseaseId);
 
         sb.append(")");
         return sb.toString();

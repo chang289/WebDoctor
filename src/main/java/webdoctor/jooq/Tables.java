@@ -6,10 +6,14 @@ package webdoctor.jooq;
 
 import javax.annotation.Generated;
 
+import webdoctor.jooq.tables.Article;
+import webdoctor.jooq.tables.Comment;
 import webdoctor.jooq.tables.Disease;
+import webdoctor.jooq.tables.DiseaseArticle;
 import webdoctor.jooq.tables.DiseaseSymptom;
 import webdoctor.jooq.tables.Symptom;
 import webdoctor.jooq.tables.User;
+import webdoctor.jooq.tables.UserFavouritearticle;
 
 
 /**
@@ -26,9 +30,24 @@ import webdoctor.jooq.tables.User;
 public class Tables {
 
     /**
+     * The table <code>webdoctor.article</code>.
+     */
+    public static final Article ARTICLE = webdoctor.jooq.tables.Article.ARTICLE;
+
+    /**
+     * The table <code>webdoctor.comment</code>.
+     */
+    public static final Comment COMMENT = webdoctor.jooq.tables.Comment.COMMENT;
+
+    /**
      * The table <code>webdoctor.disease</code>.
      */
     public static final Disease DISEASE = webdoctor.jooq.tables.Disease.DISEASE;
+
+    /**
+     * The table <code>webdoctor.disease_article</code>.
+     */
+    public static final DiseaseArticle DISEASE_ARTICLE = webdoctor.jooq.tables.DiseaseArticle.DISEASE_ARTICLE;
 
     /**
      * The table <code>webdoctor.disease_symptom</code>.
@@ -44,4 +63,9 @@ public class Tables {
      * The table <code>webdoctor.user</code>.
      */
     public static final User USER = webdoctor.jooq.tables.User.USER;
+
+    /**
+     * The table <code>webdoctor.user_favouritearticle</code>.
+     */
+    public static final UserFavouritearticle USER_FAVOURITEARTICLE = webdoctor.jooq.tables.UserFavouritearticle.USER_FAVOURITEARTICLE;
 }
