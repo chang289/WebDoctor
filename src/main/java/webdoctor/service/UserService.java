@@ -31,12 +31,10 @@ public class UserService {
     }
 
     public int signUp(User user) {
-<<<<<<< HEAD
+
         return create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY)
                 .values(user.getUsername(), user.getPassword(), user.getEmail(), "0").execute();
-=======
-        return create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY).values(user.getUsername(), user.getPassword(), user.getEmail(), "0").execute();
->>>>>>> yibin
+
     }
 
     public int login(User user) {
