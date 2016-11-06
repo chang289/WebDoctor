@@ -5,92 +5,7 @@
     <title>User page</title>
 
 </head>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-//    function getCookie(c_name)
-//    {
-//        if (document.cookie.length>0)
-//        {
-//            c_start=document.cookie.indexOf(c_name + "=")
-//            if (c_start!=-1)
-//            {
-//                c_start=c_start + c_name.length+1
-//                c_end=document.cookie.indexOf(";",c_start)
-//                if (c_end==-1) c_end=document.cookie.length
-//                return unescape(document.cookie.substring(c_start,c_end))
-//            }
-//        }
-//        return ""
-//    }
-//
-//    console.log("000000");
-//    var username = getCookie('username');
-//    console.log(username);
-//    var userbtn = document.getElementById('userbtn');
-//    if (username != "") {
-//        userbtn.appendChild(document.createTextNode('welcome '));
-//        userbtn.appendChild(document.createTextNode(username));
-//    } else {
-//        userbtn.appendChild(document.createTextNode('Login'));
-//    }
-    var g;
-    var res;
-    var obj2 = {};
-    obj2.username = "12345";
-    $(function(callback) {
 
-        res = $.ajax({
-            url: '/UserPage',
-            type: 'POST',
-            dataType: 'json',
-            data: obj2,
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                callback(data);
-            },
-            error: function (error) {
-                console.log(error);
-            }
-
-        })
-        var res = res.done(function(result) {
-            console.log(res.responseText);
-            var obj = JSON.parse(res.responseText);
-            document.getElementById("userID").innerHTML = obj.ID;
-            document.getElementById("email").innerHTML = obj.Email
-            document.getElementById("Aut").innerHTML = obj.Authority;
-        });
-    });
-    function getCookie(c_name)
-    {
-        if (document.cookie.length>0)
-        {
-            c_start=document.cookie.indexOf(c_name + "=")
-            if (c_start!=-1)
-            {
-                c_start=c_start + c_name.length+1
-                c_end=document.cookie.indexOf(";",c_start)
-                if (c_end==-1) c_end=document.cookie.length
-                return unescape(document.cookie.substring(c_start,c_end))
-            }
-        }
-        return ""
-    }
-
-    console.log("000000");
-    var username = getCookie('username');
-    console.log(username);
-    var userbtn = document.getElementById('userbtn');
-    if (username != "") {
-        userbtn.appendChild(document.createTextNode('welcome '));
-        userbtn.appendChild(document.createTextNode(username));
-    } else {
-        userbtn.appendChild(document.createTextNode('Login'));
-    }
-    document.getElementById("userID").innerHTML="My First JavaScript"
-
-
-</script>
 
 <style>
     #userbtn {
@@ -116,4 +31,65 @@
 <h1 style="color: #fefefe;margin-top: 2cm;font-size: large">Authority</h1>
 <h2 id="Aut"></h2>
 </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    function getCookie(c_name)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(c_name + "=")
+            if (c_start!=-1)
+            {
+                c_start=c_start + c_name.length+1
+                c_end=document.cookie.indexOf(";",c_start)
+                if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+            }
+        }
+        return ""
+    }
+    console.log("000000");
+    var username = getCookie('username');
+    console.log(username);
+    var userbtn = document.getElementById('userbtn');
+    if (username != "") {
+        userbtn.appendChild(document.createTextNode('welcome '));
+        userbtn.appendChild(document.createTextNode(username));
+    } else {
+        userbtn.appendChild(document.createTextNode('Login'));
+    }
+    //--
+    var g;
+    var res;
+    var obj2 = {};
+    obj2.username = username;
+    $(function(callback) {
+
+        res = $.ajax({
+            url: '/UserPage',
+            type: 'POST',
+            dataType: 'json',
+            data: obj2,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                callback(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        })
+        var res = res.done(function(result) {
+            console.log(res.responseText);
+            var obj = JSON.parse(res.responseText);
+            document.getElementById("userID").innerHTML = obj.ID;
+            document.getElementById("email").innerHTML = obj.Email
+            document.getElementById("Aut").innerHTML = obj.Authority;
+        });
+    });
+  
+
+
+
+</script>
 </html>
