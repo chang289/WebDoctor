@@ -1,5 +1,6 @@
 package webdoctor.controller;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import webdoctor.service.UserService;
  */
 @Controller
 public class UserController {
-
+    Gson gson = new Gson();
     @Autowired
     UserService li;
 
@@ -26,7 +27,21 @@ public class UserController {
         return "ChangeProfilePage.html";
     }
 
+    @RequestMapping(path="/UserPage", method = RequestMethod.GET)
+    public String userPage() {
+        return "userPage.html";
+    }
 
+    @RequestMapping(path = "/UserPage", method = RequestMethod.POST)
+    public @ResponseBody String getUser(@RequestBody User user) {
+        User res = li.getUser(user);
+        if (res == null) {
+            return null;
+        }
+        else {
+            return gson.toJson(res);
+        }
+    }
 
 
     @RequestMapping(path="/SignUp", method = RequestMethod.POST)

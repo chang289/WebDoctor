@@ -65,7 +65,12 @@ public class UserService {
         }
 
     }
-
+    public User getUser(User user) {
+        return create.select()
+                .from(USER)
+                .where(USER.USERNAME.equal(user.getUsername()))
+                .fetchOneInto(User.class);
+    }
     public int changeEmail(User user) {
         if (checkValid(user)== 1) {
             create.update(USER)
