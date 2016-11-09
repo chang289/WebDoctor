@@ -20,7 +20,7 @@ public class UserService {
         this.create = dslContext;
     }
 
-    public int checkValid(User user) {
+    private int checkValid(User user) {
         User checkedUser = create.select().from(USER).where(USER.USERNAME.equal(user.getUsername())).fetchOneInto(User.class);
         if (checkedUser == null) {
             return 0;//fail
@@ -31,9 +31,16 @@ public class UserService {
     }
 
     public int signUp(User user) {
-
-        return create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY)
-                .values(user.getUsername(), user.getPassword(), user.getEmail(), "0").execute();
+        if(checkValid(user) == 0) {
+            return 0;
+            //fail, exited
+        }else {
+            create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY)
+                    .values(user.getUsername(), user.getPassword(), user.getEmail(), "0")
+                    .execute();
+            return 1;
+            //success
+        }
 
     }
 

@@ -18,7 +18,16 @@ import webdoctor.jooq.tables.pojos.Article;
 public class ArticleController {
     @Autowired
     ArticleService article;
+    Comment comment;
 
+    @RequestMapping(path = "/ArticlePostPage", method = RequestMethod.POST)
+    public String ArticlePostPage() {return "ArticlePost.html";}
+
+    @RequestMapping(path = "/ArticleEditPage", method = RequestMethod.POST)
+    public String ArticleEditPage() {return "ArticleEdit.html";}
+
+    @RequestMapping(path = "/ArticlePage", method = RequestMethod.POST)
+    public String ArticlePage() {return "Article.html";}
 
 
 }

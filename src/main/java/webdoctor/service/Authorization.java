@@ -4,9 +4,7 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webdoctor.jooq.tables.pojos.User;
-
 import javax.validation.constraints.Null;
-
 import static webdoctor.jooq.Tables.USER;
 
 /**
