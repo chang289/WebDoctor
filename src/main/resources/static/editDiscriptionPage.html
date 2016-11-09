@@ -11,42 +11,6 @@
     </script>
 
 </head>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-function setCookie(c_name,value,expiredays)
-{
-    var exdate=new Date()
-    exdate.setDate(exdate.getDate()+expiredays)
-    document.cookie=c_name+ "=" +escape(value)+
-    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
-}
-function getCookie(c_name)
-{
-    if (document.cookie.length>0)
-    {
-        c_start=document.cookie.indexOf(c_name + "=")
-        if (c_start!=-1)
-        {
-            c_start=c_start + c_name.length+1
-            c_end=document.cookie.indexOf(";",c_start)
-            if (c_end==-1) c_end=document.cookie.length
-                return unescape(document.cookie.substring(c_start,c_end))
-        }
-    }
-    return ""
-}
-var username = getCookie('username');
-var title = getCookie('title');
-console.log("!!!!!!!");
-console.log(title);
-var userbtn = document.getElementById('userbtn');
-if (username != "") {
-    userbtn.appendChild(document.createTextNode('welcome '));
-    userbtn.appendChild(document.createTextNode(username));
-} else {
-    userbtn.appendChild(document.createTextNode('Login'));
-}
-</script>
 <style>
     body {
     background-color: #1aa8a8;
@@ -97,6 +61,11 @@ if (username != "") {
     float: right;
     }
 
+    #titleEle {
+    font-size: 28px;
+    left:218px; top:60px; right:0; bottom:0;
+    color: #fefefe;
+    }
 
 </style>
 
@@ -113,11 +82,77 @@ if (username != "") {
     </div>
 </div>
 
+<div id="titleArea">
+    <h2 id="titleEle"></h2>
+</div>
+
 <div id="editorArea" style="width:800px; margin:0 auto;">
-    <form method="post">
-        <textarea id="mytextarea">Hello, World!</textarea>
+    <form id="textform" method="post">
+        <textarea id="mytextarea"></textarea>
     </form>
+    <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
+
 </div>
 
 </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function setCookie(c_name,value,expiredays)
+{
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+}
+function getCookie(c_name)
+{
+    if (document.cookie.length>0)
+    {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        {
+            c_start=c_start + c_name.length+1
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+        }
+    }
+    return ""
+}
+var username = getCookie('username');
+var content = getCookie('content');
+var title = getCookie('title');
+console.log("!!!!!!!");
+console.log(content);
+var userbtn = document.getElementById('userbtn');
+var titleEle = document.getElementById('titleEle');
+var editor = document.getElementById('mytextarea');
+editor.appendChild(document.createTextNode(content));
+titleEle.appendChild(document.createTextNode(title));
+if (username != "") {
+    userbtn.appendChild(document.createTextNode('welcome '));
+    userbtn.appendChild(document.createTextNode(username));
+} else {
+    userbtn.appendChild(document.createTextNode('Login'));
+}
+
+function submitChange() {
+tinyMCE.triggerSave();
+    $('#textform').submit(function() {
+        $.ajax({
+            type: 'POST',
+            url: '/EditDiscription',
+            data: $(this).serialize(),
+            success: function(data) {
+                $('#result').fadeIn('slow');
+                $('#result').html(data);
+                $('.loading').hide();
+            }
+        });
+        return false;
+    });
+}
+</script>
+
+
 </html>

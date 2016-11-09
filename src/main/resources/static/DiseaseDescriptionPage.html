@@ -30,7 +30,6 @@
     }
 </style>
 
-
 <body style="background-color:#1aa8a8">
 
 <div class="top" style="float:left"><h1>WebDoctor</h1></div>
@@ -58,12 +57,7 @@
         document.cookie=c_name+ "=" +escape(value)+
         ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
     }
-
-    function showLargeMap() {
-        window.location.replace('/EditDiscriptionPage');
-    }
-
-
+    var obj;
     var g;
     var res;
     $(function(callback) {
@@ -83,12 +77,26 @@
         })
         var res = res.done(function(result) {
             console.log(res.responseText);
-            var obj = JSON.parse(res.responseText);
+            obj = JSON.parse(res.responseText);
             document.getElementById("description").innerHTML = obj.description;
             document.getElementById("path1").innerHTML = obj.department
             document.getElementById("path2").innerHTML = obj.name;
+            document.getElementById("path2").value = obj.name;
+            console.log("i set value");
+            console.log(document.getElementById("path2").value);
+
         });
 //        console.log(res);
     });
+
+    function jumpToEdit() {
+        var title = document.getElementById("path2").innerHTML;
+        var content = document.getElementById("description").innerHTML;
+        console.log(content);
+        setCookie('content',content,365);
+        setCookie('title',title,365);
+        window.location.replace('/EditDescriptionPage');
+    }
+
 </script>
 </html>
