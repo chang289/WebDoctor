@@ -26,7 +26,7 @@ public class AuthorizationController {
     }
 
     @RequestMapping(path = "/Certification", method = RequestMethod.POST)
-    public @ResponseBody int certification(@RequestBody User user) {
+    public @ResponseBody int Certification(@RequestBody User user) {
         return A.authorize(user);
     }
 
