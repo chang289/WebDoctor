@@ -32,7 +32,10 @@
 
 
 <body style="background-color:#1aa8a8">
+<button id="btn1" id="Edit" type="button" onclick="jumpToEdit()">Edit</button>
+
 <div class="top" style="float:left"><h1>WebDoctor</h1></div>
+
 <div class="top" style="float:left"><h1>/</h1></div>
 <div class="top" style="float:left"><h1 id = "path1"></h1></div>
 <div class="top" style="float:left"><h1>/</h1></div>
@@ -42,13 +45,26 @@
 
 </div>
 
-<div class="main"><h2>Description</h2>
+<div class="main"><h2 id="title">Description</h2>
 <p id="description"></p>
 </div>
 </body>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+    function setCookie(c_name,value,expiredays)
+    {
+        var exdate=new Date()
+        exdate.setDate(exdate.getDate()+expiredays)
+        document.cookie=c_name+ "=" +escape(value)+
+        ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+    }
+
+    function showLargeMap() {
+        window.location.replace('/EditDiscriptionPage');
+    }
+
+
     var g;
     var res;
     $(function(callback) {
