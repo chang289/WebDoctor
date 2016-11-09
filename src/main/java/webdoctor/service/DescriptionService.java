@@ -37,7 +37,7 @@ public class DescriptionService {
     }
 
     public int descriptionCreate(Disease disease) {
-        if(checkDisease(disease) == 0){
+        if(checkDisease(disease) == 1){
             return 0;
             //existed
         }else{
@@ -45,7 +45,7 @@ public class DescriptionService {
                     .values(disease.getName(),disease.getDescription(),disease.getDepartment())
                     .execute();
             return 1;
-            
+
         }
     }
 
