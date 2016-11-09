@@ -89,8 +89,12 @@
 <div id="editorArea" style="width:800px; margin:0 auto;">
     <form id="textform" method="post">
         <textarea id="mytextarea"></textarea>
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
+        <button class="middlebtn" id="submitbtn" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
+
     </form>
-    <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
 
 </div>
 
@@ -137,20 +141,26 @@ if (username != "") {
 }
 
 function submitChange() {
-tinyMCE.triggerSave();
-    $('#textform').submit(function() {
-        $.ajax({
-            type: 'POST',
-            url: '/EditDiscription',
-            data: $(this).serialize(),
-            success: function(data) {
-                $('#result').fadeIn('slow');
-                $('#result').html(data);
-                $('.loading').hide();
-            }
+    tinyMCE.triggerSave();
+    console.log("saved");
+    $(document).ready(function() {
+        console.log("dioahodhwiuahdis");
+        $('#textform').submit(function() {
+            console.log("dioahodhwiuahdis");
+            $.ajax({
+                type: 'POST',
+                url: '/EditDescription',
+                data: $(this).serialize(),
+                success: function(data) {
+                    console.log("success!");
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         });
-        return false;
     });
+    window.location.replace('/diseaseDescriptionPage');
 }
 </script>
 
