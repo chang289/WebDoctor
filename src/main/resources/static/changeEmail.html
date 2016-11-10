@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script>
+        function validate_email(field,alerttxt)
+        {
+            with (field)
+            {
+                apos=value.indexOf("@")
+                dotpos=value.lastIndexOf(".")
+                if (apos<1||dotpos-apos<2)
+                {alert(alerttxt);return false}
+                else {return true}
+            }
+        }
+
+        function validate_form(thisform)
+        {
+            with (thisform)
+            {
+                if (validate_email(email,"Not a valid e-mail address!")==false)
+                {email.focus();return false}
+            }
+        }
+    </script>
+
+</head>
+
+<body style="background-color: #1aa8b9">
+<form onsubmit="return validate_form(this);" >
+  <div style="margin-top: 200px" ><center><div style="color: #fefefe">Email: <input type="text" name="email" size="30" placeholder="Enter New Email Address">
+      <button id="submit" onclick="send()" type="button">Change!</button>
+</form>
+</body>
+
+</script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    function send() {
+
+
+    var obj = {};
+    obj.email=vardocument.getElementById("email").value;
+    $(function(callback) {
+
+        res = $.ajax({
+            url: '/ChangeEmail',
+            type: 'POST',
+            dataType: 'json',
+            data: obj,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                callback(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        })
+    }
+    }
+</script>
+
+</html>
