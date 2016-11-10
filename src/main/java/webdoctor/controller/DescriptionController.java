@@ -16,8 +16,8 @@ public class DescriptionController {
     DescriptionService DS;
 
     @RequestMapping(path = "/EditDescriptionPage", method= RequestMethod.GET)
-    public String editDiscriptionPage() {
-        return "editDiscriptionPage.html";
+    public String editDescriptionPage() {
+        return "editDescriptionPage.html";
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.POST)
@@ -26,7 +26,7 @@ public class DescriptionController {
     }
 
     @RequestMapping(path = "/EditDescription", method = RequestMethod.POST)
-    public @ResponseBody int EditDescription(@ModelAttribute("textform") Disease disease){
+    public @ResponseBody int EditDescription(@ModelAttribute("Disease") Disease disease){
 //        System.out.println("edit: "+disease.getName()+disease.getDescription());
         System.out.println(disease);
 //        return DS.descriptionEdit(disease);
