@@ -143,8 +143,9 @@ function submitChange() {
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
     var title = getCookie('title');
-    obj.content = content;
-    obj.title = title;
+    obj.name = title;
+    obj.description = content;
+
 
     console.log(obj);
     console.log("saved");
