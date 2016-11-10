@@ -20,6 +20,11 @@ public class DescriptionController {
         return "editDescriptionPage.html";
     }
 
+    @RequestMapping(path = "/CreateDescriptionPage", method= RequestMethod.GET)
+    public String createDescriptionPage() {
+        return "createTextPage.html";
+    }
+
     @RequestMapping(path = "CreateDescription", method = RequestMethod.POST)
     public @ResponseBody int CreateDescription(@RequestBody Disease disease){
         return DS.descriptionCreate(disease);
