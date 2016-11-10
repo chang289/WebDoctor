@@ -88,11 +88,9 @@
 
 <div id="editorArea" style="width:800px; margin:0 auto;">
     <form id="textform" method="post">
-        <textarea id="mytextarea"></textarea>
-        <input type="hidden"
-               name="${_csrf.parameterName}"
-               value="${_csrf.token}"/>
-        <button class="middlebtn" id="submitbtn" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
+        <textarea name="contnet" id="mytextarea"></textarea>
+
+        <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
 
     </form>
 
@@ -140,27 +138,34 @@ if (username != "") {
     userbtn.appendChild(document.createTextNode('Login'));
 }
 
+
 function submitChange() {
-    tinyMCE.triggerSave();
+
+    var obj = {};
+    var content = tinyMCE.get('mytextarea').getContent();
+    var title = getCookie('title');
+    obj.content = content;
+    obj.title = title;
+
+    console.log(obj);
     console.log("saved");
-    $(document).ready(function() {
-        console.log("dioahodhwiuahdis");
-        $('#textform').submit(function() {
-            console.log("dioahodhwiuahdis");
-            $.ajax({
-                type: 'POST',
-                url: '/EditDescription',
-                data: $(this).serialize(),
-                success: function(data) {
-                    console.log("success!");
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
+
+    $(function(callback) {
+        $.ajax({
+            url: '/EditDescription',
+            type: 'POST',
+            dataType: 'json',
+            data : JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                callback(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
         });
     });
-    window.location.replace('/diseaseDescriptionPage');
+
 }
 </script>
 
