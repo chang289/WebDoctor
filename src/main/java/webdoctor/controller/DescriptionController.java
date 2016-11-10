@@ -26,10 +26,9 @@ public class DescriptionController {
     }
 
     @RequestMapping(path = "/EditDescription", method = RequestMethod.POST)
-    public @ResponseBody int EditDescription(@ModelAttribute("Disease") Disease disease){
+    public @ResponseBody int EditDescription(@RequestBody Disease disease){
 //        System.out.println("edit: "+disease.getName()+disease.getDescription());
-        System.out.println(disease);
-//        return DS.descriptionEdit(disease);
-        return 0;
+        disease.setDescription(disease.getDescription().substring(3,disease.getDescription().length()-4));
+        return DS.descriptionEdit(disease);
     }
 }

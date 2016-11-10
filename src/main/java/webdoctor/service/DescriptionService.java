@@ -57,7 +57,6 @@ public class DescriptionService {
                     .set(DISEASE.DESCRIPTION,disease.getDescription())
                     .where(DISEASE.NAME.equal(disease.getName()))
                     .execute();
-            System.out.println("babababab: " + create.select().from(DISEASE).where(DISEASE.NAME.equal(disease.getName())).fetchOneInto(Disease.class).getDescription());
             return 1;
         }
     }
