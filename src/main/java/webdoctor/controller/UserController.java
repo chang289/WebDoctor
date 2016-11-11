@@ -61,6 +61,7 @@ public class UserController {
 
     @RequestMapping(path="/SignUp", method = RequestMethod.POST)
     public @ResponseBody int SignUp(@RequestBody User user) {
+        System.out.println("username"+user.getUsername());
         return li.signUp(user);
 
     }
@@ -72,9 +73,7 @@ public class UserController {
 
     @RequestMapping(path="/ChangePassword", method=RequestMethod.POST)
     public @ResponseBody int ChangePassword(@RequestBody User user) {
-        System.out.println("get into changepwd.java");
-
-        System.out.println(user.getPassword());
+        System.out.println("password:"+user.getPassword());
         return li.changePassword(user);
     }
 
