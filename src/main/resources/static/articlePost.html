@@ -140,7 +140,6 @@ function submitChange() {
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
     var title = document.getElementById('titleEle').value;
-    var department = document.getElementById('depEle').value
     obj.title = title;
     obj.content = content;
     obj.username = username;
@@ -150,7 +149,7 @@ function submitChange() {
 
     $(function(callback) {
         $.ajax({
-            url: '/ArticlePostPage',
+            url: '/ArticleCreate',
             type: 'POST',
             dataType: 'json',
             data : JSON.stringify(obj),

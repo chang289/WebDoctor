@@ -20,14 +20,22 @@ public class ArticleController {
     ArticleService article;
     Comment comment;
 
-    @RequestMapping(path = "/ArticlePostPage", method = RequestMethod.POST)
-    public String ArticlePostPage() {return "ArticlePost.html";}
+    @RequestMapping(path = "/ArticlePostPage", method = RequestMethod.GET)
+    public String ArticlePostPage() {return "articlePost.html";}
 
-    @RequestMapping(path = "/ArticleEditPage", method = RequestMethod.POST)
-    public String ArticleEditPage() {return "ArticleEdit.html";}
+    @RequestMapping(path = "/ArticleCreate", method = RequestMethod.POST)
+    public @ResponseBody int CreateDescription(@RequestBody Article article){
+        System.out.println(article);
+        return 1;
+    }
 
-    @RequestMapping(path = "/ArticlePage", method = RequestMethod.POST)
-    public String ArticlePage() {return "Article.html";}
+    @RequestMapping(path = "/ArticleEditPage", method = RequestMethod.GET)
+    public String ArticleEditPage() {
+        return "articleEdit.html";
+    }
+
+    @RequestMapping(path = "/ArticlePage", method = RequestMethod.GET)
+    public String ArticlePage() {return "article.html";}
 
 
 }
