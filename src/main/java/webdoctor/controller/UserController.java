@@ -22,6 +22,16 @@ public class UserController {
         return "signupPage.html";
     }
 
+    @RequestMapping(path="/ChangePassword", method = RequestMethod.GET)
+    public String changePassword() {
+        return "changepasswordPage.html";
+    }
+
+    @RequestMapping(path="/ChangeEmail", method = RequestMethod.GET)
+    public String changeEmail() {
+        return "changeEmail.html";
+    }
+
     @RequestMapping(path="/ChangeProfilePage", method = RequestMethod.GET)
     public String ChangeProfile() {
         return "ChangeProfilePage.html";
@@ -34,14 +44,18 @@ public class UserController {
 
     @RequestMapping(path = "/UserPage", method = RequestMethod.POST)
     public @ResponseBody String getUser(@RequestBody User user) {
-        System.out.println("username:"+user.getUsername());
+        System.out.println("!!!");
+
+
         User res = li.getUser(user);
         if (res == null) {
             return null;
         }
         else {
+            System.out.println("username:"+res.getEmail());
             return gson.toJson(res);
         }
+
     }
 
 
@@ -58,10 +72,11 @@ public class UserController {
 
     @RequestMapping(path="/ChangePassword", method=RequestMethod.POST)
     public @ResponseBody int ChangePassword(@RequestBody User user) {
+        System.out.println(user.getPassword());
         return li.changePassword(user);
     }
 
-    @RequestMapping(path="/ChangeMail", method=RequestMethod.POST)
+    @RequestMapping(path="/ChangeEmail", method=RequestMethod.POST)
     public @ResponseBody int ChangeEmail(@RequestBody User user) {
         return li.changeEmail(user);
     }
