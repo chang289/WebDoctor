@@ -6,10 +6,53 @@
     <title >Diseases discription</title>
 </head>
 <style>
-    .top {
+    html, body {
+    margin: 0;
+    height: 100%;
+    }
 
+    .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /*  Content */
+    .modal-content {
+    background-color: #1aa8b9;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 10%;
+    border: 1px solid #888;
+    width: 80%;
+    height: auto;
+    }
+
+    .top {
         left:0; right:0;
         margin-top: 0;
+        margin-bottom: 20px;
         color: darkgrey;
     }
     .left {
@@ -19,7 +62,7 @@
         color: white;
     }
     .main {
-        height:100px;
+        height:auto;
         margin-top: 50px;
         margin-left:300px;
         font-size: 28px;
@@ -32,14 +75,14 @@
 
 </style>
 
-<body style="background-color:#1aa8a8; display: inline">
-<div class="uppertitle" ></div>
-<div class="top" style="float:left"><h1>WebDoctor</h1></div>
-<div class="top" style="float:left"><h1>/</h1></div>
-<div class="top" style="float:left"><h1 id = "path1"></h1></div>
-<div class="top" style="float:left"><h1>/</h1></div>
-<div class="top" style="float:left"><h1 id = "path2"></h1></div>
-</div>
+<body style="background-color:#1aa8a8">
+    <div class="uppertitle" >
+        <div class="top" style="float:left"><h1>WebDoctor</h1></div>
+        <div class="top" style="float:left"><h1>/</h1></div>
+        <div class="top" style="float:left"><h1 id = "path1"></h1></div>
+        <div class="top" style="float:left"><h1>/</h1></div>
+        <div class="top" style="float:left"><h1 id = "path2"></h1></div>
+    </div>
 
 <div class="left">
     <h1>Related articles</h1>
@@ -53,6 +96,20 @@
 <div class="main"><h2 id="title">Description</h2>
     <p id="description"></p>
 </div>
+
+    <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="text-align: center;">
+        <div class="modal-content" style="width: 700px;height:440px;margin-left: auto;margin-right: auto;margin-top: 120px;">
+            <div class="modal-body">
+                <span id="closebtn" class="close">CLOSE</span>
+                <div class="clearfix"></div>
+                <div  class="modify-content">
+                    <div id="textArea"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
@@ -112,7 +169,37 @@
                     console.log(error);
                 }
             }).done(function(result) {
-                console.log(result[0]);
+                for (var k in result) {
+                    console.log(result[k]);
+
+                    var articleList = document.getElementById("articleList");
+
+                    var li = document.createElement("li");
+                    var span = document.createElement("span");
+                    span.value = result[k].content;
+                    span.name = result[k].title;
+                    console.log(result[k].content);
+                    //btn.appendChild(a);
+                    span.appendChild(document.createTextNode(result[k].title));
+
+                    li.appendChild(span);
+                    li.style.margin = "5px";
+                    articleList.appendChild(li);
+                    console.log("level3");
+                }
+                var modal = document.getElementById("my-modify-modal");
+
+                $("#articleList").find("span").click(function() {
+                    var tagText = $(this).val();
+                    console.log(tagText);
+                    var textArea = document.getElementById("textArea");
+                    textArea.appendChild(document.createTextNode(tagText));
+                    modal.style.display = "block";
+                });
+                var closebtn = document.getElementById("closebtn");
+                closebtn.onclick = function() {
+                   modal.style.display = "none";
+                }
             });
         });
     });

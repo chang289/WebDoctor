@@ -12,6 +12,7 @@
 
 </head>
 <style>
+
     body {
     background-color: #1aa8a8;
     }
@@ -61,7 +62,7 @@
     float: right;
     }
 
-    #titleP {
+    .titleP {
     font-size: 28px;
     margin: auto;
     color: #fefefe;
@@ -84,8 +85,11 @@
 
 <div id="editorArea" style="width:800px; margin:0 auto;">
     <form id="textform" method="post">
-        <p id="titleP"> Put in a title: </p>
+        <p class="titleP"> Put in the name of the disease: </p>
         <input type="text" name="title" id="titleEle" style= "width: 100%">
+
+        <p class="titleP"> Put in the department the disease belongs to: </p>
+        <input type="text" name="title" id="depEle" style= "width: 100%">
 
         <textarea name="contnet" id="mytextarea"></textarea>
 
@@ -140,8 +144,10 @@ function submitChange() {
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
     var title = document.getElementById('titleEle').value;
-    obj.content = content;
-    obj.title = title;
+    var department = document.getElementById('depEle').value
+    obj.name = title;
+    obj.description = content;
+    obj.department = department;
 
     console.log(obj);
     console.log("saved");
@@ -162,6 +168,7 @@ function submitChange() {
             }
         });
     });
+    window.location.replace('/ModePage');
 }
 
 </script>
