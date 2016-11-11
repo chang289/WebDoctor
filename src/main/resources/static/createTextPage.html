@@ -100,6 +100,9 @@
 </div>
 
 </body>
+<script>
+
+</script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 function setCookie(c_name,value,expiredays)
@@ -170,6 +173,21 @@ function submitChange() {
     });
     window.location.replace('/ModePage');
 }
+
+$(document).ready(function(){
+
+    $("#homebtn").click(function() {
+        window.location.replace('/ModePage');
+    });
+
+    $("#userbtn").click(function() {
+        if (username != "") {
+            window.location.replace('/UserPage');
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+});
 
 </script>
 </html>
