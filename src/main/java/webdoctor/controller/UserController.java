@@ -72,6 +72,8 @@ public class UserController {
 
     @RequestMapping(path="/ChangePassword", method=RequestMethod.POST)
     public @ResponseBody int ChangePassword(@RequestBody User user) {
+        System.out.println("get into changepwd.java");
+
         System.out.println(user.getPassword());
         return li.changePassword(user);
     }
