@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public int signUp(User user) {
-        if(checkValid(user) == 0) {
+        if(checkValid(user) != 0) {
             return 0;
             //fail, exited
         }else {
