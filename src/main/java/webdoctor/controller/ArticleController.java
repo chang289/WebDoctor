@@ -10,6 +10,7 @@ import webdoctor.service.Authorization;
 import webdoctor.jooq.tables.pojos.User;
 import webdoctor.jooq.tables.pojos.Comment;
 import webdoctor.jooq.tables.pojos.Article;
+import webdoctor.service.Search;
 
 /**
  * Created by Yibih on 2016/11/6.
@@ -19,7 +20,9 @@ import webdoctor.jooq.tables.pojos.Article;
 public class ArticleController {
     @Autowired
     ArticleService articleService;
-    Comment comment;
+
+    @Autowired
+    Search search;
 
     @RequestMapping(path = "/ArticlePostPage", method = RequestMethod.GET)
     public String ArticlePostPage() {return "articlePost.html";}
@@ -42,7 +45,7 @@ public class ArticleController {
 
     @RequestMapping(path = "/SendDisease", method = RequestMethod.POST)
     public @ResponseBody String sendDisease(@RequestBody Disease disease) {
-        System.out.println("list: "+articleService.getRelatedArticle(disease));
-        return "";
+
+        return articleService.getRelatedArticle(search.diseaseByName(disease.getName()));
     }
 }
