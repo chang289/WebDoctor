@@ -2,58 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <title >Diseases discription</title>
 </head>
 <style>
     .top {
 
-        left:0; right:0;
-        margin-top: 0;
-        color: darkgrey;
+    left:0; right:0;
+    margin-top: 0;
+    color: darkgrey;
     }
     .left {
-        position: absolute;
-        width: 20%;
-        margin-top: 50px;
-        color: white;
+    position: absolute;
+    top:140px; bottom: 0;
+    width: 278px;
+    color: white;
     }
     .main {
-        height:100px;
-        margin-top: 50px;
-        margin-left:300px;
-        font-size: 28px;
-        color: #fefefe;
+    position: absolute;
+    font-size: 28px;
+    left:218px; top:60px; right:0; bottom:0;
+    color: #fefefe;
     }
     a {
-        color: white;
-        font-size: medium;
+    color: white;
+    font-size: medium;
     }
-
 </style>
 
-<body style="background-color:#1aa8a8; display: inline">
-<div class="uppertitle" ></div>
+<body style="background-color:#1aa8a8">
+
 <div class="top" style="float:left"><h1>WebDoctor</h1></div>
 <div class="top" style="float:left"><h1>/</h1></div>
-<div class="top" style="float:left"><h1 id = "path1"></h1></div>
+<div class="top" style="float:left"><h1 id="path1"></h1></div>
 <div class="top" style="float:left"><h1>/</h1></div>
-<div class="top" style="float:left"><h1 id = "path2"></h1></div>
-</div>
-
+<div class="top" style="float:left"><h1 id="path2"></h1></div>
 <div class="left">
-    <h1>Related articles</h1>
-    <ul id="articleList">
+    <a href="http://www.google.com" target="_blank">Related Articles</a><br>
 
-    </ul>
 </div>
-
 <button id="editbtn" id="Edit" type="button" onclick="jumpToEdit()">Edit</button>
 
 <div class="main"><h2 id="title">Description</h2>
     <p id="description"></p>
 </div>
-
 </body>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -82,7 +72,7 @@
             error: function (error) {
                 console.log(error);
             }
-        });
+        })
         var res = res.done(function(result) {
             console.log(res.responseText);
             obj = JSON.parse(res.responseText);
@@ -92,28 +82,6 @@
             document.getElementById("path2").value = obj.name;
             console.log("i set value");
             console.log(document.getElementById("path2").value);
-
-            var disease = obj.name;
-            console.log("------");
-            console.log(disease);
-            var obj2 = {};
-            obj2.name = disease;
-            var articleList = $.ajax({
-                url: '/SendDisease',
-                type: 'POST',
-                dataType: 'json',
-                data : JSON.stringify(obj2),
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    console.log("success");
-                    callback(data);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            }).done(function(result) {
-                console.log(result[0]);
-            });
         });
     });
 
