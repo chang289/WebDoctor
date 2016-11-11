@@ -1,11 +1,16 @@
 <html>
 <head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
+        function add() {
+            window.location.replace('/UserPage');
+
+        }
         function validate_email()
         {
-            var em = document.getElementById("email").value;
+            var em = document.getElementById("11").value;
             var obj={};
-            obj.address = em;
+            obj.email = em;
             $(function(callback) {
                 res = $.ajax({
                     url: '/ChangeEmail',
@@ -20,11 +25,7 @@
                         console.log(error);
                     }
                 })
-                var res = res.done(function(result) {
-                    console.log(res.responseText);
-                    var obj = JSON.parse(res.responseText);
 
-                })
             })
         }
     </script>
@@ -33,8 +34,9 @@
 
 <body style="background-color: #1aa8b9">
 <form onsubmit="return validate_form(this);" >
-  <div style="margin-top: 200px" ><center><div style="color: #fefefe">Email: <input id="email" type="text" name="email" size="30" placeholder="Enter New Email Address">
+  <div style="margin-top: 200px" ><center><div style="color: #fefefe">Email: <input id="11" type="text" name="email" size="30" placeholder="Enter New Email Address">
       <button id="submit" onclick="validate_email()" type="button">Change!</button>
+      <button onclick="add()" type="button">Cancel</button>
 </form>
 </body>
 

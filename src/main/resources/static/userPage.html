@@ -16,21 +16,56 @@
         border: none;
         cursor: pointer;
         width: 12%;
-    }</style>
+    }
+    button {
+        background-color: #0d57a0;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    .container {
+        padding: 16px;
+    }
+    #homesection {
+        width: 240px;
+        height: 123px;
+        float: left;
+    ｝
+
+</style>
+
+<div class="uppersection" id="homesection">
+    <button class="upperbtn" type="button" class="homebtn" onclick="add()">
+        <span class="glyphicon glyphicon-home"></span> Home
+    </button>
+</div>
 
 <body style="background-color: #1aa8b9">
+
 <div id="usersection" align="right">
     <button id="userbtn" type="button"></button>
 </div>
-<h1 style="color: #fefefe;margin-top: 2cm;font-size: large">Username</h1>
-<h2 id="username"></h2>
-<h1 style="color: #fefefe;margin-top: 2cm;font-size: large">Your ID</h1>
-<h2 id="userID"></h2>
-<h1 style="color: #fefefe;margin-top: 2cm;font-size: large">Email</h1>
-<h2 id="email"></h2>
-<h1 style="color: #fefefe;margin-top: 2cm;font-size: large">Authority</h1>
-<h2 id="Aut"></h2>
-<div style="margin-top: 80px">
+
+<div style="margin-left: 100px">
+<h1 style="color: #fefefe;margin-top: 2.5cm;font-size: large">Username</h1>
+<h2 id="username" style="color: #fefefe"></h2>
+<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Your ID</h1>
+<h2 id="userID" style="color: #fefefe"></h2>
+<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Email</h1>
+<h2 id="email" style="color: #fefefe"></h2>
+<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Authority</h1>
+<h2 id="Aut" style="color: #fefefe"></h2>
+</div>
+<div style="margin-top: 60px">
 <a href="/ChangePassword" target="_blank">Change your password </a>
     <br>
     <br>
@@ -39,8 +74,15 @@
 
 </div>
 </body>
+<script>
+    function   add(){
+
+        window.location.replace('/ModePage');
+    }
+</script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
     function getCookie(c_name)
     {
         if (document.cookie.length>0)

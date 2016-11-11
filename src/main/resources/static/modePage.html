@@ -89,7 +89,7 @@
     </div>
 
     <div class="uppersection" id="usersection">
-        <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
+        <button class="upperbtn" id="userbtn" type="button" style="float: right""></button>
     </div>
 </div>
 
@@ -112,6 +112,12 @@
     </form>
 </div>
 </body>
+<script>
+    function add(){
+
+        window.location.replace('/UserPage');
+    }
+</script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 function getCookie(c_name)
@@ -153,7 +159,7 @@ $(document).ready(function(){
 
     $("#userbtn").click(function() {
         if (username != "") {
-            alert("略略略");
+            window.location.replace('/UserPage');
         } else {
             window.location.replace('/LoginPage');
         }
