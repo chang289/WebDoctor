@@ -2,7 +2,9 @@
 <html>
 
 <body>
-
+<div id="usersection" align="right">
+    <button id="userbtn" type="button"></button>
+</div>
 <div class="mainPage" style="height: 100%">
     <header class="upperTitle">
         <ul>
@@ -63,6 +65,46 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
+    function add(){
+        window.location.replace('/UserPage');
+    }
+    function getCookie(c_name)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(c_name + "=")
+            if (c_start!=-1)
+            {
+                c_start=c_start + c_name.length+1
+                c_end=document.cookie.indexOf(";",c_start)
+                if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+            }
+        }
+        return ""
+    }
+
+    console.log("000000");
+    var username = getCookie('username');
+    console.log(username);
+    var userbtn = document.getElementById('userbtn');
+    if (username != "") {
+        userbtn.appendChild(document.createTextNode('welcome '));
+        userbtn.appendChild(document.createTextNode(username));
+    } else {
+        userbtn.appendChild(document.createTextNode('Login'));
+    }
+
+
+
+    // Get the modal
+    $("#userbtn").click(function() {
+        if (username != "") {
+            window.location.replace('/UserPage');
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
 window.onload = function(){
     var modal = document.getElementById('myModal');
     var modal2 = document.getElementById('myModal2');
@@ -230,7 +272,30 @@ window.onload = function(){
 </body>
 
 <style>
+    button {
+        background-color: #0d57a0;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+    }
 
+    #usersection {
+    width: 240px;
+    height: 123px;
+    float: right;
+    }
+
+    .upperbtn {
+        background-color: #0d57a0;
+        color: white;
+        padding: 5px 5px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+    }
     /* The Modal (background) */
     .modal {
         display: none; /* Hidden by default */

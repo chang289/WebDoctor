@@ -79,6 +79,7 @@ public class UserController {
 
     @RequestMapping(path="/ChangeEmail", method=RequestMethod.POST)
     public @ResponseBody int ChangeEmail(@RequestBody User user) {
+        System.out.println(user.getEmail());
         return li.changeEmail(user);
     }
 }
