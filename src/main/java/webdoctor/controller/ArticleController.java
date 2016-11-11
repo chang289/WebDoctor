@@ -37,5 +37,4 @@ public class ArticleController {
     @RequestMapping(path = "/ArticlePage", method = RequestMethod.GET)
     public String ArticlePage() {return "article.html";}
 
-
 }
