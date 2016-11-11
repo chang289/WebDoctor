@@ -11,7 +11,6 @@ import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.UInteger;
 
 import webdoctor.jooq.Webdoctor;
 import webdoctor.jooq.tables.records.DiseaseArticleRecord;
@@ -30,7 +29,7 @@ import webdoctor.jooq.tables.records.DiseaseArticleRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DiseaseArticle extends TableImpl<DiseaseArticleRecord> {
 
-    private static final long serialVersionUID = 1050879401;
+    private static final long serialVersionUID = -916282676;
 
     /**
      * The reference instance of <code>webdoctor.disease_article</code>
@@ -48,12 +47,12 @@ public class DiseaseArticle extends TableImpl<DiseaseArticleRecord> {
     /**
      * The column <code>webdoctor.disease_article.disease_id</code>.
      */
-    public final TableField<DiseaseArticleRecord, UInteger> DISEASE_ID = createField("disease_id", org.jooq.impl.SQLDataType.INTEGERUNSIGNED, this, "");
+    public final TableField<DiseaseArticleRecord, Integer> DISEASE_ID = createField("disease_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>webdoctor.disease_article.article_id</code>.
      */
-    public final TableField<DiseaseArticleRecord, UInteger> ARTICLE_ID = createField("article_id", org.jooq.impl.SQLDataType.INTEGERUNSIGNED, this, "");
+    public final TableField<DiseaseArticleRecord, Integer> ARTICLE_ID = createField("article_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>webdoctor.disease_article</code> table reference
