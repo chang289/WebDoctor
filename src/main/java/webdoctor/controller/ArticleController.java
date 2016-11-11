@@ -39,6 +39,7 @@ public class ArticleController {
     @RequestMapping(path = "/ArticlePage", method = RequestMethod.GET)
     public String ArticlePage() {return "article.html";}
 
+
     @RequestMapping(path = "/SendDisease", method = RequestMethod.POST)
     public @ResponseBody String sendDisease(@RequestBody Disease disease) {
         System.out.println("list: "+articleService.getRelatedArticle(disease));
