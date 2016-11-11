@@ -96,12 +96,13 @@
             var disease = obj.name;
             console.log("------");
             console.log(disease);
-
+            var obj2 = {};
+            obj2.name = disease;
             var articleList = $.ajax({
                 url: '/SendDisease',
                 type: 'POST',
                 dataType: 'json',
-                data : JSON.stringify(g),
+                data : JSON.stringify(obj2),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     console.log("success");
