@@ -23,6 +23,8 @@ public class ArticleService {
 
     private final DSLContext create;
 
+
+
     @Autowired
     public ArticleService(DSLContext dslContext) {
         this.create = dslContext;
@@ -49,7 +51,6 @@ public class ArticleService {
                .values(comment.getUserId(),comment.getArticleId(),comment.getTimeStamp(),comment.getContent())
                .execute();
     }
-
 
 
 

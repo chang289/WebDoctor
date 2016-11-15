@@ -6,10 +6,16 @@
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
       tinymce.init({
-        selector: '#mytextarea'
+          selector: '#mytextarea',
+          plugins: "image",
+          images_upload_url: "/ArticleImage",
+          images_upload_base_path: "D:\\WebDoctor\\src\\main\\resources\\static\\articleImages",
+          images_upload_credentials: true,
+          theme: "modern",
+          menubar: "insert, edit, format",
+          toolbar: "insertfile undo redo image | styleselect | bold italic | bullist numlist outdent indent | "
       });
     </script>
-
 </head>
 <style>
     body {
@@ -138,7 +144,7 @@ if (username != "") {
 
 function submitChange() {
     var obj = {};
-    var content = tinyMCE.get('mytextarea').getContent();
+    var content = tinyMCE.activeEditor.getContent();
     var title = document.getElementById('titleEle').value;
     obj.title = title;
     obj.content = content;

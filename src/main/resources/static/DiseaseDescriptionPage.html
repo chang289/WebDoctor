@@ -193,7 +193,7 @@
                     var tagText = $(this).val();
                     console.log(tagText);
                     var textArea = document.getElementById("textArea");
-                    textArea.appendChild(document.createTextNode(tagText));
+                    textArea.innerHTML = tagText;
                     modal.style.display = "block";
                 });
                 var closebtn = document.getElementById("closebtn");

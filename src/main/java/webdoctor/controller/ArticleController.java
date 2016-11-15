@@ -29,7 +29,6 @@ public class ArticleController {
 
     @RequestMapping(path = "/ArticleCreate", method = RequestMethod.POST)
     public @ResponseBody int createArticle(@RequestBody Article article){
-        System.out.println(article);
         articleService.postArticle(article);
         return 1;
     }
@@ -45,7 +44,12 @@ public class ArticleController {
 
     @RequestMapping(path = "/SendDisease", method = RequestMethod.POST)
     public @ResponseBody String sendDisease(@RequestBody Disease disease) {
-
         return articleService.getRelatedArticle(search.diseaseByName(disease.getName()));
+    }
+
+    @RequestMapping(path = "/ArticleImage", method = RequestMethod.POST)
+    public @ResponseBody int articleImage() {
+        System.out.println("gotit");
+        return 1;
     }
 }
