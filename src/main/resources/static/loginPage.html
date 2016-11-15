@@ -44,11 +44,12 @@ $(document).ready(function(){
 
             }).done(function(result) {
                 console.log(result);
-                if (result == 0) {
+                if (result == -1) {
                     alert("Cannot find your user and password pair");
                 }
-                if (result == 1) {
+                else {
                     setCookie('username',username1,365);
+                    setCookie('status', result, 365);
                     window.location.replace('/ModePage');
                 }
             });

@@ -106,6 +106,7 @@ function setCookie(c_name,value,expiredays)
     document.cookie=c_name+ "=" +escape(value)+
     ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
 }
+
 function getCookie(c_name)
 {
     if (document.cookie.length>0)
@@ -163,9 +164,12 @@ function submitChange() {
             },
             error: function (error) {
                 console.log(error);
-            }
+            },
         });
     });
+    console.log("222");
+    window.location.replace('/diseaseDescriptionPage');
+
 }
 </script>
 

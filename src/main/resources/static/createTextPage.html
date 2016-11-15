@@ -175,6 +175,9 @@
         <textarea name="contnet" id="mytextarea"></textarea>
 
         <div class="checkBoxArea">
+
+            <div class="tagTitle">
+
             <div class="tagbox" display="in-line">
                 <input type="checkbox" name="checkbox" id="checkbox1" checked/>
                 <label for="checkbox1">First</label>
@@ -216,12 +219,12 @@
 
 function makeTagList(callback) {
     $.ajax({
-        url : '/getTags',
+        url : '/CreateDescription',
         type : 'GET',
         data : {
             format: 'json'
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function(data) {
             console.log("success!");
             console.log(data);
@@ -231,6 +234,9 @@ function makeTagList(callback) {
         }
     });
 }
+
+window.onload = makeTagList;
+
 
 function setCookie(c_name,value,expiredays)
 {
