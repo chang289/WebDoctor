@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
       tinymce.init({
-        selector: '#mytextarea'
+        selector: '#mytextarea',
+        height : "400"
       });
     </script>
 
@@ -17,10 +19,13 @@
     background-color: #1aa8a8;
     }
 
-    input[type=text], input[type=password] {
+    .mytextarea, .mce-container-body, #code_ifr {
+        min-height: 100% !important;
+    }
+
+    input[type=text] {
     width: 50%;
     padding: 12px 20px;
-    margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -68,6 +73,82 @@
     color: #fefefe;
     }
 
+    .checkBoxArea div {
+        clear: both;
+        overflow: hidden;
+    }
+
+    .checkBoxArea label {
+        width: 15%;
+        border-radius: 3px;
+        border: 1px solid #D1D3D4;
+        font-weight: normal;
+    }
+
+    .checkBoxArea input[type="checkbox"]:empty {
+        display: none;
+    }
+
+    .checkBoxArea input[type="checkbox"]:empty ~ label {
+        position: relative;
+        line-height: 2.5em;
+        text-indent: 3.25em;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .checkBoxArea input[type="checkbox"]:empty ~ label:before {
+        position: absolute;
+        display: in-block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 2.5em;
+        background: #D1D3D4;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label {
+    color: #888;
+    }
+
+    .checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label:before {
+    content: '\2714';
+    text-indent: .9em;
+    color: #C2C2C2;
+    }
+
+    .checkBoxArea input[type="checkbox"]:checked ~ label {
+        color: #777;
+        background-color: #33b751;
+    }
+
+    .checkBoxArea input[type="checkbox"]:checked ~ label:before {
+    content: '\2714';
+    text-indent: .9em;
+    color: #333;
+    background-color: #337ab7;
+    }
+
+    .checkBoxArea input[type="checkbox"]:focus ~ label:before {
+    box-shadow: 0 0 0 3px #999;
+    }
+
+    .tagbox input[type="checkbox"]:checked ~ label:before {
+    color: #333;
+    background-color: #337ab7;
+    }
+
+    .tagbox {
+        display: inline;
+        margin-right:1px;
+    }
+
+
 </style>
 
 <body>
@@ -85,13 +166,40 @@
 
 <div id="editorArea" style="width:800px; margin:0 auto;">
     <form id="textform" method="post">
-        <p class="titleP"> Put in the name of the disease: </p>
-        <input type="text" name="title" id="titleEle" style= "width: 100%">
 
-        <p class="titleP"> Put in the department the disease belongs to: </p>
-        <input type="text" name="title" id="depEle" style= "width: 100%">
+        <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon">Name</span>
+            <input type="text" class="form-control" placeholder="Please give the disease a name">
+        </div>
 
         <textarea name="contnet" id="mytextarea"></textarea>
+
+        <div class="checkBoxArea">
+            <div class="tagbox" display="in-line">
+                <input type="checkbox" name="checkbox" id="checkbox1" checked/>
+                <label for="checkbox1">First</label>
+            </div>
+            <div class="tagbox">
+                <input type="checkbox" name="checkbox" id="checkbox2" checked/>
+                <label for="checkbox2">Second</label>
+            </div>
+            <div class="tagbox">
+                <input type="checkbox" name="checkbox" id="checkbox3" checked/>
+                <label for="checkbox3">Third</label>
+            </div>
+            <div class="tagbox">
+                <input type="checkbox" name="checkbox" id="checkbox4" checked/>
+                <label for="checkbox4">Fourth</label>
+            </div>
+            <div class="tagbox">
+                <input type="checkbox" name="checkbox" id="checkbox5" checked/>
+                <label for="checkbox5">Fifth</label>
+            </div>
+            <div class="tagbox">
+                <input type="checkbox" name="checkbox" id="checkbox6" checked/>
+                <label for="checkbox6">Sixth</label>
+            </div>
+        </div>
 
         <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
 
@@ -105,6 +213,25 @@
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+function makeTagList(callback) {
+    $.ajax({
+        url : '/getTags',
+        type : 'GET',
+        data : {
+            format: 'json'
+        },
+        dataType : 'jsonp',
+        success : function(data) {
+            console.log("success!");
+            console.log(data);
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    });
+}
+
 function setCookie(c_name,value,expiredays)
 {
     var exdate=new Date()
@@ -141,7 +268,6 @@ if (username != "") {
 } else {
     userbtn.appendChild(document.createTextNode('Login'));
 }
-
 
 function submitChange() {
     var obj = {};
