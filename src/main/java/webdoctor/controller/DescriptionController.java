@@ -30,6 +30,12 @@ public class DescriptionController {
         return DS.descriptionCreate(disease);
     }
 
+    @RequestMapping(path = "CreateDescription", method = RequestMethod.GET)
+    public @ResponseBody String getDSList(){
+        String json = DS.getDSList();
+        return json;
+    }
+
     @RequestMapping(path = "/EditDescription", method = RequestMethod.POST)
     public @ResponseBody int EditDescription(@RequestBody Disease disease){
 //        System.out.println("edit: "+disease.getName()+disease.getDescription());
