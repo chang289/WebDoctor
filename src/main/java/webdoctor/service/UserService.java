@@ -47,11 +47,11 @@ public class UserService {
     public int login(User user) {
         User data = create.select().from(USER).where(USER.USERNAME.equal(user.getUsername())).fetchOneInto(User.class);
         if (data == null) {
-            return 0;//fail
+            return -1;//fail
         }
         else {
             if (user.getPassword().equals(data.getPassword())) {
-                return 1;//success
+                return Integer.valueOf(data.getAuthority());//success
             }
             else {
                 return 0;
