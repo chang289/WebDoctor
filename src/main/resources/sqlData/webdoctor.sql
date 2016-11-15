@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
--- Host: 127.0.0.1    Database: webdoctor
+-- Host: localhost    Database: webdoctor
 -- ------------------------------------------------------
 -- Server version	5.7.15
 
@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `article`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `author` varchar(255) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
   `title` varchar(1000) DEFAULT NULL,
   `time_stamp` datetime DEFAULT NULL,
   `content` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,6 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` VALUES (1,'123','vsdfjlgfnvjsdzkbvkdnbvjkfdzn jbfbvlk;dnjbfdkl',NULL,'<p>sdfnj,kafnsdl;bvnfdlza;nbfldjbnldj;fnbldjbnl;d</p>'),(2,'123','sdfavgfsa',NULL,'<p>asvfdabvdfasbv</p>');
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +80,7 @@ CREATE TABLE `disease` (
   `description` varchar(10000) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +89,7 @@ CREATE TABLE `disease` (
 
 LOCK TABLES `disease` WRITE;
 /*!40000 ALTER TABLE `disease` DISABLE KEYS */;
-INSERT INTO `disease` VALUES (1,'diabetes',' a disease cause by lack of insulin.','Endocrinology '),(2,'rabies','a viral disease that causes acute inflammation of the brain in humans and other mammals.','Infectiology'),(3,'radiation sickness','a collection of health effects that are present within 24 hours of exposure to high amounts of ionizing radiation.ssd','Toxicology'),(4,'HIV/AIDS','Acquired immune deficiency syndrome(AIDS) is a infectious syndrome caused by Human Immunodeficiency Virus(HIV). This fatal disease gradually weakens immune system,\nmaking people vulnerable. With the progress of infection, serious complications like cancer can happen, leading to death, if untreated.','Infectiology'),(5,'Malaria',' a mosquito-borne infectious disease affecting humans and other animals caused by parasitic protozoans (a group of single-celled microorganisms)\nbelonging to the Plasmodium type.','Infectiology'),(6,'Rheumatoid arthritis',' a long-lasting autoimmune disorder that primarily affects joints, typically both parts of the body.','Rheumatology'),(7,'Lupus erythematosus','A name given to a collection of autoimmune diseases in which the human immune system becomes hyperactive and attacks healthy tissues.','Rheumatology'),(8,'Ankylosing spondylitis','A type of arthritis in which there is long term inflammation of the joints of the spine and pelvis.','Rheumatology'),(9,'Tuberculosis','An infectious disease caused by the bacterium Mycobacterium tuberculosis (MTB). MTB generally affects the lungs and often involves the formation of lung cavities.','Infectiology'),(10,'Rhabdomyolysis',' a specialty of medicine and pediatrics that concerns itself with the study of normal kidney function, kidney problems, \nthe treatment of kidney problems and renal replacement therapy (dialysis and kidney transplantation).','Nephrology');
+INSERT INTO `disease` VALUES (1,'Diabetes',' Diabetes is a disease cause by lack of insulin.','Endocrinology '),(2,'Rabies','a viral disease that causes acute inflammation of the brain in humans and other mammals.','Infectiology'),(3,'Radiation sickness','a collection of health effects that are present within 24 hours of exposure to high amounts of ionizing radiation.','Toxicology'),(4,'Hiv/aids','Acquired immune deficiency syndrome(AIDS) is a infectious syndrome caused by Human Immunodeficiency Virus(HIV). This fatal disease gradually weakens immune system,\nmaking people vulnerable. With the progress of infection, serious complications like cancer can happen, leading to death, if untreated.','Infectiology'),(5,'Malaria',' a mosquito-borne infectious disease affecting humans and other animals caused by parasitic protozoans (a group of single-celled microorganisms)\nbelonging to the Plasmodium type.','Infectiology'),(6,'Rheumatoid arthritis',' a long-lasting autoimmune disorder that primarily affects joints, typically both parts of the body.','Rheumatology'),(7,'Lupus erythematosus','A name given to a collection of autoimmune diseases in which the human immune system becomes hyperactive and attacks healthy tissues.','Rheumatology'),(8,'Ankylosing spondylitis','A type of arthritis in which there is long term inflammation of the joints of the spine and pelvis.','Rheumatology'),(9,'Tuberculosis','An infectious disease caused by the bacterium Mycobacterium tuberculosis (MTB). MTB generally affects the lungs and often involves the formation of lung cavities.','Infectiology'),(10,'Rhabdomyolysis',' a specialty of medicine and pediatrics that concerns itself with the study of normal kidney function, kidney problems, \nthe treatment of kidney problems and renal replacement therapy (dialysis and kidney transplantation).','Nephrology'),(11,'Cataract',' A cataract is a clouding of the lens in the eye leading to a decrease in vision.','Ophthalmology');
 /*!40000 ALTER TABLE `disease` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,8 +101,8 @@ DROP TABLE IF EXISTS `disease_article`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `disease_article` (
-  `disease_id` int(11) DEFAULT NULL,
-  `article_id` int(11) DEFAULT NULL
+  `disease_id` int(10) unsigned DEFAULT NULL,
+  `article_id` int(10) unsigned DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -113,7 +112,6 @@ CREATE TABLE `disease_article` (
 
 LOCK TABLES `disease_article` WRITE;
 /*!40000 ALTER TABLE `disease_article` DISABLE KEYS */;
-INSERT INTO `disease_article` VALUES (3,1),(3,2);
 /*!40000 ALTER TABLE `disease_article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +134,7 @@ CREATE TABLE `disease_symptom` (
 
 LOCK TABLES `disease_symptom` WRITE;
 /*!40000 ALTER TABLE `disease_symptom` DISABLE KEYS */;
-INSERT INTO `disease_symptom` VALUES (1,3),(4,3),(4,1),(1,2),(4,2);
+INSERT INTO `disease_symptom` VALUES (22,11),(23,11),(24,11),(25,2);
 /*!40000 ALTER TABLE `disease_symptom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +150,7 @@ CREATE TABLE `symptom` (
   `name` varchar(50) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +159,7 @@ CREATE TABLE `symptom` (
 
 LOCK TABLES `symptom` WRITE;
 /*!40000 ALTER TABLE `symptom` DISABLE KEYS */;
-INSERT INTO `symptom` VALUES (1,'Acitretin','Dermatology'),(2,'Botox','Dermatology'),(3,'Epidermal Nevus','Dermatology'),(4,'Cadasil','Neurology'),(5,'Dermatomyositis','Neurology'),(6,'Erb\'s Palsy','Neurology'),(7,'Rickets','Osteology'),(8,'Fracture','Osteology'),(10,'pannus','ophtalmology'),(11,'chemosis','ophtalmology'),(12,'somopsychosis','psychiatry'),(13,'hysteria','psychiatry'),(14,'aquaphobia','psychiatry'),(15,'Arrhythmia','Cardiology'),(16,'Tachycardia','Cardiology'),(17,'Heart failure','Cardiology'),(18,'chylothorax','Cerebral surgery'),(20,'esophagocele','Cerebral surgery'),(21,'thymoma','Cerebral surgery');
+INSERT INTO `symptom` VALUES (22,'faded colors','Ophthalmology'),(23,'blurry vision','Ophthalmology'),(24,'halos around light','Ophthalmology'),(25,'fever','Infectiology');
 /*!40000 ALTER TABLE `symptom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +186,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'1','1','1','0'),(2,'1','1','1','0'),(3,'1','1','1','0'),(4,'yiyan zhou','fuck_you','zhou123@purdue.edu','1'),(5,'xu683','webdoctor','11@qq.com','0'),(10,'123','123','11@qq/com','0'),(11,'111','123123','111','0');
+INSERT INTO `user` VALUES (1,'1','1','1','0'),(2,'1','1','1','0'),(3,'1','1','1','0'),(4,'zhou482','fuck_you','zhou123@purdue.edu','1'),(5,'xu683','webdoctor','11@qq.com','0'),(10,'123','111111','11@qq/com','0'),(11,'chang289','123456','chang289@purdue.edu','2');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-10 22:25:38
+-- Dump completed on 2016-11-14 23:25:39
