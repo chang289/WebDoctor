@@ -122,6 +122,10 @@
         document.cookie=c_name+ "=" +escape(value)+
         ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
     }
+
+    var username = getCookie('username');
+    var userAccess = getCookie('status');
+
     var obj;
     var g;
     var res;
@@ -205,6 +209,10 @@
     });
 
     function jumpToEdit() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
         var title = document.getElementById("path2").innerHTML;
         var content = document.getElementById("description").innerHTML;
         console.log(content);
