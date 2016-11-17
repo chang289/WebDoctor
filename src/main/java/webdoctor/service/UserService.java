@@ -3,6 +3,7 @@ package webdoctor.service;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webdoctor.common.passwordHash;
 import webdoctor.jooq.tables.pojos.User;
 import static webdoctor.jooq.Tables.USER;
 
@@ -15,6 +16,8 @@ public class UserService {
     //need to add dependency
     private final DSLContext create;
 
+    @Autowired
+    passwordHash ph;
     @Autowired
     public UserService(DSLContext dslContext) {
         this.create = dslContext;
@@ -35,6 +38,7 @@ public class UserService {
             return 0;
             //fail, exited
         }else {
+            user.setPassword(ph.hash256(user.getPassword()));
             create.insertInto(USER, USER.USERNAME, USER.PASSWORD, USER.EMAIL, USER.AUTHORITY)
                     .values(user.getUsername(), user.getPassword(), user.getEmail(), "0")
                     .execute();
@@ -50,7 +54,7 @@ public class UserService {
             return -1;//fail
         }
         else {
-            if (user.getPassword().equals(data.getPassword())) {
+            if (ph.hash256(user.getPassword()).equals(data.getPassword())) {
                 return Integer.valueOf(data.getAuthority());//success
             }
             else {
@@ -61,7 +65,7 @@ public class UserService {
     public int changePassword(User user) {
         if (checkValid(user) == 1) {
             create.update(USER)
-                    .set(USER.PASSWORD, user.getPassword())
+                    .set(USER.PASSWORD, ph.hash256(user.getPassword()))
                     .where(USER.USERNAME.equal(user.getUsername()))
                     .execute();
             return 1;

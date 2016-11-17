@@ -1,11 +1,14 @@
 package webdoctor.common;
 
+import org.springframework.stereotype.Component;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by IAN on 2016/11/16.
  */
+@Component
 public class passwordHash {
     public String hash256(String password) {
         MessageDigest md;

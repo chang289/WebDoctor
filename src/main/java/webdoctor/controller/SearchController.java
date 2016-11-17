@@ -20,7 +20,10 @@ public class SearchController {
     Search search;
     String name;
 
-
+    @RequestMapping(path="/", method = RequestMethod.GET)
+    public String Index() {
+        return "loginPage.html";
+    }
 
     @RequestMapping(path="/DepartmentPage", method = RequestMethod.GET)
     public String departmentPage() {
