@@ -1,5 +1,6 @@
 package webdoctor.controller;
 
+import com.google.api.services.gmail.model.Message;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,12 +45,24 @@ public class AuthorizationController {
     @RequestMapping(path = "/Certification", method = RequestMethod.POST)
     public @ResponseBody int setAuthority(@RequestBody User user) {
         User data = us.getUser(user);
-
-        String bodytext = "Damn son, you are the chosen one. Click on this link to save the world: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "?authority=" + user.getAuthority();
+        String bodytext = "Damn son, you are the chosen one. Click on this link to save the world: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "/" + user.getAuthority();
         System.out.println("authority: " + user.getAuthority());
         System.out.println(bodytext);
-        //es.sendEmail(data.getEmail(), from, subject, bodytext);
-        return 0;
+        Message message = es.sendEmail(data.getEmail(), from, subject, bodytext);
+        if (data == null || message == null) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
     }
 
+    @RequestMapping(path = "/Certification/{username}/{authority}", method = RequestMethod.GET)
+    public void setAuthority(@PathVariable String username, @PathVariable String authority) {
+        User user = new User();
+        user.setUsername(username);
+        user.setAuthority(authority);
+        System.out.println("user: " + user);
+        A.authorize(user);
+    }
 }
