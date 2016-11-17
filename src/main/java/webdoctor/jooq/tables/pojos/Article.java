@@ -25,10 +25,10 @@ import javax.validation.constraints.Size;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article implements Serializable {
 
-    private static final long serialVersionUID = 175909026;
+    private static final long serialVersionUID = 1010623990;
 
     private Integer   id;
-    private String    author;
+    private Integer   authorId;
     private String    title;
     private Timestamp timeStamp;
     private String    content;
@@ -37,7 +37,7 @@ public class Article implements Serializable {
 
     public Article(Article value) {
         this.id = value.id;
-        this.author = value.author;
+        this.authorId = value.authorId;
         this.title = value.title;
         this.timeStamp = value.timeStamp;
         this.content = value.content;
@@ -45,13 +45,13 @@ public class Article implements Serializable {
 
     public Article(
         Integer   id,
-        String    author,
+        Integer   authorId,
         String    title,
         Timestamp timeStamp,
         String    content
     ) {
         this.id = id;
-        this.author = author;
+        this.authorId = authorId;
         this.title = title;
         this.timeStamp = timeStamp;
         this.content = content;
@@ -66,13 +66,12 @@ public class Article implements Serializable {
         this.id = id;
     }
 
-    @Size(max = 255)
-    public String getAuthor() {
-        return this.author;
+    public Integer getAuthorId() {
+        return this.authorId;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
     }
 
     @Size(max = 1000)
@@ -106,7 +105,7 @@ public class Article implements Serializable {
         StringBuilder sb = new StringBuilder("Article (");
 
         sb.append(id);
-        sb.append(", ").append(author);
+        sb.append(", ").append(authorId);
         sb.append(", ").append(title);
         sb.append(", ").append(timeStamp);
         sb.append(", ").append(content);

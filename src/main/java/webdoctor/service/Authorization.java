@@ -30,7 +30,7 @@ public class Authorization {
             //failed
         }else{
             create.update(USER)
-                    .set(USER.AUTHORITY,"1")
+                    .set(USER.AUTHORITY,user.getAuthority())
                     .where(USER.ID.equal(temp.getId()))
                     .execute();
 
