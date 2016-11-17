@@ -173,7 +173,12 @@
 
         <div class="input-group" style="margin-bottom: 5px;">
             <span class="input-group-addon">Name</span>
-            <input type="text" class="form-control" placeholder="Please give the disease a name">
+            <input type="text" class="form-control" id="titleEle" placeholder="Please give the disease a name">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon">Department</span>
+            <input type="text" class="form-control" id="depEle" placeholder="Which department does it belong to">
         </div>
 
         <textarea name="contnet" id="mytextarea"></textarea>
@@ -187,10 +192,9 @@
             </div>
 
         </div>
-
-        <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
-
     </form>
+    <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
+
 
 </div>
 
@@ -222,7 +226,7 @@ function makeTagList(callback) {
 
         for (var k in result) {
 
-            var department = (result[k].department);
+            var departmentText = (result[k].department);
             var symArray = (result[k].symptomList);
             var targetArea = document.getElementById('checkBoxes');
 
@@ -231,11 +235,11 @@ function makeTagList(callback) {
 
             var head = document.createElement("h4");
             head.className = "tagHead";
-            head.appendChild(document.createTextNode(department));
+            head.appendChild(document.createTextNode(departmentText));
 
             titleDiv.appendChild(head);
             targetArea.appendChild(titleDiv);
-
+            //targetArea.style.borderStyle = "solid";
             for (var j in symArray) {
 
                 var tagDiv = document.createElement("div");
@@ -245,7 +249,7 @@ function makeTagList(callback) {
                 checkbox.type = "checkbox";
                 checkbox.name = "checkbox";
                 checkbox.id = symArray[j];
-
+                checkbox.value = symArray[j];
                 var label = document.createElement('label');
                 label.htmlFor = symArray[j];
                 label.appendChild(document.createTextNode(symArray[j]));
@@ -300,15 +304,29 @@ if (username != "") {
 }
 
 function submitChange() {
+    var checkbox_value = "";
+    var checkbox_value = "";
+    $(":checkbox").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            checkbox_value += $(this).val() + ",";
+        }
+    });
+
+    console.log(checkbox_value);
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
     var title = document.getElementById('titleEle').value;
-    var department = document.getElementById('depEle').value
+    var department = document.getElementById('depEle').value;
+    var symptoms = checkbox_value;
     obj.name = title;
     obj.description = content;
     obj.department = department;
-
+    obj.symptoms = symptoms;
     console.log(obj);
+    //var data_form =  $('#textform').serialize();
+    //console.log(data_form);
+
     console.log("saved");
 
     $(function(callback) {
