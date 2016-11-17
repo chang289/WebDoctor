@@ -79,7 +79,7 @@
     }
 
     .checkBoxArea label {
-        width: 15%;
+        width: 20%;
         border-radius: 3px;
         border: 1px solid #D1D3D4;
         font-weight: normal;
@@ -174,34 +174,14 @@
 
         <textarea name="contnet" id="mytextarea"></textarea>
 
-        <div class="checkBoxArea">
+        <div class="checkBoxArea" id="checkBoxes">
 
-            <div class="tagTitle">
 
-            <div class="tagbox" display="in-line">
+            <div class="tagbox">
                 <input type="checkbox" name="checkbox" id="checkbox1" checked/>
-                <label for="checkbox1">First</label>
+                <label for="checkbox1">EXAMPLE BOX</label>
             </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox2" checked/>
-                <label for="checkbox2">Second</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox3" checked/>
-                <label for="checkbox3">Third</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox4" checked/>
-                <label for="checkbox4">Fourth</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox5" checked/>
-                <label for="checkbox5">Fifth</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox6" checked/>
-                <label for="checkbox6">Sixth</label>
-            </div>
+
         </div>
 
         <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
@@ -231,6 +211,46 @@ function makeTagList(callback) {
         },
         error : function (error) {
             console.log(error);
+        }
+    }).done(function(result) {
+        console.log("inside done");
+        console.log(result);
+
+        for (var k in result) {
+
+            var department = (result[k].department);
+            var symArray = (result[k].symptomList);
+            var targetArea = document.getElementById('checkBoxes');
+
+            var titleDiv = document.createElement("div");
+            titleDiv.className = "tagTitle";
+
+            var head = document.createElement("h4");
+            head.className = "tagHead";
+            head.appendChild(document.createTextNode(department));
+
+            titleDiv.appendChild(head);
+            targetArea.appendChild(titleDiv);
+
+            for (var j in symArray) {
+
+                var tagDiv = document.createElement("div");
+                tagDiv.className = "tagbox";
+
+                var checkbox = document.createElement('input');
+                checkbox.type = "checkbox";
+                checkbox.name = "checkbox";
+                checkbox.id = symArray[j];
+
+                var label = document.createElement('label');
+                label.htmlFor = symArray[j];
+                label.appendChild(document.createTextNode(symArray[j]));
+
+                tagDiv.appendChild(checkbox);
+                tagDiv.appendChild(label);
+
+                targetArea.appendChild(tagDiv);
+            }
         }
     });
 }
