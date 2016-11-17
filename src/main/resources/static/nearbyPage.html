@@ -239,7 +239,7 @@ function initMap() {
                   position: place.geometry.location
                 });
                 google.maps.event.addListener(marker, 'click', function() {
-                  infowindow.setContent('<div><strong>' + place.name + '<br>' +
+                  infowindow.setContent('<div><strong>' + '<a href="http://google.com/maps/place/">' + place.name + '</a>' + '<br>' +
                     place.formatted_address + '<br>' +
                     place.formatted_phone_number + '</div>');
                   infowindow.open(map, this);
@@ -290,7 +290,7 @@ function initMap2() {
                   position: place.geometry.location
                 });
                 google.maps.event.addListener(marker, 'click', function() {
-                  infowindow.setContent('<div><strong>' + place.name + '<br>' +
+                  infowindow.setContent('<div><strong>' + '<a href="http://google.com/maps/place/">' + place.name + '</a>' + '<br>' +
                     place.formatted_address + '<br>' +
                     place.formatted_phone_number + '</div>');
                   infowindow.open(map, this);
