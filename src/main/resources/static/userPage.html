@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>User page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -70,6 +73,9 @@
 <h2 id="email" style="color: #fefefe"></h2>
 <h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Authority</h1>
 <h2 id="Aut" style="color: #fefefe"></h2>
+    <h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>
+
+    <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
 
 </div>
 <div class="fixed_div" style="margin-top: 60px">
@@ -82,10 +88,11 @@
 </div>
 
 
-<div style="margin-left: 35cm">
+<div style="margin-left: 33cm">
     <a href="#top">
-        <img border="0" src="/Users/ruipang/Documents/cs307/WebDoctor/src/main/resources/static/cs307箭头.jpg" />
+        <img border="0" src="屏幕快照 2016-11-17 15.47.10.png" />
     </a>
+    </div>
 
 </body>
 
@@ -155,7 +162,26 @@
             }
             else if(obj.authority == 1) {
                 document.getElementById("Aut").innerHTML = "Certified user";
+              $(function(callback) {
+              res = $.ajax({
+              url: '/UserPage',
+              type: 'POST',
+              dataType: 'json',
+              data: JSON.stringify(obj2),
+              contentType: "application/json; charset=utf-8",
+              success: function (data) {
+              callback(data);
+            },
+            error: function (error) {
+                console.log(error);
             }
+
+        })
+        var res = res.done(function(result) {
+            console.log(res.responseText);
+            var obj = JSON.parse(res.responseText);
+
+        }
             else if(obj.authority == 2) {
                 document.getElementById("Aut").innerHTML = "Admin";
             }
