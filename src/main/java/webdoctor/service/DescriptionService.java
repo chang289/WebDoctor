@@ -47,23 +47,40 @@ public class DescriptionService {
         }
     }
 
-    public int descriptionCreate(Disease disease) {
+    public int descriptionCreate(Disease disease, Symptom [] symptoms) {
         if(checkDisease(disease) == 1){
             return 0;
             //existed
         }else{
+
             create.insertInto(DISEASE,DISEASE.NAME,DISEASE.DESCRIPTION,DISEASE.DEPARTMENT)
                     .values(disease.getName(),disease.getDescription(),disease.getDepartment())
                     .execute();
+
+            int D_ID = create.select()
+                    .from(DISEASE)
+                    .where(DISEASE.NAME.equal(disease.getName()))
+                    .fetchOneInto(Disease.class)
+                    .getId();
+
+            int T_ID;
+            for (Symptom s : symptoms) {
+                T_ID = s.getId();
+                create.insertInto(DISEASE_SYMPTOM,DISEASE_SYMPTOM.TAG_ID,DISEASE_SYMPTOM.DISEASE_ID)
+                        .values(T_ID,D_ID)
+                        .execute();
+            }
+
             return 1;
 
         }
     }
 
+
     public String getDSList(){
         String json =  null;
-        List<String>Department = create.select().from(DISEASE)
-                .fetch(DISEASE.DEPARTMENT);
+        List<String>Department = create.select().from(SYMPTOM)
+                .fetch(SYMPTOM.DEPARTMENT);
 
         Set<String> temp = new HashSet<String>();
         temp.addAll(Department);
@@ -98,6 +115,7 @@ public class DescriptionService {
         System.out.println(json);
         return json;
     }
+
 
     public int descriptionEdit(Disease disease) {
         if(checkDisease(disease) == 0) {
