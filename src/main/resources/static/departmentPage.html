@@ -274,14 +274,18 @@ window.onload = function(){
 <style>
     button {
         background-color: #0d57a0;
-        color: black;
+        color: white;
         padding: 14px 20px;
         margin: 8px 0;
         border: none;
         cursor: pointer;
         width: 50%;
     }
+    button:hover{
+        color: #42a5f5;
+        transition: text-shadow 1s,color 1s;
 
+    }
     #usersection {
     width: 240px;
     height: 123px;
@@ -385,6 +389,13 @@ window.onload = function(){
         width: 150px;
         height: 150px;
     }
+
+    li button:hover{
+        color: #42a5f5;
+        transition: text-shadow 1s,color 1s;
+
+    }
+
     #selectedTags li {
         display: block;
     }

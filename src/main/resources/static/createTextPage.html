@@ -40,7 +40,11 @@
     cursor: pointer;
     width: 50%;
     }
+    button:hover{
+        color: #42a5f5;
+        transition: text-shadow 1s,color 1s;
 
+    }
     .upperbtn {
     background-color: #0d57a0;
     color: white;
@@ -79,7 +83,7 @@
     }
 
     .checkBoxArea label {
-        width: 15%;
+        width: 20%;
         border-radius: 3px;
         border: 1px solid #D1D3D4;
         font-weight: normal;
@@ -148,6 +152,10 @@
         margin-right:1px;
     }
 
+    label {
+        font-size: 10px;
+    }
+
 
 </style>
 
@@ -169,44 +177,28 @@
 
         <div class="input-group" style="margin-bottom: 5px;">
             <span class="input-group-addon">Name</span>
-            <input type="text" class="form-control" placeholder="Please give the disease a name">
+            <input type="text" class="form-control" id="titleEle" placeholder="Please give the disease a name">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon">Department</span>
+            <input type="text" class="form-control" id="depEle" placeholder="Which department does it belong to">
         </div>
 
         <textarea name="contnet" id="mytextarea"></textarea>
 
-        <div class="checkBoxArea">
+        <div class="checkBoxArea" id="checkBoxes">
 
-            <div class="tagTitle">
 
-            <div class="tagbox" display="in-line">
+            <div class="tagbox">
                 <input type="checkbox" name="checkbox" id="checkbox1" checked/>
-                <label for="checkbox1">First</label>
+                <label for="checkbox1">EXAMPLE BOX</label>
             </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox2" checked/>
-                <label for="checkbox2">Second</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox3" checked/>
-                <label for="checkbox3">Third</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox4" checked/>
-                <label for="checkbox4">Fourth</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox5" checked/>
-                <label for="checkbox5">Fifth</label>
-            </div>
-            <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox6" checked/>
-                <label for="checkbox6">Sixth</label>
-            </div>
+
         </div>
-
-        <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
-
     </form>
+    <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
+
 
 </div>
 
@@ -231,6 +223,46 @@ function makeTagList(callback) {
         },
         error : function (error) {
             console.log(error);
+        }
+    }).done(function(result) {
+        console.log("inside done");
+        console.log(result);
+
+        for (var k in result) {
+
+            var departmentText = (result[k].department);
+            var symArray = (result[k].symptomList);
+            var targetArea = document.getElementById('checkBoxes');
+
+            var titleDiv = document.createElement("div");
+            titleDiv.className = "tagTitle";
+
+            var head = document.createElement("h4");
+            head.className = "tagHead";
+            head.appendChild(document.createTextNode(departmentText));
+
+            titleDiv.appendChild(head);
+            targetArea.appendChild(titleDiv);
+            //targetArea.style.borderStyle = "solid";
+            for (var j in symArray) {
+
+                var tagDiv = document.createElement("div");
+                tagDiv.className = "tagbox";
+
+                var checkbox = document.createElement('input');
+                checkbox.type = "checkbox";
+                checkbox.name = "checkbox";
+                checkbox.id = symArray[j];
+                checkbox.value = symArray[j];
+                var label = document.createElement('label');
+                label.htmlFor = symArray[j];
+                label.appendChild(document.createTextNode(symArray[j]));
+
+                tagDiv.appendChild(checkbox);
+                tagDiv.appendChild(label);
+
+                targetArea.appendChild(tagDiv);
+            }
         }
     });
 }
@@ -276,15 +308,29 @@ if (username != "") {
 }
 
 function submitChange() {
+    var checkbox_value = "";
+    var checkbox_value = "";
+    $(":checkbox").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            checkbox_value += $(this).val() + ",";
+        }
+    });
+
+    console.log(checkbox_value);
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
     var title = document.getElementById('titleEle').value;
-    var department = document.getElementById('depEle').value
+    var department = document.getElementById('depEle').value;
+    var symptoms = checkbox_value;
     obj.name = title;
     obj.description = content;
     obj.department = department;
-
+    obj.symptoms = symptoms;
     console.log(obj);
+    //var data_form =  $('#textform').serialize();
+    //console.log(data_form);
+
     console.log("saved");
 
     $(function(callback) {

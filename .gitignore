@@ -1,5 +1,5 @@
 /target
 .idea
 *.iml
-src\main\java\Demo\SearchTest.java
+src\main\java\Demo
 src\main\resources\config\application.properties

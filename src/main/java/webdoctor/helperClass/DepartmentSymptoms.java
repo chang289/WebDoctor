@@ -1,12 +1,13 @@
 package webdoctor.helperClass;
 
 
+import webdoctor.jooq.tables.pojos.Disease;
 import webdoctor.jooq.tables.pojos.Symptom;
 
 import java.util.*;
 
 /**
- * Created by Yibih on 2016/11/14.
+ * Created by Yibin on 2016/11/14.
  */
 public class DepartmentSymptoms {
     private String department;
@@ -27,4 +28,3 @@ public class DepartmentSymptoms {
         return this.symptomList;
     }
 }
-

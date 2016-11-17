@@ -47,23 +47,62 @@ public class DescriptionService {
         }
     }
 
-    public int descriptionCreate(Disease disease) {
+    private Symptom getSymptom(String symptom) {
+        return create.select().from(SYMPTOM)
+                .where(SYMPTOM.NAME.equal(symptom))
+                .fetchOneInto(Symptom.class);
+
+    }
+
+    public int descriptionCreate(Disease_Symptoms D) {
+
+        String disease_name = D.getName();
+        String disease_description = D.getDescription();
+        String disease_deparment = D.getDepartment();
+        String symptom_list = D.getSymptoms();
+
+        Disease disease = new Disease();
+        disease.setName(disease_name);
+        disease.setDescription(disease_description);
+        disease.setDepartment(disease_deparment);
+
+
         if(checkDisease(disease) == 1){
             return 0;
             //existed
         }else{
+
             create.insertInto(DISEASE,DISEASE.NAME,DISEASE.DESCRIPTION,DISEASE.DEPARTMENT)
                     .values(disease.getName(),disease.getDescription(),disease.getDepartment())
                     .execute();
+
+            int D_ID = create.select()
+                    .from(DISEASE)
+                    .where(DISEASE.NAME.equal(disease.getName()))
+                    .fetchOneInto(Disease.class).getId();
+            int T_ID;
+//            System.out.println(symptom_list);
+            String [] symptoms = symptom_list.split(",");
+
+
+            for (String s : symptoms) {
+                Symptom temp_symp = getSymptom(s);
+                T_ID = temp_symp.getId();
+                create.insertInto(DISEASE_SYMPTOM,DISEASE_SYMPTOM.TAG_ID,DISEASE_SYMPTOM.DISEASE_ID)
+                        .values(T_ID,D_ID)
+                        .execute();
+            }
+
             return 1;
 
         }
     }
 
+
     public String getDSList(){
         String json =  null;
-        List<String>Department = create.select().from(DISEASE)
-                .fetch(DISEASE.DEPARTMENT);
+        List<String>Department = create.select().from(SYMPTOM)
+                .fetch(SYMPTOM.DEPARTMENT);
 
         Set<String> temp = new HashSet<String>();
         temp.addAll(Department);
@@ -72,9 +111,9 @@ public class DescriptionService {
 
         List<DepartmentSymptoms> DSList = new ArrayList<DepartmentSymptoms>();
 
-        for(String s: Department) {
-            System.out.println(s);
-        }
+//        for(String s: Department) {
+//            System.out.println(s);
+//        }
 
         int i = 0;
         List<String> symp_temp;
@@ -95,9 +134,10 @@ public class DescriptionService {
             DSList.add(DS_temp);
         }
         json = gson.toJson(DSList);
-        System.out.println(json);
+//        System.out.println(json);
         return json;
     }
+
 
     public int descriptionEdit(Disease disease) {
         if(checkDisease(disease) == 0) {
