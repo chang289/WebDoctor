@@ -47,7 +47,14 @@ public class DescriptionService {
         }
     }
 
-    public int descriptionCreate(Disease disease, Symptom [] symptoms) {
+    private Symptom getSymptom(String symptom) {
+        return create.select().from(SYMPTOM)
+                .where(SYMPTOM.NAME.equal(symptom))
+                .fetchOneInto(Symptom.class);
+
+    }
+
+    public int descriptionCreate(Disease disease, String symptom_list) {
         if(checkDisease(disease) == 1){
             return 0;
             //existed
@@ -57,15 +64,15 @@ public class DescriptionService {
                     .values(disease.getName(),disease.getDescription(),disease.getDepartment())
                     .execute();
 
-            int D_ID = create.select()
-                    .from(DISEASE)
-                    .where(DISEASE.NAME.equal(disease.getName()))
-                    .fetchOneInto(Disease.class)
-                    .getId();
-
+            int D_ID = disease.getId();
             int T_ID;
-            for (Symptom s : symptoms) {
-                T_ID = s.getId();
+
+            String [] symptoms = symptom_list.split(",");
+
+
+            for (String s : symptoms) {
+                Symptom temp_symp = getSymptom(s);
+                T_ID = temp_symp.getId();
                 create.insertInto(DISEASE_SYMPTOM,DISEASE_SYMPTOM.TAG_ID,DISEASE_SYMPTOM.DISEASE_ID)
                         .values(T_ID,D_ID)
                         .execute();

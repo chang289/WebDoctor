@@ -27,8 +27,8 @@ public class DescriptionController {
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.POST)
-    public @ResponseBody int CreateDescription(@RequestBody Disease disease, Symptom[] symptoms){
-        return DS.descriptionCreate(disease,symptoms);
+    public @ResponseBody int CreateDescription(@RequestBody Disease disease, String symptoms){
+        return DS.descriptionCreate(disease, symptoms);
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.GET)

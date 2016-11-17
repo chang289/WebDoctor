@@ -9,19 +9,19 @@ import java.util.*;
 /**
  * Created by Yibin on 2016/11/14.
  */
-public class DepartmentSymptoms {
-    private String department;
+public class Disease_Symptoms {
+    private Disease disease;
     private List <String> symptomList;
 
-    public void set_Department(String department) {
-        this.department = department;
+    public void set_Disease(Disease disease) {
+        this.disease = disease;
     }
     public void set_SymptomList(List <String> symptomList) {
         this.symptomList = symptomList;
     }
 
-    public String get_Department() {
-        return this.department;
+    public Disease get_Disease() {
+        return this.disease;
     }
 
     public List <String> get_SymptomList() {
