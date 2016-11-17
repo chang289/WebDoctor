@@ -54,7 +54,19 @@ public class DescriptionService {
 
     }
 
-    public int descriptionCreate(Disease disease, String symptom_list) {
+    public int descriptionCreate(Disease_Symptoms D) {
+
+        String disease_name = D.getName();
+        String disease_description = D.getDescription();
+        String disease_deparment = D.getDepartment();
+        String symptom_list = D.getSymptoms();
+
+        Disease disease = new Disease();
+        disease.setName(disease_name);
+        disease.setDescription(disease_description);
+        disease.setDepartment(disease_deparment);
+
+
         if(checkDisease(disease) == 1){
             return 0;
             //existed
@@ -64,9 +76,12 @@ public class DescriptionService {
                     .values(disease.getName(),disease.getDescription(),disease.getDepartment())
                     .execute();
 
-            int D_ID = disease.getId();
+            int D_ID = create.select()
+                    .from(DISEASE)
+                    .where(DISEASE.NAME.equal(disease.getName()))
+                    .fetchOneInto(Disease.class).getId();
             int T_ID;
-
+//            System.out.println(symptom_list);
             String [] symptoms = symptom_list.split(",");
 
 
@@ -96,9 +111,9 @@ public class DescriptionService {
 
         List<DepartmentSymptoms> DSList = new ArrayList<DepartmentSymptoms>();
 
-        for(String s: Department) {
-            System.out.println(s);
-        }
+//        for(String s: Department) {
+//            System.out.println(s);
+//        }
 
         int i = 0;
         List<String> symp_temp;
@@ -119,7 +134,7 @@ public class DescriptionService {
             DSList.add(DS_temp);
         }
         json = gson.toJson(DSList);
-        System.out.println(json);
+//        System.out.println(json);
         return json;
     }
 
