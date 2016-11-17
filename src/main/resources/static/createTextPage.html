@@ -163,13 +163,13 @@
 <body>
 <div id="upperlevel">
     <div class="uppersection" id="homesection">
-        <button class="upperbtn" type="button" id="homebtn">
+        <button class="upperbtn" type="button" id="homebtn" onclick="add2()">
             <span class="glyphicon glyphicon-home"></span> Home
         </button>
     </div>
 
     <div class="uppersection" id="usersection">
-        <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
+        <button class="upperbtn" id="userbtn" type="button"  style="float: right"></button>
     </div>
 </div>
 
@@ -205,6 +205,12 @@
 
 </body>
 <script>
+
+     function add2(){
+
+        window.location.replace('/ModePage');
+    }
+
 
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>

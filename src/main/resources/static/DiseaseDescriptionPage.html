@@ -77,11 +77,61 @@
         bottom:0;
         left:35cm;
     }
+button:hover{
+        color: #42a5f5;
+        transition: text-shadow 1s,color 1s;
 
+    }
+    .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    }
+
+    .container {
+    padding: 16px;
+    }
+
+
+    .upperbtn {
+    background-color: #0d57a0;
+    color: white;
+    padding: 5px 5px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    }
+
+    #upperlevel {
+    width: 100%;
+    height: 50px;
+    }
+
+    #homesection {
+    width: 240px;
+    height: 123px;
+    float: left;
+    }
+
+    #usersection {
+    width: 240px;
+    height: 123px;
+    float: right;
+    }
 </style>
 
 <body style="background-color:#1aa8a8">
 <a name="top"></a>
+<div id="upperlevel">
+        <div class="uppersection" id="homesection">
+            <button class="upperbtn" type="button" id="homebtn">
+                <span class="glyphicon glyphicon-home"></span> Home
+            </button>
+        </div>
+
+    <div class="uppersection" id="usersection">
+        <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
+    </div>
+</div>
     <div class="uppertitle" >
         <div class="top" style="float:left"><h1>WebDoctor</h1></div>
         <div class="top" style="float:left"><h1>/</h1></div>
@@ -91,7 +141,7 @@
     </div>
 
 <div class="left">
-    <h1>Related articles</h1>
+    <h1 style="font-size:20px">Related articles</h1>
     <ul id="articleList">
 
     </ul>
@@ -124,9 +174,70 @@
 </body>
 
 </body>
+<script>
+    function add() {
+        window.location.replace('/ModePage');
+    }
+</script>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+function setCookie(c_name,value,expiredays)
+{
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+}
+function getCookie(c_name)
+{
+    if (document.cookie.length>0)
+    {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        {
+            c_start=c_start + c_name.length+1
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+        }
+    }
+    return "";
+}
+
+var username = getCookie('username');
+var content = getCookie('content');
+var title = getCookie('title');
+console.log("!!!!!!!");
+console.log(content);
+var userbtn = document.getElementById('userbtn');
+
+if (username != "") {
+    userbtn.appendChild(document.createTextNode('welcome '));
+    userbtn.appendChild(document.createTextNode(username));
+} else {
+    userbtn.appendChild(document.createTextNode('Login'));
+}
+$(document).ready(function(){
+    console.log("111111");
+    $("#searchbysym").click(function() {
+        window.location.replace('/DepartmentPage');
+    });
+
+    $("#nearby").click(function() {
+        window.location.replace('/MapPage');
+    });
+
+    $("#userbtn").click(function() {
+        if (username != "") {
+            window.location.replace('/UserPage');
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+});
+
+
     function setCookie(c_name,value,expiredays)
     {
         var exdate=new Date()

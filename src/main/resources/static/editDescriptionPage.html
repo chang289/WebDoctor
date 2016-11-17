@@ -77,7 +77,7 @@
 <body>
 <div id="upperlevel">
     <div class="uppersection" id="homesection">
-        <button class="upperbtn" type="button" id="homebtn">
+        <button class="upperbtn" type="button" id="homebtn" onclick="add()">
             <span class="glyphicon glyphicon-home"></span> Home
         </button>
     </div>
@@ -102,6 +102,12 @@
 </div>
 
 </body>
+<script>
+    function add(){
+
+        window.location.replace('/ModePage');
+    }
+</script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 function setCookie(c_name,value,expiredays)
@@ -127,6 +133,42 @@ function getCookie(c_name)
     }
     return ""
 }
+$(document).ready(function(){
+    console.log("111111");
+    $("#searchbysym").click(function() {
+        window.location.replace('/DepartmentPage');
+    });
+
+    $("#nearby").click(function() {
+        window.location.replace('/MapPage');
+    });
+
+    $("#userbtn").click(function() {
+        if (username != "") {
+            window.location.replace('/UserPage');
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+});
+$(document).ready(function(){
+    console.log("111111");
+    $("#searchbysym").click(function() {
+        window.location.replace('/DepartmentPage');
+    });
+
+    $("#nearby").click(function() {
+        window.location.replace('/MapPage');
+    });
+
+    $("#userbtn").click(function() {
+        if (username != "") {
+            window.location.replace('/UserPage');
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+});
 var username = getCookie('username');
 var content = getCookie('content');
 var title = getCookie('title');

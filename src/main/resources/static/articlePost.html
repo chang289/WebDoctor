@@ -108,6 +108,12 @@
 </div>
 
 </body>
+<script>
+    function add2(){
+
+        window.location.replace('/UserPage');
+    }
+</script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 function setCookie(c_name,value,expiredays)
@@ -145,7 +151,27 @@ if (username != "") {
     userbtn.appendChild(document.createTextNode(username));
 } else {
     userbtn.appendChild(document.createTextNode('Login'));
+
 }
+
+$(document).ready(function(){
+    console.log("111111");
+    $("#searchbysym").click(function() {
+        window.location.replace('/DepartmentPage');
+    });
+
+    $("#nearby").click(function() {
+        window.location.replace('/MapPage');
+    });
+
+    $("#userbtn").click(function() {
+        if (username != "") {
+            window.location.replace('/UserPage');
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+});
 
 function submitChange() {
     var obj = {};
