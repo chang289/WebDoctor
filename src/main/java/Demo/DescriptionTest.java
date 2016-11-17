@@ -42,7 +42,7 @@ public class DescriptionTest{
             DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
             DescriptionService D = new DescriptionService(create);
 
-            D.descriptionCreate(disease,symptoms);
+
         }
         catch (Exception e) {
             e.printStackTrace();

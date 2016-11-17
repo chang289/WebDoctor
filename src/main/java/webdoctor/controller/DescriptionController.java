@@ -3,6 +3,7 @@ package webdoctor.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import webdoctor.helperClass.Disease_Symptoms;
 import webdoctor.jooq.tables.pojos.Disease;
 import webdoctor.jooq.tables.pojos.Symptom;
 import webdoctor.service.DescriptionService;
@@ -27,8 +28,15 @@ public class DescriptionController {
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.POST)
-    public @ResponseBody int CreateDescription(@RequestBody Disease disease, String symptoms){
-        return DS.descriptionCreate(disease, symptoms);
+    public @ResponseBody int CreateDescription(@RequestBody Disease_Symptoms D){
+
+//        System.out.println(D);
+//        System.out.println(D.getName());
+//        System.out.println(D.getDescription());
+//        System.out.println(D.getDepartment());
+
+        return DS.descriptionCreate(D);
+
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.GET)
