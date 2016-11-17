@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
     $("#authbtn").click(function() {
         console.log("222222222");
         var username1 = document.getElementById('username').value;
-
+        var access = $("input[name='optradio']:checked").val()
         var obj = {};
 
         obj.username = username1;
-        console.log(username1);
+        obj.authority = access;
+        console.log(obj);
 
         $(function(callback) {
             var i = $.ajax({
                 url : '/Certification',
+                crossOrigin: true,
                 type : 'POST',
                 dataType: 'json',
                 data : JSON.stringify(obj),
@@ -58,28 +65,27 @@ $(document).ready(function(){
     }
 
     input[type=text], input[type=password] {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
     }
 
     button {
-    background-color: #0d57a0;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+        background-color: #0d57a0;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
         border: 1px groove #cccccc;
         border-radius: 5px;
-    cursor: pointer;
-    width: 50%;
+        cursor: pointer;
+        width: 50%;
     }
     button:hover{
         color: #42a5f5;
         transition: text-shadow 1s,color 1s;
-
     }
     .imgcontainer {
     text-align: center;
@@ -97,6 +103,17 @@ $(document).ready(function(){
 
         <div class="container">
             <input type="text" placeholder="Enter Username" id="username" name="username" required><br>
+
+            <label class="radio-inline">
+                <input type="radio" name="optradio" value="0">Normal User
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio" value="1">Certified Editor
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio" value="2">Administrators
+            </label><br>
+
             <button id="authbtn" type="button">Authority this user</button>
         </div>
     </form>

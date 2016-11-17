@@ -53,11 +53,15 @@ $(document).ready(function(){
             }).done(function(result) {
                 console.log(result);
                 if (result == -1) {
+                    console.log("login failed");
                     alert("Cannot find your user and password pair");
                 }
                 else {
+                    console.log("login success");
                     setCookie('username',username1,365);
                     setCookie('status', result, 365);
+                    console.log(username1);
+                    console.log(result);
                     window.location.replace('/ModePage');
                 }
             });

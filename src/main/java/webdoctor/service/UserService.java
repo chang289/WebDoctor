@@ -55,10 +55,11 @@ public class UserService {
         }
         else {
             if (ph.hash256(user.getPassword()).equals(data.getPassword())) {
+                System.out.println(Integer.valueOf(data.getAuthority()));
                 return Integer.valueOf(data.getAuthority());//success
             }
             else {
-                return 0;
+                return -1;
             }
         }
     }
