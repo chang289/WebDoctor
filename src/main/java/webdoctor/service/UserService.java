@@ -58,7 +58,7 @@ public class UserService {
                 return Integer.valueOf(data.getAuthority());//success
             }
             else {
-                return 0;
+                return -1;
             }
         }
     }
