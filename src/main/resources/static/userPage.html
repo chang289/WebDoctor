@@ -44,7 +44,8 @@
         width: 240px;
         height: 123px;
         float: left;
-    ｝
+    }
+
 
 </style>
 
@@ -55,11 +56,11 @@
 </div>
 
 <body style="background-color: #1aa8b9">
+<a name="top"></a>
 
 <div id="usersection" align="right">
     <button id="userbtn" type="button"></button>
-</div>
-
+    </div>
 <div style="margin-left: 100px">
 <h1 style="color: #fefefe;margin-top: 2.5cm;font-size: large">Username</h1>
 <h2 id="username" style="color: #fefefe"></h2>
@@ -69,8 +70,9 @@
 <h2 id="email" style="color: #fefefe"></h2>
 <h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Authority</h1>
 <h2 id="Aut" style="color: #fefefe"></h2>
+
 </div>
-<div style="margin-top: 60px">
+<div class="fixed_div" style="margin-top: 60px">
 <a href="/ChangePassword" target="_blank">Change your password </a>
     <br>
     <br>
@@ -78,7 +80,15 @@
 
 
 </div>
+
+
+<div style="margin-left: 35cm">
+    <a href="#top">
+        <img border="0" src="/Users/ruipang/Documents/cs307/WebDoctor/src/main/resources/static/cs307箭头.jpg" />
+    </a>
+
 </body>
+
 <script>
     function   add(){
 
@@ -152,8 +162,12 @@
         });
     });
 
+$(function(){
+        $("a").smoothScroll();
+    })
 
 
 
 </script>
+
 </html>
