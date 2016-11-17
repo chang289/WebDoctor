@@ -13,6 +13,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.Message;
+import org.springframework.stereotype.Component;
 import webdoctor.common.SendEmail;
 
 import javax.mail.internet.MimeMessage;
@@ -25,6 +26,7 @@ import java.util.List;
 /**
  * Created by IAN on 2016/11/17.
  */
+@Component
 public class EmailService {
     private static final String APPLICATION_NAME = "WebDoctor";
 

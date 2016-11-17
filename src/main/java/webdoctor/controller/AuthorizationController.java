@@ -44,10 +44,11 @@ public class AuthorizationController {
     @RequestMapping(path = "/Certification", method = RequestMethod.POST)
     public @ResponseBody int setAuthority(@RequestBody User user) {
         User data = us.getUser(user);
-        String bodytext = "Damn son, you are the chosen one. Click on this link to save the world: \n";
-        String url = "http://localhost:8080/Certification" + user.getUsername();
-        System.out.println(url);
-        es.sendEmail(data.getEmail(), from, subject, bodytext);
+
+        String bodytext = "Damn son, you are the chosen one. Click on this link to save the world: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "?authority=" + user.getAuthority();
+        System.out.println("authority: " + user.getAuthority());
+        System.out.println(bodytext);
+        //es.sendEmail(data.getEmail(), from, subject, bodytext);
         return 0;
     }
 
