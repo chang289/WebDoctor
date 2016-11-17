@@ -6,6 +6,7 @@ import org.jooq.impl.DSL;
 import org.jooq.util.derby.sys.Sys;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import webdoctor.jooq.tables.pojos.Disease;
 import webdoctor.jooq.tables.pojos.Symptom;
 import webdoctor.service.Search;
 import webdoctor.helperClass.*;
@@ -36,9 +37,37 @@ public class DescriptionTest{
         }
     }
 
+    public static void CreationTest(Disease disease, Symptom [] symptoms){
+        try (Connection conn = DriverManager.getConnection(url, userName, password)) {
+            DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
+            DescriptionService D = new DescriptionService(create);
+
+            D.descriptionCreate(disease,symptoms);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String [] args) {
         DescriptionTest test = new DescriptionTest();
-        test.DSListTest();
+
+        Disease d = new Disease();
+        d.setName("fakedisease");
+        d.setDescription("fake");
+        d.setDepartment("fake");
+
+
+        Symptom a = new Symptom();
+        a.setId(33);
+        Symptom [] symptoms = new Symptom[1];
+        symptoms[0] = a;
+
+        test.CreationTest(d,symptoms);
+
+
+
+//        test.DSListTest();
     }
 
 }

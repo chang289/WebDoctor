@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.jooq.tables.pojos.Disease;
+import webdoctor.jooq.tables.pojos.Symptom;
 import webdoctor.service.DescriptionService;
 
 /**
@@ -26,8 +27,8 @@ public class DescriptionController {
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.POST)
-    public @ResponseBody int CreateDescription(@RequestBody Disease disease){
-        return DS.descriptionCreate(disease);
+    public @ResponseBody int CreateDescription(@RequestBody Disease disease, Symptom[] symptoms){
+        return DS.descriptionCreate(disease,symptoms);
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.GET)
