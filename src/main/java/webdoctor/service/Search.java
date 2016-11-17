@@ -45,7 +45,7 @@ public class Search {
        return json;
     }
 
-    private Disease diseaseByName(String name) {
+    public Disease diseaseByName(String name) {
         return create.select().from(DISEASE).where(DISEASE.NAME.equal(name)).fetchOneInto(Disease.class);
     }
 

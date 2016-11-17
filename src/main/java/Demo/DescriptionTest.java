@@ -37,7 +37,7 @@ public class DescriptionTest{
         }
     }
 
-    public static void CreationTest(Disease disease, Symptom [] symptoms){
+    public static void CreationTest(Disease disease, String symptoms){
         try (Connection conn = DriverManager.getConnection(url, userName, password)) {
             DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
             DescriptionService D = new DescriptionService(create);
@@ -63,7 +63,7 @@ public class DescriptionTest{
         Symptom [] symptoms = new Symptom[1];
         symptoms[0] = a;
 
-        test.CreationTest(d,symptoms);
+
 
 
 
