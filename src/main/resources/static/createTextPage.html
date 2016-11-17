@@ -335,28 +335,37 @@ function submitChange() {
     obj.department = department;
     obj.symptoms = symptoms;
     console.log(obj);
+
     //var data_form =  $('#textform').serialize();
     //console.log(data_form);
 
     console.log("saved");
 
     $(function(callback) {
-        $.ajax({
-            url: '/CreateDescription',
-            type: 'POST',
+        var i = $.ajax({
+            url : '/CreateDescription',
+            crossDomain: true,
+            type : 'POST',
             dataType: 'json',
             data : JSON.stringify(obj),
             contentType: "application/json; charset=utf-8",
-            success: function (data) {
+            success : function(data) {
                 callback(data);
                 console.log("success");
             },
-            error: function (error) {
+            error : function (error) {
                 console.log(error);
+            }
+        }).done(function(result) {
+            console.log(result);
+            if (result == 0) {
+                alert("Fail! Disease already existed!");
+            } else {
+                alert("Success! You have created a new disease!");
+                window.location.replace('/ModePage');
             }
         });
     });
-    window.location.replace('/ModePage');
 }
 
 $(document).ready(function(){

@@ -21,6 +21,7 @@ $(document).ready(function(){
         $(function(callback) {
             var i = $.ajax({
                 url : '/Certification',
+                crossOrigin: true,
                 type : 'POST',
                 dataType: 'json',
                 data : JSON.stringify(obj),
