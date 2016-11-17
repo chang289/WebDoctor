@@ -11,9 +11,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import com.google.api.services.gmail.Gmail;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by IAN on 2016/11/16.
  */
+@Component
 public class SendEmail {
     public MimeMessage createEmail(String to, String from, String subject, String bodyText) {
         Properties properties = new Properties();
