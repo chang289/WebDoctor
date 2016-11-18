@@ -167,7 +167,7 @@ button:hover{
 
 <div class="footer">
     <a href="#top">
-        <img border="0" src="屏幕快照 2016-11-17 15.47.10.png" />
+        <img border="0" src="up arrow.png" />
     </a>
 </div>
 </body>
@@ -287,11 +287,9 @@ $(document).ready(function(){
             obj = JSON.parse(res.responseText);
             document.getElementById("title").innerHTML = obj.name;
             document.getElementById("description").innerHTML = obj.description;
-            document.getElementById("path1").innerHTML = obj.department
-            document.getElementById("path2").innerHTML = obj.name;
-            document.getElementById("path2").value = obj.name;
+
             console.log("i set value");
-            console.log(document.getElementById("path2").value);
+
 
             var disease = obj.name;
             console.log("------");
