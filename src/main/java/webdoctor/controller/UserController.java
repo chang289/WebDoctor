@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import webdoctor.common.SendEmail;
 import webdoctor.jooq.tables.pojos.User;
 import webdoctor.service.Authorization;
 import webdoctor.service.UserService;
@@ -16,6 +17,7 @@ public class UserController {
     Gson gson = new Gson();
     @Autowired
     UserService li;
+
 
     @RequestMapping(path="/SignUpPage", method = RequestMethod.GET)
     public String SignUp() {
@@ -82,4 +84,6 @@ public class UserController {
         System.out.println(user.getEmail());
         return li.changeEmail(user);
     }
+
+
 }

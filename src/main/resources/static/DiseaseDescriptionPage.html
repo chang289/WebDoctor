@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
 
     <title >Diseases discription</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
     html, body {
@@ -57,8 +60,9 @@
     }
     .left {
         position: absolute;
-        width: 20%;
-        margin-top: 50px;
+        float:left
+        width: 100px;
+        margin-top: 40px;
         color: white;
     }
     .main {
@@ -75,7 +79,7 @@
     .footer {
         position:fixed;
         bottom:0;
-        left:35cm;
+        left:33cm;
     }
 button:hover{
         color: #42a5f5;
@@ -123,7 +127,7 @@ button:hover{
 <a name="top"></a>
 <div id="upperlevel">
         <div class="uppersection" id="homesection">
-            <button class="upperbtn" type="button" id="homebtn">
+            <button class="upperbtn" type="button" id="homebtn" onclick="add()">
                 <span class="glyphicon glyphicon-home"></span> Home
             </button>
         </div>
@@ -132,13 +136,7 @@ button:hover{
         <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
     </div>
 </div>
-    <div class="uppertitle" >
-        <div class="top" style="float:left"><h1>WebDoctor</h1></div>
-        <div class="top" style="float:left"><h1>/</h1></div>
-        <div class="top" style="float:left"><h1 id = "path1"></h1></div>
-        <div class="top" style="float:left"><h1>/</h1></div>
-        <div class="top" style="float:left"><h1 id = "path2"></h1></div>
-    </div>
+
 
 <div class="left">
     <h1 style="font-size:20px">Related articles</h1>
@@ -147,12 +145,12 @@ button:hover{
     </ul>
 </div>
 
-<button id="editbtn" id="Edit" type="button" onclick="jumpToEdit()">Edit</button>
+<div>
+<h1 id="title" style="color:white"></h1><button id="editbtn" id="Edit" type="button" onclick="jumpToEdit()" style="float:right">Edit</button>
 
-<div class="main"><h2 id="title">Description</h2>
-    <p id="description"></p>
+<p id="description" style="color:white; margin-left:6.3cm"></p>
+    <h1 id="symptom" style="color:white;margin-left:6.3cm"> Symptoms</h1>
 </div>
-
     <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="text-align: center;">
         <div class="modal-content" style="width: 700px;height:440px;margin-left: auto;margin-right: auto;margin-top: 120px;">
             <div class="modal-body">
@@ -166,14 +164,15 @@ button:hover{
             </div>
         </div>
     </div>
+
 <div class="footer">
     <a href="#top">
-        <img border="0" src="/Users/ruipang/Documents/cs307/WebDoctor/src/main/resources/static/cs307箭头.jpg" />
+        <img border="0" src="屏幕快照 2016-11-17 15.47.10.png" />
     </a>
 </div>
 </body>
 
-</body>
+
 <script>
     function add() {
         window.location.replace('/ModePage');
@@ -286,6 +285,7 @@ $(document).ready(function(){
         var res = res.done(function(result) {
             console.log(res.responseText);
             obj = JSON.parse(res.responseText);
+            document.getElementById("title").innerHTML = obj.name;
             document.getElementById("description").innerHTML = obj.description;
             document.getElementById("path1").innerHTML = obj.department
             document.getElementById("path2").innerHTML = obj.name;

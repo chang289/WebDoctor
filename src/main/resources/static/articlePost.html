@@ -2,33 +2,29 @@
 <html>
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <meta content="utf-8" http-equiv="encoding">
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
       tinymce.init({
-          selector: '#mytextarea',
-          plugins: "image",
-          images_upload_url: "/ArticleImage",
-          images_upload_base_path: "D:\\WebDoctor\\src\\main\\resources\\static\\articleImages",
-          images_upload_credentials: true,
-          theme: "modern",
-          menubar: "insert, edit, format",
-          toolbar: "insertfile undo redo image | styleselect | bold italic | bullist numlist outdent indent | "
+        selector: '#mytextarea',
+        plugins: "image",
+        images_upload_url: "/ArticleImage",
+        images_upload_base_path: "D:\\WebDoctor\\src\\main\\resources\\static\\articleImages",
+        images_upload_credentials: true,
+        theme: "modern",
+        menubar: "insert, edit, format",
+        toolbar: "insertfile undo redo image | styleselect | bold italic | bullist numlist outdent indent | ",
+        height : "400"
       });
     </script>
 </head>
 <style>
     body {
     background-color: #1aa8a8;
-    }
-
-    input[type=text], input[type=password] {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
     }
 
     button {
@@ -95,10 +91,13 @@
 
 <div id="editorArea" style="width:800px; margin:0 auto;">
     <form id="textform" method="post">
-        <p class="titleP">Put in the title: </p>
-        <input type="text" name="title" id="titleEle" style= "width: 100%">
 
-        <p class="titleP">Put in your content: </p>
+
+        <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon">Title</span>
+            <input type="text" class="form-control" id="titleEle" placeholder="Please give the article a title">
+        </div>
+
         <textarea name="contnet" id="mytextarea"></textarea>
 
         <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>

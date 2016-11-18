@@ -15,12 +15,13 @@ $(document).ready(function(){
         var obj = {};
 
         obj.username = username1;
-        obj.access = access;
+        obj.authority = access;
         console.log(obj);
 
         $(function(callback) {
             var i = $.ajax({
                 url : '/Certification',
+                crossOrigin: true,
                 type : 'POST',
                 dataType: 'json',
                 data : JSON.stringify(obj),
@@ -35,7 +36,7 @@ $(document).ready(function(){
             }).done(function(result) {
                 console.log(result);
                 if (result == 0) {
-                    alert("fail!");
+                    alert("fail! Username invalid!");
                 }
                 if (result == 1) {
                     alert("success!");

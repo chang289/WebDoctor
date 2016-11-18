@@ -1,4 +1,4 @@
-package webdoctor.common;
+package webdoctor.service;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -13,17 +13,21 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.Message;
+import org.springframework.stereotype.Component;
+import webdoctor.common.SendEmail;
 
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import java.io.InputStream;
+
 /**
- * Created by IAN on 2016/11/16.
+ * Created by IAN on 2016/11/17.
  */
-public class EmailTest {
+@Component
+public class EmailService {
     private static final String APPLICATION_NAME = "WebDoctor";
 
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
@@ -49,7 +53,7 @@ public class EmailTest {
     }
 
     public static Credential authorize() throws IOException {
-        InputStream in = EmailTest.class.getClassLoader().getResourceAsStream("client_secret.json");
+        InputStream in = EmailService.class.getClassLoader().getResourceAsStream("client_secret.json");
         if (in == null) {
             System.out.println("D:\\WebDoctor\\src\\main\\resources\\client_secret.json");
             System.out.println("in is null");
@@ -64,12 +68,8 @@ public class EmailTest {
                 "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
         return credential;
     }
-    public static void main(String[] args) {
+    public Message sendEmail (String to, String from, String subject, String bodyText) {
         SendEmail se = new SendEmail();
-        String from = "zhouyiyan1995@gamil.com";
-        String to = "chang289@purdue.edu";
-        String subject = "Fuck you";
-        String bodyText = "Hello I'm Luoxiang Rao";
 
         MimeMessage email = se.createEmail(to, from, subject, bodyText);
         try {
@@ -77,11 +77,12 @@ public class EmailTest {
             Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
                     .setApplicationName(APPLICATION_NAME)
                     .build();
-            se.sendMessage(service, "me", email);
+            Message res = se.sendMessage(service, "me", email);
+            return res;
         }
         catch (IOException e) {
             e.printStackTrace();
-            System.exit(1);
+            return null;
         }
 
     }
