@@ -146,7 +146,10 @@ button:hover{
 </div>
 
 <div>
-<h1 id="title" style="color:white"></h1><button id="editbtn" id="Edit" type="button" onclick="jumpToEdit()" style="float:right">Edit</button>
+<h1 id="title" style="color:white"></h1>
+
+<button id="editbtn" id="Edit" type="button" onclick="jumpToEdit()" style="float:right">Edit</button>
+<button id="postbtn" id="post" type="button" onclick="jumpToPost()" style="float:right">Post</button>
 
 <p id="description" style="color:white; margin-left:6.3cm"></p>
     <h1 id="symptom" style="color:white;margin-left:6.3cm"> Symptoms</h1>
@@ -167,7 +170,7 @@ button:hover{
 
 <div class="footer">
     <a href="#top">
-        <img border="0" src="up arrow.png" />
+        <img border="0" src="up_arrow.png" />
     </a>
 </div>
 </body>
@@ -346,6 +349,20 @@ $(document).ready(function(){
     });
 
     function jumpToEdit() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
+        var title = document.getElementById("title").innerHTML;
+        var content = document.getElementById("description").innerHTML;
+        console.log(title);
+        console.log(content);
+        setCookie('content',content,365);
+        setCookie('title',title,365);
+        window.location.replace('/EditDescriptionPage');
+    }
+
+    function jumpToPost() {
         if (userAccess != 2 && userAccess != 1) {
             alert("Access denied! You don't have enough authority ");
             return;
