@@ -34,8 +34,9 @@ public class ArticleService {
 
     public int postArticle(Article article) {
 
-        return create.insertInto(ARTICLE,ARTICLE.AUTHOR_ID,ARTICLE.TITLE,ARTICLE.CONTENT,ARTICLE.DISEASE)
-                .values(article.getAuthorId(), article.getTitle(),article.getContent(),article.getDisease())
+
+        return create.insertInto(ARTICLE,ARTICLE.AUTHOR_NAME,ARTICLE.TITLE,ARTICLE.CONTENT,ARTICLE.DISEASE)
+                .values(article.getAuthorName(), article.getTitle(),article.getContent(),article.getDisease())
                 .execute();
 
     }

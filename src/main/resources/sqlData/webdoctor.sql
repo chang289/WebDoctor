@@ -24,12 +24,13 @@ DROP TABLE IF EXISTS `article`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `author_id` int(11) DEFAULT NULL,
+  `author_name` varchar(20) DEFAULT NULL,
   `title` varchar(1000) DEFAULT NULL,
-  `time_stamp` datetime DEFAULT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `content` mediumtext,
+  `disease` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +39,7 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
+INSERT INTO `article` VALUES (9,'test_account1','Eggs and Gastritis','2016-11-26 23:26:11','<p>&nbsp;<img src=\"http://img.aws.livestrongcdn.com/ls-article-image-673/cme/cme_public_images/www_livestrong_com/photos.demandstudios.com/getty/article/181/161/488060262_XS.jpg\" alt=\"\" width=\"673\" height=\"448\" /></p>\n<p data-dmc=\"summary\">You may have to avoid eating eggs if you consistently develop symptoms of gastritis, which is an inflammation in the lining of the stomach. Gastritis may be the result of an egg allergy, an egg intolerance or food poisoning. Report severe abdominal pain, blood in stool or vomit to your doctor immediately to prevent further complications. Avoid eating eggs until you can be seen by your doctor.</p>\n<section class=\"article-section\">\n<h2 class=\"header\"><span data-dmc=\"section-headline\">Egg Allergy</span></h2>\n<p data-dmc=\"section\">If eating eggs causes symptoms of gastritis along with other symptoms, you may have an egg allergy. Eggs are one of them most common foods that trigger an allergic reaction. If you&rsquo;re allergic to eggs, your immune system mistakes the proteins in the egg white, the egg yolk or both as a dangerous substance. The body overreacts to the egg proteins, sending a flood of chemicals into the blood stream to attack the proteins. The presence of these proteins causes inflammation in soft tissues throughout the body. An egg allergy may cause inflammation in your digestive system, skin, cardiovascular system and respiratory system. Egg allergies may cause shock in some people, and they can even lead to death in extreme cases.</p>\n</section>\n<p>&nbsp;</p>\n<section class=\"article-section\">\n<h2 class=\"header\"><span data-dmc=\"section-headline\">Egg Intolerance</span></h2>\n<div>&nbsp;</div>\n<p data-dmc=\"section\">The University of Maryland Medical Center reports that about 25 percent of Americans believe they are allergic to a food, but only about 2 percent of the adult population is diagnosed with a food allergy. Many people confuse egg intolerance with an egg allergy. Egg intolerance can cause gastritis, not because of chemical reactions in the body but because of undigested proteins. Egg intolerance occurs when your digestive system is unable to break down the proteins in eggs, leading to inflammation, bloating, gas and diarrhea. Egg intolerance does not involve the immune system and will primarily cause digestive complications.</p>\n<section class=\"article-section\">\n<h2 class=\"header\"><span data-dmc=\"section-headline\">Food Poisoning</span></h2>\n<p data-dmc=\"section\">Food poisoning from eggs can cause gastritis if the eggs you consume are contaminated with parasites, bacteria or viruses, according to MedlinePlus. Inflammation develops in the lining of the stomach and intestines that causes stomach pain, vomiting, nausea and diarrhea. If you suspect that you have food poisoning from eating eggs, call your doctor. In some cases food poisoning may cause severe symptoms. Dehydration is a common concern with food poisoning, so be sure to increase the amount of fluids you drink to prevent dehydration.</p>\n</section>\n<p data-dmc=\"section\">&nbsp;</p>\n<section class=\"article-section\">\n<h2 class=\"header\"><span data-dmc=\"section-headline\">Considerations</span></h2>\n<p data-dmc=\"section\">If you develop gastritis symptoms from eating eggs, you may have a digestive condition. Common digestive conditions that cause gastritis symptoms include Crohn&rsquo;s disease, irritable bowel syndrome and ulcerative colitis. See your doctor for a proper diagnosis and treatment options.</p>\n</section>\n</section>','Gastritis'),(10,'test_account1','Physicians say symptoms of mosquito-borne ailment are changing, virus has developed drug resistance. ','2016-11-26 23:30:09','<p>Fever and shivering - the only two symptoms to watch out for when it comes to malaria? Not anymore. According to physicians in the city, malaria cases are showing up with varied symptoms, throwing patients as well as doctors off the diagnosis.</p>\n<p>&ldquo;I see malaria patients with fever, decreased urine output, some respiratory problems, disorientation, sleepiness, etc. This was not the case earlier,&rdquo; said Dr Neeraj Uttamani, director, Cumballa Hill Hospital. &ldquo;Vivax strain has turned severe, with patients showing cardiac problems and kidney complications as well,&rdquo; he added.</p>\n<p>&ldquo;Most of the patients are coming in at a later stage and with very unusual symptoms such as state of shock and infections. Many have a combination of malaria and dengue, which is even more worrisome,&rdquo; said Dr Vinay Joshi, pediatric intensivist from Kokilaben Hospital.</p>\n<p>While the blame game continues between the civic body and the builders in the city over the spread of malaria, the virus seems to have developed a resistance to chloroquine, a traditional drug to treat malaria, said intensivists in the city.</p>\n<p>&ldquo;While the falciparum strain has been found to be drug resistant in the past two years, this year, the vivax strain too seems to have developed resistance to chloroquine,&rdquo; said Dr Khusrav Bajan, consultant, emergency, critical care and internal medicine, Hinduja Hospital. Bajan said he had seen drug resistance in 30 % of his vivax malaria patients.</p>\n<p>&ldquo;The organism is getting more virulent &mdash; with multi-organ failure, acute lung injury, etc,&rdquo; said Bajan. &ldquo;If the patient is in ICU, we put them on resistant treatment, or give two drugs as opposed to one,&rdquo; he added.</p>\n<p>&ldquo;Clearly the parasite has undergone mutation. Hence, the unusual symptoms and the drug resistance,&rdquo; said another doctor.</p>\n<p>Civic hospitals are taking all possible measures to cope with the problem. With the increasing number of malaria cases in the city, the civic body has short-listed 74 dispensaries for running out-patient departments (OPD) in the evening.</p>\n<p>Authorities claim that a huge number of patients are turning up to the evening OPDs, which are convenient for working people.</p>\n<p>&ldquo;The response has been good so far. Several people tend to neglect their symptoms as they are busy during the day,&rdquo; said Dr Guirish Ambe, executive health officer, BMC, adding that the evening OPDs are on from 5pm to 8.30pm.</p>\n<p>Health authorities said the OPDs would help in curbing malaria cases in south Mumbai where there are no civic-run hospitals.</p>\n<p>&nbsp;</p>\n<p>&ldquo;Not many like to go for a check-up to a private medical centre and spend huge amount of money. People keep avoiding doctors and resort to self-medication. The civic dispensaries will help in early diagnosis of malaria,&rdquo; said an official from the BMC&rsquo;s health department.</p>','Malaria');
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,28 +96,6 @@ INSERT INTO `disease` VALUES (1,'Diabetes',' Diabetes is a disease cause by lack
 UNLOCK TABLES;
 
 --
--- Table structure for table `disease_article`
---
-
-DROP TABLE IF EXISTS `disease_article`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `disease_article` (
-  `disease_id` int(10) DEFAULT NULL,
-  `article_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `disease_article`
---
-
-LOCK TABLES `disease_article` WRITE;
-/*!40000 ALTER TABLE `disease_article` DISABLE KEYS */;
-/*!40000 ALTER TABLE `disease_article` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `disease_symptom`
 --
 
@@ -159,7 +139,7 @@ CREATE TABLE `symptom` (
 
 LOCK TABLES `symptom` WRITE;
 /*!40000 ALTER TABLE `symptom` DISABLE KEYS */;
-INSERT INTO `symptom` VALUES (22,'faded colors','Ophthalmology'),(23,'blurry vision','Ophthalmology'),(24,'halos around light','Ophthalmology'),(25,'fever','General'),(26,'weight loss','General'),(27,'polyuria (increased urination)','Endocrinology'),(28,'polydipsia (increased thirst)','Endocrinology'),(29,'polyphagia (increased hunger)','Endocrinology'),(30,'fatigue','General'),(31,'malaise','General'),(32,'night sweats','General'),(33,'nausea','Gastroenterology'),(34,'overweight','Endocrinology'),(36,'cough','General'),(37,'sneezing','General'),(38,'headache','General'),(39,'sore throat','General'),(40,'runny nose','General'),(41,'muscle pain','General'),(42,'toothache','Dentistry'),(43,'tooth cavity','Dentistry'),(44,'	hair loss','Dermatology'),(45,'	chest pain','General'),(46,'hemoptysis','Pulmonology'),(47,'diarrhea','Gastroenterology'),(48,'sleep difficulty','Psychiatry');
+INSERT INTO `symptom` VALUES (22,'faded colors','Ophthalmology'),(23,'blurry vision','Ophthalmology'),(24,'halos around light','Ophthalmology'),(25,'fever','General'),(26,'weight loss','General'),(27,'polyuria','Endocrinology'),(28,'polydipsia','Endocrinology'),(29,'polyphagia','Endocrinology'),(30,'fatigue','General'),(31,'malaise','General'),(32,'night sweats','General'),(33,'nausea','Gastroenterology'),(34,'overweight','Endocrinology'),(36,'cough','General'),(37,'sneezing','General'),(38,'headache','General'),(39,'sore throat','General'),(40,'runny nose','General'),(41,'muscle pain','General'),(42,'toothache','Dentistry'),(43,'tooth cavity','Dentistry'),(44,'	hair loss','Dermatology'),(45,'	chest pain','General'),(46,'hemoptysis','Pulmonology'),(47,'diarrhea','Gastroenterology'),(48,'sleep difficulty','Psychiatry');
 /*!40000 ALTER TABLE `symptom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,11 +153,11 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
+  `password` varchar(128) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `authority` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +166,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'1','1','1','0'),(2,'1','1','1','0'),(3,'1','1','1','0'),(4,'zhou482','fuck_you','zhou123@purdue.edu','1'),(5,'xu683','webdoctor','11@qq.com','0'),(10,'123','111111','11@qq/com','0'),(11,'chang289','123456','chang289@purdue.edu','2'),(12,'chang289','123456','chang289@purdue.edu','2');
+INSERT INTO `user` VALUES (13,'test_account1','f6beff36214e620c2281cd5f8686','wu689@purdue.edu','1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-17 23:45:51
+-- Dump completed on 2016-11-26 18:31:40

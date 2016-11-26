@@ -25,10 +25,10 @@ import javax.validation.constraints.Size;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article implements Serializable {
 
-    private static final long serialVersionUID = -1317402396;
+    private static final long serialVersionUID = -2068433567;
 
     private Integer   id;
-    private Integer   authorId;
+    private String    authorName;
     private String    title;
     private Timestamp timeStamp;
     private String    content;
@@ -38,7 +38,7 @@ public class Article implements Serializable {
 
     public Article(Article value) {
         this.id = value.id;
-        this.authorId = value.authorId;
+        this.authorName = value.authorName;
         this.title = value.title;
         this.timeStamp = value.timeStamp;
         this.content = value.content;
@@ -47,14 +47,14 @@ public class Article implements Serializable {
 
     public Article(
         Integer   id,
-        Integer   authorId,
+        String    authorName,
         String    title,
         Timestamp timeStamp,
         String    content,
         String    disease
     ) {
         this.id = id;
-        this.authorId = authorId;
+        this.authorName = authorName;
         this.title = title;
         this.timeStamp = timeStamp;
         this.content = content;
@@ -70,12 +70,13 @@ public class Article implements Serializable {
         this.id = id;
     }
 
-    public Integer getAuthorId() {
-        return this.authorId;
+    @Size(max = 20)
+    public String getAuthorName() {
+        return this.authorName;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     @Size(max = 1000)
@@ -118,7 +119,7 @@ public class Article implements Serializable {
         StringBuilder sb = new StringBuilder("Article (");
 
         sb.append(id);
-        sb.append(", ").append(authorId);
+        sb.append(", ").append(authorName);
         sb.append(", ").append(title);
         sb.append(", ").append(timeStamp);
         sb.append(", ").append(content);

@@ -36,7 +36,7 @@ import webdoctor.jooq.tables.records.ArticleRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article extends TableImpl<ArticleRecord> {
 
-    private static final long serialVersionUID = 288472925;
+    private static final long serialVersionUID = -355699157;
 
     /**
      * The reference instance of <code>webdoctor.article</code>
@@ -57,9 +57,9 @@ public class Article extends TableImpl<ArticleRecord> {
     public final TableField<ArticleRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>webdoctor.article.author_id</code>.
+     * The column <code>webdoctor.article.author_name</code>.
      */
-    public final TableField<ArticleRecord, Integer> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
+    public final TableField<ArticleRecord, String> AUTHOR_NAME = createField("author_name", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "");
 
     /**
      * The column <code>webdoctor.article.title</code>.
@@ -69,7 +69,7 @@ public class Article extends TableImpl<ArticleRecord> {
     /**
      * The column <code>webdoctor.article.time_stamp</code>.
      */
-    public final TableField<ArticleRecord, Timestamp> TIME_STAMP = createField("time_stamp", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
+    public final TableField<ArticleRecord, Timestamp> TIME_STAMP = createField("time_stamp", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
      * The column <code>webdoctor.article.content</code>.
