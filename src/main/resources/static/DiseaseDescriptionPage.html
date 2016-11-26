@@ -367,12 +367,11 @@ $(document).ready(function(){
             alert("Access denied! You don't have enough authority ");
             return;
         }
-        var title = document.getElementById("path2").innerHTML;
+        var title = document.getElementById("title").innerHTML;
         var content = document.getElementById("description").innerHTML;
-        console.log(content);
         setCookie('content',content,365);
         setCookie('title',title,365);
-        window.location.replace('/EditDescriptionPage');
+        window.location.replace('/ArticlePostPage');
     }
 
 </script>
