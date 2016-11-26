@@ -176,9 +176,13 @@ function submitChange() {
     var obj = {};
     var content = tinyMCE.activeEditor.getContent();
     var title = document.getElementById('titleEle').value;
+
+    var related = getCookie('title');
+
     obj.title = title;
     obj.content = content;
     obj.author = username;
+    obj.disease = related;
 
     console.log(obj);
     console.log("saved");
@@ -197,9 +201,16 @@ function submitChange() {
             error: function (error) {
                 console.log(error);
             }
+        }).done(function(result) {
+            console.log(result);
+            if (result == 0) {
+                alert("Fail! Disease already existed!");
+            } else {
+                alert("Success! You have created a new disease!");
+                window.location.replace('/ModePage');
+            }
         });
     });
-    window.location.replace('/ModePage');
 }
 
 </script>
