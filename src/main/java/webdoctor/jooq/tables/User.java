@@ -35,7 +35,7 @@ import webdoctor.jooq.tables.records.UserRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class User extends TableImpl<UserRecord> {
 
-    private static final long serialVersionUID = -1132920851;
+    private static final long serialVersionUID = 1148245682;
 
     /**
      * The reference instance of <code>webdoctor.user</code>
@@ -63,7 +63,7 @@ public class User extends TableImpl<UserRecord> {
     /**
      * The column <code>webdoctor.user.password</code>.
      */
-    public final TableField<UserRecord, String> PASSWORD = createField("password", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "");
+    public final TableField<UserRecord, String> PASSWORD = createField("password", org.jooq.impl.SQLDataType.VARCHAR.length(128), this, "");
 
     /**
      * The column <code>webdoctor.user.email</code>.

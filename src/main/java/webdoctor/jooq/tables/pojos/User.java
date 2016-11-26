@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 491854159;
+    private static final long serialVersionUID = -1390460562;
 
     private Integer id;
     private String  username;
@@ -74,7 +74,7 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    @Size(max = 20)
+    @Size(max = 128)
     public String getPassword() {
         return this.password;
     }

@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Disease implements Serializable {
 
-    private static final long serialVersionUID = 1480809453;
+    private static final long serialVersionUID = -729158490;
 
     private Integer id;
     private String  name;
@@ -70,7 +70,7 @@ public class Disease implements Serializable {
         this.name = name;
     }
 
-    @Size(max = 10000)
+    @Size(max = 16777215)
     public String getDescription() {
         return this.description;
     }

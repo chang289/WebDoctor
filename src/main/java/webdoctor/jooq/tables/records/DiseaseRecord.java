@@ -30,7 +30,7 @@ import webdoctor.jooq.tables.Disease;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DiseaseRecord extends UpdatableRecordImpl<DiseaseRecord> implements Record4<Integer, String, String, String> {
 
-    private static final long serialVersionUID = 1862425448;
+    private static final long serialVersionUID = 741128145;
 
     /**
      * Setter for <code>webdoctor.disease.id</code>.
@@ -72,7 +72,7 @@ public class DiseaseRecord extends UpdatableRecordImpl<DiseaseRecord> implements
     /**
      * Getter for <code>webdoctor.disease.description</code>.
      */
-    @Size(max = 10000)
+    @Size(max = 16777215)
     public String getDescription() {
         return (String) get(2);
     }

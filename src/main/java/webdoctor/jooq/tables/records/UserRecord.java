@@ -30,7 +30,7 @@ import webdoctor.jooq.tables.User;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Record5<Integer, String, String, String, String> {
 
-    private static final long serialVersionUID = 1447992842;
+    private static final long serialVersionUID = -97849361;
 
     /**
      * Setter for <code>webdoctor.user.id</code>.
@@ -72,7 +72,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>webdoctor.user.password</code>.
      */
-    @Size(max = 20)
+    @Size(max = 128)
     public String getPassword() {
         return (String) get(2);
     }

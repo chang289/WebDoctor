@@ -25,13 +25,14 @@ import javax.validation.constraints.Size;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article implements Serializable {
 
-    private static final long serialVersionUID = 1010623990;
+    private static final long serialVersionUID = -1317402396;
 
     private Integer   id;
     private Integer   authorId;
     private String    title;
     private Timestamp timeStamp;
     private String    content;
+    private String    disease;
 
     public Article() {}
 
@@ -41,6 +42,7 @@ public class Article implements Serializable {
         this.title = value.title;
         this.timeStamp = value.timeStamp;
         this.content = value.content;
+        this.disease = value.disease;
     }
 
     public Article(
@@ -48,13 +50,15 @@ public class Article implements Serializable {
         Integer   authorId,
         String    title,
         Timestamp timeStamp,
-        String    content
+        String    content,
+        String    disease
     ) {
         this.id = id;
         this.authorId = authorId;
         this.title = title;
         this.timeStamp = timeStamp;
         this.content = content;
+        this.disease = disease;
     }
 
     @NotNull
@@ -100,6 +104,15 @@ public class Article implements Serializable {
         this.content = content;
     }
 
+    @Size(max = 50)
+    public String getDisease() {
+        return this.disease;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Article (");
@@ -109,6 +122,7 @@ public class Article implements Serializable {
         sb.append(", ").append(title);
         sb.append(", ").append(timeStamp);
         sb.append(", ").append(content);
+        sb.append(", ").append(disease);
 
         sb.append(")");
         return sb.toString();

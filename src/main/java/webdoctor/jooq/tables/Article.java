@@ -36,7 +36,7 @@ import webdoctor.jooq.tables.records.ArticleRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Article extends TableImpl<ArticleRecord> {
 
-    private static final long serialVersionUID = -1906759100;
+    private static final long serialVersionUID = 288472925;
 
     /**
      * The reference instance of <code>webdoctor.article</code>
@@ -75,6 +75,11 @@ public class Article extends TableImpl<ArticleRecord> {
      * The column <code>webdoctor.article.content</code>.
      */
     public final TableField<ArticleRecord, String> CONTENT = createField("content", org.jooq.impl.SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>webdoctor.article.disease</code>.
+     */
+    public final TableField<ArticleRecord, String> DISEASE = createField("disease", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
 
     /**
      * Create a <code>webdoctor.article</code> table reference

@@ -4,7 +4,12 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webdoctor.common.passwordHash;
+import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
+
+import java.util.List;
+
+import static webdoctor.jooq.Tables.ARTICLE;
 import static webdoctor.jooq.Tables.USER;
 
 /**
@@ -83,6 +88,13 @@ public class UserService {
                 .where(USER.USERNAME.equal(user.getUsername()))
                 .fetchOneInto(User.class);
     }
+
+//    public Article[] getRelativeArticle(String username) {
+//        List<Article> article_list = create.select()
+//                .from(ARTICLE)
+//                .join()
+//    }
+
     public int changeEmail(User user) {
         if (checkValid(user)== 1) {
             create.update(USER)
