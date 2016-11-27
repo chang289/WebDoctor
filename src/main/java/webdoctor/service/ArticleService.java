@@ -41,13 +41,14 @@ public class ArticleService {
 
     }
 
-    public String[] getRelatedArticle(Disease disease) {
-        List<String>article_list = create.select(ARTICLE.TITLE).from(ARTICLE)
-        .where(disease.getName().equals(ARTICLE.DISEASE))
-        .fetchInto(String.class);
-
-        String [] article_array = new String [article_list.size()];
+    public Article[] getRelatedArticle(Disease disease) {
+        List<Article>article_list = create.select().from(ARTICLE)
+        .where(ARTICLE.DISEASE.equal(disease.getName()))
+                .fetchInto(Article.class);
+        System.out.println(disease);
+        Article [] article_array = new Article [article_list.size()];
         article_list.toArray(article_array);
+        System.out.println(article_list);
         return article_array;
 
 //        return gson.toJson(create.select().from(DISEASE_ARTICLE)

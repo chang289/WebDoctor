@@ -43,7 +43,7 @@ public class ArticleController {
 
 
     @RequestMapping(path = "/SendDisease", method = RequestMethod.POST)
-    public @ResponseBody String [] sendDisease(@RequestBody Disease disease) {
+    public @ResponseBody Article [] sendDisease(@RequestBody Disease disease) {
         return articleService.getRelatedArticle(search.diseaseByName(disease.getName()));
     }
 
