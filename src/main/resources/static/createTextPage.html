@@ -26,8 +26,56 @@
       });
     </script>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+
+
+
 </head>
 <style>
+    /* The Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /*  Content */
+    .modal-content {
+    background-color: #1aa8b9;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 10%;
+    border: 1px solid #888;
+    width: 50%;
+    height: 26%;
+    }
+
+    /* The Close Button */
+    .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
 
     body {
     background-color: #1aa8a8;
@@ -171,6 +219,14 @@
         font-size: 10px;
     }
 
+    #newAdded button {
+    background-color: red;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    padding: auto;
+    }
+
 
 </style>
 
@@ -209,14 +265,48 @@
             </div>
         </div>
 
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="width: 20%; font-size: 14px">
+        <button class="addbtn" type="button" class="addbtn" style="width: 20%; font-size: 14px" onclick="showModal()">
             <span class="glyphicon glyphicon-plus"></span>New symptom
         </button>
+
+        <div class="input-group" id="newAdded" style="margin-bottom: 5px;">
+
+        </div>
 
         <textarea name="contnet" id="mytextarea"></textarea>
 
     </form>
     <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">CLOSE</span>
+            <div class="input-group" style="margin-bottom: 5px;">
+                <span class="input-group-addon">Symptom Name</span>
+                <input type="text" class="form-control" id="newSymName" placeholder="Please give the symptom a name">
+            </div>
+
+            <select class="selectpicker show-tick" id="depList">
+                <option>Dermatology</option>
+                <option>Neurologyn</option>
+                <option>Osteology</option>
+                <option>Ophthalmology</option>
+                <option>Psychiatry</option>
+                <option>General</option>
+                <option>Gastroenterology</option>
+                <option>Endocrinology</option>
+                <option>Dentistry</option>
+                <option>Pulmonology</option>
+            </select>
+            <br>
+            <button class="addbtn" type="button" class="addbtn" style="width: 20%; font-size: 12px;" onclick="confirmNew()">
+                <span class="glyphicon glyphicon-ok"></span>Confirm
+            </button>
+
+        </div>
+    </div>
 
 </div>
 
@@ -293,6 +383,39 @@ function makeTagList(callback) {
 
 window.onload = makeTagList;
 
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];
+function showModal() {
+    modal.style.display = "block";
+}
+
+ span.onclick = function() {
+    modal.style.display = "none";
+ }
+
+function confirmNew() {
+    var newName = document.getElementById('newSymName').value;
+    var newDep = $("#depList").find("option:selected").text();
+    console.log(newName);
+    console.log(newDep);
+
+    var newArea = document.getElementById('newAdded');
+
+    var newbtn = document.createElement("BUTTON");
+    newbtn.setAttribute('type', 'button');
+
+    newbtn.setAttribute("value", newName);
+    newbtn.setAttribute("department", newDep);
+    newbtn.appendChild(document.createTextNode(newName));
+
+    newbtn.onclick = function() {
+        console.log("hhh");
+        $(this).remove();
+    };
+
+    newArea.appendChild(newbtn);
+    console.log("level3");
+}
 
 function setCookie(c_name,value,expiredays)
 {
@@ -333,7 +456,6 @@ if (username != "") {
 
 function submitChange() {
     var checkbox_value = "";
-    var checkbox_value = "";
     $(":checkbox").each(function () {
         var ischecked = $(this).is(":checked");
         if (ischecked) {
@@ -341,6 +463,20 @@ function submitChange() {
         }
     });
 
+    var new_obj_list = [];
+
+    var count = 0;
+
+    $('#newAdded button').each(function() {
+        var new_obj = {};
+        var new_value = $(this).val();
+        var new_dep = $(this).attr('department');
+        new_obj.name = new_value;
+        new_obj.department = new_dep;
+        new_obj_list[count] = new_obj;
+        count++;
+    });
+    console.log(new_obj_list);
     console.log(checkbox_value);
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
@@ -351,6 +487,7 @@ function submitChange() {
     obj.description = content;
     obj.department = department;
     obj.symptoms = symptoms;
+    obj.newSymptoms = new_obj_list;
     console.log(obj);
 
     //var data_form =  $('#textform').serialize();
