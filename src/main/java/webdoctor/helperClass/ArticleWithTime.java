@@ -30,7 +30,31 @@ public class ArticleWithTime {
         this.content = content;
     }
 
-    public void setdisease(String disease) {
+    public void setDisease(String disease) {
         this.disease = disease;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getDisease() {
+        return disease;
     }
 }
