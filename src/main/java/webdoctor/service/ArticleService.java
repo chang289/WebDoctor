@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webdoctor.helperClass.ArticleWithTime;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.Comment;
 import webdoctor.jooq.tables.pojos.Disease;
@@ -41,15 +42,16 @@ public class ArticleService {
 
     }
 
-    public Article[] getRelatedArticle(Disease disease) {
+    public ArticleWithTime[] getRelatedArticle(Disease disease) {
         List<Article>article_list = create.select().from(ARTICLE)
         .where(ARTICLE.DISEASE.equal(disease.getName()))
                 .fetchInto(Article.class);
         System.out.println(disease);
         Article [] article_array = new Article [article_list.size()];
         article_list.toArray(article_array);
-        System.out.println(article_list);
-        return article_array;
+        System.out.println(article_list.get(0).getTimeStamp().toString());
+        ArticleWithTime[] result = alterArticle(article_array);
+        return result;
 
 //        return gson.toJson(create.select().from(DISEASE_ARTICLE)
 //                .join(DISEASE).on(DISEASE_ARTICLE.DISEASE_ID.equal(DISEASE.ID))
@@ -64,6 +66,17 @@ public class ArticleService {
                .execute();
     }
 
-
+    public ArticleWithTime[] alterArticle(Article[] article) {
+        ArticleWithTime[] awt = new ArticleWithTime[article.length];
+        for (int i = 0; i < article.length; i++) {
+            awt[i].setId(article[i].getId());
+            awt[i].setTitle(article[i].getTitle());
+            awt[i].setAuthorName(article[i].getAuthorName());
+            awt[i].setTimeStamp(article[i].getTimeStamp().toString());
+            awt[i].setContent(article[i].getContent());
+            awt[i].setdisease(article[i].getDisease());
+        }
+        return awt;
+    }
 
 }
