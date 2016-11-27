@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.common.SendEmail;
+import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
 import webdoctor.service.Authorization;
@@ -58,7 +59,6 @@ public class UserController {
             System.out.println("username:"+res.getEmail());
             return gson.toJson(res);
         }
-
     }
 
 
@@ -66,7 +66,6 @@ public class UserController {
     public @ResponseBody int SignUp(@RequestBody User user) {
         System.out.println("username"+user.getUsername());
         return li.signUp(user);
-
     }
 
     @RequestMapping(path="/Login", method=RequestMethod.POST)
@@ -90,5 +89,6 @@ public class UserController {
     public @ResponseBody Article[] getArticleByAuthor(@RequestBody User user) {
         return li.getArticleByAuthor(user);
     }
+
 
 }
