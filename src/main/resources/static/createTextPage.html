@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
@@ -193,20 +200,23 @@
             <input type="text" class="form-control" id="depEle" placeholder="Which department does it belong to">
         </div>
 
-        <textarea name="contnet" id="mytextarea"></textarea>
-
         <div class="checkBoxArea" id="checkBoxes">
 
 
             <div class="tagbox">
-                <input type="checkbox" name="checkbox" id="checkbox1" checked/>
-                <label for="checkbox1">EXAMPLE BOX</label>
+                <!--<input type="checkbox" name="checkbox" id="checkbox1" checked/>-->
+                <!--<label for="checkbox1">EXAMPLE BOX</label>-->
             </div>
-
         </div>
+
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="width: 20%; font-size: 14px">
+            <span class="glyphicon glyphicon-plus"></span>New symptom
+        </button>
+
+        <textarea name="contnet" id="mytextarea"></textarea>
+
     </form>
     <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
-
 
 </div>
 

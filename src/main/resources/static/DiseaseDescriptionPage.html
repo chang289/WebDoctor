@@ -343,22 +343,12 @@ $(document).ready(function(){
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
-                    console.log($(this).attr('name'));
+
+                    var date = $(this).attr('time');
+                    console.log(date);
                     articleTitle.innerHTML = $(this).attr('name');
 
-                    var timestamp = $(this).attr('time') * 1000;
-
-                    var todate = new Date(timestamp).getDate();
-                    var tomonth = new Date(timestamp).getMonth()+1;
-                    var toyear = new Date(timestamp).getFullYear();
-
-                    console.log(todate);
-                    console.log(tomonth);
-                    console.log(toyear);
-
-                    var original_date = tomonth + '/' + todate + '/' + toyear;
-
-                    var minorTitle = original_date + " " + $(this).attr('author');
+                    var minorTitle = date + " " + $(this).attr('author');
 
                     articleAuthor.innerHTML = minorTitle;
                     var textArea = document.getElementById("textArea");
