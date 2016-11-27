@@ -11,7 +11,6 @@ import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.UInteger;
 
 import webdoctor.jooq.Webdoctor;
 import webdoctor.jooq.tables.records.UserFavouritearticleRecord;
@@ -30,7 +29,7 @@ import webdoctor.jooq.tables.records.UserFavouritearticleRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserFavouritearticle extends TableImpl<UserFavouritearticleRecord> {
 
-    private static final long serialVersionUID = 1570743380;
+    private static final long serialVersionUID = -693258467;
 
     /**
      * The reference instance of <code>webdoctor.user_favouritearticle</code>
@@ -48,12 +47,12 @@ public class UserFavouritearticle extends TableImpl<UserFavouritearticleRecord> 
     /**
      * The column <code>webdoctor.user_favouritearticle.user_id</code>.
      */
-    public final TableField<UserFavouritearticleRecord, UInteger> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGERUNSIGNED, this, "");
+    public final TableField<UserFavouritearticleRecord, Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>webdoctor.user_favouritearticle.article_id</code>.
      */
-    public final TableField<UserFavouritearticleRecord, UInteger> ARTICLE_ID = createField("article_id", org.jooq.impl.SQLDataType.INTEGERUNSIGNED, this, "");
+    public final TableField<UserFavouritearticleRecord, Integer> ARTICLE_ID = createField("article_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>webdoctor.user_favouritearticle</code> table reference

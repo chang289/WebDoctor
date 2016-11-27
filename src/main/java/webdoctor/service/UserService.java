@@ -4,6 +4,7 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webdoctor.common.passwordHash;
+import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static webdoctor.jooq.Tables.ARTICLE;
 import static webdoctor.jooq.Tables.USER;
+import static webdoctor.jooq.Tables.USER_FAVOURITEARTICLE;
 
 /**
  * Created by IAN on 2016/10/11.
@@ -121,4 +123,6 @@ public class UserService {
             return null;
         }
     }
+
+
 }
