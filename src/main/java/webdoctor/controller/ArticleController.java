@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import webdoctor.helperClass.ArticleWithTime;
 import webdoctor.jooq.tables.pojos.Disease;
 import webdoctor.service.ArticleService;
 import webdoctor.service.Authorization;
@@ -43,7 +44,7 @@ public class ArticleController {
 
 
     @RequestMapping(path = "/SendDisease", method = RequestMethod.POST)
-    public @ResponseBody Article [] sendDisease(@RequestBody Disease disease) {
+    public @ResponseBody ArticleWithTime[] sendDisease(@RequestBody Disease disease) {
         return articleService.getRelatedArticle(search.diseaseByName(disease.getName()));
     }
 
