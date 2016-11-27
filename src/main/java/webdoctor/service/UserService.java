@@ -107,4 +107,18 @@ public class UserService {
             return 0;
         }
     }
+
+    public Article[] getArticleByAuthor(User user) {
+        if (checkValid(user) == 1) {
+            List<Article> list = create.select().from(ARTICLE)
+                    .where(ARTICLE.AUTHOR_NAME.equal(user.getUsername()))
+                    .fetchInto(Article.class);
+            Article[] array = new Article[list.size()];
+            list.toArray(array);
+            return array;
+        }
+        else {
+            return null;
+        }
+    }
 }
