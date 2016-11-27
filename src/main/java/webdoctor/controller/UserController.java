@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.common.SendEmail;
+import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
 import webdoctor.service.Authorization;
 import webdoctor.service.UserService;
@@ -85,5 +86,9 @@ public class UserController {
         return li.changeEmail(user);
     }
 
+    @RequestMapping(path="/getArticleByAuthor", method=RequestMethod.POST)
+    public @ResponseBody Article[] getArticleByAuthor(@RequestBody User user) {
+        return li.getArticleByAuthor(user);
+    }
 
 }
