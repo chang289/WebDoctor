@@ -81,7 +81,7 @@
         bottom:0;
         left:33cm;
     }
-button:hover{
+    button:hover{
         color: #42a5f5;
         transition: text-shadow 1s,color 1s;
 
@@ -138,7 +138,7 @@ button:hover{
 </div>
 
 
-<div class="left">
+<div class="left" style="width: 180px">
     <h1 style="font-size:20px">Related articles</h1>
     <ul id="articleList">
 
@@ -154,13 +154,15 @@ button:hover{
 <p id="description" style="color:white; margin-left:6.3cm"></p>
     <h1 id="symptom" style="color:white;margin-left:6.3cm"> Symptoms</h1>
 </div>
-    <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="text-align: center;">
-        <div class="modal-content" style="width: 700px;height:440px;margin-left: auto;margin-right: auto;margin-top: 120px;">
+    <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
             <div class="modal-body">
                 <span id="closebtn" class="close">CLOSE</span>
                 <div class="clearfix"></div>
                 <div  class="modify-content">
-                    <div id="textArea"></div>
+                    <h2 id="titleH2" style="text-align: center;"></h2>
+                    <h5 id="authorH3" style="text-align: center;"></h5>
+                    <div id="textArea" style="text-align: left;"></div>
                 </div>
 
                 <div class="clearfix"></div>
@@ -293,7 +295,6 @@ $(document).ready(function(){
 
             console.log("i set value");
 
-
             var disease = obj.name;
             console.log("------");
             console.log(disease);
@@ -321,6 +322,11 @@ $(document).ready(function(){
                     var li = document.createElement("li");
                     var span = document.createElement("span");
                     span.value = result[k].content;
+                    span.setAttribute("name", result[k].title);
+                    span.setAttribute("author", result[k].authorName);
+
+                    span.setAttribute("time", result[k].timeStamp);
+
                     span.name = result[k].title;
                     console.log(result[k].content);
                     //btn.appendChild(a);
@@ -335,7 +341,26 @@ $(document).ready(function(){
 
                 $("#articleList").find("span").click(function() {
                     var tagText = $(this).val();
-                    console.log(tagText);
+                    var articleTitle = document.getElementById("titleH2");
+                    var articleAuthor = document.getElementById("authorH3");
+                    console.log($(this).attr('name'));
+                    articleTitle.innerHTML = $(this).attr('name');
+
+                    var timestamp = $(this).attr('time') * 1000;
+
+                    var todate = new Date(timestamp).getDate();
+                    var tomonth = new Date(timestamp).getMonth()+1;
+                    var toyear = new Date(timestamp).getFullYear();
+
+                    console.log(todate);
+                    console.log(tomonth);
+                    console.log(toyear);
+
+                    var original_date = tomonth + '/' + todate + '/' + toyear;
+
+                    var minorTitle = original_date + " " + $(this).attr('author');
+
+                    articleAuthor.innerHTML = minorTitle;
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
                     modal.style.display = "block";
