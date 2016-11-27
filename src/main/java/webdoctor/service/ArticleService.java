@@ -49,7 +49,7 @@ public class ArticleService {
         System.out.println(disease);
         Article [] article_array = new Article [article_list.size()];
         article_list.toArray(article_array);
-        System.out.println(article_list.get(0).getTimeStamp().toString());
+        System.out.println(article_array[0]);
         ArticleWithTime[] result = alterArticle(article_array);
         return result;
 
@@ -67,14 +67,15 @@ public class ArticleService {
     }
 
     public ArticleWithTime[] alterArticle(Article[] article) {
+        System.out.println("inside: "+ article[0]);
         ArticleWithTime[] awt = new ArticleWithTime[article.length];
         for (int i = 0; i < article.length; i++) {
-            awt[i].setId(article[i].getId());
+            awt[i] = new ArticleWithTime();
             awt[i].setTitle(article[i].getTitle());
             awt[i].setAuthorName(article[i].getAuthorName());
             awt[i].setTimeStamp(article[i].getTimeStamp().toString());
             awt[i].setContent(article[i].getContent());
-            awt[i].setdisease(article[i].getDisease());
+            awt[i].setDisease(article[i].getDisease());
         }
         return awt;
     }
