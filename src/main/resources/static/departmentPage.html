@@ -65,6 +65,8 @@
 </div>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 
     function add(){
@@ -97,8 +99,6 @@
         userbtn.appendChild(document.createTextNode('Login'));
     }
 
-
-
     // Get the modal
     $("#userbtn").click(function() {
         if (username != "") {
@@ -107,6 +107,9 @@
             window.location.replace('/LoginPage');
         }
     });
+
+
+
 window.onload = function(){
     var modal = document.getElementById('myModal');
     var modal2 = document.getElementById('myModal2');
@@ -279,15 +282,6 @@ window.onload = function(){
         var diseaseList = document.getElementById('diseaseList');
         while (diseaseList.firstChild) {
             diseaseList.removeChild(diseaseList.firstChild);
-        }
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-            var symptomList = document.getElementById('symptomList');
-            symptomList.removeChild(elem);
         }
     }
 }
