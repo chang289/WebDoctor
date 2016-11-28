@@ -6,11 +6,14 @@
     <button id="userbtn" type="button"></button>
 </div>
 <div class="mainPage" style="height: 100%">
-    <header class="upperTitle">
-        <ul>
-            <li class="info">WebDoctor</li>
-        </ul>
-    </header>
+    <!--<header class="upperTitle">-->
+        <!--<img class="logo" src="logo2.jpg" alt="logo"  style="-->
+        <!--width: 160px;-->
+        <!--height:140px;-->
+        <!--margin-left:42%;-->
+
+        <!--">-->
+    <!--</header>-->
 
     <div class="selected">
         <h1>Selected</h1>
@@ -20,7 +23,7 @@
     </div>
 
     <div class="grids">
-        <h1 style="border-bottom: 4px solid #e3ae24">AVAILABLE DEPARTMENTS</h1>
+        <h1 style="border-bottom: 4px solid #e3ae24;font-family:Arial,serif">AVAILABLE DEPARTMENTS</h1>
         <ul class="department">
             <li><button id="btn1" type="submit" value="Dermatology">Dermatology</button></li>
             <li><button id="btn2" type="submit" value="Neurology">Neurology</button></li>
@@ -287,10 +290,14 @@ window.onload = function(){
     }
     button:hover{
         color: #42a5f5;
-        transition: text-shadow 1s,color 1s;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+        transition: box-shadow 1s,text-shadow 1s,color 1s;
 
     }
     #usersection {
+    position: absolute;
+    right: 0;
+    top: 0;
     width: 240px;
     height: 123px;
     float: right;
@@ -360,7 +367,7 @@ window.onload = function(){
     }
 
     header ul {
-        font-family: "Open Sans";
+
         font-weight: 200;
         font-size: 52px;
         list-style-type: none;
@@ -414,6 +421,7 @@ window.onload = function(){
     }
 
     .selected {
+        font-family:Arial,serif;
         position:absolute;
         width: 20%;
     }
@@ -421,6 +429,7 @@ window.onload = function(){
     .grids {
         height:100px;
         margin-left:200px;
+        margin-top: 6%;
     }
 
     #footer {

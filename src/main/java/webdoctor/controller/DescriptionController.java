@@ -27,6 +27,13 @@ public class DescriptionController {
         return "createTextPage.html";
     }
 
+
+
+    @RequestMapping(path = "CreateSymptom", method = RequestMethod.POST)
+    public @ResponseBody int CreateSymptom(@RequestBody Symptom S) {
+        return DS.symptomCreate(S);
+    }
+
     @RequestMapping(path = "CreateDescription", method = RequestMethod.POST)
     public @ResponseBody int CreateDescription(@RequestBody Disease_Symptoms D){
 

@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>User page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 
 
 <style>
-    #userbtn {
-        background-color: #0d57a0;
-        color: white;
-        padding: 5px 5px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 12%;
+    body {
+        background-color: #1aa8a8;
+        margin: 0 auto;
     }
-    button {
+    .upperbtn {
         background-color: #0d57a0;
         color: white;
         padding: 14px 20px;
@@ -30,78 +24,366 @@
         cursor: pointer;
         width: 50%;
     }
-    button:hover{
+    .upperbtn:hover{
         color: #42a5f5;
-        transition: text-shadow 1s,color 1s;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+        transition: box-shadow 1s,text-shadow 1s,color 1s;
 
     }
-    .imgcontainer {
+
+    #upperlevel {
+        width: 100%;
+        height: 300px;
         text-align: center;
-        margin: 24px 0 12px 0;
     }
 
-    .container {
-        padding: 16px;
+    #imgcontainer {
+        position:relative;
+        margin-left:auto;
+        margin-right: auto;
+        width: 400px;
+        height:200px;
     }
-    #homesection {
-        width: 240px;
-        height: 123px;
-        float: left;
+
+    img.logo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+
     }
+
+    #greeting_box{
+
+        text-align: center;
+        color:black;
+        font-size:45px;
+        font-family:Impact,serif;
+
+        bottom:0;
+
+    }
+
+    #middle {
+
+        text-align: center;
+        width: 100%;
+        height:500px;
+        margin: 20px auto;
+    }
+    #middleblock_left{
+        background-color:rgba(3, 155, 229,0.5);
+
+        margin-left:20px;
+        margin-right:20px;
+
+
+        padding:20px 100px;
+
+        text-align: center;
+        height:100%;
+        width: 31%;
+
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+        border-radius:3px;
+
+        float:left;
+    }
+
+    #middleblock_mid{
+        background-color:rgba(3, 155, 229,0.5);
+
+
+        float:left;
+        text-align: center;
+
+        height:100%;
+        width: 31%;
+        padding:20px 100px;
+
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+        border-radius:3px;
+
+    }
+
+    #middleblock_right{
+        background-color:rgba(3, 155, 229,0.5);
+
+
+        margin-left:20px;
+        margin-right:20px;
+        padding:20px 100px;
+
+        text-align: center;
+        height:100%;
+        width: 32%;
+
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+        border-radius:3px;
+        float:left;
+
+    }
+    .mid_titles{
+        color: black;
+        font-size:30px;
+        font-weight: bold;
+        font-family: 'Arial Black',sans-serif
+    }
+
+    #footer{
+        margin: 5px auto;
+        bottom:0;
+        width:100%;
+
+        position:relative;
+
+    }
+
+    /*#usersection {*/
+        /*width: 240px;*/
+        /*height: 123px;*/
+        /*float: right;*/
+    /*}*/
+
+    .upperbtn {
+        background-color: #0d57a0;
+        color: white;
+        float:left;
+        width: 120px;
+        height: 30px;
+        padding:
+                5px 5px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+    }
+
+    #changeBtn1 {
+
+        margin-top: 60px;
+        margin-bottom:40px;
+
+        color:white;
+        background-color:#055f95;
+        border: hidden;
+        display: inline-block;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    #changeBtn1 span{
+        cursor:pointer;
+        display: inline-block;
+        position:relative;
+        transition:0.5s;
+    }
+    #changeBtn1 span:after {
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -10%;
+        transition: 0.5s;
+    }
+    #changeBtn1:hover span {
+        padding-right: 15px;
+    }
+
+    #changeBtn1:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
+    #changeBtn2 {
+
+
+        margin-top:40px;
+
+        color:white;
+        background-color:#055f95;
+        border: hidden;
+
+        display: inline-block;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    #changeBtn2 span{
+        cursor:pointer;
+        display: inline-block;
+        position:relative;
+        transition:0.5s;
+    }
+    #changeBtn2 span:after {
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -10%;
+        transition: 0.5s;
+    }
+    #changeBtn2:hover span {
+        padding-right: 15px;
+    }
+
+    #changeBtn2:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
+    #back-top {
+        position: fixed;
+        display:none;
+        font-size: 50px;
+        color: rgba(0,0,0,0.5);
+        bottom: 5px;
+        right:30px;
+        width:auto;
+    }
+    a#back-top:active {
+        background:none;
+    }
+    a#back-top {
+        display: block; text-decoration: none;
+    }
+    .topup {
+        bottom:5px;
+    }
+    #back-top i {
+        display: block;
+    }
+
+
+    dd{
+        color: #fefefe;
+        font-size:17px;
+        font-family:"Lucida Sans Typewriter",monospace;
+    }
+
 
 
 </style>
+<body>
 
-<div class="uppersection" id="homesection">
-    <button class="upperbtn" type="button" class="homebtn" onclick="add()">
-        <span class="glyphicon glyphicon-home"></span> Home
-    </button>
-</div>
+<div id="upperlevel">
 
-<body style="background-color: #1aa8b9">
-<a name="top"></a>
+        <button class="upperbtn" type="button" >
+            <span class="glyphicon glyphicon-home"></span> Home
+        </button>
 
-<div id="usersection" align="right">
-    <button id="userbtn" type="button"></button>
+
+    <div id = "imgcontainer">
+        <img class="logo" src="logo2.jpg" alt="logo"  style="
+        width: 240px;
+        height: 200px;
+        ">
+    </div >
+
+    <div id = "greeting_box">
+        <span>Welcome to home, </span>
     </div>
-<div style="margin-left: 100px">
-<h1 style="color: #fefefe;margin-top: 2.5cm;font-size: large">Username</h1>
-<h2 id="username" style="color: #fefefe; font-size:20px"></h2>
-<h1 style="color: #fefefe;margin-top: 1cm;font-size: large">Your ID</h1>
-<h2 id="userID" style="color: #fefefe;font-size:20px"></h2>
-<h1 style="color: #fefefe;margin-top: 1cm;font-size: large">Email</h1>
-<h2 id="email" style="color: #fefefe;font-size:20px"></h2>
-<h1 style="color: #fefefe;margin-top: 1cm;font-size: large">Authority</h1>
-<h2 id="Aut" style="color: #fefefe;font-size:20px"></h2>
-    <h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>
-
-    <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
-
-</div>
-<div class="fixed_div" style="margin-top: 60px">
-<a href="/ChangePassword" target="_blank">Change your password </a>
-    <br>
-    <br>
-    <a href="/ChangeEmail" target="_blamk">Change your Email</a>
-
-
 </div>
 
 
-<div style="margin-left: 33cm">
-    <a href="#top">
-        <img border="0" src="屏幕快照 2016-11-17 15.47.10.png" />
-    </a>
+
+<div id = "middle">
+
+    <div id ="middleblock_left">
+
+        <span class="glyphicon glyphicon-user" style="
+        color: black;
+        font-size:30px;
+        font-weight: bold;
+        "></span>
+        <span class="mid_titles">
+            Account
+        </span>
+
+
+        <dl>
+            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px; ">ID:</dt>
+            <dd id="userID"></dd>
+
+            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px">Email:</dt>
+            <dd id="email" ></dd>
+
+            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px">Authority:</dt>
+            <dd id="Aut" ></dd>
+        </dl>
+
+
     </div>
+
+    <div id ="middleblock_mid">
+
+        <span class="glyphicon glyphicon-cog" style="
+        color: black;
+        font-size:30px;
+        font-weight: bold;
+        "></span>
+        <span class = "mid_titles">
+            Setting
+        </span>
+
+
+
+        <button type="button" class="btn btn-default btn-lg" id ="changeBtn1">
+            <span class="glyphicon glyphicon-lock"></span> Change your password
+        </button>
+
+        <!--<a href="/ChangePassword" target="_blank">-->
+            <!--Change your password-->
+        <!--</a>-->
+
+
+        <button type="button" class="btn btn-default btn-lg" id = "changeBtn2">
+            <span class="glyphicon glyphicon-envelope"></span> Change your Email
+        </button>
+
+        <!--<a href="/ChangeEmail" target="_blamk">-->
+            <!--Change your Email-->
+        <!--</a>-->
+
+    </div>
+
+    <div id ="middleblock_right">
+        <span class="glyphicon glyphicon-list-alt" style="
+        color: black;
+        font-size:30px;
+        font-weight: bold;
+        "></span>
+        <span class="mid_titles">
+            Article
+        </span>
+
+
+        <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
+        <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
+    </div>
+
+</div>
+
+<div id="footer" >
+
+    <!--<div style="margin-left: 90%">-->
+        <!--<a href="#top">-->
+            <!--<img border="0" src="up_arrow.png" />-->
+        <!--</a>-->
+    <!--</div>-->
+    <a href="#top" id="back-top"><span class="glyphicon glyphicon-eject"></span></a>
+
+</div>
+
 
 </body>
 
 <script>
-    function   add(){
+    function add(){
 
         window.location.replace('/ModePage');
     }
 </script>
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
@@ -123,13 +405,23 @@
     console.log("000000");
     var username = getCookie('username');
     console.log(username);
-    var userbtn = document.getElementById('userbtn');
-    if (username != "") {
-        userbtn.appendChild(document.createTextNode('welcome '));
-        userbtn.appendChild(document.createTextNode(username));
-    } else {
-        userbtn.appendChild(document.createTextNode('Login'));
+//    var userbtn = document.getElementById('userbtn');
+//    if (username != "") {
+//        userbtn.appendChild(document.createTextNode('welcome '));
+//        userbtn.appendChild(document.crea teTextNode(username));
+//    } else {
+//        userbtn.appendChild(document.createTextNode('Login'));
+//    }
+
+    var greeting = document.getElementById('greeting_box');
+    if (greeting != "") {
+
+        greeting.appendChild(document.createTextNode(username));
+        greeting.appendChild(document.createTextNode('!'));
     }
+
+
+
     //--
     var g;
     var res;
@@ -154,9 +446,10 @@
         var res = res.done(function(result) {
             console.log(res.responseText);
             var obj = JSON.parse(res.responseText);
-            document.getElementById("username").innerHTML=obj.username
+            //document.getElementById("username").innerHTML=obj.username
             document.getElementById("userID").innerHTML = obj.id;
             document.getElementById("email").innerHTML = obj.email
+
             if(obj.authority == 0) {
                 document.getElementById("Aut").innerHTML = "User";
             }
@@ -168,12 +461,39 @@
             }
         });
     });
-
-$(function(){
-        $("a").smoothScroll();
-    })
+    $(document).ready(function(){
 
 
+        $("h1").delay("1000").fadeIn();
+
+
+        // hide #back-top first
+        $("#back-top").hide();
+
+
+        // fade in #back-top
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-top').fadeIn();
+                } else {
+                    $('#back-top').fadeOut();
+
+                }
+            });
+
+
+            // scroll body to 0px on click
+            $('a#back-top').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
+        });
+
+
+    });
 
 </script>
 

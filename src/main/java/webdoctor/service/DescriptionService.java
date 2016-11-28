@@ -54,6 +54,29 @@ public class DescriptionService {
 
     }
 
+    private int checkSymptom(Symptom symptom) {
+        Symptom temp = create.select().from(SYMPTOM)
+                .where(SYMPTOM.NAME.equal(symptom.getName()))
+                .fetchOneInto(Symptom.class);
+        if(temp == null) {
+            return 0;
+            //fail
+        }else {
+            return 1;
+            //success
+        }
+    }
+
+    public int symptomCreate(Symptom symptom) {
+        if(checkSymptom(symptom) == 0) {
+            return 0;
+        }else {
+            return create.insertInto(SYMPTOM, SYMPTOM.NAME, SYMPTOM.DEPARTMENT)
+                    .values(symptom.getName(), symptom.getDepartment())
+                    .execute();
+        }
+    }
+
     public int descriptionCreate(Disease_Symptoms D) {
 
         String disease_name = D.getName();
