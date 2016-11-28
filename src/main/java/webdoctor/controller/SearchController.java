@@ -102,7 +102,7 @@ public class SearchController {
 
     @RequestMapping(path = "/SearchByDisease", method = RequestMethod.POST)
     public @ResponseBody Disease[] searchByDisease(@RequestBody Disease disease) {
-        System.out.println(disease);
+        System.out.println(search.searchByDisease(disease));
         return search.searchByDisease(disease);
     }
 }

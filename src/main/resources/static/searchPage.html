@@ -13,7 +13,6 @@
     .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -22,6 +21,7 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
     }
 
     /*  Content */
@@ -33,7 +33,9 @@
     border: 1px solid #888;
     width: 80%;
     height: auto;
+
     }
+
 
     /* The Close Button */
     .close {
@@ -100,6 +102,38 @@
     float: right;
     }
 
+    .grids ul {
+    font-family: "Open Sans";
+    font-weight: 20;
+    font-size: 14px;
+    list-style-type: none;
+    display: inline-block;
+    }
+
+    #diseaseList li {
+    display: inline-block;
+    }
+
+    #diseaseList li button {
+    background-color: #0d57a0;
+    color: white;
+    border: 1px groove #cccccc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    }
+
+    #diseaseList li button:hover{
+    color: #42a5f5;
+    transition: text-shadow 1s,color 1s;
+    }
+
+    .grids {
+        height:100px;
+        margin-left:200px;
+    }
+
 </style>
 
 <body>
@@ -151,20 +185,20 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!-- The Modal -->
+        <div class="grids" id="grids">
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">CLOSE</span>
+                    <h1 style="border-bottom: 4px solid #e3ae24">POSSIBLE DISEASE</h1>
+                    <ul id="diseaseList" class="grids" style="margin-left: 5px">
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">CLOSE</span>
-            <h1 style="border-bottom: 4px solid #e3ae24">POSSIBLE DISEASE</h1>
-            <ul id="diseaseList" class="grids" style="margin-left: 5px">
-
-            </ul>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
 
 </body>
@@ -244,7 +278,7 @@ function search() {
     var obj = {};
     var input = document.getElementById('searchBox').value;
     var department = $("#search_concept").text();
-    obj.input = input;
+    obj.name = input;
     obj.department = department;
     console.log(obj);
 
@@ -264,16 +298,55 @@ function search() {
             }
         }).done(function(result) {
             console.log(result);
+            console.log(result[0]);
+            var diseaseList = document.getElementById('diseaseList');
+            for (var k in result) {
+                console.log(result[k])
+                var li = document.createElement("li");
+                var btn = document.createElement("BUTTON");
+                var a = document.createElement('a');
+                a.href = "/" + result[k].name;
+                btn.setAttribute("value", result[k].name);
+                btn.appendChild(document.createTextNode(result[k].name));
+                a.appendChild(btn);
+                li.appendChild(btn);
+                li.style.margin = "5px";
+                diseaseList.appendChild(li);
+                console.log("level3");
+            }
+            $("#diseaseList").find(":button").click(function() {
+            console.log("!!!");
+            var tagText = $(this).val();
+            $(function(callback) {
+                $.ajax({
+                    url : '/getDisease',
+                    type : 'POST',
+                    data : JSON.stringify(tagText),
+                    contentType: "application/json; charset=utf-8",
+                    success : function(data) {
+                        callback(data);
+                        console.log("success");
+                    },
+                    error : function (error) {
+                        console.log(error);
+                    }
+                });
+
+            });
+            window.location.replace('/diseaseDescriptionPage');
         });
+        });
+
     });
 
     span.onclick = function() {
         modal.style.display = "none";
-        var symptomList = document.getElementById('symptomList');
-        while (symptomList.firstChild) {
-            symptomList.removeChild(symptomList.firstChild);
+        var diseaseList = document.getElementById('diseaseList');
+        while (diseaseList.firstChild) {
+            diseaseList.removeChild(diseaseList.firstChild);
         }
     }
+
 }
 
 </script>
