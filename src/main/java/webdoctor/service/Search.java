@@ -98,4 +98,26 @@ public class Search {
 
         return json;
     }
+
+    public Disease[] searchByDisease(Disease disease) {
+        System.out.println("Department: " + disease.getDepartment());
+        if (disease.getDepartment().equals("ALL")) {
+            List<Disease> diseaseList = create.select().from(DISEASE)
+                    .where(DISEASE.NAME.like("%"+disease.getName()+"%"))
+                    .fetchInto(Disease.class);
+            Disease[] diseaseArray = new Disease[diseaseList.size()];
+            System.out.println("LIST:" + diseaseList);
+            diseaseList.toArray(diseaseArray);
+            return diseaseArray;
+        }
+        else {
+            List<Disease> diseaseList = create.select().from(DISEASE)
+                    .where(DISEASE.NAME.like("%"+disease.getName()+"%"))
+                    .and(DISEASE.DEPARTMENT.equal(disease.getDepartment()))
+                    .fetchInto(Disease.class);
+            Disease[] diseaseArray = new Disease[diseaseList.size()];
+            diseaseList.toArray(diseaseArray);
+            return diseaseArray;
+        }
+    }
 }

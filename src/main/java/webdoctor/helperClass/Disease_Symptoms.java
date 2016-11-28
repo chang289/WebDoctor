@@ -14,6 +14,7 @@ public class Disease_Symptoms {
     private String description;
     private String department;
     private String symptoms;
+    private Symptom[] newSymptoms;
 
     public void setName(String disease_name) {
         this.name = disease_name;
@@ -24,7 +25,7 @@ public class Disease_Symptoms {
     public void setDepartment(String disease_department) {
         this.department = disease_department;
     }
-
+    public void setNewSymptoms(Symptom[] newSymptoms) { this.newSymptoms = newSymptoms; }
     public void setSymptoms(String symptomList) {
         this.symptoms = symptomList;
     }
@@ -41,4 +42,5 @@ public class Disease_Symptoms {
     public String getSymptoms() {
         return this.symptoms;
     }
+    public Symptom[] getNewSymptoms() { return newSymptoms; }
 }

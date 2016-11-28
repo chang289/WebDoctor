@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+    /* The Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /*  Content */
+    .modal-content {
+    background-color: #1aa8b9;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 10%;
+    border: 1px solid #888;
+    width: 80%;
+    height: auto;
+    }
+
+    /* The Close Button */
+    .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+    body {
+    background-color: #1aa8a8;
+    }
+
+    .middle {
+    text-align: center;
+    margin-top: 50px;
+    }
+
+
+    .container {
+    padding: 16px;
+    }
+
+
+    button:hover{
+    color: #42a5f5;
+    transition: text-shadow 1s,color 1s;
+
+    }
+
+    .upperbtn {
+    background-color: #0d57a0;
+    color: white;
+    padding: 5px 5px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border: 1px groove #cccccc;
+    border-radius: 5px;
+    width: 50%;
+    }
+
+    #upperlevel {
+    width: 100%;
+    height: 50px;
+    }
+
+    #homesection {
+    width: 240px;
+    height: 123px;
+    float: left;
+    }
+
+    #usersection {
+    width: 240px;
+    height: 123px;
+    float: right;
+    }
+
+</style>
+
+<body>
+<div id="upperlevel">
+    <div class="uppersection" id="homesection">
+        <button class="upperbtn" type="button" class="homebtn">
+            <span class="glyphicon glyphicon-home"></span> Home
+        </button>
+    </div>
+
+    <div class="uppersection" id="usersection">
+        <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
+    </div>
+</div>
+
+<div class="middle">
+
+    <div class="imgContainer">
+        <img src="logo2.jpg" alt="logo" class="logo" style="width: 374px; height: 317px;">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Filter by</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" id="menu" role="menu">
+                            <li><a href="#all">ALL</a></li>
+                            <li><a href="#Dermatology">Dermatology</a></li>
+                            <li><a href="#Neurology">Neurology</a></li>
+                            <li><a href="#Osteology">Osteology</a></li>
+                            <li><a href="#Ophthalmology">Ophthalmology</a></li>
+                            <li><a href="#Psychiatry">Psychiatry</a></li>
+                            <li><a href="#General">General</a></li>
+                            <li><a href="#Gastroenterology">Gastroenterology</a></li>
+                            <li><a href="#Endocrinology">Endocrinology</a></li>
+                            <li><a href="#Dentistry">Dentistry</a></li>
+                            <li><a href="#Pulmonology">Pulmonology</a></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" id="searchBox" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="search()"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">CLOSE</span>
+            <h1 style="border-bottom: 4px solid #e3ae24">POSSIBLE DISEASE</h1>
+            <ul id="diseaseList" class="grids" style="margin-left: 5px">
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script>
+    function add() {
+        window.location.replace('/ModePage');
+    }
+</script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function getCookie(c_name)
+{
+    if (document.cookie.length>0)
+    {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        {
+            c_start=c_start + c_name.length+1
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+        }
+    }
+    return ""
+}
+
+function setCookie(c_name,value,expiredays)
+{
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+}
+
+
+console.log("000000");
+var username = getCookie('username');
+console.log(username);
+var userbtn = document.getElementById('userbtn');
+
+if (username != "") {
+    userbtn.appendChild(document.createTextNode('welcome '));
+    userbtn.appendChild(document.createTextNode(username));
+} else {
+    userbtn.appendChild(document.createTextNode('Login'));
+}
+
+$(document).ready(function(){
+    console.log("111111");
+    $("#userbtn").click(function() {
+        if (username != "") {
+            window.location.replace('/UserPage');
+        } else {
+            window.location.replace('/LoginPage');
+        }
+    });
+});
+
+$(document).ready(function(e){
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+		e.preventDefault();
+		var param = $(this).attr("href").replace("#","");
+		var concept = $(this).text();
+		$('.search-panel span#search_concept').text(concept);
+		$('.input-group #search_param').val(param);
+	});
+
+});
+
+function search() {
+    var modal = document.getElementById('myModal');
+    var span = document.getElementsByClassName("close")[0];
+    modal.style.display = "block";
+
+
+    var obj = {};
+    var input = document.getElementById('searchBox').value;
+    var department = $("#search_concept").text();
+    obj.input = input;
+    obj.department = department;
+    console.log(obj);
+
+    $(function(callback) {
+        var i = $.ajax({
+            url : '/SearchByDisease',
+            type : 'POST',
+            dataType: 'json',
+            data : JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            success : function(data) {
+                callback(data);
+                console.log("success");
+            },
+            error : function (error) {
+                console.log(error);
+            }
+        }).done(function(result) {
+            console.log(result);
+        });
+    });
+
+    span.onclick = function() {
+        modal.style.display = "none";
+        var symptomList = document.getElementById('symptomList');
+        while (symptomList.firstChild) {
+            symptomList.removeChild(symptomList.firstChild);
+        }
+    }
+}
+
+</script>
+
+</html>
