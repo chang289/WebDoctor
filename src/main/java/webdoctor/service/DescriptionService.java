@@ -66,6 +66,30 @@ public class DescriptionService {
         disease.setDescription(disease_description);
         disease.setDepartment(disease_deparment);
 
+        Symptom[] newSymptoms = D.getNewSymptoms();
+        for (int i = 0; i < newSymptoms.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (newSymptoms[i].getName().equals(newSymptoms[j].getName())) {
+                    System.out.println("duplicate");
+                    return -1;
+                }
+            }
+        }
+        for (int i = 0; i < newSymptoms.length; i++) {
+            Symptom temp = create.select().from(SYMPTOM).where(SYMPTOM.NAME.equal(newSymptoms[i].getName()))
+                    .fetchOneInto(Symptom.class);
+            if (temp != null) {
+                System.out.println("Exists");
+                return -1;
+            }
+        }
+
+        for (int i = 0; i < newSymptoms.length; i++) {
+            create.insertInto(SYMPTOM, SYMPTOM.NAME, SYMPTOM.DEPARTMENT).values(newSymptoms[i].getName(), newSymptoms[i].getDepartment())
+                    .execute();
+            symptom_list = symptom_list + newSymptoms[i].getName() + ",";
+        }
+        System.out.println(symptom_list);
 
         if(checkDisease(disease) == 1){
             return 0;
