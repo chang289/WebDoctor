@@ -97,5 +97,12 @@ public class SearchController {
         return name;
     }
 
+    @RequestMapping(path = "/SearchPage", method = RequestMethod.GET)
+    public String searchPage() {return "searchPage.html";}
 
+    @RequestMapping(path = "/SearchByDisease", method = RequestMethod.POST)
+    public @ResponseBody Disease[] searchByDisease(@RequestBody Disease disease) {
+        System.out.println(disease);
+        return search.searchByDisease(disease);
+    }
 }
