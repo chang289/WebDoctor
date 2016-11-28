@@ -60,7 +60,7 @@
     }
     .left {
         position: absolute;
-        float:left
+        float:left;
         width: 100px;
         margin-top: 40px;
         color: white;
@@ -81,9 +81,23 @@
         bottom:0;
         left:33cm;
     }
-    button:hover{
+
+    .upperbtn{
+        background-color: #0d57a0;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: 1px groove #cccccc;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 50%;
+    }
+
+    .upperbtn:hover{
+
         color: #42a5f5;
-        transition: text-shadow 1s,color 1s;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+        transition: box-shadow 1s,text-shadow 1s,color 1s;
 
     }
     .imgcontainer {
@@ -121,6 +135,29 @@
     height: 123px;
     float: right;
     }
+
+    #back-top {
+        position: fixed;
+        display:none;
+        font-size: 50px;
+        color: rgba(0,0,0,0.5);
+        bottom: 5px;
+        right:30px;
+        width:auto;
+    }
+    a#back-top:active {
+        background:none;
+    }
+    a#back-top {
+        display: block; text-decoration: none;
+    }
+    .topup {
+        bottom:5px;
+    }
+    #back-top i {
+        display: block;
+    }
+
 </style>
 
 <body style="background-color:#1aa8a8">
@@ -171,9 +208,7 @@
     </div>
 
 <div class="footer">
-    <a href="#top">
-        <img border="0" src="up_arrow.png" />
-    </a>
+    <a href="#top" id="back-top"><span class="glyphicon glyphicon-eject"></span></a>
 </div>
 </body>
 
@@ -388,6 +423,40 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/ArticlePostPage');
     }
+
+$(document).ready(function(){
+
+
+    $("h1").delay("1000").fadeIn();
+
+
+    // hide #back-top first
+    $("#back-top").hide();
+
+
+    // fade in #back-top
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 20) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+
+            }
+        });
+
+
+        // scroll body to 0px on click
+        $('a#back-top').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+
+
+});
 
 </script>
 </html>
