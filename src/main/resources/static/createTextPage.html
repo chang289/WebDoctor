@@ -514,6 +514,8 @@ function submitChange() {
             console.log(result);
             if (result == 0) {
                 alert("Fail! Disease already existed!");
+            } else if (result == -1) {
+                alert("Fail! Duplicate symptoms detected");
             } else {
                 alert("Success! You have created a new disease!");
                 window.location.replace('/ModePage');
