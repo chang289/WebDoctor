@@ -32,7 +32,6 @@
             <li><button id="btn8" type="submit" value="Endocrinology">Endocrinology</button></li>
             <li><button id="btn9" type="submit" value="Dentistry">Dentistry</button></li>
             <li><button id="btn10" type="submit" value="Pulmonology">Pulmonology</button></li>
-
         </ul>
 
         <!-- The Modal -->
@@ -142,12 +141,29 @@ window.onload = function(){
                 var symptomList = document.getElementById('symptomList');
 
                 for (var k in result) {
+                    var selected = 0;
+                    var checkName = result[k].name;
+
+                    $("#selectedTags button").each(function () {
+                        var tagValue = $(this).val();
+                        console.log(checkName);
+                        console.log(tagValue);
+                        if (tagValue == checkName) {
+                            selected = 1;
+                            return;
+                        }
+                    });
                     var li = document.createElement("li");
                     var btn = document.createElement("BUTTON");
                     btn.setAttribute("id", result[k].id);
                     btn.setAttribute("value", result[k].name);
                     btn.appendChild(document.createTextNode(result[k].name));
                     li.appendChild(btn);
+                    if (selected == 1) {
+                        btn.setAttribute('disabled','disabled');
+                        btn.style.backgroundColor = "red";
+                    }
+
                     li.style.margin = "5px";
                     symptomList.appendChild(li);
                     console.log("level3");
@@ -155,6 +171,7 @@ window.onload = function(){
 
                 $("#symptomList").find(":button").click(function() {
                     $(this).attr('disabled','disabled');
+                    $(this).css('background-color', 'red');
                     var tagText = $(this).val();
                     var selected = document.getElementById('selectedTags');
                     var li = document.createElement("li");
@@ -259,6 +276,10 @@ window.onload = function(){
 
     span2.onclick = function() {
         modal2.style.display = "none";
+        var diseaseList = document.getElementById('diseaseList');
+        while (diseaseList.firstChild) {
+            diseaseList.removeChild(diseaseList.firstChild);
+        }
     }
 
     // When the user clicks anywhere outside of the modal, close it
