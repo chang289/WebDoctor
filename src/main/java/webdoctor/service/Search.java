@@ -120,4 +120,17 @@ public class Search {
             return diseaseArray;
         }
     }
+
+    public Symptom[] symptomByDisease(Disease disease) {
+        Disease temp = diseaseByName(disease.getName());
+        System.out.println(temp);
+        List<Symptom> symptomList = create.select(SYMPTOM.ID,SYMPTOM.NAME,SYMPTOM.DEPARTMENT).from(DISEASE_SYMPTOM)
+                .join(SYMPTOM).on(DISEASE_SYMPTOM.TAG_ID.equal(SYMPTOM.ID))
+                .join(DISEASE).on(DISEASE.ID.equal(DISEASE_SYMPTOM.DISEASE_ID))
+                .where(DISEASE.ID.equal(temp.getId()))
+                .fetchInto(Symptom.class);
+        Symptom[] symptomArray = new Symptom[symptomList.size()];
+        symptomList.toArray(symptomArray);
+        return symptomArray;
+    }
 }

@@ -105,4 +105,9 @@ public class SearchController {
         System.out.println(search.searchByDisease(disease));
         return search.searchByDisease(disease);
     }
+
+    @RequestMapping(path="/SymptomByDisease", method = RequestMethod.POST)
+    public @ResponseBody Symptom[] symptomByDisease(@RequestBody Disease disease) {
+        return search.symptomByDisease(disease);
+    }
 }
