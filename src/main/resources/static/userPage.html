@@ -303,7 +303,7 @@
         <dl>
             <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px; ">ID:</dt>
             <dd id="userID"></dd>
-
+            <h2 id="id"></h2>
             <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px">Email:</dt>
             <dd id="email" ></dd>
 
@@ -359,6 +359,8 @@
 
         <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
         <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
+        <ul id="articles" style="color:#fefefe">
+        </ul>
     </div>
 
 </div>
@@ -387,6 +389,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
+    var flag = 1;
     function getCookie(c_name)
     {
         if (document.cookie.length>0)
@@ -446,7 +449,7 @@
         var res = res.done(function(result) {
             console.log(res.responseText);
             var obj = JSON.parse(res.responseText);
-            //document.getElementById("username").innerHTML=obj.username
+            //document.getElementById("id").innerHTML=obj.username
             document.getElementById("userID").innerHTML = obj.id;
             document.getElementById("email").innerHTML = obj.email
 
@@ -454,6 +457,7 @@
                 document.getElementById("Aut").innerHTML = "User";
             }
             else if(obj.authority == 1) {
+                flag =1;
                 document.getElementById("Aut").innerHTML = "Certified user";
             }
             else if(obj.authority == 2) {
@@ -494,6 +498,43 @@
 
 
     });
+                    console.log(flag);
+    if(flag==1) {
+
+        var obj3 = {};
+        obj3.username = username;
+        $(function(callback) {
+
+            res = $.ajax({
+                url: '/getArticleByAuthor',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(obj3),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+
+            })
+            var res = res.done(function(result) {
+                console.log(res.responseText);
+                var articles = JSON.parse(res.responseText);
+                var length = articles.length;
+                var oArticle = document.getElementById("articles");
+                for(var a = 0; a < articles.length;a++){
+                    oElentment = document.createElement("li");
+                    oElentment2 = document.createElement("br")
+                    oTextNode = document.createTextNode(articles[a].title);
+                    oElentment.appendChild(oTextNode);
+                    oArticle.appendChild(oElentment);
+
+                }
+            });
+        });
+    }
 
 </script>
 
