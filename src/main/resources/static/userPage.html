@@ -10,276 +10,249 @@
 
 
 <style>
-    body {
-        background-color: lightcyan;
-        margin: 0 auto;
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    /*  Content */
+    .modal-content {
+    background-color: lightcyan;
+    color: #777;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 10%;
+    border: 1px solid #888;
+    width: 80%;
+    height: auto;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.6s;
+    animation-name: fadeIn;
+    animation-duration: 0.6s
+    }
+    /* Add Animation */
+    @-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+    }
+    @keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
     }
 
-
+    body {
+    background-color: lightcyan;
+    margin: 0 auto;
+    }
     .upperbtn {
-        background-color: #4DB6AC;
-        border-radius: 5px;
-        color: white;
-        float:left;
-        width: 120px;
-        height: 30px;
-        padding:
-                5px 5px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
+    background-color: #4DB6AC;
+    border-radius: 5px;
+    color: white;
+    float:left;
+    width: 120px;
+    height: 30px;
+    padding:
+    5px 5px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
     }
     .upperbtn:hover{
-        color: #42a5f5;
-        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
-        transition: box-shadow 1s,text-shadow 1s,color 1s;
-
+    color: #42a5f5;
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+    transition: box-shadow 1s,text-shadow 1s,color 1s;
     }
-
     #upperlevel {
-        width: 100%;
-        height: 200px;
-        text-align: center;
+    width: 100%;
+    height: 200px;
+    text-align: center;
     }
-
     #imgcontainer {
-        position:relative;
-        margin-left:auto;
-        margin-right: auto;
-        width: 400px;
-        height:200px;
-
+    position:relative;
+    margin-left:auto;
+    margin-right: auto;
+    width: 400px;
+    height:200px;
     }
-
     img.logo {
-        display: block;
-        margin-left: auto;
-        margin-right: auto
-
+    display: block;
+    margin-left: auto;
+    margin-right: auto
     }
-
     #greeting_box{
-
-        text-align: center;
-        color:black;
-        font-size:45px;
-        font-family:Impact,serif;
-
-        bottom:0;
-
+    text-align: center;
+    color:black;
+    font-size:45px;
+    font-family:Impact,serif;
+    bottom:0;
     }
-
     #middle {
-
-        text-align: center;
-        width: 100%;
-        height:500px;
-        margin: 20px auto;
+    text-align: center;
+    width: 100%;
+    height:500px;
+    margin: 20px auto;
     }
     #middleblock_left{
-        /*background-color:rgba(3, 155, 229,0.5);*/
-
-        margin-left:20px;
-        margin-right:20px;
-
-
-        padding:20px 60px;
-
-        text-align: center;
-        height:100%;
-        width: 31%;
-
-        border: 1px solid rgba(0,0,0,0.08);
-        font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
-
-
-        float:left;
+    /*background-color:rgba(3, 155, 229,0.5);*/
+    margin-left:20px;
+    margin-right:20px;
+    padding:20px 60px;
+    text-align: center;
+    height:100%;
+    width: 31%;
+    border: 1px solid rgba(0,0,0,0.08);
+    font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
+    float:left;
     }
-
     #middleblock_mid{
-        /*background-color:rgba(3, 155, 229,0.5);*/
-
-
-        float:left;
-        text-align: center;
-
-        height:100%;
-        width: 31%;
-        padding:20px 100px;
-
-        border: 1px solid rgba(0,0,0,0.08);
-
-
-
+    /*background-color:rgba(3, 155, 229,0.5);*/
+    float:left;
+    text-align: center;
+    height:100%;
+    width: 31%;
+    padding:20px 100px;
+    border: 1px solid rgba(0,0,0,0.08);
     }
-
     #middleblock_right{
-        /*background-color:rgba(3, 155, 229,0.5);*/
-
-
-        margin-left:20px;
-        margin-right:20px;
-        padding:20px 100px;
-
-        text-align: center;
-        height:100%;
-        width: 32%;
-
-        border: 1px solid rgba(0,0,0,0.08);
-
-
-        float:left;
-
+    /*background-color:rgba(3, 155, 229,0.5);*/
+    margin-left:20px;
+    margin-right:20px;
+    padding:20px 100px;
+    text-align: center;
+    height:100%;
+    width: 32%;
+    border: 1px solid rgba(0,0,0,0.08);
+    float:left;
     }
     .mid_titles{
-        color: #777;
-        font-size:30px;
-        font-weight: bold;
-        font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
+    color: #777;
+    font-size:30px;
+    font-weight: bold;
+    font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
     }
-
     #footer{
-        margin: 5px auto;
-        bottom:0;
-        width:100%;
-
-        position:relative;
-
+    margin: 5px auto;
+    bottom:0;
+    width:100%;
+    position:relative;
     }
-
     /*#usersection {*/
-        /*width: 240px;*/
-        /*height: 123px;*/
-        /*float: right;*/
+    /*width: 240px;*/
+    /*height: 123px;*/
+    /*float: right;*/
     /*}*/
-
-
-
     #changeBtn1 {
-
-        margin-top: 80px;
-        margin-bottom:20px;
-
-        color:white;
-        background-color:#4DB6AC;
-        border: hidden;
-        display: inline-block;
-        transition: all 0.5s;
-        cursor: pointer;
+    margin-top: 80px;
+    margin-bottom:20px;
+    color:white;
+    background-color:#4DB6AC;
+    border: hidden;
+    display: inline-block;
+    transition: all 0.5s;
+    cursor: pointer;
     }
     #changeBtn1 span{
-        cursor:pointer;
-        display: inline-block;
-        position:relative;
-        transition:0.5s;
+    cursor:pointer;
+    display: inline-block;
+    position:relative;
+    transition:0.5s;
     }
     #changeBtn1 span:after {
-        content: '»';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -10%;
-        transition: 0.5s;
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10%;
+    transition: 0.5s;
     }
     #changeBtn1:hover span {
-        padding-right: 15px;
+    padding-right: 15px;
     }
-
     #changeBtn1:hover span:after {
-        opacity: 1;
-        right: 0;
+    opacity: 1;
+    right: 0;
     }
-
     #changeBtn2 {
-
-
-        margin-top:40px;
-
-        color:white;
-        background-color:#4DB6AC;
-        border: hidden;
-
-        display: inline-block;
-        transition: all 0.5s;
-        cursor: pointer;
+    margin-top:40px;
+    color:white;
+    background-color:#4DB6AC;
+    border: hidden;
+    display: inline-block;
+    transition: all 0.5s;
+    cursor: pointer;
     }
     #changeBtn2 span{
-        cursor:pointer;
-        display: inline-block;
-        position:relative;
-        transition:0.5s;
+    cursor:pointer;
+    display: inline-block;
+    position:relative;
+    transition:0.5s;
     }
     #changeBtn2 span:after {
-        content: '»';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -10%;
-        transition: 0.5s;
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10%;
+    transition: 0.5s;
     }
     #changeBtn2:hover span {
-        padding-right: 15px;
+    padding-right: 15px;
     }
-
     #changeBtn2:hover span:after {
-        opacity: 1;
-        right: 0;
+    opacity: 1;
+    right: 0;
     }
-
     #back-top {
-        position: fixed;
-        display:none;
-        font-size: 50px;
-        color: rgba(0,0,0,0.5);
-        bottom: 5px;
-        right:30px;
-        width:auto;
+    position: fixed;
+    display:none;
+    font-size: 50px;
+    color: rgba(0,0,0,0.5);
+    bottom: 5px;
+    right:30px;
+    width:auto;
     }
     a#back-top:active {
-        background:none;
+    background:none;
     }
     a#back-top {
-        display: block; text-decoration: none;
+    display: block; text-decoration: none;
     }
     .topup {
-        bottom:5px;
+    bottom:5px;
     }
     #back-top i {
-        display: block;
+    display: block;
     }
-
-
-
     dd{
-        background-color: #eff0f1;
-        color: #4DB6AC;
-        font-size:17px;
-
+    background-color: #eff0f1;
+    color: #4DB6AC;
+    font-size:17px;
     }
     dt+dt{
-        border-top: 1px solid rgba(255,255,255,0.6);
-        padding-top: 5px;
+    border-top: 1px solid rgba(255,255,255,0.6);
+    padding-top: 5px;
     }
-
     table{
-        margin-top: 20%;
-        color: #777;
-        font-size:30px;
-        width:100%;
-
+    margin-top: 20%;
+    color: #777;
+    font-size:30px;
+    width:100%;
     }
     td{
-        text-align: left;
-        padding-top:0.5em;
-        padding-bottom: 0.5em;
+    text-align: left;
+    padding-top:0.5em;
+    padding-bottom: 0.5em;
     }
-
     .lines{
-        border-top: 1px #9E9E9E solid;
+    border-top: 1px #9E9E9E solid;
     }
-
-
-</style>
+    </style>
 <body>
 
 <div id="upperlevel">
@@ -313,18 +286,6 @@
             Account
         </span>
 
-
-        <!--<dl>-->
-            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px; ">ID:</dt>-->
-            <!--<dd id="userID"></dd>-->
-            <!--<h2 id="id"></h2>-->
-            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px">Email:</dt>-->
-            <!--<dd id="email" ></dd>-->
-
-            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px">Authority:</dt>-->
-            <!--<dd id="Aut" ></dd>-->
-        <!--</dl>-->
-
         <table>
             <tr>
                 <td id="userID"></td>
@@ -340,8 +301,6 @@
             </tr>
             <tr id="Aut" style="text-align: left"></tr>
         </table>
-
-
     </div>
 
     <div id ="middleblock_mid">
@@ -362,7 +321,7 @@
         </button>
 
         <!--<a href="/ChangePassword" target="_blank">-->
-            <!--Change your password-->
+        <!--Change your password-->
         <!--</a>-->
 
 
@@ -371,7 +330,7 @@
         </button>
 
         <!--<a href="/ChangeEmail" target="_blamk">-->
-            <!--Change your Email-->
+        <!--Change your Email-->
         <!--</a>-->
 
     </div>
@@ -389,8 +348,24 @@
 
         <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
         <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
-        <ul id="articles" style="color:#fefefe">
+        <ul id="articles" style="color:#777; text-align: left; font-size:16px">
         </ul>
+    </div>
+
+    <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
+            <div class="modal-body">
+                <span id="closebtn" class="close">CLOSE</span>
+                <div class="clearfix"></div>
+                <div  class="modify-content">
+                    <h2 id="titleH2" style="text-align: center;"></h2>
+                    <h5 id="authorH3" style="text-align: center;"></h5>
+                    <div id="textArea" style="text-align: left;"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -398,9 +373,9 @@
 <div id="footer" >
 
     <!--<div style="margin-left: 90%">-->
-        <!--<a href="#top">-->
-            <!--<img border="0" src="up_arrow.png" />-->
-        <!--</a>-->
+    <!--<a href="#top">-->
+    <!--<img border="0" src="up_arrow.png" />-->
+    <!--</a>-->
     <!--</div>-->
     <a href="#top" id="back-top"><span class="glyphicon glyphicon-eject"></span></a>
 
@@ -411,14 +386,12 @@
 
 <script>
     function add(){
-
         window.location.replace('/ModePage');
     }
 </script>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
     var flag = 1;
     function getCookie(c_name)
     {
@@ -445,23 +418,18 @@
 //    } else {
 //        userbtn.appendChild(document.createTextNode('Login'));
 //    }
-
 //    var greeting = document.getElementById('greeting_box');
 //    if (greeting != "") {
 //
 //        greeting.appendChild(document.createTextNode(username));
 //        greeting.appendChild(document.createTextNode('!'));
 //    }
-
-
-
     //--
     var g;
     var res;
     var obj2 = {};
     obj2.username = username;
     $(function(callback) {
-
         res = $.ajax({
             url: '/UserPage',
             type: 'POST',
@@ -474,7 +442,6 @@
             error: function (error) {
                 console.log(error);
             }
-
         })
         var res = res.done(function(result) {
             console.log(res.responseText);
@@ -482,7 +449,6 @@
             //document.getElementById("id").innerHTML=obj.username
             document.getElementById("userID").innerHTML = "ID: "+obj.id;
             document.getElementById("email").innerHTML = obj.email
-
             if(obj.authority == 0) {
                 document.getElementById("Aut").innerHTML = "User";
             }
@@ -496,15 +462,9 @@
         });
     });
     $(document).ready(function(){
-
-
         $("h1").delay("1000").fadeIn();
-
-
         // hide #back-top first
         $("#back-top").hide();
-
-
         // fade in #back-top
         $(function () {
             $(window).scroll(function () {
@@ -514,8 +474,6 @@
                     $('#back-top').fadeOut();
                 }
             });
-
-
             // scroll body to 0px on click
             $('a#back-top').click(function () {
                 $('body,html').animate({
@@ -524,7 +482,6 @@
                 return false;
             });
         });
-
         $("#homebtn").click(function() {
             window.location.replace('/ModePage');
         });
@@ -557,21 +514,54 @@
 
             })
             var res = res.done(function(result) {
-                console.log(res.responseText);
-                var articles = JSON.parse(res.responseText);
-                var length = articles.length;
-                var oArticle = document.getElementById("articles");
-                for(var a = 0; a < articles.length;a++){
-                    oElentment = document.createElement("li");
-                    oElentment2 = document.createElement("br")
-                    oTextNode = document.createTextNode(articles[a].title);
-                    oElentment.appendChild(oTextNode);
-                    oArticle.appendChild(oElentment);
+                var length = result.length;
+                for (var a=0; a<length;a++) {
+                    console.log(result);
+
+                    var articleList = document.getElementById("articles");
+
+                    var li = document.createElement("li");
+                    var span = document.createElement("span");
+                    span.value = result[a].content;
+                    span.setAttribute("name", result[a].title);
+                    span.setAttribute("author", result[a].authorName);
+                    span.setAttribute("time", result[a].timeStamp);
+                    span.name = result[a].title;
+                    span.appendChild(document.createTextNode(result[a].title));
+
+                    li.appendChild(span);
+                    li.style.margin = "5px";
+                    articleList.appendChild(li);
+                    console.log("level3");
+                }
+                console.log("success9989");
+                var modal = document.getElementById("my-modify-modal");
+
+                $("#articles").find("span").click(function() {
+                    console.log("success3333");
+                    var tagText = $(this).val();
+                    console.log("success444");
+                    var articleTitle = document.getElementById("titleH2");
+                    var articleAuthor = document.getElementById("authorH3");
+
+                    var date = $(this).attr('time');
+                    console.log(date);
+                    articleTitle.innerHTML = $(this).attr('name');
+                    console.log("success555");
+                    var minorTitle = date + " " + $(this).attr('author');
+
+                    articleAuthor.innerHTML = minorTitle;
+                    var textArea = document.getElementById("textArea");
+                    textArea.innerHTML = tagText;
+                    modal.style.display = "block";
+                });
+                var closebtn = document.getElementById("closebtn");
+                closebtn.onclick = function() {
+                   modal.style.display = "none";
                 }
             });
         });
     }
-
 </script>
 
 </html>
