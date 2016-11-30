@@ -36,20 +36,20 @@
         console.log(username1);
         console.log(email1);
         $(function(callback) {
-        $.ajax({
-            url : '/SignUp',
-            type : 'POST',
-            dataType: 'json',
-            data : JSON.stringify(obj),
-            contentType: "application/json; charset=utf-8",
-            success : function(data) {
-                callback(data);
-                console.log("success");
-            },
-            error : function (error) {
-                console.log(error);
-            }
-        });
+            $.ajax({
+                url : '/SignUp',
+                type : 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success : function(data) {
+                    callback(data);
+                    console.log("success");
+                },
+                error : function (error) {
+                    console.log(error);
+                }
+            });
         });
     }
 
@@ -76,7 +76,7 @@
         vertical-align: middle;
     }
 
-    input[type=text], input[type=password] {
+    input[type=text], input[type=password], input[type=email] {
         width: 50%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -191,22 +191,12 @@
             <input type="text" placeholder="Enter Username"  id="username" required><br>
             <input type="password" placeholder="Enter Password, at least 6 characters" id="password" name="password" required><br>
             <input type="password" placeholder="Re-Enter Password" id="repassword" name="password" required><br>
-            <input type="text" placeholder="Enter E-mail Address" id="email" required>
+            <input type="email" placeholder="Enter E-mail Address" id="email" required>
 
-            <button type="button" onclick = "SignUp()" >Sign up!</button>
-            <button type="submit" style="background-color: red">Cancel</button>
-
+            <button type="button" onclick = "SignUp(); checkPassword()" >Sign up!</button>
         </div>
-
     </form>
 </div>
-
-<!--<div id="myModal" class="modal">-->
-    <!--<div class="modal-content">-->
-        <!--<span class="close">x</span>-->
-        <!--<p>Passwords don't match</p>-->
-    <!--</div>-->
-<!--</div>-->
 
 </body>
 </html>

@@ -67,6 +67,9 @@ $(document).ready(function(){
             });
         });
     });
+    $("#signUpbtn").click(function() {
+        window.location.replace('/SignUpPage');
+    });
 
 });
 
@@ -208,7 +211,7 @@ $(document).ready(function(){
             <input type="password" placeholder="Enter Password" id="password" name="password" required><br>
 
             <button id="loginbtn" type="button">Login!</button>
-            <button type="submit" style="background-color: red">Cancel</button>
+            <button id="signUpbtn" type="button" style="background-color: green">Sign Up!</button>
 
         </div>
 
