@@ -267,8 +267,18 @@
         </div>
 
         <div class="input-group" style="margin-bottom: 5px;">
-            <span class="input-group-addon">Department</span>
-            <input type="text" class="form-control" id="depEle" placeholder="Which department does it belong to">
+            <select class="selectpicker show-tick" id="depList1">
+                <option>Dermatology</option>
+                <option>Neurologyn</option>
+                <option>Osteology</option>
+                <option>Ophthalmology</option>
+                <option>Psychiatry</option>
+                <option>General</option>
+                <option>Gastroenterology</option>
+                <option>Endocrinology</option>
+                <option>Dentistry</option>
+                <option>Pulmonology</option>
+            </select>
         </div>
 
         <div class="checkBoxArea" id="checkBoxes">
@@ -496,7 +506,7 @@ function submitChange() {
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
     var title = document.getElementById('titleEle').value;
-    var department = document.getElementById('depEle').value;
+    var department = $("#depList1").find("option:selected").text();
     var symptoms = checkbox_value;
     obj.name = title;
     obj.description = content;
@@ -504,9 +514,6 @@ function submitChange() {
     obj.symptoms = symptoms;
     obj.newSymptoms = new_obj_list;
     console.log(obj);
-
-    //var data_form =  $('#textform').serialize();
-    //console.log(data_form);
 
     console.log("saved");
 
