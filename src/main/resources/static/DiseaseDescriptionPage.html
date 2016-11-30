@@ -391,7 +391,7 @@ $(document).ready(function(){
                 data : JSON.stringify(obj2),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    console.log("success");
+                    console.log("success1111");
                     callback(data);
                 },
                 error: function (error) {
@@ -427,13 +427,13 @@ $(document).ready(function(){
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
-
+                    console.log("success22222");
                     var date = $(this).attr('time');
                     console.log(date);
                     articleTitle.innerHTML = $(this).attr('name');
 
                     var minorTitle = date + " " + $(this).attr('author');
-
+                    console.log("success3333");
                     articleAuthor.innerHTML = minorTitle;
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;

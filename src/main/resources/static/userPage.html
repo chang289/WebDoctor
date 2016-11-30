@@ -10,6 +10,42 @@
 
 
 <style>
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+     /*  Content */
+    .modal-content {
+    background-color: #1aa8b9;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 10%;
+    border: 1px solid #888;
+    width: 80%;
+    height: auto;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.6s;
+    animation-name: fadeIn;
+    animation-duration: 0.6s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+    }
+
+    @keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+    }
     body {
         background-color: lightcyan;
         margin: 0 auto;
@@ -284,9 +320,16 @@
 
 <div id="upperlevel">
 
+<<<<<<< Updated upstream
     <button class="upperbtn" type="button" id="homebtn">
         <span class="glyphicon glyphicon-home"></span> Home
     </button>
+=======
+        <button class="upperbtn" type="button" onclick="add()">
+            <span class="glyphicon glyphicon-home"></span> Home
+        </button>
+
+>>>>>>> Stashed changes
 
     <div id = "imgcontainer">
         <img class="logo" src="canvas.png" alt="logo"  style="
@@ -391,6 +434,21 @@
         <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
         <ul id="articles" style="color:#fefefe">
         </ul>
+    </div>
+    <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
+            <div class="modal-body">
+                <span id="closebtn" class="close">CLOSE</span>
+                <div class="clearfix"></div>
+                <div  class="modify-content">
+                    <h2 id="titleH2" style="text-align: center;"></h2>
+                    <h5 id="authorH3" style="text-align: center;"></h5>
+                    <div id="textArea" style="text-align: left;"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -557,6 +615,7 @@
 
             })
             var res = res.done(function(result) {
+<<<<<<< Updated upstream
                 console.log(res.responseText);
                 var articles = JSON.parse(res.responseText);
                 var length = articles.length;
@@ -567,6 +626,56 @@
                     oTextNode = document.createTextNode(articles[a].title);
                     oElentment.appendChild(oTextNode);
                     oArticle.appendChild(oElentment);
+=======
+                var length = result.length;
+                for (var a=0; a<length-1;a++) {
+                    console.log(result);
+
+                    var articleList = document.getElementById("articles");
+
+                    var li = document.createElement("li");
+                    var span = document.createElement("span");
+                    span.value = result[a].content;
+                    span.setAttribute("name", result[a].title);
+                    span.setAttribute("author", result[a].authorName);
+
+                    span.setAttribute("time", result[a].timeStamp);
+
+                    span.name = result[a].title;
+                    console.log(result[a].content);
+                    //btn.appendChild(a);
+                    span.appendChild(document.createTextNode(result[a].title));
+
+                    li.appendChild(span);
+                    li.style.margin = "5px";
+                    articleList.appendChild(li);
+                    console.log("level3");
+                }
+                console.log("success9989");
+                var modal = document.getElementById("my-modify-modal");
+
+                $("#articles").find("span").click(function() {
+                console.log("success3333");
+                    var tagText = $(this).val();
+                    console.log("success444");
+                    var articleTitle = document.getElementById("titleH2");
+                    var articleAuthor = document.getElementById("authorH3");
+
+                    var date = $(this).attr('time');
+                    console.log(date);
+                    articleTitle.innerHTML = $(this).attr('name');
+                    console.log("success555");
+                    var minorTitle = date + " " + $(this).attr('author');
+
+                    articleAuthor.innerHTML = minorTitle;
+                    var textArea = document.getElementById("textArea");
+                    textArea.innerHTML = tagText;
+                    modal.style.display = "block";
+                });
+                var closebtn = document.getElementById("closebtn");
+                closebtn.onclick = function() {
+                   modal.style.display = "none";
+>>>>>>> Stashed changes
                 }
             });
         });
