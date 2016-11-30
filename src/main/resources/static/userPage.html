@@ -47,23 +47,18 @@
     to {opacity: 1}
     }
     body {
-        background-color: lightcyan;
+        background-color: #1aa8a8;
         margin: 0 auto;
     }
-
-
     .upperbtn {
-        background-color: #4DB6AC;
-        border-radius: 5px;
+        background-color: #0d57a0;
         color: white;
-        float:left;
-        width: 120px;
-        height: 30px;
-        padding:
-                5px 5px;
+        padding: 14px 20px;
         margin: 8px 0;
-        border: none;
+        border: 1px groove #cccccc;
+        border-radius: 5px;
         cursor: pointer;
+        width: 50%;
     }
     .upperbtn:hover{
         color: #42a5f5;
@@ -74,7 +69,7 @@
 
     #upperlevel {
         width: 100%;
-        height: 200px;
+        height: 300px;
         text-align: center;
     }
 
@@ -84,7 +79,6 @@
         margin-right: auto;
         width: 400px;
         height:200px;
-
     }
 
     img.logo {
@@ -113,27 +107,27 @@
         margin: 20px auto;
     }
     #middleblock_left{
-        /*background-color:rgba(3, 155, 229,0.5);*/
+        background-color:rgba(3, 155, 229,0.5);
 
         margin-left:20px;
         margin-right:20px;
 
 
-        padding:20px 60px;
+        padding:20px 100px;
 
         text-align: center;
         height:100%;
         width: 31%;
 
-        border: 1px solid rgba(0,0,0,0.08);
-        font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
-
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+        border-radius:3px;
 
         float:left;
     }
 
     #middleblock_mid{
-        /*background-color:rgba(3, 155, 229,0.5);*/
+        background-color:rgba(3, 155, 229,0.5);
 
 
         float:left;
@@ -143,14 +137,14 @@
         width: 31%;
         padding:20px 100px;
 
-        border: 1px solid rgba(0,0,0,0.08);
-
-
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+        border-radius:3px;
 
     }
 
     #middleblock_right{
-        /*background-color:rgba(3, 155, 229,0.5);*/
+        background-color:rgba(3, 155, 229,0.5);
 
 
         margin-left:20px;
@@ -161,17 +155,17 @@
         height:100%;
         width: 32%;
 
-        border: 1px solid rgba(0,0,0,0.08);
-
-
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+        border-radius:3px;
         float:left;
 
     }
     .mid_titles{
-        color: #777;
+        color: black;
         font-size:30px;
         font-weight: bold;
-        font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
+        font-family: 'Arial Black',sans-serif
     }
 
     #footer{
@@ -189,15 +183,26 @@
         /*float: right;*/
     /*}*/
 
-
+    .upperbtn {
+        background-color: #0d57a0;
+        color: white;
+        float:left;
+        width: 120px;
+        height: 30px;
+        padding:
+                5px 5px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+    }
 
     #changeBtn1 {
 
-        margin-top: 80px;
-        margin-bottom:20px;
+        margin-top: 60px;
+        margin-bottom:40px;
 
         color:white;
-        background-color:#4DB6AC;
+        background-color:#055f95;
         border: hidden;
         display: inline-block;
         transition: all 0.5s;
@@ -232,7 +237,7 @@
         margin-top:40px;
 
         color:white;
-        background-color:#4DB6AC;
+        background-color:#055f95;
         border: hidden;
 
         display: inline-block;
@@ -285,34 +290,12 @@
     }
 
 
-
     dd{
-        background-color: #eff0f1;
-        color: #4DB6AC;
+        color: #fefefe;
         font-size:17px;
-
-    }
-    dt+dt{
-        border-top: 1px solid rgba(255,255,255,0.6);
-        padding-top: 5px;
+        font-family:"Lucida Sans Typewriter",monospace;
     }
 
-    table{
-        margin-top: 20%;
-        color: #777;
-        font-size:30px;
-        width:100%;
-
-    }
-    td{
-        text-align: left;
-        padding-top:0.5em;
-        padding-bottom: 0.5em;
-    }
-
-    .lines{
-        border-top: 1px #9E9E9E solid;
-    }
 
 
 </style>
@@ -320,25 +303,21 @@
 
 <div id="upperlevel">
 
-<<<<<<< Updated upstream
-    <button class="upperbtn" type="button" id="homebtn">
-        <span class="glyphicon glyphicon-home"></span> Home
-    </button>
-=======
         <button class="upperbtn" type="button" onclick="add()">
             <span class="glyphicon glyphicon-home"></span> Home
         </button>
 
->>>>>>> Stashed changes
 
     <div id = "imgcontainer">
-        <img class="logo" src="canvas.png" alt="logo"  style="
+        <img class="logo" src="logo2.jpg" alt="logo"  style="
         width: 240px;
         height: 200px;
         ">
     </div >
 
-
+    <div id = "greeting_box">
+        <span>Welcome to home, </span>
+    </div>
 </div>
 
 
@@ -348,7 +327,7 @@
     <div id ="middleblock_left">
 
         <span class="glyphicon glyphicon-user" style="
-        color: #777;
+        color: black;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -357,32 +336,16 @@
         </span>
 
 
-        <!--<dl>-->
-            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px; ">ID:</dt>-->
-            <!--<dd id="userID"></dd>-->
-            <!--<h2 id="id"></h2>-->
-            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px">Email:</dt>-->
-            <!--<dd id="email" ></dd>-->
+        <dl>
+            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px; ">ID:</dt>
+            <dd id="userID"></dd>
+            <h2 id="id"></h2>
+            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px">Email:</dt>
+            <dd id="email" ></dd>
 
-            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px">Authority:</dt>-->
-            <!--<dd id="Aut" ></dd>-->
-        <!--</dl>-->
-
-        <table>
-            <tr>
-                <td id="userID"></td>
-            </tr>
-
-            <tr class="lines">
-                <td>Email:</td>
-            </tr>
-            <tr id="email"style="text-align: left"></tr>
-
-            <tr class="lines">
-                <td>Authority:</td>
-            </tr>
-            <tr id="Aut" style="text-align: left"></tr>
-        </table>
+            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px">Authority:</dt>
+            <dd id="Aut" ></dd>
+        </dl>
 
 
     </div>
@@ -390,7 +353,7 @@
     <div id ="middleblock_mid">
 
         <span class="glyphicon glyphicon-cog" style="
-        color: #777;
+        color: black;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -421,7 +384,7 @@
 
     <div id ="middleblock_right">
         <span class="glyphicon glyphicon-list-alt" style="
-        color: #777;
+        color: black;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -504,12 +467,12 @@
 //        userbtn.appendChild(document.createTextNode('Login'));
 //    }
 
-//    var greeting = document.getElementById('greeting_box');
-//    if (greeting != "") {
-//
-//        greeting.appendChild(document.createTextNode(username));
-//        greeting.appendChild(document.createTextNode('!'));
-//    }
+    var greeting = document.getElementById('greeting_box');
+    if (greeting != "") {
+
+        greeting.appendChild(document.createTextNode(username));
+        greeting.appendChild(document.createTextNode('!'));
+    }
 
 
 
@@ -538,7 +501,7 @@
             console.log(res.responseText);
             var obj = JSON.parse(res.responseText);
             //document.getElementById("id").innerHTML=obj.username
-            document.getElementById("userID").innerHTML = "ID: "+obj.id;
+            document.getElementById("userID").innerHTML = obj.id;
             document.getElementById("email").innerHTML = obj.email
 
             if(obj.authority == 0) {
@@ -570,6 +533,7 @@
                     $('#back-top').fadeIn();
                 } else {
                     $('#back-top').fadeOut();
+
                 }
             });
 
@@ -583,17 +547,9 @@
             });
         });
 
-        $("#homebtn").click(function() {
-            window.location.replace('/ModePage');
-        });
-        $("#changeBtn1").click(function() {
-            window.location.replace('/ChangePassword');
-        });
-        $("#changeBtn2").click(function() {
-            window.location.replace('/ChangeEmail');
-        });
+
     });
-    console.log(flag);
+                    console.log(flag);
     if(flag==1) {
 
         var obj3 = {};
@@ -615,18 +571,6 @@
 
             })
             var res = res.done(function(result) {
-<<<<<<< Updated upstream
-                console.log(res.responseText);
-                var articles = JSON.parse(res.responseText);
-                var length = articles.length;
-                var oArticle = document.getElementById("articles");
-                for(var a = 0; a < articles.length;a++){
-                    oElentment = document.createElement("li");
-                    oElentment2 = document.createElement("br")
-                    oTextNode = document.createTextNode(articles[a].title);
-                    oElentment.appendChild(oTextNode);
-                    oArticle.appendChild(oElentment);
-=======
                 var length = result.length;
                 for (var a=0; a<length-1;a++) {
                     console.log(result);
@@ -675,7 +619,6 @@
                 var closebtn = document.getElementById("closebtn");
                 closebtn.onclick = function() {
                    modal.style.display = "none";
->>>>>>> Stashed changes
                 }
             });
         });
