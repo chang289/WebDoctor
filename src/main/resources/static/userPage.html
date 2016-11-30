@@ -11,7 +11,7 @@
 
 <style>
     body {
-        background-color: lightblue;
+        background-color: lightcyan;
         margin: 0 auto;
     }
 
@@ -132,7 +132,7 @@
 
     }
     .mid_titles{
-        color: #9E9E9E;
+        color: #777;
         font-size:30px;
         font-weight: bold;
         font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
@@ -158,11 +158,10 @@
     #changeBtn1 {
 
         margin-top: 80px;
-        margin-bottom:60px;
+        margin-bottom:20px;
 
         color:white;
-        background-color:#4DB6AC
-    ;
+        background-color:#4DB6AC;
         border: hidden;
         display: inline-block;
         transition: all 0.5s;
@@ -264,7 +263,7 @@
 
     table{
         margin-top: 20%;
-        color: #4DB6AC;
+        color: #777;
         font-size:30px;
         width:100%;
 
@@ -285,10 +284,9 @@
 
 <div id="upperlevel">
 
-        <button class="upperbtn" type="button" >
-            <span class="glyphicon glyphicon-home"></span> Home
-        </button>
-
+    <button class="upperbtn" type="button" id="homebtn">
+        <span class="glyphicon glyphicon-home"></span> Home
+    </button>
 
     <div id = "imgcontainer">
         <img class="logo" src="canvas.png" alt="logo"  style="
@@ -307,7 +305,7 @@
     <div id ="middleblock_left">
 
         <span class="glyphicon glyphicon-user" style="
-        color: #9E9E9E;
+        color: #777;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -349,7 +347,7 @@
     <div id ="middleblock_mid">
 
         <span class="glyphicon glyphicon-cog" style="
-        color: #9E9E9E;
+        color: #777;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -380,7 +378,7 @@
 
     <div id ="middleblock_right">
         <span class="glyphicon glyphicon-list-alt" style="
-        color: #9E9E9E;
+        color: #777;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -514,7 +512,6 @@
                     $('#back-top').fadeIn();
                 } else {
                     $('#back-top').fadeOut();
-
                 }
             });
 
@@ -528,9 +525,17 @@
             });
         });
 
-
+        $("#homebtn").click(function() {
+            window.location.replace('/ModePage');
+        });
+        $("#changeBtn1").click(function() {
+            window.location.replace('/ChangePassword');
+        });
+        $("#changeBtn2").click(function() {
+            window.location.replace('/ChangeEmail');
+        });
     });
-                    console.log(flag);
+    console.log(flag);
     if(flag==1) {
 
         var obj3 = {};
@@ -562,7 +567,6 @@
                     oTextNode = document.createTextNode(articles[a].title);
                     oElentment.appendChild(oTextNode);
                     oArticle.appendChild(oElentment);
-
                 }
             });
         });
