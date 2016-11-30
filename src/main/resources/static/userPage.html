@@ -14,15 +14,20 @@
         background-color: lightblue;
         margin: 0 auto;
     }
+
+
     .upperbtn {
-        background-color: #0d57a0;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: 1px groove #cccccc;
+        background-color: #4DB6AC;
         border-radius: 5px;
+        color: white;
+        float:left;
+        width: 120px;
+        height: 30px;
+        padding:
+                5px 5px;
+        margin: 8px 0;
+        border: none;
         cursor: pointer;
-        width: 50%;
     }
     .upperbtn:hover{
         color: #42a5f5;
@@ -78,7 +83,7 @@
         margin-right:20px;
 
 
-        padding:20px 100px;
+        padding:20px 60px;
 
         text-align: center;
         height:100%;
@@ -127,7 +132,7 @@
 
     }
     .mid_titles{
-        color: black;
+        color: #9E9E9E;
         font-size:30px;
         font-weight: bold;
         font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
@@ -148,26 +153,16 @@
         /*float: right;*/
     /*}*/
 
-    .upperbtn {
-        background-color: #0d57a0;
-        color: white;
-        float:left;
-        width: 120px;
-        height: 30px;
-        padding:
-                5px 5px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-    }
+
 
     #changeBtn1 {
 
-        margin-top: 60px;
-        margin-bottom:40px;
+        margin-top: 80px;
+        margin-bottom:60px;
 
         color:white;
-        background-color:#055f95;
+        background-color:#4DB6AC
+    ;
         border: hidden;
         display: inline-block;
         transition: all 0.5s;
@@ -202,7 +197,7 @@
         margin-top:40px;
 
         color:white;
-        background-color:#055f95;
+        background-color:#4DB6AC;
         border: hidden;
 
         display: inline-block;
@@ -254,15 +249,35 @@
         display: block;
     }
 
-    dl{
 
-    }
+
     dd{
-        color: #fefefe;
+        background-color: #eff0f1;
+        color: #4DB6AC;
         font-size:17px;
 
     }
+    dt+dt{
+        border-top: 1px solid rgba(255,255,255,0.6);
+        padding-top: 5px;
+    }
 
+    table{
+        margin-top: 20%;
+        color: #4DB6AC;
+        font-size:30px;
+        width:100%;
+
+    }
+    td{
+        text-align: left;
+        padding-top:0.5em;
+        padding-bottom: 0.5em;
+    }
+
+    .lines{
+        border-top: 1px #9E9E9E solid;
+    }
 
 
 </style>
@@ -276,7 +291,7 @@
 
 
     <div id = "imgcontainer">
-        <img class="logo" src="logo2.jpg" alt="logo"  style="
+        <img class="logo" src="canvas.png" alt="logo"  style="
         width: 240px;
         height: 200px;
         ">
@@ -292,7 +307,7 @@
     <div id ="middleblock_left">
 
         <span class="glyphicon glyphicon-user" style="
-        color: black;
+        color: #9E9E9E;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -301,16 +316,32 @@
         </span>
 
 
-        <dl>
-            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px; ">ID:</dt>
-            <dd id="userID"></dd>
-            <h2 id="id"></h2>
-            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px">Email:</dt>
-            <dd id="email" ></dd>
+        <!--<dl>-->
+            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px; ">ID:</dt>-->
+            <!--<dd id="userID"></dd>-->
+            <!--<h2 id="id"></h2>-->
+            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px">Email:</dt>-->
+            <!--<dd id="email" ></dd>-->
 
-            <dt style="color: #fefefe;margin-top: 1cm;font-size: 23px">Authority:</dt>
-            <dd id="Aut" ></dd>
-        </dl>
+            <!--<dt style="color: #1aa8a8;margin-top: 1cm;font-size: 23px">Authority:</dt>-->
+            <!--<dd id="Aut" ></dd>-->
+        <!--</dl>-->
+
+        <table>
+            <tr>
+                <td id="userID"></td>
+            </tr>
+
+            <tr class="lines">
+                <td>Email:</td>
+            </tr>
+            <tr id="email"style="text-align: left"></tr>
+
+            <tr class="lines">
+                <td>Authority:</td>
+            </tr>
+            <tr id="Aut" style="text-align: left"></tr>
+        </table>
 
 
     </div>
@@ -318,7 +349,7 @@
     <div id ="middleblock_mid">
 
         <span class="glyphicon glyphicon-cog" style="
-        color: black;
+        color: #9E9E9E;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -349,7 +380,7 @@
 
     <div id ="middleblock_right">
         <span class="glyphicon glyphicon-list-alt" style="
-        color: black;
+        color: #9E9E9E;
         font-size:30px;
         font-weight: bold;
         "></span>
@@ -417,12 +448,12 @@
 //        userbtn.appendChild(document.createTextNode('Login'));
 //    }
 
-    var greeting = document.getElementById('greeting_box');
-    if (greeting != "") {
-
-        greeting.appendChild(document.createTextNode(username));
-        greeting.appendChild(document.createTextNode('!'));
-    }
+//    var greeting = document.getElementById('greeting_box');
+//    if (greeting != "") {
+//
+//        greeting.appendChild(document.createTextNode(username));
+//        greeting.appendChild(document.createTextNode('!'));
+//    }
 
 
 
@@ -451,7 +482,7 @@
             console.log(res.responseText);
             var obj = JSON.parse(res.responseText);
             //document.getElementById("id").innerHTML=obj.username
-            document.getElementById("userID").innerHTML = obj.id;
+            document.getElementById("userID").innerHTML = "ID: "+obj.id;
             document.getElementById("email").innerHTML = obj.email
 
             if(obj.authority == 0) {
