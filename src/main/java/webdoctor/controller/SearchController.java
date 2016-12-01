@@ -21,8 +21,8 @@ public class SearchController {
     String name;
 
     @RequestMapping(path="/diseaseByName", method = RequestMethod.POST)
-    public @ResponseBody Disease diseaseByName(@RequestBody Disease disease) {
-        return search.diseaseByName(disease.getName());
+    public @ResponseBody Disease diseaseByName() {
+        return search.diseaseByName(name);
     }
     @RequestMapping(path="/", method = RequestMethod.GET)
     public String Index() {
