@@ -695,6 +695,7 @@
         var em = document.getElementById("newEmail").value;
         var obj={};
         obj.email = em;
+        obj.username = username;
         $(function(callback) {
             res = $.ajax({
                 url: '/ChangeEmail',
