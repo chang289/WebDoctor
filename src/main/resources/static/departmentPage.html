@@ -10,6 +10,251 @@
 
 <script src="src/js/custombox.js"></script>
 
+<style>
+    button {
+        font-family: Arial,serif;
+        background-color: #4DB6AC;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border:none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 50%;
+    }
+    button:hover{
+        color: #CFD8DC;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+        transition: box-shadow 1s,text-shadow 1s,color 1s;
+
+    }
+    #usersection {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 240px;
+        height: 123px;
+        float: right;
+    }
+    #userbtn{
+        padding: 5px 5px;
+        margin: 8px 0;
+    }
+
+    .upperbtn {
+        background-color: #4DB6AC;
+        color: white;
+        padding: 5px 5px;
+        margin: 8px 0;
+        cursor: pointer;
+    }
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /*  Content */
+    .modal-content {
+        background-color: lightcyan;
+        margin: auto;
+        padding: 20px;
+        padding-bottom: 10%;
+        width: 80%;
+        height: auto;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: fadeIn;
+        -webkit-animation-duration: 0.6s;
+        animation-name: fadeIn;
+        animation-duration: 0.6s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes fadeIn {
+        from {opacity: 0}
+        to {opacity: 1}
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0}
+        to {opacity: 1}
+    }
+
+
+    /* The Close Button */
+    .close {
+        background-color: lightcyan;
+        padding:1px;
+        margin:0;
+        width: 2.5%;
+        color: black;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        background-color: red
+    ;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.5s;
+    }
+
+    body {
+        background-color: lightcyan;
+    }
+
+    header ul li {
+        display: inline-block;
+        cursor: default;
+        transition: opacity ease-in-out 150ms;
+    }
+
+    li {
+        text-align: -webkit-match-parent;
+    }
+
+    ul{
+        padding-left:0;
+    }
+
+    header ul {
+
+        font-weight: 200;
+        font-size: 52px;
+        list-style-type: none;
+        display: inline-block;
+        margin: 14px 16px;
+        padding: 0;
+        white-space: nowrap;
+    }
+
+    #divider{
+        position: absolute;
+        top:20%;
+        bottom: 10%;
+
+        left: 10em;
+
+        border-left:4px solid silver;
+    }
+
+    .grids ul {
+        font-family:"Open Sans",serif;
+        font-weight: normal;
+        font-size: 22px;
+        list-style-type: none;
+        display: inline-block;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    li button {
+        font-size: 15px;
+        background-color: #4DB6AC;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        cursor: pointer;
+        width: 150px;
+        height: 150px;
+    }
+
+    li button:hover{
+        transition: text-shadow 1s,color 1s;
+
+    }
+
+
+
+
+    #selectedTags li {
+        display: block;
+    }
+
+    #selectedTags li button {
+        background-color: #1A237E;
+        display: block;
+        width: 100px;
+        height: 50px;
+        padding: auto;
+    }
+
+    .selected {
+
+        font-family:Arial,serif;
+        position:absolute;
+        top:8%;
+        width: 20%;
+    }
+
+    .grids {
+        height:100px;
+        margin-left:200px;
+        margin-top: 6%;
+    }
+
+    #footer {
+        left:90%;
+        bottom: 10%;
+        position: absolute;
+    }
+
+    ul button {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    ul button:hover {
+        text-overflow: inherit;
+        overflow: display;
+    }
+
+    .upperbtn {
+        background-color: #4DB6AC;
+        color: white;
+        padding: 5px 5px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+    }
+
+    #upperlevel {
+        width: 100%;
+        height: 50px;
+    }
+
+    #homesection {
+        width: 240px;
+        height: 123px;
+        float: left;
+    }
+
+    #usersection {
+        width: 240px;
+        height: 123px;
+        float: right;
+    }
+
+</style>
+
+
+
 <body>
 <div id="upperlevel">
     <div class="uppersection" id="homesection">
@@ -36,7 +281,7 @@
 
     <div class="grids">
         <h1 style="border-bottom: 4px solid #e3ae24;font-family: 'Amiko', sans-serif; color:#777">AVAILABLE DEPARTMENTS</h1>
-        <ul class="department">
+        <ul class="department" style="font-family: Arial,serif">
             <li><button id="btn1" type="submit" value="Dermatology">Dermatology</button></li>
             <li><button id="btn2" type="submit" value="Neurology">Neurology</button></li>
             <li><button id="btn3" type="submit" value="Osteology">Osteology</button></li>
@@ -316,245 +561,5 @@ window.onload = function(){
 </script>
 </body>
 
-<style>
-    button {
-        background-color: #4DB6AC;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border:none;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 50%;
-    }
-    button:hover{
-        color: #CFD8DC;
-        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
-        transition: box-shadow 1s,text-shadow 1s,color 1s;
 
-    }
-    #usersection {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 240px;
-        height: 123px;
-        float: right;
-    }
-    #userbtn{
-        padding: 5px 5px;
-        margin: 8px 0;
-    }
-
-    .upperbtn {
-        background-color: #4DB6AC;
-        color: white;
-        padding: 5px 5px;
-        margin: 8px 0;
-        cursor: pointer;
-    }
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    /*  Content */
-    .modal-content {
-        background-color: lightcyan;
-        margin: auto;
-        padding: 20px;
-        padding-bottom: 10%;
-        width: 80%;
-        height: auto;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-        -webkit-animation-name: fadeIn;
-        -webkit-animation-duration: 0.6s;
-        animation-name: fadeIn;
-        animation-duration: 0.6s
-    }
-
-    /* Add Animation */
-    @-webkit-keyframes fadeIn {
-    from {opacity: 0}
-    to {opacity: 1}
-    }
-
-    @keyframes fadeIn {
-    from {opacity: 0}
-    to {opacity: 1}
-    }
-
-
-    /* The Close Button */
-    .close {
-        background-color: lightcyan;
-        padding:1px;
-        margin:0;
-        width: 2.5%;
-        color: black;
-        float: right;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        background-color: red
-    ;
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.5s;
-    }
-
-    body {
-        background-color: lightcyan;
-    }
-
-    header ul li {
-        display: inline-block;
-        cursor: default;
-        transition: opacity ease-in-out 150ms;
-    }
-
-    li {
-        text-align: -webkit-match-parent;
-    }
-
-    ul{
-        padding-left:0;
-    }
-
-    header ul {
-
-        font-weight: 200;
-        font-size: 52px;
-        list-style-type: none;
-        display: inline-block;
-        margin: 14px 16px;
-        padding: 0;
-        white-space: nowrap;
-    }
-
-    #divider{
-        position: absolute;
-        top:20%;
-        bottom: 10%;
-
-        left: 10em;
-
-        border-left:4px solid silver;
-    }
-
-    .grids ul {
-        font-family:"Open Sans",serif;
-        font-weight: normal;
-        font-size: 22px;
-        list-style-type: none;
-        display: inline-block;
-    }
-
-    li {
-        display: inline-block;
-    }
-
-    li button {
-        font-size: 15px;
-        background-color: #4DB6AC;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        cursor: pointer;
-        width: 150px;
-        height: 150px;
-    }
-
-    li button:hover{
-        transition: text-shadow 1s,color 1s;
-
-    }
-
-
-
-
-    #selectedTags li {
-        display: block;
-    }
-
-    #selectedTags li button {
-        background-color: #1A237E;
-        display: block;
-        width: 100px;
-        height: 50px;
-        padding: auto;
-    }
-
-    .selected {
-
-        font-family:Arial,serif;
-        position:absolute;
-        top:8%;
-        width: 20%;
-    }
-
-    .grids {
-        height:100px;
-        margin-left:200px;
-        margin-top: 6%;
-    }
-
-    #footer {
-    left:90%;
-    bottom: 10%;
-    position: absolute;
-    }
-
-    ul button {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    }
-
-    ul button:hover {
-    text-overflow: inherit;
-    overflow: display;
-    }
-
-    .upperbtn {
-    background-color: #4DB6AC;
-    color: white;
-    padding: 5px 5px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    }
-
-    #upperlevel {
-    width: 100%;
-    height: 50px;
-    }
-
-    #homesection {
-    width: 240px;
-    height: 123px;
-    float: left;
-    }
-
-    #usersection {
-    width: 240px;
-    height: 123px;
-    float: right;
-    }
-
-</style>
 </html>
