@@ -20,7 +20,7 @@ public class SearchController {
     Search search;
     String name;
 
-    @RequestMapping(path="/diseaseByName", method = RequestMethod.POST)
+    @RequestMapping(path="/diseaseByName", method = RequestMethod.GET)
     public @ResponseBody Disease diseaseByName() {
         return search.diseaseByName(name);
     }
