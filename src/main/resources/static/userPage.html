@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>User page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Amiko" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -144,7 +145,7 @@
     color: #777;
     font-size:30px;
     font-weight: bold;
-    font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
+    font-family:"Amiko",sans-serif;
     }
 
     #footer{
@@ -256,16 +257,6 @@
     display: block;
     }
 
-    dd{
-    background-color: #eff0f1;
-    color: #4DB6AC;
-    font-size:17px;
-    }
-
-    dt+dt{
-    border-top: 1px solid rgba(255,255,255,0.6);
-    padding-top: 5px;
-    }
 
     table{
     margin-top: 20%;
@@ -279,6 +270,42 @@
     padding-top:0.5em;
     padding-bottom: 0.5em;
     }
+
+    ol span{
+        position:relative;
+        text-decoration: none;
+        font-size: 20px;
+        font-family: "Amiko", sans-serif;
+        cursor:pointer;
+
+
+    }
+    ol span:hover{
+        color:black;
+        transition: color 1s;
+    }
+
+    ol span:before{
+        content:"";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000;
+        visibility: hidden;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
+    }
+
+    ol span:hover:before{
+        visibility: visible;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+
 
     .lines{
     border-top: 1px #9E9E9E solid;
@@ -379,8 +406,8 @@
 
         <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
         <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
-        <ul id="articles" style="color:#777; text-align: left; font-size:16px">
-        </ul>
+        <ol id="articles" style="color:#777; text-align: left; font-size:16px">
+        </ol>
     </div>
 
     <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -615,6 +642,7 @@
                     span.setAttribute("name", result[a].title);
                     span.setAttribute("author", result[a].authorName);
                     span.setAttribute("time", result[a].timeStamp);
+
                     span.name = result[a].title;
                     span.appendChild(document.createTextNode(result[a].title));
 
