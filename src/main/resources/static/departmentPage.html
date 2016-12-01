@@ -179,7 +179,7 @@ window.onload = function(){
                     li.appendChild(btn);
                     if (selected == 1) {
                         btn.setAttribute('disabled','disabled');
-                        btn.style.backgroundColor = "red";
+                        btn.style.backgroundColor = "#1A237E";
                     }
 
                     li.style.margin = "5px";
@@ -189,7 +189,7 @@ window.onload = function(){
 
                 $("#symptomList").find(":button").click(function() {
                     $(this).attr('disabled','disabled');
-                    $(this).css('background-color', 'red');
+                    $(this).css('background-color', '#1A237E');
                     var tagText = $(this).val();
                     var selected = document.getElementById('selectedTags');
                     var li = document.createElement("li");
@@ -396,7 +396,8 @@ window.onload = function(){
 
     .close:hover,
     .close:focus {
-        background-color: red;
+        background-color: red
+    ;
         color: #000;
         text-decoration: none;
         cursor: pointer;
@@ -476,7 +477,7 @@ window.onload = function(){
     }
 
     #selectedTags li button {
-        background-color: red;
+        background-color: #1A237E;
         display: block;
         width: 100px;
         height: 50px;
