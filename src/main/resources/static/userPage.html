@@ -50,6 +50,7 @@
         background-color: lightcyan;
         margin: 0 auto;
     }
+
     .upperbtn {
         background-color: #4DB6AC;
         border-radius: 4px;
@@ -62,16 +63,19 @@
         border: none;
         cursor: pointer;
     }
+
     .upperbtn:hover{
     color: #42a5f5;
     box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
     transition: box-shadow 1s,text-shadow 1s,color 1s;
     }
+
     #upperlevel {
     width: 100%;
     height: 200px;
     text-align: center;
     }
+
     #imgcontainer {
     position:relative;
     margin-left:auto;
@@ -79,11 +83,13 @@
     width: 400px;
     height:200px;
     }
+
     img.logo {
     display: block;
     margin-left: auto;
     margin-right: auto
     }
+
     #greeting_box{
     text-align: center;
     color:black;
@@ -91,12 +97,14 @@
     font-family:Impact,serif;
     bottom:0;
     }
+
     #middle {
     text-align: center;
     width: 100%;
     height:500px;
     margin: 20px auto;
     }
+
     #middleblock_left{
     /*background-color:rgba(3, 155, 229,0.5);*/
     margin-left:20px;
@@ -109,6 +117,7 @@
     font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
     float:left;
     }
+
     #middleblock_mid{
     /*background-color:rgba(3, 155, 229,0.5);*/
     float:left;
@@ -118,6 +127,7 @@
     padding:20px 100px;
     border: 1px solid rgba(0,0,0,0.08);
     }
+
     #middleblock_right{
     /*background-color:rgba(3, 155, 229,0.5);*/
     margin-left:20px;
@@ -129,18 +139,21 @@
     border: 1px solid rgba(0,0,0,0.08);
     float:left;
     }
+
     .mid_titles{
     color: #777;
     font-size:30px;
     font-weight: bold;
     font-family:"RooneySans-Bold", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
     }
+
     #footer{
     margin: 5px auto;
     bottom:0;
     width:100%;
     position:relative;
     }
+
     /*#usersection {*/
     /*width: 240px;*/
     /*height: 123px;*/
@@ -156,12 +169,14 @@
     transition: all 0.5s;
     cursor: pointer;
     }
+
     #changeBtn1 span{
     cursor:pointer;
     display: inline-block;
     position:relative;
     transition:0.5s;
     }
+
     #changeBtn1 span:after {
     content: '»';
     position: absolute;
@@ -170,13 +185,16 @@
     right: -10%;
     transition: 0.5s;
     }
+
     #changeBtn1:hover span {
     padding-right: 15px;
     }
+
     #changeBtn1:hover span:after {
     opacity: 1;
     right: 0;
     }
+
     #changeBtn2 {
     margin-top:40px;
     color:white;
@@ -186,12 +204,14 @@
     transition: all 0.5s;
     cursor: pointer;
     }
+
     #changeBtn2 span{
     cursor:pointer;
     display: inline-block;
     position:relative;
     transition:0.5s;
     }
+
     #changeBtn2 span:after {
     content: '»';
     position: absolute;
@@ -200,13 +220,16 @@
     right: -10%;
     transition: 0.5s;
     }
+
     #changeBtn2:hover span {
     padding-right: 15px;
     }
+
     #changeBtn2:hover span:after {
     opacity: 1;
     right: 0;
     }
+
     #back-top {
     position: fixed;
     display:none;
@@ -216,42 +239,56 @@
     right:30px;
     width:auto;
     }
+
     a#back-top:active {
     background:none;
     }
+
     a#back-top {
     display: block; text-decoration: none;
     }
+
     .topup {
     bottom:5px;
     }
+
     #back-top i {
     display: block;
     }
+
     dd{
     background-color: #eff0f1;
     color: #4DB6AC;
     font-size:17px;
     }
+
     dt+dt{
     border-top: 1px solid rgba(255,255,255,0.6);
     padding-top: 5px;
     }
+
     table{
     margin-top: 20%;
     color: #777;
     font-size:30px;
     width:100%;
     }
+
     td{
     text-align: left;
     padding-top:0.5em;
     padding-bottom: 0.5em;
     }
+
     .lines{
     border-top: 1px #9E9E9E solid;
     }
-    </style>
+
+    @media only screen and (max-width: 479px){
+    div { width: 90%; }
+    }
+</style>
+
 <body>
 
 <div id="upperlevel">
@@ -315,16 +352,11 @@
 
 
 
-        <button type="button" class="btn btn-default btn-lg" id ="changeBtn1">
+        <button type="button" class="btn btn-default btn-lg" id ="changeBtn1" style="font-size: 14px">
             <span class="glyphicon glyphicon-lock"></span> Change your password
         </button>
 
-        <!--<a href="/ChangePassword" target="_blank">-->
-        <!--Change your password-->
-        <!--</a>-->
-
-
-        <button type="button" class="btn btn-default btn-lg" id = "changeBtn2">
+        <button type="button" class="btn btn-default btn-lg" id = "changeBtn2" style="font-size: 14px">
             <span class="glyphicon glyphicon-envelope"></span> Change your Email
         </button>
 
@@ -360,6 +392,54 @@
                     <h2 id="titleH2" style="text-align: center;"></h2>
                     <h5 id="authorH3" style="text-align: center;"></h5>
                     <div id="textArea" style="text-align: left;"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="my-modify-modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-content" style="width: 500px;height:200px;margin-left: auto;margin-right: auto;margin-top: 120px;">
+            <div class="modal-body">
+                <span id="closebtn2" class="close">CLOSE</span>
+                <div class="clearfix"></div>
+                <div  class="modify-content">
+                    <div class="container">
+                        <div class="input-group" style="margin-bottom: 10px; width: 400px">
+                            <span class="input-group-addon">Enter</span>
+                            <input type="text" class="form-control" id="newpassword" placeholder="Enter New Password">
+                        </div>
+                        <div class="input-group" style="margin-bottom: 10px; width: 400px">
+                            <span class="input-group-addon">Confirm</span>
+                            <input type="text" class="form-control" id="newpassword2" placeholder="Re-enter New Password">
+                        </div>
+                     </div>
+                    <button type="button" class="btn btn-default btn-lg" id = "submitchangePwd" onclick="checkpwd()">
+                        <span class="glyphicon glyphicon-ok"></span> Submit Change
+                    </button>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="my-modify-modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-content" style="width: 500px;height:150px;margin-left: auto;margin-right: auto;margin-top: 120px;">
+            <div class="modal-body">
+                <span id="closebtn3" class="close">CLOSE</span>
+                <div class="clearfix"></div>
+                <div  class="modify-content">
+                    <div class="container">
+                        <div class="input-group" style="margin-bottom: 10px; width: 400px">
+                            <span class="input-group-addon">New Email</span>
+                            <input type="text" class="form-control" id="newEmail" placeholder="Enter New Email Address">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default btn-lg" id = "submitchangeEmail" onclick="checkemail()">
+                        <span class="glyphicon glyphicon-ok"></span> Submit Change
+                    </button>
                 </div>
 
                 <div class="clearfix"></div>
@@ -485,10 +565,20 @@
             window.location.replace('/ModePage');
         });
         $("#changeBtn1").click(function() {
-            window.location.replace('/ChangePassword');
+            var modalChangPwd = document.getElementById("my-modify-modal2");
+            modalChangPwd.style.display = "block";
+            var span = document.getElementById("closebtn2");
+            span.onclick = function() {
+                modalChangPwd.style.display = "none";
+            }
         });
         $("#changeBtn2").click(function() {
-            window.location.replace('/ChangeEmail');
+            var modalChangEmail = document.getElementById("my-modify-modal3");
+            modalChangEmail.style.display = "block";
+            var span = document.getElementById("closebtn3");
+            span.onclick = function() {
+                modalChangEmail.style.display = "none";
+            }
         });
     });
     console.log(flag);
@@ -560,6 +650,69 @@
                 }
             });
         });
+    }
+    function checkpwd() {
+        var pw1 = document.getElementById("newpassword").value;
+        var pw2 = document.getElementById("newpassword2").value;
+        if(pw1 !== pw2) {
+            alert("New password does not match")
+            return;
+        }
+        if( pw1==0 ||pw2==0) {
+            alert("Please Enter your New Password")
+            return;
+        }
+        var obj={};
+        obj.username = username;
+        var res;
+        obj.password = pw2;
+        $(function(callback) {
+             res = $.ajax({
+                 url: '/ChangePassword',
+                 type: 'POST',
+                 dataType: 'json',
+                 data: JSON.stringify(obj),
+                 contentType: "application/json; charset=utf-8",
+                 success: function (data) {
+                     console.log("success!");
+                     callback(data);
+                 },
+                 error: function (error) {
+                     console.log(error);
+                 }
+             })
+             var res = res.done(function(result) {
+                 console.log(res.responseText);
+                 var obj = JSON.parse(res.responseText);
+
+             })
+        })
+        alert("You have changed your password successfully")
+        window.location.replace('/UserPage');
+    }
+    function checkemail()
+    {
+        var em = document.getElementById("newEmail").value;
+        var obj={};
+        obj.email = em;
+        $(function(callback) {
+            res = $.ajax({
+                url: '/ChangeEmail',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+
+        })
+        alert("You have changed your email successfully")
+        window.location.replace('/UserPage');
     }
 </script>
 
