@@ -4,6 +4,7 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webdoctor.common.passwordHash;
+import webdoctor.helperClass.ArticleWithTime;
 import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
@@ -22,6 +23,9 @@ import static webdoctor.jooq.Tables.USER_FAVOURITEARTICLE;
 public class UserService {
     //need to add dependency
     private final DSLContext create;
+
+    @Autowired
+    ArticleService as;
 
     @Autowired
     passwordHash ph;
@@ -110,14 +114,19 @@ public class UserService {
         }
     }
 
-    public Article[] getArticleByAuthor(User user) {
+    public ArticleWithTime[] getArticleByAuthor(User user) {
+
         if (checkValid(user) == 1) {
             List<Article> list = create.select().from(ARTICLE)
                     .where(ARTICLE.AUTHOR_NAME.equal(user.getUsername()))
                     .fetchInto(Article.class);
             Article[] array = new Article[list.size()];
             list.toArray(array);
-            return array;
+            ArticleWithTime[] awt = new ArticleWithTime[list.size()];
+            for (int i = 0; i < array.length; i++) {
+                 awt = as.alterArticle(array);
+            }
+            return awt;
         }
         else {
             return null;
