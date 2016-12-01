@@ -80,7 +80,7 @@
 <body>
 <div id="upperlevel">
     <div class="uppersection" id="homesection">
-        <button class="upperbtn" type="button" id="homebtn">
+        <button class="upperbtn" type="button" id="homebtn" onclick="add()">
             <span class="glyphicon glyphicon-home"></span> Home
         </button>
     </div>
@@ -116,6 +116,9 @@
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+function add(){
+        window.location.replace('/ModePage');
+    }
 function setCookie(c_name,value,expiredays)
 {
     var exdate=new Date()
