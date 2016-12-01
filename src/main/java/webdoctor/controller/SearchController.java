@@ -20,6 +20,10 @@ public class SearchController {
     Search search;
     String name;
 
+    @RequestMapping(path="/diseaseByName", method = RequestMethod.POST)
+    public @ResponseBody Disease diseaseByName() {
+        return search.diseaseByName(name);
+    }
     @RequestMapping(path="/", method = RequestMethod.GET)
     public String Index() {
         return "loginPage.html";
