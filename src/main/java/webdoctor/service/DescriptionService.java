@@ -134,6 +134,9 @@ public class DescriptionService {
 
             for (String s : symptoms) {
                 Symptom temp_symp = getSymptom(s);
+                if (temp_symp == null) {
+                    return 0;
+                }
                 T_ID = temp_symp.getId();
                 create.insertInto(DISEASE_SYMPTOM,DISEASE_SYMPTOM.TAG_ID,DISEASE_SYMPTOM.DISEASE_ID)
                         .values(T_ID,D_ID)
@@ -190,6 +193,7 @@ public class DescriptionService {
         if(checkDisease(disease) == 0) {
             return 0;
         } else {
+            System.out.println(disease.getDescription());
             create.update(DISEASE)
                     .set(DISEASE.DESCRIPTION,disease.getDescription())
                     .where(DISEASE.NAME.equal(disease.getName()))

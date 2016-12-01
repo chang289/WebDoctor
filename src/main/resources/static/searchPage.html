@@ -279,6 +279,10 @@ function search() {
     var obj = {};
     var input = document.getElementById('searchBox').value;
     var department = $("#search_concept").text();
+    if (department == "Filter by") {
+        department = "ALL";
+    }
+
     obj.name = input;
     obj.department = department;
     console.log(obj);

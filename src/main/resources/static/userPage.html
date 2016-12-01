@@ -367,7 +367,7 @@
     </div>
 
     <div id ="middleblock_mid">
-
+        <div id="tmp" style="width: 100%">
         <span class="glyphicon glyphicon-cog" style="
         color: #777;
         font-size:30px;
@@ -376,12 +376,12 @@
         <span class = "mid_titles">
             Setting
         </span>
-
+        </div>
 
 
         <button type="button" class="btn btn-default btn-lg" id ="changeBtn1" style="font-size: 14px">
             <span class="glyphicon glyphicon-lock"></span> Change your password
-        </button>
+        </button><br>
 
         <button type="button" class="btn btn-default btn-lg" id = "changeBtn2" style="font-size: 14px">
             <span class="glyphicon glyphicon-envelope"></span> Change your Email
@@ -723,6 +723,7 @@
         var em = document.getElementById("newEmail").value;
         var obj={};
         obj.email = em;
+        obj.username = username;
         $(function(callback) {
             res = $.ajax({
                 url: '/ChangeEmail',

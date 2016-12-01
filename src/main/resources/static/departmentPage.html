@@ -6,13 +6,23 @@
 <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Suez+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300i" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <script src="src/js/custombox.js"></script>
 
 <body>
-<div id="usersection" align="right">
-    <button id="userbtn" type="button"></button>
+<div id="upperlevel">
+    <div class="uppersection" id="homesection">
+        <button class="upperbtn" type="button" id="homebtn">
+            <span class="glyphicon glyphicon-home"></span> Home
+        </button>
+    </div>
+
+    <div class="uppersection" id="usersection">
+        <button class="upperbtn" id="userbtn" type="button" style="float: right" ></button>
+    </div>
 </div>
+
 <div class="mainPage" style="height: 100%">
 
     <div class="selected">
@@ -114,6 +124,9 @@
         } else {
             window.location.replace('/LoginPage');
         }
+    });
+    $("#homebtn").click(function() {
+        window.location.replace('/ModePage');
     });
 
 
@@ -437,7 +450,9 @@ window.onload = function(){
         position: absolute;
         top:20%;
         bottom: 10%;
+<<<<<<< HEAD
         left: 10em;
+
         border-left:4px solid silver;
     }
 
@@ -502,6 +517,43 @@ window.onload = function(){
     left:90%;
     bottom: 10%;
     position: absolute;
+    }
+
+    ul button {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+    ul button:hover {
+    text-overflow: inherit;
+    overflow: display;
+    }
+
+    .upperbtn {
+    background-color: #4DB6AC;
+    color: white;
+    padding: 5px 5px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    }
+
+    #upperlevel {
+    width: 100%;
+    height: 50px;
+    }
+
+    #homesection {
+    width: 240px;
+    height: 123px;
+    float: left;
+    }
+
+    #usersection {
+    width: 240px;
+    height: 123px;
+    float: right;
     }
 
 </style>

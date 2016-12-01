@@ -70,7 +70,7 @@ public class ArticleService {
             awt[i] = new ArticleWithTime();
             awt[i].setTitle(article[i].getTitle());
             awt[i].setAuthorName(article[i].getAuthorName());
-            awt[i].setTimeStamp(article[i].getTimeStamp().toString());
+            awt[i].setTimeStamp(article[i].getTimeStamp().toString().substring(0, article[i].getTimeStamp().toString().length() - 5));
             awt[i].setContent(article[i].getContent());
             awt[i].setDisease(article[i].getDisease());
         }
