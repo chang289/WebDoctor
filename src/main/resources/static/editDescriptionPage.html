@@ -12,7 +12,6 @@
         selector: '#mytextarea',
         plugins: "image",
         images_upload_url: "/ArticleImage",
-        images_upload_base_path: "D:\\WebDoctor\\src\\main\\resources\\static\\articleImages",
         images_upload_credentials: true,
         theme: "modern",
         menubar: "insert, edit, format",
@@ -154,8 +153,12 @@ $(document).ready(function(){
             type: 'GET',
             data : content,
             success: function (data) {
-                console.log(data);
-                console.log(content);
+                var titleEle = document.getElementById('titleEle');
+                var editor = document.getElementById('mytextarea');
+                tinyMCE.get('mytextarea').setContent(data.description);
+                titleEle.appendChild(document.createTextNode(data.name));
+                console.log(data.description);
+                console.log(data.name);
                 console.log("success");
             },
             error: function (error) {
@@ -166,15 +169,7 @@ $(document).ready(function(){
 });
 
 var username = getCookie('username');
-var content = getCookie('content');
-var title = getCookie('title');
-console.log("!!!!!!!");
-console.log(content);
-var userbtn = document.getElementById('userbtn');
-var titleEle = document.getElementById('titleEle');
-var editor = document.getElementById('mytextarea');
-editor.appendChild(document.createTextNode(content));
-titleEle.appendChild(document.createTextNode(title));
+
 if (username != "") {
     userbtn.appendChild(document.createTextNode('welcome '));
     userbtn.appendChild(document.createTextNode(username));
