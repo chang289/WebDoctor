@@ -147,41 +147,24 @@ function getCookie(c_name)
     return ""
 }
 $(document).ready(function(){
-    console.log("111111");
-    $("#searchbysym").click(function() {
-        window.location.replace('/DepartmentPage');
-    });
-
-    $("#nearby").click(function() {
-        window.location.replace('/MapPage');
-    });
-
-    $("#userbtn").click(function() {
-        if (username != "") {
-            window.location.replace('/UserPage');
-        } else {
-            window.location.replace('/LoginPage');
-        }
-    });
-});
-$(document).ready(function(){
-    console.log("111111");
-    $("#searchbysym").click(function() {
-        window.location.replace('/DepartmentPage');
-    });
-
-    $("#nearby").click(function() {
-        window.location.replace('/MapPage');
-    });
-
-    $("#userbtn").click(function() {
-        if (username != "") {
-            window.location.replace('/UserPage');
-        } else {
-            window.location.replace('/LoginPage');
-        }
+    var content;
+    $(function() {
+        $.ajax({
+            url: '/diseaseByName',
+            type: 'GET',
+            data : content,
+            success: function (data) {
+                console.log(data);
+                console.log(content);
+                console.log("success");
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        });
     });
 });
+
 var username = getCookie('username');
 var content = getCookie('content');
 var title = getCookie('title');
