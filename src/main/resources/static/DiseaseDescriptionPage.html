@@ -5,6 +5,8 @@
 
     <title >Diseases discription</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Amiko" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -151,6 +153,42 @@
     float: right;
     }
 
+    #articleList{
+        position:relative;
+        text-decoration: none;
+        font-family: "Amiko", sans-serif;
+        padding-left:0;
+        text-align: left;
+        cursor:pointer;
+        color:#777;
+
+    }
+    #articleList:hover{
+        color:black;
+        transition: color 1s;
+    }
+
+    #articleList:before{
+        content:"";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000;
+        visibility: hidden;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
+    }
+
+    #articleList:hover:before{
+        visibility: visible;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+
     #back-top {
         position: fixed;
         display:none;
@@ -191,26 +229,24 @@
 
 
 <div class="left" style="width: 180px">
-    <h1 style="font-size:20px; color:#777;">Related articles</h1>
-    <ul id="articleList" style="text-align: center;">
-
-    </ul>
+    <h1 style="font-size:30px; color:#777;font-family: 'Oswald', sans-serif;">Related articles</h1>
+    <ol id="articleList" ></ol>
     <button class="upperbtn" type="button" id="postbtn" onclick="jumpToPost()">
         <span class="glyphicon glyphicon-file"></span> Post
     </button>
 </div>
 
 <div>
-<h1 id="title" style="color:white"></h1>
+<h1 id="title" style="color:#777"></h1>
 
 <button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
     <span class="glyphicon glyphicon-pencil"></span> Edit
 </button>
 
 <p id="description" style="color:#777; margin-left:6.3cm"></p>
-    <h1 id="symptom" style="color:#777;margin-left:6.3cm"> Symptoms</h1>
-    <div style=" margin-left:6cm"><ul id="symptomList" style="color:#fefefe">
-    </ul>
+    <h1 id="symptom" style="color:#777;margin-left:6.3cm;"> Symptoms</h1>
+    <div style=" margin-left:6cm">
+        <ul id="symptomList" style="color:#777"></ul>
     </div>
 
 </div>
