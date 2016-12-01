@@ -17,10 +17,12 @@
 
     <div class="selected">
         <h1 style="color: #777;font-family: 'Oswald', sans-serif;">Selected</h1>
-        <ul id="selectedTags">
+        <ul id="selectedTags" style="float: left">
 
         </ul>
     </div>
+
+    <div id = "divider" ></div>
 
     <div class="grids">
         <h1 style="border-bottom: 4px solid #e3ae24;font-family: 'Amiko', sans-serif; color:#777">AVAILABLE DEPARTMENTS</h1>
@@ -41,8 +43,8 @@
         <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-                <span class="close">CLOSE</span>
-                <h1 style="border-bottom: 4px solid #e3ae24">AVAILABLE SYMPTOMS</h1>
+                <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 style="border-bottom: 4px solid #e3ae24; font-family: 'Amiko', sans-serif; color:#777">AVAILABLE SYMPTOMS</h1>
                 <ul id="symptomList" class="grids" style="margin-left: 5px">
 
                 </ul>
@@ -307,8 +309,8 @@ window.onload = function(){
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
-        border: 1px groove #cccccc;
-        border-radius: 5px;
+        border:none;
+        border-radius: 4px;
         cursor: pointer;
         width: 50%;
     }
@@ -319,12 +321,16 @@ window.onload = function(){
 
     }
     #usersection {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 240px;
-    height: 123px;
-    float: right;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 240px;
+        height: 123px;
+        float: right;
+    }
+    #userbtn{
+        padding: 5px 5px;
+        margin: 8px 0;
     }
 
     .upperbtn {
@@ -332,7 +338,6 @@ window.onload = function(){
         color: white;
         padding: 5px 5px;
         margin: 8px 0;
-        border: none;
         cursor: pointer;
     }
     /* The Modal (background) */
@@ -352,11 +357,10 @@ window.onload = function(){
 
     /*  Content */
     .modal-content {
-        background-color: #1aa8b9;
+        background-color: lightcyan;
         margin: auto;
         padding: 20px;
         padding-bottom: 10%;
-        border: 1px solid #888;
         width: 80%;
         height: auto;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -380,17 +384,23 @@ window.onload = function(){
 
     /* The Close Button */
     .close {
+        background-color: lightcyan;
+        padding:1px;
+        margin:0;
+        width: 2.5%;
         color: black;
         float: right;
-        font-size: 28px;
+        font-size: 18px;
         font-weight: bold;
     }
 
     .close:hover,
     .close:focus {
+        background-color: red;
         color: #000;
         text-decoration: none;
         cursor: pointer;
+        transition: background-color 0.5s;
     }
 
     body {
@@ -407,6 +417,10 @@ window.onload = function(){
         text-align: -webkit-match-parent;
     }
 
+    ul{
+        padding-left:0;
+    }
+
     header ul {
 
         font-weight: 200;
@@ -418,10 +432,17 @@ window.onload = function(){
         white-space: nowrap;
     }
 
+    #divider{
+        position: absolute;
+        top:20%;
+        bottom: 10%;
+        left: 11.5%;
+        border-left:4px solid silver;
+    }
 
     .grids ul {
-        font-family: "Open Sans";
-        font-weight: 20;
+        font-family:"Open Sans",serif;
+        font-weight: normal;
         font-size: 22px;
         list-style-type: none;
         display: inline-block;
@@ -432,22 +453,23 @@ window.onload = function(){
     }
 
     li button {
+        font-size: 15px;
         background-color: #4DB6AC;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
-        border: 1px groove #cccccc;
-        border-radius: 5px;
         cursor: pointer;
         width: 150px;
         height: 150px;
     }
 
     li button:hover{
-        color: #42a5f5;
         transition: text-shadow 1s,color 1s;
 
     }
+
+
+
 
     #selectedTags li {
         display: block;
@@ -462,8 +484,10 @@ window.onload = function(){
     }
 
     .selected {
+
         font-family:Arial,serif;
         position:absolute;
+        top:8%;
         width: 20%;
     }
 
