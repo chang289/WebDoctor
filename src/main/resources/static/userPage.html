@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Amiko" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </head>
 
 
@@ -142,10 +145,11 @@
     }
 
     .mid_titles{
-    color: #777;
-    font-size:30px;
-    font-weight: bold;
-    font-family:"Amiko",sans-serif;
+        color: #777;
+        font-size:30px;
+        font-weight: bold;
+        font-family:"Amiko",sans-serif;
+        height: 20%;
     }
 
     #footer{
@@ -314,6 +318,10 @@
     @media only screen and (max-width: 479px){
     div { width: 90%; }
     }
+
+
+
+
 </style>
 
 <body>
@@ -399,15 +407,19 @@
         font-size:30px;
         font-weight: bold;
         "></span>
-        <span class="mid_titles">
+        <div class="mid_titles">
             Article
-        </span>
+        </div>
+
+
+        <div class="btn-group" role="group" aria-label="..." >
+            <button type="button" class="btn btn-default">Posted</button>
+            <button type="button" class="btn btn-default">Favourite</button>
+        </div>
 
 
         <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
-        <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
-        <ol id="articles" style="color:#777; text-align: left; font-size:16px">
-        </ol>
+        <ol id="articles" style="color:#777; text-align: left; font-size:16px"></ol>
     </div>
 
     <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
