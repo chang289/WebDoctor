@@ -504,6 +504,7 @@ $(document).ready(function(){
                     var spanAuthor = document.createElement("span");
 
                     spanAuthor.value = $(this).attr('author');
+                    spanAuthor.id = 'spanAuthor';
                     spanAuthor.innerHTML = $(this).attr('author');
                     articleAuthor.appendChild(spanAuthor);
 
