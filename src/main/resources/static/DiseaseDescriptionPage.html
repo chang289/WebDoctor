@@ -59,6 +59,8 @@
     animation-duration: 0.6s
     }
 
+
+
     /* Add Animation */
     @-webkit-keyframes fadeIn {
     from {opacity: 0}
@@ -247,43 +249,48 @@
 </div>
 
 <div>
-<h1 id="title" style="color:#777"></h1>
+    <h1 id="title" style="color:#777"></h1>
 
-<button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
-    <span class="glyphicon glyphicon-pencil"></span> Edit
-</button>
+    <button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+    </button>
 
-<p id="description" style="color:#777; margin-left:6.3cm; padding-right: 15%"></p>
+    <p id="description" style="color:#777; margin-left:6.3cm; padding-right: 15%"></p>
     <h1 id="symptom" style="color:#777;margin-left:6.3cm;"> Symptoms</h1>
     <div style=" margin-left:6cm">
         <ul id="symptomList" style="color:#777;font-size: 20px;"></ul>
     </div>
-
 </div>
-    <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
-            <div class="modal-body">
-                <span id="closebtn" class="close">CLOSE</span>
-                <div class="clearfix"></div>
-                <div  class="modify-content" style="display: inline-block">
-                    <h2 id="titleH2" style="text-align: center;"></h2>
-                    <h5 id="authorH3" style="text-align: center;"></h5>
-                    <span id="author" style="text-align: center;"></span>
-                    <div id="textArea" style="text-align: left;"></div>
-                </div>
 
-                <div class="clearfix"></div>
+<div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
+        <div class="modal-body">
+            <span id="closebtn" class="close">CLOSE</span>
+            <div class="clearfix"></div>
+            <div  class="modify-content">
+                <h2 id="titleH2" style="text-align: center;"></h2>
+                <h5 id="authorH3" style="text-align: center;"></h5>
+                <div id="textArea" style="text-align: left;"></div>
             </div>
+
+            <div class="clearfix"></div>
         </div>
     </div>
+</div>
 
-<!--<div class="share">-->
+<div class="modal" id="my-modify-modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-content" style="width: 300px;height:auto;margin-left: 800px;margin-right: auto;margin-top: 150px;">
+        <div class="modal-body">
+            <span id="closebtn2" class="close">CLOSE</span>
+            <div class="clearfix"></div>
+            <div  class="modify-content">
 
-    <!--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-    <!--<a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>-->
+            </div>
 
-    <!--<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=large&mobile_iframe=true&width=64&height=28&appId" width="64" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>-->
-<!--</div>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
 
 <div class="footer">
     <a href="#top" id="back-top"><span class="glyphicon glyphicon-eject"></span></a>
@@ -415,7 +422,7 @@ $(document).ready(function(){
             console.log(disease);
             var obj2 = {};
             obj2.name = disease;
-           var sym = $.ajax({
+            var sym = $.ajax({
                     url: '/SymptomByDisease',
                     type: 'POST',
                     dataType: 'json',
@@ -430,19 +437,19 @@ $(document).ready(function(){
 
                 })
                 var sym = sym.done(function(result) {
-                console.log(sym.responseText);
-                var symptoms = JSON.parse(sym.responseText);
-                var length = symptoms.length;
-                var oSymptom = document.getElementById("symptomList");
-                for(var a = 0; a < symptoms.length;a++){
-                    oElentment = document.createElement("li");
-                    oElentment2 = document.createElement("br")
-                    oTextNode = document.createTextNode(symptoms[a].name);
-                    oElentment.appendChild(oTextNode);
-                    oSymptom.appendChild(oElentment);
+                    console.log(sym.responseText);
+                    var symptoms = JSON.parse(sym.responseText);
+                    var length = symptoms.length;
+                    var oSymptom = document.getElementById("symptomList");
+                    for(var a = 0; a < symptoms.length;a++){
+                        oElentment = document.createElement("li");
+                        oElentment2 = document.createElement("br")
+                        oTextNode = document.createTextNode(symptoms[a].name);
+                        oElentment.appendChild(oTextNode);
+                        oSymptom.appendChild(oElentment);
 
-                }
-            });
+                    }
+                });
             var articleList = $.ajax({
                 url: '/SendDisease',
                 type: 'POST',
@@ -481,7 +488,7 @@ $(document).ready(function(){
                     console.log("level3");
                 }
                 var modal = document.getElementById("my-modify-modal");
-
+                var modal2 = document.getElementById("my-modify-modal2");
                 $("#articleList").find("span").click(function() {
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
@@ -503,6 +510,46 @@ $(document).ready(function(){
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
                     modal.style.display = "block";
+
+                    $("#authorH3").find("span").click(function() {
+                        console.log("user clicked");
+                        var authorName = $(this).val();
+                        var obj = {};
+                        obj.username = authorName;
+                        modal2.style.display = "block";
+                        $.ajax({
+                            url: '/getArticleByAuthor',
+                            type: 'POST',
+                            dataType: 'json',
+                            data : JSON.stringify(obj),
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                console.log("success");
+                                callback(data);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        }).done(function(result) {
+                            console.log(result);
+                            var symptoms = JSON.parse(sym.responseText);
+                            var length = symptoms.length;
+                            var oSymptom = document.getElementById("symptomList");
+                            for(var a = 0; a < symptoms.length;a++){
+                                oElentment = document.createElement("li");
+                                oElentment2 = document.createElement("br")
+                                oTextNode = document.createTextNode(symptoms[a].name);
+                                oElentment.appendChild(oTextNode);
+                                oSymptom.appendChild(oElentment);
+
+                            }
+                        });
+                    });
+
+                    var closebtn2 = document.getElementById("closebtn2");
+                    closebtn2.onclick = function() {
+                       modal2.style.display = "none";
+                    }
                 });
                 var closebtn = document.getElementById("closebtn");
                 closebtn.onclick = function() {
