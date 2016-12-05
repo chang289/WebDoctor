@@ -265,9 +265,10 @@
             <div class="modal-body">
                 <span id="closebtn" class="close">CLOSE</span>
                 <div class="clearfix"></div>
-                <div  class="modify-content">
+                <div  class="modify-content" style="display: inline-block">
                     <h2 id="titleH2" style="text-align: center;"></h2>
                     <h5 id="authorH3" style="text-align: center;"></h5>
+                    <span id="author" style="text-align: center;"></span>
                     <div id="textArea" style="text-align: left;"></div>
                 </div>
 
@@ -490,9 +491,15 @@ $(document).ready(function(){
                     console.log(date);
                     articleTitle.innerHTML = $(this).attr('name');
 
-                    var minorTitle = date + " " + $(this).attr('author');
+                    var minorTitle = date + " ";
                     console.log("success3333");
                     articleAuthor.innerHTML = minorTitle;
+                    var spanAuthor = document.createElement("span");
+
+                    spanAuthor.value = $(this).attr('author');
+                    spanAuthor.innerHTML = $(this).attr('author');
+                    articleAuthor.appendChild(spanAuthor);
+
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
                     modal.style.display = "block";
