@@ -164,30 +164,39 @@
         color:#777;
 
     }
-    #articleList:hover{
-        color:black;
-        transition: color 1s;
+    ol span{
+    position:relative;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "Amiko", sans-serif;
+    cursor:pointer;
+
+
+    }
+    ol span:hover{
+    color:black;
+    transition: color 1s;
     }
 
-    #articleList:before{
-        content:"";
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: #000;
-        visibility: hidden;
-        -webkit-transform: scaleX(0);
-        transform: scaleX(0);
-        -webkit-transition: all 0.3s ease-in-out 0s;
-        transition: all 0.3s ease-in-out 0s;
+    ol span:before{
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
     }
 
-    #articleList:hover:before{
-        visibility: visible;
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1);
+    ol span:hover:before{
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
     }
 
     #back-top {
