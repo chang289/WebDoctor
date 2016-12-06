@@ -284,7 +284,7 @@
             <span id="closebtn2" class="close">CLOSE</span>
             <div class="clearfix"></div>
             <div  class="modify-content">
-
+                <ol id="favArticles" style="color:#777; text-align: left; font-size:16px"></ol>
             </div>
 
             <div class="clearfix"></div>
@@ -306,7 +306,8 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
+var modal = document.getElementById("my-modify-modal");
+var modal2 = document.getElementById("my-modify-modal2");
 function setCookie(c_name,value,expiredays)
 {
     var exdate=new Date()
@@ -393,6 +394,34 @@ $(document).ready(function(){
     var obj;
     var g;
     var res;
+
+    function generateArticle(element) {
+        console.log(element);
+        var selectedArticle = $('#' + element);;
+
+        var tagText = selectedArticle.attr('content');
+        var articleTitle = document.getElementById("titleH2");
+        var articleAuthor = document.getElementById("authorH3");
+        console.log("success22222");
+        var date = selectedArticle.attr('time');
+        console.log(date);
+        articleTitle.innerHTML = selectedArticle.attr('name');
+
+        var minorTitle = date + " ";
+        console.log("success3333");
+        articleAuthor.innerHTML = minorTitle;
+        var spanAuthor = document.createElement("span");
+
+        spanAuthor.value = selectedArticle.attr('author');
+        spanAuthor.id = 'spanAuthor';
+        spanAuthor.innerHTML = selectedArticle.attr('author');
+        articleAuthor.appendChild(spanAuthor);
+
+        var textArea = document.getElementById("textArea");
+        textArea.innerHTML = tagText;
+        modal.style.display = "block";
+    }
+
     $(function(callback) {
 
         res = $.ajax({
@@ -487,8 +516,7 @@ $(document).ready(function(){
                     articleList.appendChild(li);
                     console.log("level3");
                 }
-                var modal = document.getElementById("my-modify-modal");
-                var modal2 = document.getElementById("my-modify-modal2");
+
                 $("#articleList").find("span").click(function() {
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
@@ -533,23 +561,42 @@ $(document).ready(function(){
                             }
                         }).done(function(result) {
                             console.log(result);
-                            var symptoms = JSON.parse(sym.responseText);
-                            var length = symptoms.length;
-                            var oSymptom = document.getElementById("symptomList");
-                            for(var a = 0; a < symptoms.length;a++){
-                                oElentment = document.createElement("li");
-                                oElentment2 = document.createElement("br")
-                                oTextNode = document.createTextNode(symptoms[a].name);
-                                oElentment.appendChild(oTextNode);
-                                oSymptom.appendChild(oElentment);
+                            var length = result.length;
+                            for (var a=0; a<length;a++) {
+                                console.log(result);
+                                var articleList = document.getElementById("favArticles");
 
+                                var li = document.createElement("li");
+                                var span = document.createElement("span");
+                                span.setAttribute("id", result[a].title);
+                                span.id = result[a].title;
+                                span.value = result[a].content;
+                                span.setAttribute("name", result[a].title);
+                                span.setAttribute("author", result[a].authorName);
+                                span.setAttribute("time", result[a].timeStamp);
+                                span.setAttribute("content", result[a].content);
+
+                                span.name = result[a].title;
+                                span.appendChild(document.createTextNode(result[a].title));
+
+                                li.appendChild(span);
+                                li.style.margin = "5px";
+                                articleList.appendChild(li);
+                                console.log("level3");
                             }
+                            $("#favArticles").find("span").click(function() {
+                                generateArticle($(this).attr('id') );
+                            });
                         });
                     });
 
                     var closebtn2 = document.getElementById("closebtn2");
                     closebtn2.onclick = function() {
-                       modal2.style.display = "none";
+                        modal2.style.display = "none";
+                        var favArticles = document.getElementById('favArticles');
+                        while (favArticles.firstChild) {
+                            favArticles.removeChild(favArticles.firstChild);
+                        }
                     }
                 });
                 var closebtn = document.getElementById("closebtn");
