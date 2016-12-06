@@ -50,7 +50,7 @@ public class Search {
     }
 
     public String  searchByTags(Symptom[] symptoms){
-        String json = null;
+        String json;
         List<String> disease_occurrence = new ArrayList<String>();
         List<String> diseases_to_symptom;
 
@@ -72,16 +72,26 @@ public class Search {
         for(String str : disease_occurrence){
             diseases_map.put(str,1+(diseases_map.containsKey(str) ?     diseases_map.get(str) : 0));
         }
-        List<String>diseases = new ArrayList<String>(diseases_map.keySet());
-        Collections.sort(diseases,new Comparator<String>() {
-            @Override
-            public int compare(String a, String b){
-                return diseases_map.get(b) - diseases_map.get(a);
+        List<String>diseases = new ArrayList<String>();
+//        Collections.sort(diseases,new Comparator<String>() {
+//            @Override
+//            public int compare(String a, String b){
+//                return diseases_map.get(b) - diseases_map.get(a);
+//            }
+//        });
+        Iterator entries = diseases_map.entrySet().iterator();
+        while (entries.hasNext()) {
+            Map.Entry entry = (Map.Entry) entries.next();
+            String key = (String)entry.getKey();
+            Integer value = (Integer)entry.getValue();
+            double probability = (double)value / (double)symptoms.length;
+            System.out.println("probability: " + probability);
+            if (probability >= 0.5) {
+                diseases.add(key);
             }
-        });
-
+            System.out.println("Key = " + key + ", Value = " + value);
+        }
         json = gson.toJson(diseases);
-        System.out.println(json);
         return json;
 
     }

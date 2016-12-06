@@ -45,7 +45,6 @@ public class ArticleService {
         List<Article>article_list = create.select().from(ARTICLE)
         .where(ARTICLE.DISEASE.equal(disease.getName()))
                 .fetchInto(Article.class);
-        System.out.println(disease);
         Article [] article_array = new Article [article_list.size()];
         article_list.toArray(article_array);
         ArticleWithTime[] result = alterArticle(article_array);
