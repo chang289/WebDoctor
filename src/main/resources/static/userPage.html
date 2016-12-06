@@ -7,8 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Amiko" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
 
@@ -136,12 +137,13 @@
     /*background-color:rgba(3, 155, 229,0.5);*/
     margin-left:20px;
     margin-right:20px;
-    padding:20px 100px;
+    padding:20px 60px;
     text-align: center;
     height:100%;
     width: 32%;
     border: 1px solid rgba(0,0,0,0.08);
     float:left;
+
     }
 
     .mid_titles{
@@ -149,7 +151,7 @@
         font-size:30px;
         font-weight: bold;
         font-family:"Amiko",sans-serif;
-        height: 20%;
+
     }
 
     #footer{
@@ -319,7 +321,34 @@
     div { width: 90%; }
     }
 
+    select{
 
+
+
+        border:0;
+
+
+
+    }
+    #art_select {
+
+
+        margin-top: 2em;
+        margin-bottom: 2em;
+        text-align: center;
+    }
+
+    /*}*/
+    /*#art_select:after{*/
+        /*content: '';*/
+        /*position: absolute;*/
+        /*z-index: 2;*/
+
+
+        /*border: 4px dashed;*/
+        /*border-color: #888888 transparent;*/
+        /*pointer-events: none;*/
+    /*}*/
 
 
 </style>
@@ -407,15 +436,19 @@
         font-size:30px;
         font-weight: bold;
         "></span>
-        <div class="mid_titles">
+        <span class="mid_titles" >
             Article
+        </span>
+
+        <div id="art_select">
+            <select class="selectpicker">
+                <option>Posted</option>
+                <option>Favourite</option>
+            </select>
         </div>
 
 
-        <div class="btn-group" role="group" aria-label="..." >
-            <button type="button" class="btn btn-default">Posted</button>
-            <button type="button" class="btn btn-default">Favourite</button>
-        </div>
+
 
 
         <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
