@@ -320,35 +320,38 @@
     @media only screen and (max-width: 479px){
     div { width: 90%; }
     }
-
     select{
 
-
-
         border:0;
-
-
-
     }
     #art_select {
-
-
         margin-top: 2em;
         margin-bottom: 2em;
         text-align: center;
     }
+    .close {
+        background-color: lightcyan;
+        padding:1px;
+        margin:0;
+        width: 3.5%;
+        color: black;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-    /*}*/
-    /*#art_select:after{*/
-        /*content: '';*/
-        /*position: absolute;*/
-        /*z-index: 2;*/
-
-
-        /*border: 4px dashed;*/
-        /*border-color: #888888 transparent;*/
-        /*pointer-events: none;*/
-    /*}*/
+    .close:hover,
+    .close:focus {
+        background-color: red
+    ;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.5s;
+    }
+    .modal-body{
+        padding:0;
+    }
 
 
 </style>
@@ -458,8 +461,7 @@
     <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
             <div class="modal-body">
-                <span id="closebtn" class="close">CLOSE</span>
-                <div class="clearfix"></div>
+                <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>                <div class="clearfix"></div>
                 <div  class="modify-content">
                     <h2 id="titleH2" style="text-align: center;"></h2>
                     <h5 id="authorH3" style="text-align: center;"></h5>
@@ -474,8 +476,7 @@
     <div class="modal" id="my-modify-modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-content" style="width: 500px;height:200px;margin-left: auto;margin-right: auto;margin-top: 120px;">
             <div class="modal-body">
-                <span id="closebtn2" class="close">CLOSE</span>
-                <div class="clearfix"></div>
+                <button type="button" class="close" aria-label="Close" id = "closebtn2"><span aria-hidden="true">&times;</span></button>                <div class="clearfix"></div>
                 <div  class="modify-content">
                     <div class="container">
                         <div class="input-group" style="margin-bottom: 10px; width: 400px">
@@ -500,8 +501,7 @@
     <div class="modal" id="my-modify-modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-content" style="width: 500px;height:150px;margin-left: auto;margin-right: auto;margin-top: 120px;">
             <div class="modal-body">
-                <span id="closebtn3" class="close">CLOSE</span>
-                <div class="clearfix"></div>
+                <button type="button" class="close" aria-label="Close" id = "closebtn3"><span aria-hidden="true">&times;</span></button>                <div class="clearfix"></div>
                 <div  class="modify-content">
                     <div class="container">
                         <div class="input-group" style="margin-bottom: 10px; width: 400px">

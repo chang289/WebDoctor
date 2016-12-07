@@ -8,17 +8,24 @@
 </head>
 <style>
     .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+        background-color: lightcyan;
+        padding:1px;
+        margin:0;
+        width: 3%;
+        color: black;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
     }
 
     .close:hover,
     .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+        background-color: red
+    ;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.5s;
     }
 
     #allmap {
@@ -178,7 +185,7 @@
     <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="text-align: center;">
         <div class="modal-content" style="width: 700px;height:440px;margin-left: auto;margin-right: auto;margin-top: 120px;">
             <div class="modal-body">
-                <span class="close">CLOSE</span>
+                <button type="button" class="close" aria-label="Close" id = "closebtn"><span aria-hidden="true">&times;</span></button>
                 <div class="clearfix"></div>
                 <div  class="modify-content">
                     <div id="allmap"></div>
