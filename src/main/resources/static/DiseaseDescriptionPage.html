@@ -201,11 +201,17 @@
         color:red;
     }
 
-    #spanAthor:hover{
+    #authorH3 span{
+        position:relative;
+
+    }
+    #authorH3 span:hover{
         color:black;
         transition: color 1s;
+        cursor:pointer;
+
     }
-    #spanAthor:before{
+    #authorH3 span:before{
         content:"";
         position: absolute;
         width: 100%;
@@ -219,7 +225,7 @@
         -webkit-transition: all 0.3s ease-in-out 0s;
         transition: all 0.3s ease-in-out 0s;
     }
-    #spanAthor:hover:before{
+    #authorH3 span:hover:before{
         visibility: visible;
         -webkit-transform: scaleX(1);
         transform: scaleX(1);
