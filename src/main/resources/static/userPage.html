@@ -7,6 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Amiko" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+
+
 </head>
 
 
@@ -133,19 +137,21 @@
     /*background-color:rgba(3, 155, 229,0.5);*/
     margin-left:20px;
     margin-right:20px;
-    padding:20px 100px;
+    padding:20px 60px;
     text-align: center;
     height:100%;
     width: 32%;
     border: 1px solid rgba(0,0,0,0.08);
     float:left;
+
     }
 
     .mid_titles{
-    color: #777;
-    font-size:30px;
-    font-weight: bold;
-    font-family:"Amiko",sans-serif;
+        color: #777;
+        font-size:30px;
+        font-weight: bold;
+        font-family:"Amiko",sans-serif;
+
     }
 
     #footer{
@@ -314,6 +320,37 @@
     @media only screen and (max-width: 479px){
     div { width: 90%; }
     }
+
+    select{
+
+
+
+        border:0;
+
+
+
+    }
+    #art_select {
+
+
+        margin-top: 2em;
+        margin-bottom: 2em;
+        text-align: center;
+    }
+
+    /*}*/
+    /*#art_select:after{*/
+        /*content: '';*/
+        /*position: absolute;*/
+        /*z-index: 2;*/
+
+
+        /*border: 4px dashed;*/
+        /*border-color: #888888 transparent;*/
+        /*pointer-events: none;*/
+    /*}*/
+
+
 </style>
 
 <body>
@@ -399,15 +436,23 @@
         font-size:30px;
         font-weight: bold;
         "></span>
-        <span class="mid_titles">
+        <span class="mid_titles" >
             Article
         </span>
 
+        <div id="art_select">
+            <select class="selectpicker">
+                <option>Posted</option>
+                <option>Favourite</option>
+            </select>
+        </div>
+
+
+
+
 
         <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
-        <h2 id="Artical" style="color: #fefefe;margin-top: 1.5cm;font-size: large"></h2>
-        <ol id="articles" style="color:#777; text-align: left; font-size:16px">
-        </ol>
+        <ol id="articles" style="color:#777; text-align: left; font-size:16px"></ol>
     </div>
 
     <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
