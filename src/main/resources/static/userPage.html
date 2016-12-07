@@ -1029,6 +1029,11 @@
                 }
             }).done(function(result) {
                 console.log(result);
+                if (result == 1) {
+                    alert("Waiver successfully.");
+                } else if (result == 0) {
+                    alert("Something wrong.");
+                }
             });
         });
     }
