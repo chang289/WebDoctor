@@ -67,6 +67,7 @@ public class ArticleService {
         ArticleWithTime[] awt = new ArticleWithTime[article.length];
         for (int i = 0; i < article.length; i++) {
             awt[i] = new ArticleWithTime();
+            awt[i].setId(article[i].getId());
             awt[i].setTitle(article[i].getTitle());
             awt[i].setAuthorName(article[i].getAuthorName());
             awt[i].setTimeStamp(article[i].getTimeStamp().toString().substring(0, article[i].getTimeStamp().toString().length() - 5));
