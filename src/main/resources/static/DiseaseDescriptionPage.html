@@ -494,6 +494,30 @@ $(document).ready(function(){
                     console.log("level3");
                 }
                 $("#articleList").find("span").click(function() {
+                    var artObj = {};
+                    var userObj = {};
+                    userObj.username = username;
+                    var artId = $(this).attr('articleid');
+                    artObj.articleId = artId;
+                    $(function(callback) {
+                        $.ajax({
+                            url: '/ifFavourite',
+                            type: 'POST',
+                            dataType: 'json',
+                            data : JSON.stringify(artObj),
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                console.log("success");
+                                callback(data);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        }).done(function(result) {
+                            console.log(result);
+                        });
+                    });
+
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
