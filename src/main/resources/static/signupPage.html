@@ -9,6 +9,13 @@
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+    function setCookie(c_name,value,expiredays)
+    {
+        var exdate=new Date()
+        exdate.setDate(exdate.getDate()+expiredays)
+        document.cookie=c_name+ "=" +escape(value)+
+        ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+    }
 
     function checkPassword() {
         var password = document.getElementById('password').value;
@@ -25,6 +32,9 @@
         console.log("222222222");
         var password1 = document.getElementById('password').value;
         var username1 = document.getElementById('username').value;
+        setCookie('username',username1,365);
+        setCookie('status', 0, 365);
+
         var email1 = document.getElementById('email').value;
 
         var obj = {};
@@ -48,6 +58,14 @@
                 },
                 error : function (error) {
                     console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+                if (result == 0) {
+                    alert("Fail! The username has been registered!");
+                } else {
+                    alert("Success! Welcome to WebDoctor!");
+                    window.location.replace('/ModePage');
                 }
             });
         });

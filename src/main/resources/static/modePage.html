@@ -108,7 +108,7 @@
             <button id="nearby" type="button">See facilities nearby</button>
         </div>
 
-        <div class="container" style="background-color:lightcyan">
+        <div class="container" id="createNew" style="background-color:lightcyan">
             <a href="/CreateDescriptionPage">Create a new disease</a>
         </div>
     </form>
@@ -136,7 +136,13 @@ function getCookie(c_name)
 
 console.log("000000");
 var username = getCookie('username');
+var status = getCookie('status');
+console.log(status);
+if (status == 0) {
+    document.getElementById('createNew').style.display = 'none';
+}
 console.log(username);
+
 var userbtn = document.getElementById('userbtn');
 
 if (username != "") {
