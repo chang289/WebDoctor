@@ -864,7 +864,8 @@
                     console.log("success444");
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
-
+                    var mtgh =  document.getElementById("mtgh");
+                    mtgh.innerHTML = $(this).attr('articleid');
                     var date = $(this).attr('time');
                     console.log(date);
                     articleTitle.innerHTML = $(this).attr('name');

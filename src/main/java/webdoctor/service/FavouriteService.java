@@ -53,7 +53,7 @@ public class FavouriteService {
             return null;
         }
         else {
-            List<Article> articleList = create.select().from(ARTICLE)
+            List<Article> articleList = create.select(ARTICLE.ID, ARTICLE.AUTHOR_NAME, ARTICLE.TITLE, ARTICLE.TIME_STAMP, ARTICLE.CONTENT, ARTICLE.DISEASE).from(ARTICLE)
                     .join(USER_FAVOURITEARTICLE)
                     .on(USER_FAVOURITEARTICLE.ARTICLE_ID.equal(ARTICLE.ID))
                     .join(USER)
