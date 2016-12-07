@@ -387,28 +387,7 @@ $(document).ready(function(){
     var obj;
     var g;
     var res;
-    function generateArticle(element) {
-        console.log(element);
-        var selectedArticle = $('#' + element);;
-        var tagText = selectedArticle.attr('content');
-        var articleTitle = document.getElementById("titleH2");
-        var articleAuthor = document.getElementById("authorH3");
-        console.log("success22222");
-        var date = selectedArticle.attr('time');
-        console.log(date);
-        articleTitle.innerHTML = selectedArticle.attr('name');
-        var minorTitle = date + " ";
-        console.log("success3333");
-        articleAuthor.innerHTML = minorTitle;
-        var spanAuthor = document.createElement("span");
-        spanAuthor.value = selectedArticle.attr('author');
-        spanAuthor.id = 'spanAuthor';
-        spanAuthor.innerHTML = selectedArticle.attr('author');
-        articleAuthor.appendChild(spanAuthor);
-        var textArea = document.getElementById("textArea");
-        textArea.innerHTML = tagText;
-        modal.style.display = "block";
-    }
+
     $(function(callback) {
         res = $.ajax({
             url: '/Getdescription',
@@ -615,6 +594,79 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/ArticlePostPage');
     }
+
+    function generateArticle(element) {
+        console.log(element);
+        var selectedArticle = document.getElementById(element);
+        console.log(selectedArticle);
+        var tagText = selectedArticle.getAttribute("content");
+        var articleTitle = document.getElementById("titleH2");
+        var articleAuthor = document.getElementById("authorH3");
+        console.log("success22222");
+        var date = selectedArticle.getAttribute("time");
+        console.log(date);
+        articleTitle.innerHTML = selectedArticle.getAttribute("name");
+        var minorTitle = date + " ";
+        console.log("success3333");
+        articleAuthor.innerHTML = minorTitle;
+        var spanAuthor = document.createElement("span");
+        spanAuthor.value = selectedArticle.getAttribute("author");
+        spanAuthor.id = 'spanAuthor';
+        spanAuthor.innerHTML = selectedArticle.getAttribute("author");
+        articleAuthor.appendChild(spanAuthor);
+        var textArea = document.getElementById("textArea");
+        textArea.innerHTML = tagText;
+        modal.style.display = "block";
+        $(function(callback) {
+            $("#authorH3").find("span").click(function() {
+                console.log("user clicked");
+                var authorName = $(this).val();
+                var obj = {};
+                obj.username = authorName;
+                modal2.style.display = "block";
+                $.ajax({
+                    url: '/getArticleByAuthor',
+                    type: 'POST',
+                    dataType: 'json',
+                    data : JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        console.log("success");
+                        callback(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                }).done(function(result) {
+                    console.log(result);
+                    var length = result.length;
+                    for (var a=0; a<length;a++) {
+                        console.log(result);
+                        var articleList = document.getElementById("favArticles");
+                        var li = document.createElement("li");
+                        var span = document.createElement("span");
+                        span.setAttribute("id", result[a].title);
+                        span.id = result[a].title;
+                        span.value = result[a].content;
+                        span.setAttribute("name", result[a].title);
+                        span.setAttribute("author", result[a].authorName);
+                        span.setAttribute("time", result[a].timeStamp);
+                        span.setAttribute("content", result[a].content);
+                        span.name = result[a].title;
+                        span.appendChild(document.createTextNode(result[a].title));
+                        li.appendChild(span);
+                        li.style.margin = "5px";
+                        articleList.appendChild(li);
+                        console.log("level3");
+                    }
+                    $("#favArticles").find("span").click(function() {
+                        generateArticle($(this).attr('id') );
+                    });
+                });
+            });
+        });
+    }
+
 $(document).ready(function(){
     $("h1").delay("1000").fadeIn();
     // hide #back-top first
