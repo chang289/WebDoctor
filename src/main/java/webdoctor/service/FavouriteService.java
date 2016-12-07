@@ -78,7 +78,7 @@ public class FavouriteService {
                 return create.insertInto(USER_FAVOURITEARTICLE).values(tempUser.getId(), articleId).execute();
             }
             else {
-                return -1;
+                return deleteFavourite((ua));
             }
         }
     }
