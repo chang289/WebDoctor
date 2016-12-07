@@ -286,9 +286,14 @@
             <button type="button" class="close" aria-label="Close" id = "closebtn"><span aria-hidden="true">&times;</span></button>
             <div class="clearfix"></div>
             <div  class="modify-content">
+
                 <h2 id="titleH2" style="text-align: center;"></h2>
                 <h5 id="authorH3" style="text-align: center;"></h5>
                 <div id="textArea" style="text-align: left;"></div>
+                <p id="mtgh"></p>
+                <button class="upperbtn" type="button" id="favouriteBtn" onclick="favourite()">
+                    <span class="glyphicon glyphicon-star"></span> favourite
+                </button>
             </div>
 
             <div class="clearfix"></div>
@@ -478,6 +483,7 @@ $(document).ready(function(){
                     span.setAttribute("name", result[k].title);
                     span.setAttribute("author", result[k].authorName);
                     span.setAttribute("time", result[k].timeStamp);
+                    span.setAttribute("articleId", result[k].id);
                     span.name = result[k].title;
                     console.log(result[k].content);
                     //btn.appendChild(a);
@@ -491,6 +497,7 @@ $(document).ready(function(){
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
+                    var mtgh = document.getElementById("mtgh");
                     console.log("success22222");
                     var date = $(this).attr('time');
                     console.log(date);
@@ -505,6 +512,7 @@ $(document).ready(function(){
                     articleAuthor.appendChild(spanAuthor);
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
+                    mtgh.innerHTML = $(this).attr('articleid');
                     modal.style.display = "block";
                     $("#authorH3").find("span").click(function() {
                         console.log("user clicked");
@@ -678,6 +686,36 @@ $(document).ready(function(){
                         generateArticle($(this).attr('id') );
                     });
                 });
+            });
+        });
+    }
+
+    function favourite() {
+        var obj = {};
+        var user = {};
+        var username = document.getElementById('spanAuthor').innerHTML;
+        var articleId = document.getElementById('mtgh').innerHTML;
+        user.username = username;
+        obj.user = user;
+        obj.articleId = articleId;
+        console.log(obj);
+        $(function(callback) {
+            $.ajax({
+                url: '/addFavourite',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("success");
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+
             });
         });
     }

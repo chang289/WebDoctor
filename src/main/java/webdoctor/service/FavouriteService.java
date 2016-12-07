@@ -46,6 +46,7 @@ public class FavouriteService {
         }
     }
 
+
     public Article[] getFavourite(User user) {
         User tempUser = us.getUser(user);
         if (tempUser == null) {
