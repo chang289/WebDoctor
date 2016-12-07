@@ -391,6 +391,10 @@
 
         <table>
             <tr>
+                <td id="userName" style="text-align: center"></td>
+            </tr>
+
+            <tr>
                 <td id="userID"></td>
             </tr>
 
@@ -404,6 +408,11 @@
             </tr>
             <tr id="Aut" style="text-align: left"></tr>
         </table>
+        <div>
+            <button type="button" class="btn btn-default btn-lg" id = "revokeBtn" style="font-size: 14px; float: left; background-color: #4DB6AC; color:white" onclick="revoke()">
+                <span class="glyphicon glyphicon-remove"></span>Waiver privilege
+            </button>
+        </div>
     </div>
 
     <div id ="middleblock_mid">
@@ -444,7 +453,7 @@
         </span>
 
         <div id="art_select">
-            <select class="selectpicker">
+            <select class="selectpicker" >
                 <option>Posted</option>
                 <option>Favourite</option>
             </select>
@@ -456,6 +465,7 @@
 
         <!--<h1 style="color: #fefefe;margin-top: 1.5cm;font-size: large">Articles</h1>-->
         <ol id="articles" style="color:#777; text-align: left; font-size:16px"></ol>
+        <ol id="favArticles" style="color:#777; text-align: left; font-size:16px; display: none"></ol>
     </div>
 
     <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -466,6 +476,10 @@
                     <h2 id="titleH2" style="text-align: center;"></h2>
                     <h5 id="authorH3" style="text-align: center;"></h5>
                     <div id="textArea" style="text-align: left;"></div>
+                    <p id="mtgh" style="display: none"></p>
+                    <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
+                        <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
+                    </button>
                 </div>
 
                 <div class="clearfix"></div>
@@ -597,7 +611,7 @@
         var res = res.done(function(result) {
             console.log(res.responseText);
             var obj = JSON.parse(res.responseText);
-            //document.getElementById("id").innerHTML=obj.username
+            document.getElementById("userName").innerHTML=obj.username
             document.getElementById("userID").innerHTML = "ID: "+obj.id;
             document.getElementById("email").innerHTML = obj.email
             if(obj.authority == 0) {
@@ -700,6 +714,41 @@
                 var modal = document.getElementById("my-modify-modal");
 
                 $("#articles").find("span").click(function() {
+                    var artObj = {};
+                    var userObj = {};
+                    userObj.username = username;
+                    var artId = $(this).attr('articleid');
+                    artObj.articleId = artId;
+                    artObj.user = userObj;
+                    console.log(artObj);
+                    $(function(callback) {
+                        $.ajax({
+                            url: '/ifFavourite',
+                            type: 'POST',
+                            dataType: 'json',
+                            data : JSON.stringify(artObj),
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                console.log("success");
+                                callback(data);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        }).done(function(result) {
+                            console.log(result);
+                            if (result == 0) {
+                                var favSpan = document.getElementById("favouriteSpan");
+                                favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                            } else if (result == 1) {
+                                var favBtn = document.getElementById("favouriteBtn");
+                                //favBtn.style.backgroundColor = "red";
+                                var favSpan = document.getElementById("favouriteSpan");
+                                favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                            }
+                        });
+                    });
+
                     console.log("success3333");
                     var tagText = $(this).val();
                     console.log("success444");
@@ -710,9 +759,123 @@
                     console.log(date);
                     articleTitle.innerHTML = $(this).attr('name');
                     console.log("success555");
-                    var minorTitle = date + " " + $(this).attr('author');
+                    var minorTitle = date + " ";
 
                     articleAuthor.innerHTML = minorTitle;
+                    var spanAuthor = document.createElement("span");
+                    spanAuthor.value = $(this).attr('author');
+                    spanAuthor.id = 'spanAuthor';
+                    spanAuthor.innerHTML = $(this).attr('author');
+                    articleAuthor.appendChild(spanAuthor);
+                    var textArea = document.getElementById("textArea");
+                    textArea.innerHTML = tagText;
+                    modal.style.display = "block";
+                });
+                var closebtn = document.getElementById("closebtn");
+                closebtn.onclick = function() {
+                   modal.style.display = "none";
+                }
+            });
+        });
+
+         $(function(callback) {
+            user = {};
+            user.username = username;
+            console.log(user);
+            res = $.ajax({
+                url: '/getFavourite',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(user),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+            var res = res.done(function(result) {
+                console.log(result);
+                var length = result.length;
+                for (var a=0; a<length;a++) {
+                    console.log(result);
+
+                    var articleList = document.getElementById("favArticles");
+
+                    var li = document.createElement("li");
+                    var span = document.createElement("span");
+                    span.value = result[a].content;
+                    span.setAttribute("name", result[a].title);
+                    span.setAttribute("author", result[a].authorName);
+                    span.setAttribute("time", result[a].timeStamp);
+
+                    span.name = result[a].title;
+                    span.appendChild(document.createTextNode(result[a].title));
+
+                    li.appendChild(span);
+                    li.style.margin = "5px";
+                    articleList.appendChild(li);
+                    console.log("level3");
+                }
+                console.log("success9989");
+                var modal = document.getElementById("my-modify-modal");
+
+                $("#favArticles").find("span").click(function() {
+                    var artObj = {};
+                    var userObj = {};
+                    userObj.username = username;
+                    var artId = $(this).attr('articleid');
+                    artObj.articleId = artId;
+                    artObj.user = userObj;
+                    console.log(artObj);
+                    $(function(callback) {
+                        $.ajax({
+                            url: '/ifFavourite',
+                            type: 'POST',
+                            dataType: 'json',
+                            data : JSON.stringify(artObj),
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                console.log("success");
+                                callback(data);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        }).done(function(result) {
+                            console.log(result);
+                            if (result == 0) {
+                                var favSpan = document.getElementById("favouriteSpan");
+                                favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                            } else if (result == 1) {
+                                var favBtn = document.getElementById("favouriteBtn");
+                                //favBtn.style.backgroundColor = "red";
+                                var favSpan = document.getElementById("favouriteSpan");
+                                favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                            }
+                        });
+                    });
+
+                    console.log("success3333");
+                    var tagText = $(this).val();
+                    console.log("success444");
+                    var articleTitle = document.getElementById("titleH2");
+                    var articleAuthor = document.getElementById("authorH3");
+
+                    var date = $(this).attr('time');
+                    console.log(date);
+                    articleTitle.innerHTML = $(this).attr('name');
+                    console.log("success555");
+                    var minorTitle = date + " ";
+
+                    articleAuthor.innerHTML = minorTitle;
+
+                    var spanAuthor = document.createElement("span");
+                    spanAuthor.value = $(this).attr('author');
+                    spanAuthor.id = 'spanAuthor';
+                    spanAuthor.innerHTML = $(this).attr('author');
+                    articleAuthor.appendChild(spanAuthor);
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
                     modal.style.display = "block";
@@ -788,6 +951,86 @@
         alert("You have changed your email successfully")
         window.location.replace('/UserPage');
     }
-</script>
 
+    $(function() {
+      $('.selectpicker').on('change', function(){
+        var selected = $(this).find("option:selected").val();
+        if (selected == "Posted") {
+            var postedArticles = document.getElementById("articles");
+            postedArticles.style.display = "block";
+            var favArticles = document.getElementById("favArticles");
+            favArticles.style.display = "none";
+        } else if (selected == "Favourite") {
+            var postedArticles = document.getElementById("articles");
+            postedArticles.style.display = "none";
+            var favArticles = document.getElementById("favArticles");
+            favArticles.style.display = "block";
+        }
+      });
+    });
+
+    function favourite() {
+        var obj = {};
+        var user = {};
+        var username = document.getElementById('spanAuthor').innerHTML;
+        var articleId = document.getElementById('mtgh').innerHTML;
+        user.username = username;
+        obj.user = user;
+        obj.articleId = articleId;
+        console.log(obj);
+        $(function(callback) {
+            $.ajax({
+                url: '/addFavourite',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("success");
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+                var favSpan = document.getElementById("favouriteSpan");
+                var favBtn = document.getElementById("favouriteBtn");
+                if (result == 1) {
+                    favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                    //favBtn.style.backgroundColor = "red";
+                    alert("Your have added this article to your favourite list.");
+                } else if (result == -1) {
+                    favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                    alert("You have removed this article from your favourite list.");
+                    //favBtn.style.backgroundColor = "#4DB6AC";
+                }
+            });
+        });
+    }
+
+    function revoke() {
+        obj = {};
+        obj.username = document.getElementById("userName").innerHTML;
+        obj.authority = 0;
+        $(function(callback) {
+            $.ajax({
+                url: '/setAuthority',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("success");
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+            });
+        });
+    }
+</script>
 </html>
