@@ -36,4 +36,7 @@ public class FavouriteController {
     public @ResponseBody Article[] getFavourite(@RequestBody User user) {
         return fs.getFavourite(user);
     }
+
+    @RequestMapping(path = "ifFavourite", method = RequestMethod.POST)
+    public @ResponseBody int getFavourite(@RequestBody UserArticle ua) { return fs.checkExists(ua);}
 }
