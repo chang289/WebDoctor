@@ -92,12 +92,18 @@ public class FavouriteService {
         }
         else {
             if (checkExists(ua) == 0) {
-                return -1;
+                return -2;
             }
             else {
-                return create.delete(USER_FAVOURITEARTICLE).where(USER_FAVOURITEARTICLE.USER_ID.equal(tempUser.getId()))
+                int success = create.delete(USER_FAVOURITEARTICLE).where(USER_FAVOURITEARTICLE.USER_ID.equal(tempUser.getId()))
                         .and(USER_FAVOURITEARTICLE.ARTICLE_ID.equal(articleId))
                         .execute();
+                if (success > 0) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
             }
         }
     }
