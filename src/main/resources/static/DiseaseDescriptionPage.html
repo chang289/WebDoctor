@@ -15,22 +15,18 @@
     margin: 0;
     height: 100%;
     }
-
     .close {
     color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
     }
-
     .close:hover,
     .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
     }
-
-
     .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -42,11 +38,10 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
-
     /*  Content */
     .modal-content {
-        background-color: lightcyan;
-        color:#777;
+    background-color: lightcyan;
+    color:#777;
     margin: auto;
     padding: 20px;
     padding-bottom: 10%;
@@ -58,76 +53,66 @@
     animation-name: fadeIn;
     animation-duration: 0.6s
     }
-
     /* Add Animation */
     @-webkit-keyframes fadeIn {
     from {opacity: 0}
     to {opacity: 1}
     }
-
     @keyframes fadeIn {
     from {opacity: 0}
     to {opacity: 1}
     }
-
     .top {
-        left:0; right:0;
-        margin-top: 0;
-        margin-bottom: 20px;
-        color: darkgrey;
+    left:0; right:0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: darkgrey;
     }
     .left {
-        position: absolute;
-        float:left;
-        width: 100px;
-        margin-top: 40px;
-        color: white;
+    position: absolute;
+    float:left;
+    width: 100px;
+    margin-top: 40px;
+    color: white;
     }
     .main {
-        height:auto;
-        margin-top: 50px;
-        margin-left:300px;
-        font-size: 28px;
-        color: #fefefe;
+    height:auto;
+    margin-top: 50px;
+    margin-left:300px;
+    font-size: 28px;
+    color: #fefefe;
     }
     a {
-        color: white;
-        font-size: medium;
+    color: white;
+    font-size: medium;
     }
     .footer {
-        position:fixed;
-        bottom:0;
-        left:33cm;
+    position:fixed;
+    bottom:0;
+    left:33cm;
     }
-
     .upperbtn{
-        background-color: #4DB6AC;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: 1px groove #cccccc;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 50%;
+    background-color: #4DB6AC;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px groove #cccccc;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
     }
-
     .upperbtn:hover{
-
-        color: #CFD8DC;
-        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
-        transition: box-shadow 1s,text-shadow 1s,color 1s;
-
+    color: #CFD8DC;
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+    transition: box-shadow 1s,text-shadow 1s,color 1s;
     }
     .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
     }
-
     .container {
     padding: 16px;
     }
-
-
     .upperbtn {
     background-color: #4DB6AC;
     color: white;
@@ -136,33 +121,28 @@
     border: none;
     cursor: pointer;
     }
-
     #upperlevel {
     width: 100%;
     height: 50px;
     }
-
     #homesection {
     width: 240px;
     height: 123px;
     float: left;
     }
-
     #usersection {
     width: 240px;
     height: 123px;
     float: right;
     }
-
     #articleList{
-        position:relative;
-        text-decoration: none;
-        font-family: "Amiko", sans-serif;
-        padding-left:0;
-        text-align: left;
-        cursor:pointer;
-        color:#777;
-
+    position:relative;
+    text-decoration: none;
+    font-family: "Amiko", sans-serif;
+    padding-left:0;
+    text-align: left;
+    cursor:pointer;
+    color:#777;
     }
     ol span{
     position:relative;
@@ -170,14 +150,11 @@
     font-size: 20px;
     font-family: "Amiko", sans-serif;
     cursor:pointer;
-
-
     }
     ol span:hover{
     color:black;
     transition: color 1s;
     }
-
     ol span:before{
     content:"";
     position: absolute;
@@ -192,45 +169,42 @@
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
     }
-
     ol span:hover:before{
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
     }
-
     #back-top {
-        position: fixed;
-        display:none;
-        font-size: 50px;
-        color: rgba(0,0,0,0.5);
-        bottom: 5px;
-        right:30px;
-        width:auto;
+    position: fixed;
+    display:none;
+    font-size: 50px;
+    color: rgba(0,0,0,0.5);
+    bottom: 5px;
+    right:30px;
+    width:auto;
     }
     a#back-top:active {
-        background:none;
+    background:none;
     }
     a#back-top {
-        display: block; text-decoration: none;
+    display: block; text-decoration: none;
     }
     .topup {
-        bottom:5px;
+    bottom:5px;
     }
     #back-top i {
-        display: block;
+    display: block;
     }
-
 </style>
 
 <body style="background-color:lightcyan">
 <a name="top"></a>
 <div id="upperlevel">
-        <div class="uppersection" id="homesection">
-            <button class="upperbtn" type="button" id="homebtn" onclick="add()">
-                <span class="glyphicon glyphicon-home"></span> Home
-            </button>
-        </div>
+    <div class="uppersection" id="homesection">
+        <button class="upperbtn" type="button" id="homebtn" onclick="add()">
+            <span class="glyphicon glyphicon-home"></span> Home
+        </button>
+    </div>
 
     <div class="uppersection" id="usersection">
         <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
@@ -247,42 +221,48 @@
 </div>
 
 <div>
-<h1 id="title" style="color:#777"></h1>
+    <h1 id="title" style="color:#777"></h1>
 
-<button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
-    <span class="glyphicon glyphicon-pencil"></span> Edit
-</button>
+    <button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+    </button>
 
-<p id="description" style="color:#777; margin-left:6.3cm; padding-right: 15%"></p>
+    <p id="description" style="color:#777; margin-left:6.3cm; padding-right: 15%"></p>
     <h1 id="symptom" style="color:#777;margin-left:6.3cm;"> Symptoms</h1>
     <div style=" margin-left:6cm">
         <ul id="symptomList" style="color:#777;font-size: 20px;"></ul>
     </div>
-
 </div>
-    <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
-            <div class="modal-body">
-                <span id="closebtn" class="close">CLOSE</span>
-                <div class="clearfix"></div>
-                <div  class="modify-content">
-                    <h2 id="titleH2" style="text-align: center;"></h2>
-                    <h5 id="authorH3" style="text-align: center;"></h5>
-                    <div id="textArea" style="text-align: left;"></div>
-                </div>
 
-                <div class="clearfix"></div>
+<div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
+        <div class="modal-body">
+            <span id="closebtn" class="close">CLOSE</span>
+            <div class="clearfix"></div>
+            <div  class="modify-content">
+                <h2 id="titleH2" style="text-align: center;"></h2>
+                <h5 id="authorH3" style="text-align: center;"></h5>
+                <div id="textArea" style="text-align: left;"></div>
             </div>
+
+            <div class="clearfix"></div>
         </div>
     </div>
+</div>
 
-<!--<div class="share">-->
+<div class="modal" id="my-modify-modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-content" style="width: 300px;height:auto;margin-left: 800px;margin-right: auto;margin-top: 150px;">
+        <div class="modal-body">
+            <span id="closebtn2" class="close">CLOSE</span>
+            <div class="clearfix"></div>
+            <div  class="modify-content">
+                <ol id="favArticles" style="color:#777; text-align: left; font-size:16px"></ol>
+            </div>
 
-    <!--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-    <!--<a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>-->
-
-    <!--<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=large&mobile_iframe=true&width=64&height=28&appId" width="64" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>-->
-<!--</div>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
 
 <div class="footer">
     <a href="#top" id="back-top"><span class="glyphicon glyphicon-eject"></span></a>
@@ -298,7 +278,8 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
+var modal = document.getElementById("my-modify-modal");
+var modal2 = document.getElementById("my-modify-modal2");
 function setCookie(c_name,value,expiredays)
 {
     var exdate=new Date()
@@ -321,14 +302,12 @@ function getCookie(c_name)
     }
     return "";
 }
-
 var username = getCookie('username');
 var content = getCookie('content');
 var title = getCookie('title');
 console.log("!!!!!!!");
 console.log(content);
 var userbtn = document.getElementById('userbtn');
-
 if (username != "") {
     userbtn.appendChild(document.createTextNode('welcome '));
     userbtn.appendChild(document.createTextNode(username));
@@ -340,11 +319,9 @@ $(document).ready(function(){
     $("#searchbysym").click(function() {
         window.location.replace('/DepartmentPage');
     });
-
     $("#nearby").click(function() {
         window.location.replace('/MapPage');
     });
-
     $("#userbtn").click(function() {
         if (username != "") {
             window.location.replace('/UserPage');
@@ -353,8 +330,6 @@ $(document).ready(function(){
         }
     });
 });
-
-
     function setCookie(c_name,value,expiredays)
     {
         var exdate=new Date()
@@ -362,7 +337,6 @@ $(document).ready(function(){
         document.cookie=c_name+ "=" +escape(value)+
         ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
     }
-
     function getCookie(c_name)
     {
         if (document.cookie.length>0)
@@ -378,15 +352,34 @@ $(document).ready(function(){
         }
         return ""
     }
-
     var username = getCookie('username');
     var userAccess = getCookie('status');
-
     var obj;
     var g;
     var res;
+    function generateArticle(element) {
+        console.log(element);
+        var selectedArticle = $('#' + element);;
+        var tagText = selectedArticle.attr('content');
+        var articleTitle = document.getElementById("titleH2");
+        var articleAuthor = document.getElementById("authorH3");
+        console.log("success22222");
+        var date = selectedArticle.attr('time');
+        console.log(date);
+        articleTitle.innerHTML = selectedArticle.attr('name');
+        var minorTitle = date + " ";
+        console.log("success3333");
+        articleAuthor.innerHTML = minorTitle;
+        var spanAuthor = document.createElement("span");
+        spanAuthor.value = selectedArticle.attr('author');
+        spanAuthor.id = 'spanAuthor';
+        spanAuthor.innerHTML = selectedArticle.attr('author');
+        articleAuthor.appendChild(spanAuthor);
+        var textArea = document.getElementById("textArea");
+        textArea.innerHTML = tagText;
+        modal.style.display = "block";
+    }
     $(function(callback) {
-
         res = $.ajax({
             url: '/Getdescription',
             type: 'POST',
@@ -405,16 +398,14 @@ $(document).ready(function(){
             obj = JSON.parse(res.responseText);
             document.getElementById("title").innerHTML = obj.name;
             document.getElementById("description").innerHTML = obj.description;
-
             console.log("i set value");
-
             var disease = obj.name;
             Diseasename = obj.name;
             console.log("------");
             console.log(disease);
             var obj2 = {};
             obj2.name = disease;
-           var sym = $.ajax({
+            var sym = $.ajax({
                     url: '/SymptomByDisease',
                     type: 'POST',
                     dataType: 'json',
@@ -426,22 +417,20 @@ $(document).ready(function(){
                     error: function (error) {
                         console.log(error);
                     }
-
                 })
                 var sym = sym.done(function(result) {
-                console.log(sym.responseText);
-                var symptoms = JSON.parse(sym.responseText);
-                var length = symptoms.length;
-                var oSymptom = document.getElementById("symptomList");
-                for(var a = 0; a < symptoms.length;a++){
-                    oElentment = document.createElement("li");
-                    oElentment2 = document.createElement("br")
-                    oTextNode = document.createTextNode(symptoms[a].name);
-                    oElentment.appendChild(oTextNode);
-                    oSymptom.appendChild(oElentment);
-
-                }
-            });
+                    console.log(sym.responseText);
+                    var symptoms = JSON.parse(sym.responseText);
+                    var length = symptoms.length;
+                    var oSymptom = document.getElementById("symptomList");
+                    for(var a = 0; a < symptoms.length;a++){
+                        oElentment = document.createElement("li");
+                        oElentment2 = document.createElement("br")
+                        oTextNode = document.createTextNode(symptoms[a].name);
+                        oElentment.appendChild(oTextNode);
+                        oSymptom.appendChild(oElentment);
+                    }
+                });
             var articleList = $.ajax({
                 url: '/SendDisease',
                 type: 'POST',
@@ -458,29 +447,22 @@ $(document).ready(function(){
             }).done(function(result) {
                 for (var k in result) {
                     console.log(result);
-
                     var articleList = document.getElementById("articleList");
-
                     var li = document.createElement("li");
                     var span = document.createElement("span");
                     span.value = result[k].content;
                     span.setAttribute("name", result[k].title);
                     span.setAttribute("author", result[k].authorName);
-
                     span.setAttribute("time", result[k].timeStamp);
-
                     span.name = result[k].title;
                     console.log(result[k].content);
                     //btn.appendChild(a);
                     span.appendChild(document.createTextNode(result[k].title));
-
                     li.appendChild(span);
                     li.style.margin = "5px";
                     articleList.appendChild(li);
                     console.log("level3");
                 }
-                var modal = document.getElementById("my-modify-modal");
-
                 $("#articleList").find("span").click(function() {
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
@@ -489,13 +471,71 @@ $(document).ready(function(){
                     var date = $(this).attr('time');
                     console.log(date);
                     articleTitle.innerHTML = $(this).attr('name');
-
-                    var minorTitle = date + " " + $(this).attr('author');
+                    var minorTitle = date + " ";
                     console.log("success3333");
                     articleAuthor.innerHTML = minorTitle;
+                    var spanAuthor = document.createElement("span");
+                    spanAuthor.value = $(this).attr('author');
+                    spanAuthor.id = 'spanAuthor';
+                    spanAuthor.innerHTML = $(this).attr('author');
+                    articleAuthor.appendChild(spanAuthor);
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
                     modal.style.display = "block";
+                    $("#authorH3").find("span").click(function() {
+                        console.log("user clicked");
+                        var authorName = $(this).val();
+                        var obj = {};
+                        obj.username = authorName;
+                        modal2.style.display = "block";
+                        $.ajax({
+                            url: '/getArticleByAuthor',
+                            type: 'POST',
+                            dataType: 'json',
+                            data : JSON.stringify(obj),
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                console.log("success");
+                                callback(data);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        }).done(function(result) {
+                            console.log(result);
+                            var length = result.length;
+                            for (var a=0; a<length;a++) {
+                                console.log(result);
+                                var articleList = document.getElementById("favArticles");
+                                var li = document.createElement("li");
+                                var span = document.createElement("span");
+                                span.setAttribute("id", result[a].title);
+                                span.id = result[a].title;
+                                span.value = result[a].content;
+                                span.setAttribute("name", result[a].title);
+                                span.setAttribute("author", result[a].authorName);
+                                span.setAttribute("time", result[a].timeStamp);
+                                span.setAttribute("content", result[a].content);
+                                span.name = result[a].title;
+                                span.appendChild(document.createTextNode(result[a].title));
+                                li.appendChild(span);
+                                li.style.margin = "5px";
+                                articleList.appendChild(li);
+                                console.log("level3");
+                            }
+                            $("#favArticles").find("span").click(function() {
+                                generateArticle($(this).attr('id') );
+                            });
+                        });
+                    });
+                    var closebtn2 = document.getElementById("closebtn2");
+                    closebtn2.onclick = function() {
+                        modal2.style.display = "none";
+                        var favArticles = document.getElementById('favArticles');
+                        while (favArticles.firstChild) {
+                            favArticles.removeChild(favArticles.firstChild);
+                        }
+                    }
                 });
                 var closebtn = document.getElementById("closebtn");
                 closebtn.onclick = function() {
@@ -504,7 +544,6 @@ $(document).ready(function(){
             });
         });
     });
-
     function jumpToEdit() {
         if (userAccess != 2 && userAccess != 1) {
             alert("Access denied! You don't have enough authority ");
@@ -527,7 +566,6 @@ $(document).ready(function(){
                 }
             });
         });
-
         var title = document.getElementById("title").innerHTML;
         var content = document.getElementById("description").innerHTML;
         console.log(title);
@@ -536,7 +574,6 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/EditDescriptionPage');
     }
-
     function jumpToPost() {
         if (userAccess != 2 && userAccess != 1) {
             alert("Access denied! You don't have enough authority ");
@@ -548,17 +585,10 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/ArticlePostPage');
     }
-
 $(document).ready(function(){
-
-
     $("h1").delay("1000").fadeIn();
-
-
     // hide #back-top first
     $("#back-top").hide();
-
-
     // fade in #back-top
     $(function () {
         $(window).scroll(function () {
@@ -566,11 +596,8 @@ $(document).ready(function(){
                 $('#back-top').fadeIn();
             } else {
                 $('#back-top').fadeOut();
-
             }
         });
-
-
         // scroll body to 0px on click
         $('a#back-top').click(function () {
             $('body,html').animate({
@@ -579,9 +606,6 @@ $(document).ready(function(){
             return false;
         });
     });
-
-
 });
-
 </script>
 </html>
