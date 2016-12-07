@@ -290,9 +290,9 @@
                 <h2 id="titleH2" style="text-align: center;"></h2>
                 <h5 id="authorH3" style="text-align: center;"></h5>
                 <div id="textArea" style="text-align: left;"></div>
-                <p id="mtgh"></p>
-                <button class="upperbtn" type="button" id="favouriteBtn" onclick="favourite()">
-                    <span class="glyphicon glyphicon-star" id="favouriteSpan"></span> favourite
+                <p id="mtgh" style="display: none"></p>
+                <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
+                    <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
                 </button>
             </div>
 
@@ -520,6 +520,11 @@ $(document).ready(function(){
                             if (result == 0) {
                                 var favSpan = document.getElementById("favouriteSpan");
                                 favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                            } else if (result == 1) {
+                                var favBtn = document.getElementById("favouriteBtn");
+                                //favBtn.style.backgroundColor = "red";
+                                var favSpan = document.getElementById("favouriteSpan");
+                                favSpan.setAttribute("class", "glyphicon glyphicon-star");
                             }
                         });
                     });
@@ -746,12 +751,15 @@ $(document).ready(function(){
             }).done(function(result) {
                 console.log(result);
                 var favSpan = document.getElementById("favouriteSpan");
+                var favBtn = document.getElementById("favouriteBtn");
                 if (result == 1) {
                     favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                    //favBtn.style.backgroundColor = "red";
                     alert("Your have added this article to your favourite list.");
                 } else if (result == -1) {
                     favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
                     alert("You have removed this article from your favourite list.");
+                    //favBtn.style.backgroundColor = "#4DB6AC";
                 }
             });
         });
