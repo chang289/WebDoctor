@@ -27,6 +27,7 @@ public class UserService {
     private final DSLContext create;
 
     private String email = "zhouyiyan1995@gmail.com";
+    private String email2 = "changketao233@gmail.com";
 
     @Autowired
     ArticleService as;
@@ -142,7 +143,7 @@ public class UserService {
 
     public int sendFeedback(FeedBack fb) {
         String content = "username: " + fb.getUsername() + "\n" + fb.getContent();
-        Message m = es.sendEmail(email, email, fb.getSubject(), content);
+        Message m = es.sendEmail(email2, email, fb.getSubject(), content);
         if (m == null) {
             return 0;
         }
