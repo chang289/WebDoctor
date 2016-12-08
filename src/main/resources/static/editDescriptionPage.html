@@ -323,93 +323,99 @@ padding: auto;
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+var username = getCookie('username');
+var status = getCookie('status');
+if (status < 1) {
+    alert("Sorry, you don't have access to this page. You will be redirected to the mode page.");
+    window.location.replace('/ModePage');
+}
 
-    function makeTagList(callback) {
-        $.ajax({
-            url : '/CreateDescription',
-            type : 'GET',
-            data : {
-                format: 'json'
-            },
-            dataType : 'json',
-            success : function(data) {
-                console.log("success!");
+function makeTagList(callback) {
+    $.ajax({
+        url : '/CreateDescription',
+        type : 'GET',
+        data : {
+            format: 'json'
+        },
+        dataType : 'json',
+        success : function(data) {
+            console.log("success!");
+            console.log(data);
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    }).done(function(result) {
+        console.log("inside done");
+        console.log(result);
+
+        var objDis = {};
+        objDis.name = document.getElementById('titleEle').innerHTML;
+        console.log(objDis)
+
+        $(function(callback) {
+            $.ajax({
+                url: '/getSymptom',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(objDis),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    callback(data);
+                    console.log("success");
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+            }).done(function(data) {
                 console.log(data);
-            },
-            error : function (error) {
-                console.log(error);
-            }
-        }).done(function(result) {
-            console.log("inside done");
-            console.log(result);
 
-            var objDis = {};
-            objDis.name = document.getElementById('titleEle').innerHTML;
-            console.log(objDis)
+                for (var k in result) {
 
-            $(function(callback) {
-                $.ajax({
-                    url: '/getSymptom',
-                    type: 'POST',
-                    dataType: 'json',
-                    data : JSON.stringify(objDis),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        callback(data);
-                        console.log("success");
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    },
-                }).done(function(data) {
-                    console.log(data);
+                    var departmentText = (result[k].department);
+                    var symArray = (result[k].symptomList);
+                    var targetArea = document.getElementById('checkBoxes');
 
-                    for (var k in result) {
+                    var titleDiv = document.createElement("div");
+                    titleDiv.className = "tagTitle";
 
-                        var departmentText = (result[k].department);
-                        var symArray = (result[k].symptomList);
-                        var targetArea = document.getElementById('checkBoxes');
+                    var head = document.createElement("h4");
+                    head.className = "tagHead";
+                    head.appendChild(document.createTextNode(departmentText));
 
-                        var titleDiv = document.createElement("div");
-                        titleDiv.className = "tagTitle";
+                    titleDiv.appendChild(head);
+                    targetArea.appendChild(titleDiv);
+                    //targetArea.style.borderStyle = "solid";
+                    for (var j in symArray) {
 
-                        var head = document.createElement("h4");
-                        head.className = "tagHead";
-                        head.appendChild(document.createTextNode(departmentText));
+                        var tagDiv = document.createElement("div");
+                        tagDiv.className = "tagbox";
 
-                        titleDiv.appendChild(head);
-                        targetArea.appendChild(titleDiv);
-                        //targetArea.style.borderStyle = "solid";
-                        for (var j in symArray) {
+                        var checkbox = document.createElement('input');
+                        checkbox.type = "checkbox";
+                        checkbox.name = "checkbox";
+                        checkbox.id = symArray[j];
+                        checkbox.value = symArray[j];
+                        var label = document.createElement('label');
+                        label.htmlFor = symArray[j];
+                        label.appendChild(document.createTextNode(symArray[j]));
 
-                            var tagDiv = document.createElement("div");
-                            tagDiv.className = "tagbox";
-
-                            var checkbox = document.createElement('input');
-                            checkbox.type = "checkbox";
-                            checkbox.name = "checkbox";
-                            checkbox.id = symArray[j];
-                            checkbox.value = symArray[j];
-                            var label = document.createElement('label');
-                            label.htmlFor = symArray[j];
-                            label.appendChild(document.createTextNode(symArray[j]));
-
-                            for (var z in data) {
-                                if (data[z].name == symArray[j]) {
-                                    checkbox.checked = true;
-                                }
+                        for (var z in data) {
+                            if (data[z].name == symArray[j]) {
+                                checkbox.checked = true;
                             }
-
-                            tagDiv.appendChild(checkbox);
-                            tagDiv.appendChild(label);
-
-                            targetArea.appendChild(tagDiv);
                         }
+
+                        tagDiv.appendChild(checkbox);
+                        tagDiv.appendChild(label);
+
+                        targetArea.appendChild(tagDiv);
                     }
-                });
+                }
             });
         });
-    }
+    });
+}
 
     window.onload = makeTagList;
 
@@ -493,8 +499,6 @@ $(document).ready(function(){
         });
     });
 });
-
-var username = getCookie('username');
 
 if (username != "") {
     userbtn.appendChild(document.createTextNode('welcome '));

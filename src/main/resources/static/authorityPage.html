@@ -7,6 +7,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
+var username = getCookie('username');
+var status = getCookie('status');
+if (status < 2) {
+    alert("Sorry, you don't have access to this page. You will be redirected to the mode page.");
+    window.location.replace('/ModePage');
+}
+
 $(document).ready(function(){
     $("#authbtn").click(function() {
         console.log("222222222");

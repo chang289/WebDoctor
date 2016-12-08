@@ -336,14 +336,20 @@
 <script>
 
      function add2(){
-
         window.location.replace('/ModePage');
-    }
+     }
 
 
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+var username = getCookie('username');
+var status = getCookie('status');
+if (status < 1) {
+    alert("Sorry, you don't have access to this page. You will be redirected to the mode page.");
+    window.location.replace('/ModePage');
+}
 
 function makeTagList(callback) {
     $.ajax({
