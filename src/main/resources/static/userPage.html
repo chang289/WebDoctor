@@ -582,6 +582,12 @@
     }
     console.log("000000");
     var username = getCookie('username');
+    var status = getCookie('status');
+
+    if(status < 1) {
+        document.getElementById('revokeBtn').style.display = 'none';
+    }
+
     console.log(username);
 //    var userbtn = document.getElementById('userbtn');
 //    if (username != "") {
@@ -1017,7 +1023,7 @@
     function favourite() {
         var obj = {};
         var user = {};
-        var username = document.getElementById('spanAuthor').innerHTML;
+        //var username = document.getElementById('spanAuthor').innerHTML;
         var articleId = document.getElementById('mtgh').innerHTML;
         user.username = username;
         obj.user = user;
