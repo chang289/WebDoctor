@@ -308,12 +308,7 @@
                 <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
                     <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
                 </button>
-                <button class="upperbtn" type="button"  onclick="deleteArticle()" style="
-                    width: 100px;
-                    background-color:#EF5350;
-                    float:right;">
-                    <span class="glyphicon glyphicon-trash"></span> delete
-                </button>
+                
             </div>
 
             <div class="clearfix"></div>
@@ -688,13 +683,34 @@ $(document).ready(function(){
             alert("Access denied! You don't have enough authority ");
             return;
         }
+        obj = {};
+        var diseaseName = document.getElementById('title').innerHTML;
+        console.log(diseaseName);
+        obj.name = diseaseName;
+        $.ajax({
+            url: '/deleteDisease',
+            type: 'POST',
+            dataType: 'json',
+            data : JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log("success");
+                callback(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        }).done(function(result) {
+            console.log(result);
+        });
     }
-function deleteArticle() {
-    if (userAccess != 2 && userAccess != 1) {
-        alert("Access denied! You don't have enough authority ");
-        return;
+
+    function deleteArticle() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
     }
-}
 
     function generateArticle(element) {
         console.log(element);

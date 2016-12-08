@@ -480,6 +480,13 @@
                     <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
                         <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
                     </button>
+
+                    <button class="upperbtn" type="button" id="deleteBtn"  onclick="deleteArticle()" style="
+                    width: 100px;
+                    background-color:#EF5350;
+                    float:right;">
+                        <span class="glyphicon glyphicon-trash"></span> delete
+                    </button>
                 </div>
 
                 <div class="clearfix"></div>
@@ -959,11 +966,15 @@
       $('.selectpicker').on('change', function(){
         var selected = $(this).find("option:selected").val();
         if (selected == "Posted") {
+            var delBtn = document.getElementById('deleteBtn');
+            delBtn.style.display = 'block';
             var postedArticles = document.getElementById("articles");
             postedArticles.style.display = "block";
             var favArticles = document.getElementById("favArticles");
             favArticles.style.display = "none";
         } else if (selected == "Favourite") {
+            var delBtn = document.getElementById('deleteBtn');
+            delBtn.style.display = 'none';
             var postedArticles = document.getElementById("articles");
             postedArticles.style.display = "none";
             var favArticles = document.getElementById("favArticles");
@@ -971,6 +982,31 @@
         }
       });
     });
+
+    function deleteArticle() {
+        var obj = {};
+        var id = document.getElementById('mtgh').innerHTML;
+        obj.id = id;
+
+        $(function(callback) {
+            res = $.ajax({
+                url: '/deleteArticle',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log('success');
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+            });
+        });
+    }
 
     function favourite() {
         var obj = {};
