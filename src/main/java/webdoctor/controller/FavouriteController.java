@@ -12,6 +12,9 @@ import webdoctor.jooq.tables.pojos.User;
 import webdoctor.service.FavouriteService;
 import webdoctor.service.UserService;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * Created by IAN on 2016/11/27.
  */
@@ -34,7 +37,9 @@ public class FavouriteController {
 
     @RequestMapping(path = "getFavourite", method = RequestMethod.POST)
     public @ResponseBody Article[] getFavourite(@RequestBody User user) {
-        return fs.getFavourite(user);
+        Article[] article = fs.getFavourite(user);
+        System.out.println(Arrays.toString(article));
+        return article;
     }
 
     @RequestMapping(path = "ifFavourite", method = RequestMethod.POST)

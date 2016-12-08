@@ -98,7 +98,7 @@
     .footer {
     position:fixed;
     bottom:0;
-    left:33cm;
+    right:0;
     }
     .upperbtn{
     background-color: #4DB6AC;
@@ -188,8 +188,8 @@
     display:none;
     font-size: 50px;
     color: rgba(0,0,0,0.5);
-    bottom: 5px;
-    right:30px;
+    bottom: 12%;
+    right:10%;
     width:auto;
     }
     a#back-top:active {
@@ -242,8 +242,9 @@
 
 
 
-    #share-buttons img {
-        width: 35px;
+    .share-buttons {
+
+        width: 20px;
         padding: 5px;
         border: 0;
         box-shadow: 0;
@@ -282,6 +283,9 @@
     <button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
         <span class="glyphicon glyphicon-pencil"></span> Edit
     </button>
+    <button class="upperbtn" type="button" onclick="deleteDisease()" style="width: 100px; background-color:#EF5350">
+        <span class="glyphicon glyphicon-trash"></span> delete
+    </button>
 
     <p id="description" style="color:#777; margin-left:6.3cm; padding-right: 15%"></p>
     <h1 id="symptom" style="color:#777;margin-left:6.3cm;"> Symptoms</h1>
@@ -303,6 +307,12 @@
                 <p id="mtgh" style="display: none"></p>
                 <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
                     <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
+                </button>
+                <button class="upperbtn" type="button"  onclick="deleteArticle()" style="
+                    width: 100px;
+                    background-color:#EF5350;
+                    float:right;">
+                    <span class="glyphicon glyphicon-trash"></span> delete
                 </button>
             </div>
 
@@ -329,9 +339,13 @@
     <a href="#top" id="back-top"><span class="glyphicon glyphicon-eject"></span></a>
 
     <a href="https://twitter.com/share?url&amp;text=from%20@WebDoctor%20welcome%20to%20WebDoctor!%20localhost:8080
-    &amp;" target="_blank">
+    &amp;" target="_blank" class = "share-button">
         <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
     </a>
+
+    <!--<a href="https://plus.google.com/share?url" target="_blank" class = "share-button">-->
+        <!--<img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />-->
+    <!--</a>-->
 
 </div>
 </body>
@@ -669,6 +683,18 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/ArticlePostPage');
     }
+    function deleteDisease() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
+    }
+function deleteArticle() {
+    if (userAccess != 2 && userAccess != 1) {
+        alert("Access denied! You don't have enough authority ");
+        return;
+    }
+}
 
     function generateArticle(element) {
         console.log(element);
