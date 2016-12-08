@@ -62,10 +62,6 @@ public class SearchTest {
     public static void main ( String[] args){
         SearchTest test = new SearchTest();
 
-//        test.diseaseSearchTest("ra");
-//        System.out.println();
-//        test.departmentSearchTest("Dermatology");
-//        System.out.println();
 
         Symptom acitretin = new Symptom();
         Symptom cadasil = new Symptom();
