@@ -4,6 +4,7 @@ import org.jooq.DSLContext;
 import org.jooq.types.UInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webdoctor.helperClass.ArticleWithTime;
 import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
@@ -29,6 +30,8 @@ public class FavouriteService {
     }
 
     @Autowired
+    ArticleService as;
+    @Autowired
     UserService us;
 
     public int checkExists(UserArticle ua) {
@@ -47,7 +50,7 @@ public class FavouriteService {
     }
 
 
-    public Article[] getFavourite(User user) {
+    public ArticleWithTime[] getFavourite(User user) {
         User tempUser = us.getUser(user);
         if (tempUser == null) {
             return null;
@@ -62,7 +65,7 @@ public class FavouriteService {
                     .fetchInto(Article.class);
             Article[] articleArray = new Article[articleList.size()];
             articleList.toArray(articleArray);
-            return articleArray;
+            return as.alterArticle(articleArray);
         }
     }
 
