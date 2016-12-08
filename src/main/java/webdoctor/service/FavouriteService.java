@@ -10,6 +10,7 @@ import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
 import webdoctor.jooq.tables.pojos.UserFavouritearticle;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static webdoctor.jooq.Tables.ARTICLE;

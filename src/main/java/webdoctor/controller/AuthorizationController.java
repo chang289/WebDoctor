@@ -56,8 +56,6 @@ public class AuthorizationController {
         }
         String bodytext = "Thanks for using Webdoctor!" +
                 "We invite you to be our certified user. Click on the following URL to submit: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "/" + user.getAuthority();
-        System.out.println("authority: " + user.getAuthority());
-        System.out.println(bodytext);
         Message message = es.sendEmail(data.getEmail(), from, subject, bodytext);
         if (data == null || message == null) {
             return 0;
