@@ -45,8 +45,17 @@ public class AuthorizationController {
     @RequestMapping(path = "/Certification", method = RequestMethod.POST)
     public @ResponseBody int setAuthority(@RequestBody User user) {
         User data = us.getUser(user);
-        String bodytext = "Thanks for signing up for a Webdoctor account," +
-                "click the link below to complete registration: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "/" + user.getAuthority();
+        if (Integer.parseInt(data.getAuthority()) >= Integer.parseInt(user.getAuthority())) {
+            if (data == null) {
+                return 0;
+            }
+            else {
+                setAuthority(user.getUsername(), user.getAuthority());
+                return 2;
+            }
+        }
+        String bodytext = "Thanks for using Webdoctor!" +
+                "We invite you to be our certified user. Click on the following URL to submit: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "/" + user.getAuthority();
         System.out.println("authority: " + user.getAuthority());
         System.out.println(bodytext);
         Message message = es.sendEmail(data.getEmail(), from, subject, bodytext);
