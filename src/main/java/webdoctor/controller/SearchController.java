@@ -20,6 +20,7 @@ public class SearchController {
     Search search;
     String name;
 
+
     @RequestMapping(path="/diseaseByName", method = RequestMethod.GET)
     public @ResponseBody Disease diseaseByName() {
         return search.diseaseByName(name);
@@ -91,6 +92,12 @@ public class SearchController {
     public String diseaseDescriptionPage() {
         return "DiseaseDescriptionPage.html";
     }
+
+//    @RequestMapping(path = "/getDisease/{diseaseName}", method = RequestMethod.GET)
+//    public @ResponseBody String getDiseaseREST(@PathVariable String diseaseName) {
+//        System.out.println(diseaseName);
+//        return "DiseaseDescriptionPage.html";
+//    }
 
     @RequestMapping(path="/getDisease", method=RequestMethod.POST)
     public @ResponseBody String getDisease(@RequestBody String diseaseName) {

@@ -48,9 +48,16 @@ public class ArticleController {
         return articleService.getRelatedArticle(search.diseaseByName(disease.getName()));
     }
 
-    @RequestMapping(path = "/ArticleImage", method = RequestMethod.POST)
-    public @ResponseBody int articleImage() {
-        System.out.println("gotit");
-        return 1;
+
+    @RequestMapping(path = "/deleteArticle", method = RequestMethod.POST)
+    public @ResponseBody int deleteArticle(@RequestBody Article article) {
+        int i = articleService.deleteFavourite(article);
+        int j = articleService.deleteArticle(article);
+        if (i > 0 && j > 0) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
     }
 }
