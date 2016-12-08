@@ -68,11 +68,13 @@ public class AuthorizationController {
     }
 
     @RequestMapping(path = "/Certification/{username}/{authority}", method = RequestMethod.GET)
-    public void setAuthority(@PathVariable String username, @PathVariable String authority) {
+    public @ResponseBody String setAuthority(@PathVariable String username, @PathVariable String authority) {
+        System.out.println("authority: "+ authority );
         User user = new User();
         user.setUsername(username);
         user.setAuthority(authority);
         System.out.println("user: " + user);
         A.authorize(user);
+        return "You have been successfully authorized";
     }
 }
