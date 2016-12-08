@@ -13,6 +13,7 @@ import org.jooq.impl.DSL;
 import org.jooq.util.derby.sys.Sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.Disease;
 import static webdoctor.jooq.Tables.*;
 import webdoctor.helperClass.*;
@@ -27,6 +28,9 @@ public class DescriptionService {
     private final DSLContext create;
 
     Gson gson = new Gson();
+
+    @Autowired
+    ArticleService as;
 
     @Autowired
     public DescriptionService(DSLContext dslContext) {
@@ -209,6 +213,18 @@ public class DescriptionService {
         }
     }
 
+    public int deleteDisease(Disease disease) {
+        List<Article> articles = create.select().from(ARTICLE)
+                .where(ARTICLE.DISEASE.equal(disease.getName()))
+                .fetchInto(Article.class);
+        for (int i = 0; i < articles.size(); i++) {
+            as.deleteFavourite(articles.get(i));
+            as.deleteArticle(articles.get(i));
+        }
+        deleteDiseaseSymptom(disease);
+        return deleteDescription(disease);
+    }
+
     public int deleteDescription(Disease disease) {
         if (checkDisease(disease) == 0) {
             return 0;
@@ -223,12 +239,12 @@ public class DescriptionService {
 
     public int deleteDiseaseSymptom(Disease disease) {
         Disease temp = getDisease(disease);
-        if (getDisease(disease) == null) {
+        if (temp == null) {
             return 0;
         }
         else {
             return create.deleteFrom(DISEASE_SYMPTOM)
-                    .where(DISEASE_SYMPTOM.DISEASE_ID.equal(getDisease(disease).getId()))
+                    .where(DISEASE_SYMPTOM.DISEASE_ID.equal(temp.getId()))
                     .execute();
         }
     }

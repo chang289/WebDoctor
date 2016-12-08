@@ -58,8 +58,8 @@ public class DescriptionController {
         return DS.descriptionEdit(disease);
     }
 
-    @RequestMapping(path = "/DeleteDescription", method = RequestMethod.POST)
+    @RequestMapping(path = "/deleteDisease", method = RequestMethod.POST)
     public @ResponseBody int deleteDescription(@RequestBody Disease disease) {
-        return DS.deleteDescription(disease);
+        return DS.deleteDisease(disease);
     }
 }
