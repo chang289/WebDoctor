@@ -45,7 +45,7 @@ public class DescriptionController {
 //        System.out.println(D.getDescription());
 //        System.out.println(D.getDepartment());
 
-        return DS.descriptionCreate(D);
+        return DS.descriptionCreate(D, -1, null);
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.GET)
@@ -64,9 +64,8 @@ public class DescriptionController {
 
         DS.deleteDiseaseSymptom(disease);
         DS.deleteDescription(disease);
-        DS.descriptionCreate(ds);
-        Disease newD = DS.getDisease(disease);
-        return DS.changeId(newD, temp.getId());
+        return DS.descriptionCreate(ds, temp.getId(), temp.getDepartment());
+
     }
 
     @RequestMapping(path = "/deleteDisease", method = RequestMethod.POST)

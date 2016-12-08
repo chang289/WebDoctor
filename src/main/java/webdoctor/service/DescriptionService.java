@@ -107,7 +107,7 @@ public class DescriptionService {
         }
     }
 
-    public int descriptionCreate(Disease_Symptoms D) {
+    public int descriptionCreate(Disease_Symptoms D, int oldID, String oldDepartment) {
 
         String disease_name = D.getName();
         String disease_description = D.getDescription();
@@ -148,11 +148,16 @@ public class DescriptionService {
             return 0;
             //existed
         }else{
-
-            create.insertInto(DISEASE,DISEASE.NAME,DISEASE.DESCRIPTION,DISEASE.DEPARTMENT)
-                    .values(disease.getName(),disease.getDescription(),disease.getDepartment())
-                    .execute();
-
+            if (oldID == -1) {
+                create.insertInto(DISEASE, DISEASE.NAME, DISEASE.DESCRIPTION, DISEASE.DEPARTMENT)
+                        .values(disease.getName(), disease.getDescription(), disease.getDepartment())
+                        .execute();
+            }
+            else {
+                create.insertInto(DISEASE, DISEASE.ID, DISEASE.NAME, DISEASE.DESCRIPTION, DISEASE.DEPARTMENT)
+                        .values(oldID, disease.getName(), disease.getDescription(), oldDepartment)
+                        .execute();
+            }
             int D_ID = create.select()
                     .from(DISEASE)
                     .where(DISEASE.NAME.equal(disease.getName()))
