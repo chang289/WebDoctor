@@ -283,6 +283,9 @@
     <button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
         <span class="glyphicon glyphicon-pencil"></span> Edit
     </button>
+    <button class="upperbtn" type="button" onclick="deleteDisease()" style="width: 100px; background-color:#EF5350">
+        <span class="glyphicon glyphicon-trash"></span> delete
+    </button>
 
     <p id="description" style="color:#777; margin-left:6.3cm; padding-right: 15%"></p>
     <h1 id="symptom" style="color:#777;margin-left:6.3cm;"> Symptoms</h1>
@@ -304,6 +307,12 @@
                 <p id="mtgh" style="display: none"></p>
                 <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
                     <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
+                </button>
+                <button class="upperbtn" type="button"  onclick="deleteArticle()" style="
+                    width: 100px;
+                    background-color:#EF5350;
+                    float:right;">
+                    <span class="glyphicon glyphicon-trash"></span> delete
                 </button>
             </div>
 
@@ -674,6 +683,18 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/ArticlePostPage');
     }
+    function deleteDisease() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
+    }
+function deleteArticle() {
+    if (userAccess != 2 && userAccess != 1) {
+        alert("Access denied! You don't have enough authority ");
+        return;
+    }
+}
 
     function generateArticle(element) {
         console.log(element);

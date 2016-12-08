@@ -334,6 +334,17 @@ function search() {
             console.log(result);
             console.log(result[0]);
             var diseaseList = document.getElementById('diseaseList');
+
+
+            if(result == 0) {
+                diseaseList.innerHTML = "We did not find anything";
+                diseaseList.style.color = "#777";
+                diseaseList.style.fontFamily = "Verdana, Geneva, sans-serif";
+                diseaseList.style.textAlign = "center";
+            }
+
+
+
             for (var k in result) {
                 console.log(result[k])
                 var li = document.createElement("li");
