@@ -21,7 +21,7 @@ import webdoctor.service.UserService;
 public class AuthorizationController {
 
     private final String from = "zhouyiyan1995@gmail.com";
-    private final String subject = "Email from the god";
+    private final String subject = "We invite you to be our certified user";
 
     @Autowired
     Authorization A;

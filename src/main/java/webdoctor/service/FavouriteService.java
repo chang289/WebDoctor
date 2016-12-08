@@ -70,12 +70,15 @@ public class FavouriteService {
         User user = ua.getUser();
         int articleId = ua.getArticleId();
         User tempUser = us.getUser(user);
+
         if (tempUser == null) {
             return 0;
         }
         else {
             if (checkExists(ua) == 0) {
+                System.out.println("exists");
                 return create.insertInto(USER_FAVOURITEARTICLE).values(tempUser.getId(), articleId).execute();
+
             }
             else {
                 return deleteFavourite((ua));

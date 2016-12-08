@@ -268,7 +268,6 @@
     </div>
 </div>
 
-
 <div class="left" style="width: 180px">
     <h1 style="font-size:30px; color:#777;font-family: 'Oswald', sans-serif;">Related articles</h1>
     <ol id="articleList" ></ol>
@@ -283,7 +282,7 @@
     <button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
         <span class="glyphicon glyphicon-pencil"></span> Edit
     </button>
-    <button class="upperbtn" type="button" onclick="deleteDisease()" style="width: 100px; background-color:#EF5350">
+    <button class="upperbtn" type="button" id="deleteDisBtn" onclick="deleteDisease()" style="width: 100px; background-color:#EF5350">
         <span class="glyphicon glyphicon-trash"></span> delete
     </button>
 
@@ -308,12 +307,7 @@
                 <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
                     <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
                 </button>
-                <button class="upperbtn" type="button"  onclick="deleteArticle()" style="
-                    width: 100px;
-                    background-color:#EF5350;
-                    float:right;">
-                    <span class="glyphicon glyphicon-trash"></span> delete
-                </button>
+
             </div>
 
             <div class="clearfix"></div>
@@ -384,10 +378,18 @@ function getCookie(c_name)
     return "";
 }
 var username = getCookie('username');
+var status = getCookie('status');
 var content = getCookie('content');
 var title = getCookie('title');
 console.log("!!!!!!!");
 console.log(content);
+
+if (status < 1) {
+    document.getElementById('deleteDisBtn').style.display = 'none';
+} else {
+    document.getElementById('deleteDisBtn').style.display = 'inline';
+}
+
 var userbtn = document.getElementById('userbtn');
 if (username != "") {
     userbtn.appendChild(document.createTextNode('welcome '));
@@ -688,13 +690,40 @@ $(document).ready(function(){
             alert("Access denied! You don't have enough authority ");
             return;
         }
+        obj = {};
+        var diseaseName = document.getElementById('title').innerHTML;
+        console.log(diseaseName);
+        obj.name = diseaseName;
+        $(function(callback) {
+            $.ajax({
+                url: '/deleteDisease',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("success");
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+                if (result > 0) {
+                    alert("Delete success!");
+                    window.location.replace('/ModePage');
+                }
+            });
+        });
     }
-function deleteArticle() {
-    if (userAccess != 2 && userAccess != 1) {
-        alert("Access denied! You don't have enough authority ");
-        return;
+
+    function deleteArticle() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
     }
-}
 
     function generateArticle(element) {
         console.log(element);
