@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import webdoctor.helperClass.ArticleWithTime;
 import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
@@ -36,9 +37,8 @@ public class FavouriteController {
     }
 
     @RequestMapping(path = "getFavourite", method = RequestMethod.POST)
-    public @ResponseBody Article[] getFavourite(@RequestBody User user) {
-        Article[] article = fs.getFavourite(user);
-        System.out.println(Arrays.toString(article));
+    public @ResponseBody ArticleWithTime[] getFavourite(@RequestBody User user) {
+        ArticleWithTime[] article = fs.getFavourite(user);
         return article;
     }
 
