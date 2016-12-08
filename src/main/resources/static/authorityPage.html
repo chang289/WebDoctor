@@ -7,6 +7,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
+
+ function getCookie(c_name)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(c_name + "=")
+            if (c_start!=-1)
+            {
+                c_start=c_start + c_name.length+1
+                c_end=document.cookie.indexOf(";",c_start)
+                if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+            }
+        }
+        return ""
+    }
 var username = getCookie('username');
 var status = getCookie('status');
 if (status < 2) {
@@ -46,7 +62,10 @@ $(document).ready(function(){
                     alert("fail! Username invalid!");
                 }
                 if (result == 1) {
-                    alert("success!");
+                    alert("Upgrade success!");
+                }
+                if (result == -2) {
+                    alert("revoke success!");
                 }
             });
         });

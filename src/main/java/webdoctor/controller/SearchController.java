@@ -59,23 +59,18 @@ public class SearchController {
 
     @RequestMapping(path = "/searchByName", method= RequestMethod.POST)
     public @ResponseBody String searchByName(@RequestBody Disease disease) {
-        System.out.println(disease.getName());
         String json = search.searchByName(disease.getName());
-        System.out.println(json);
         return json;
     }
 
     @RequestMapping(path = "/searchByTags", method=RequestMethod.POST)
     public @ResponseBody String searchByTags(@RequestBody String[] symptoms) {
         for (int i = 0; i < symptoms.length; i++){
-            System.out.println(symptoms[i]);
         }
         System.out.println(symptoms.length);
         Symptom[] symptomList = new Symptom[symptoms.length];
         for (int i = 0; i < symptoms.length; i++) {
             symptomList[i] = new Symptom();
-            System.out.println(i);
-            System.out.println(symptoms[i]);
             symptomList[i].setName(symptoms[i]);
         }
         return search.searchByTags(symptomList);
@@ -84,20 +79,8 @@ public class SearchController {
     @RequestMapping(path = "/symptomsByDepartment", method=RequestMethod.POST, produces=("application/json"))
     public @ResponseBody String searchByDepartment(@RequestBody String department) {
         String s = search.searchByDepartment(department.substring(1, department.length()-1));
-//        System.out.println(s);
         return s;
     }
-
-    @RequestMapping(path="/diseaseDescriptionPage", method = RequestMethod.GET)
-    public String diseaseDescriptionPage() {
-        return "DiseaseDescriptionPage.html";
-    }
-
-//    @RequestMapping(path = "/getDisease/{diseaseName}", method = RequestMethod.GET)
-//    public @ResponseBody String getDiseaseREST(@PathVariable String diseaseName) {
-//        System.out.println(diseaseName);
-//        return "DiseaseDescriptionPage.html";
-//    }
 
     @RequestMapping(path="/getDisease", method=RequestMethod.POST)
     public @ResponseBody String getDisease(@RequestBody String diseaseName) {
@@ -113,7 +96,6 @@ public class SearchController {
 
     @RequestMapping(path = "/SearchByDisease", method = RequestMethod.POST)
     public @ResponseBody Disease[] searchByDisease(@RequestBody Disease disease) {
-        System.out.println(search.searchByDisease(disease));
         return search.searchByDisease(disease);
     }
 

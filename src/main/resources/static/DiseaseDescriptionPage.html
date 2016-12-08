@@ -303,7 +303,7 @@
                 <h2 id="titleH2" style="text-align: center;"></h2>
                 <h5 id="authorH3" style="text-align: center;"></h5>
                 <div id="textArea" style="text-align: left;"></div>
-                <p id="mtgh" style="display: none"></p>
+                <p id="mtgh"></p>
                 <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
                     <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
                 </button>
@@ -516,6 +516,7 @@ $(document).ready(function(){
                     var li = document.createElement("li");
                     var span = document.createElement("span");
                     span.value = result[k].content;
+                    span.setAttribute("articleid", result[k].id);
                     span.setAttribute("name", result[k].title);
                     span.setAttribute("author", result[k].authorName);
                     span.setAttribute("time", result[k].timeStamp);
@@ -568,7 +569,6 @@ $(document).ready(function(){
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
-                    var mtgh = document.getElementById("mtgh");
                     console.log("success22222");
                     var date = $(this).attr('time');
                     console.log(date);
@@ -583,6 +583,7 @@ $(document).ready(function(){
                     articleAuthor.appendChild(spanAuthor);
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
+                    var mtgh = document.getElementById("mtgh");
                     mtgh.innerHTML = $(this).attr('articleid');
                     modal.style.display = "block";
                     $("#authorH3").find("span").click(function() {
@@ -615,6 +616,7 @@ $(document).ready(function(){
                                 span.setAttribute("id", result[a].title);
                                 span.id = result[a].title;
                                 span.value = result[a].content;
+                                span.setAttribute("articleid", result[a].id);
                                 span.setAttribute("name", result[a].title);
                                 span.setAttribute("author", result[a].authorName);
                                 span.setAttribute("time", result[a].timeStamp);
@@ -627,6 +629,38 @@ $(document).ready(function(){
                                 console.log("level3");
                             }
                             $("#favArticles").find("span").click(function() {
+                                var artObj = {};
+                                var userObj = {};
+                                userObj.username = username;
+                                var artId = $(this).attr('articleid');
+                                artObj.articleId = artId;
+                                artObj.user = userObj;
+                                console.log(artObj);
+                                $.ajax({
+                                    url: '/ifFavourite',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data : JSON.stringify(artObj),
+                                    contentType: "application/json; charset=utf-8",
+                                    success: function (data) {
+                                        console.log("success");
+                                        callback(data);
+                                    },
+                                    error: function (error) {
+                                        console.log(error);
+                                    }
+                                }).done(function(result) {
+                                    console.log(result);
+                                    if (result == 0) {
+                                        var favSpan = document.getElementById("favouriteSpan");
+                                        favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                                    } else if (result == 1) {
+                                        var favBtn = document.getElementById("favouriteBtn");
+                                        //favBtn.style.backgroundColor = "red";
+                                        var favSpan = document.getElementById("favouriteSpan");
+                                        favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                                    }
+                                });
                                 generateArticle($(this).attr('id') );
                             });
                         });
@@ -749,6 +783,8 @@ $(document).ready(function(){
         articleAuthor.appendChild(spanAuthor);
         var textArea = document.getElementById("textArea");
         textArea.innerHTML = tagText;
+        var mtgh = document.getElementById("mtgh");
+        mtgh.innerHTML = selectedArticle.getAttribute('articleid');
         modal.style.display = "block";
         $(function(callback) {
             $("#authorH3").find("span").click(function() {
@@ -779,6 +815,7 @@ $(document).ready(function(){
                         var li = document.createElement("li");
                         var span = document.createElement("span");
                         span.setAttribute("id", result[a].title);
+                        span.setAttribute("articleid", result[a].id);
                         span.id = result[a].title;
                         span.value = result[a].content;
                         span.setAttribute("name", result[a].title);
@@ -803,7 +840,7 @@ $(document).ready(function(){
     function favourite() {
         var obj = {};
         var user = {};
-        var username = document.getElementById('spanAuthor').innerHTML;
+        //var username = document.getElementById('spanAuthor').innerHTML;
         var articleId = document.getElementById('mtgh').innerHTML;
         user.username = username;
         obj.user = user;

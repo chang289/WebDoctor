@@ -27,6 +27,11 @@ public class DescriptionController {
         return "createTextPage.html";
     }
 
+    @RequestMapping(path = "/diseaseDescriptionPage", method= RequestMethod.GET)
+    public String diseaseDescriptionPage() {
+        return "DiseaseDescriptionPage.html";
+    }
+
     @RequestMapping(path = "/getSymptom", method = RequestMethod.POST)
     public @ResponseBody Symptom[] getSymptoms(@RequestBody Disease disease) {
         return DS.getSymptomsByDisease(disease);
@@ -45,7 +50,7 @@ public class DescriptionController {
 //        System.out.println(D.getDescription());
 //        System.out.println(D.getDepartment());
 
-        return DS.descriptionCreate(D, -1, null);
+        return DS.descriptionCreate(D, -1,null);
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.GET)
