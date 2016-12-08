@@ -476,7 +476,7 @@
                     <h2 id="titleH2" style="text-align: center;"></h2>
                     <h5 id="authorH3" style="text-align: center;"></h5>
                     <div id="textArea" style="text-align: left;"></div>
-                    <p id="mtgh" style="display: none"></p>
+                    <p id="mtgh"></p>
                     <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
                         <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
                     </button>
@@ -701,7 +701,7 @@
                     span.setAttribute("name", result[a].title);
                     span.setAttribute("author", result[a].authorName);
                     span.setAttribute("time", result[a].timeStamp);
-
+                    span.setAttribute("articleid", result[a].id);
                     span.name = result[a].title;
                     span.appendChild(document.createTextNode(result[a].title));
 
@@ -754,6 +754,8 @@
                     console.log("success444");
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
+                    var mtgh =  document.getElementById("mtgh");
+                    mtgh.innerHTML = $(this).attr('articleid');
 
                     var date = $(this).attr('time');
                     console.log(date);
@@ -809,7 +811,7 @@
                     span.setAttribute("name", result[a].title);
                     span.setAttribute("author", result[a].authorName);
                     span.setAttribute("time", result[a].timeStamp);
-
+                    span.setAttribute("articleid", result[a].id);
                     span.name = result[a].title;
                     span.appendChild(document.createTextNode(result[a].title));
 
@@ -862,7 +864,8 @@
                     console.log("success444");
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
-
+                    var mtgh =  document.getElementById("mtgh");
+                    mtgh.innerHTML = $(this).attr('articleid');
                     var date = $(this).attr('time');
                     console.log(date);
                     articleTitle.innerHTML = $(this).attr('name');
