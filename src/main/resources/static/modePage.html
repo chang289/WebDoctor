@@ -36,7 +36,6 @@
     }
 
     input[type=text], input[type=password] {
-        width: 30%;
         padding: 12px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -93,11 +92,8 @@
 
 
     #contactbtn{
-
         margin:0;
-        font-size: 4px;
         width:9em;
-        height: 3em;
         padding:1px auto;
         float: right;
     }
@@ -137,14 +133,12 @@
 
     .close:hover,
     .close:focus {
-        background-color: red
-    ;
+        background-color: red;
         color: #000;
         text-decoration: none;
         cursor: pointer;
         transition: background-color 0.5s;
     }
-
 
 </style>
 <body>
@@ -194,19 +188,18 @@
         </div>
 
         <div class = "form-group">
-            <label for ="email" style="white-space: pre;">  Email:   </label>
+            <label for ="email" style="white-space: pre;">Email:   </label>
             <input type = "text" class = "form-control" id = "email">
         </div>
 
         <div class="form-group">
             <label for="feedback">Your feedback:</label>
-            <textarea class="form-control" rows="5" cols="10" id="feedback"></textarea>
+            <textarea class="form-control" rows="5" cols="10" id="feedback" style="resize: none"></textarea>
         </div>
-
+        <button id="submitFeedback" type="button" onclick="submitFeedback()">Submit Feedback!</button>
 
     </div>
 </div>
-
 
 </body>
 
@@ -283,6 +276,10 @@ $(document).ready(function(){
         }
     });
 });
+
+function submitFeedback() {
+    
+}
 
 </script>
 
