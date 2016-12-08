@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta content="utf-8" http-equiv="encoding">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
       tinymce.init({
         selector: '#mytextarea',
         plugins: "image",
         images_upload_url: "/ArticleImage",
+        images_upload_base_path: "D:\\WebDoctor\\src\\main\\resources\\static\\articleImages",
         images_upload_credentials: true,
         theme: "modern",
         menubar: "insert, edit, format",
@@ -20,151 +26,220 @@
       });
     </script>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+
 </head>
 <style>
-    body {
-    background-color: lightcyan;
-    }
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+padding-top: 100px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
-    input[type=text], input[type=password] {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    }
+/*  Content */
+.modal-content {
+background-color: lightcyan;
+color: #777;
+margin: auto;
+padding: 20px;
+padding-bottom: 10%;
+border: 1px solid #888;
+width: 50%;
+height: 26%;
+-webkit-animation-name: fadeIn;
+-webkit-animation-duration: 0.6s;
+animation-name: fadeIn;
+animation-duration: 0.6s
+}
 
+/* Add Animation */
+@-webkit-keyframes fadeIn {
+from {opacity: 0}
+to {opacity: 1}
+}
 
+@keyframes fadeIn {
+from {opacity: 0}
+to {opacity: 1}
+}
 
-    .checkBoxArea div {
-        clear: both;
-        overflow: hidden;
-    }
+/* The Close Button */
+.close {
+background-color: lightcyan;
+padding:1px;
+margin:0;
+width: 3%;
+color: black;
+float: right;
+font-size: 18px;
+font-weight: bold;
+}
 
-    .checkBoxArea label {
-        width: 20%;
-        border-radius: 3px;
-        border: 1px solid #D1D3D4;
-        font-weight: normal;
-    }
+.close:hover,
+.close:focus {
+background-color: red
+;
+color: #000;
+text-decoration: none;
+cursor: pointer;
+transition: background-color 0.5s;
+}
 
-    .checkBoxArea input[type="checkbox"]:empty {
-        display: none;
-    }
+body {
+background-color: lightcyan;
+}
 
-    .checkBoxArea input[type="checkbox"]:empty ~ label {
-        position: relative;
-        line-height: 2.5em;
-        text-indent: 3.25em;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .checkBoxArea input[type="checkbox"]:empty ~ label:before {
-        position: absolute;
-        display: inline-block;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        content: '';
-        width: 2.5em;
-        background: #D1D3D4;
-        border-radius: 3px 0 0 3px;
-    }
-
-    .checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label {
-        color: #888;
-    }
-
-    .checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label:before {
-        content: '\2714';
-        text-indent: .9em;
-        color: #C2C2C2;
-    }
-
-    .checkBoxArea input[type="checkbox"]:checked ~ label {
-        color: #777;
-        background-color: #33b751;
-    }
-
-    .checkBoxArea input[type="checkbox"]:checked ~ label:before {
-        content: '\2714';
-        text-indent: .9em;
-        color: #333;
-        background-color: #337ab7;
-    }
-
-    .checkBoxArea input[type="checkbox"]:focus ~ label:before {
-        box-shadow: 0 0 0 3px #999;
-    }
-
-    .tagbox input[type="checkbox"]:checked ~ label:before {
-        color: #333;
-        background-color: #337ab7;
-    }
-
-    .tagbox {
-        display: inline;
-        margin-right:1px;
-    }
-
-    label {
-        font-size: 10px;
-    }
+.mytextarea, .mce-container-body, #code_ifr {
+min-height: 100% !important;
+}
 
 
-    button {
-        background-color: #4DB6AC;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 50%;
-    }
-    button:hover{
-        color: #CFD8DC;
-        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
-        transition: box-shadow 1s,text-shadow 1s,color 1s;
+button {
+background-color: #4DB6AC;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+width: 50%;
+}
+button:hover{
+color: #CFD8DC;
+box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+transition: box-shadow 1s,text-shadow 1s,color 1s;
 
-    }
-    .upperbtn {
-    background-color: #4DB6AC;
-    color: white;
-    padding: 5px 5px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    }
+}
+.upperbtn {
+background-color: #4DB6AC;
+color: white;
+padding: 5px 5px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+}
 
-    #upperlevel {
-    width: 100%;
-    height: 50px;
-    }
+#upperlevel {
+width: 100%;
+height: 50px;
+}
 
-    #homesection {
-    width: 240px;
-    height: 123px;
-    float: left;
-    }
+#homesection {
+width: 240px;
+height: 123px;
+float: left;
+}
 
-    #usersection {
-    width: 240px;
-    height: 123px;
-    float: right;
-    }
+#usersection {
+width: 240px;
+height: 123px;
+float: right;
+}
 
-    #titleEle {
-        text-align: center;
-        font-size: 40px;
-        left:218px; top:60px; right:0; bottom:0;
-        color: #777;
-    }
+.titleP {
+font-size: 28px;
+margin: auto;
+color: #fefefe;
+}
+
+.checkBoxArea div {
+clear: both;
+overflow: hidden;
+}
+
+.checkBoxArea label {
+width: 20%;
+border-radius: 3px;
+border: 1px solid #D1D3D4;
+font-weight: normal;
+}
+
+.checkBoxArea input[type="checkbox"]:empty {
+display: none;
+}
+
+.checkBoxArea input[type="checkbox"]:empty ~ label {
+position: relative;
+line-height: 2.5em;
+text-indent: 3.25em;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+.checkBoxArea input[type="checkbox"]:empty ~ label:before {
+position: absolute;
+display: inline-block;
+top: 0;
+bottom: 0;
+left: 0;
+content: '';
+width: 2.5em;
+background: #D1D3D4;
+border-radius: 3px 0 0 3px;
+}
+
+.checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label {
+color: #888;
+}
+
+.checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label:before {
+content: '\2714';
+text-indent: .9em;
+color: #C2C2C2;
+}
+
+.checkBoxArea input[type="checkbox"]:checked ~ label {
+color: #777;
+background-color: #33b751;
+}
+
+.checkBoxArea input[type="checkbox"]:checked ~ label:before {
+content: '\2714';
+text-indent: .9em;
+color: #333;
+background-color: #337ab7;
+}
+
+.checkBoxArea input[type="checkbox"]:focus ~ label:before {
+box-shadow: 0 0 0 3px #999;
+}
+
+.tagbox input[type="checkbox"]:checked ~ label:before {
+color: #333;
+background-color: #337ab7;
+}
+
+.tagbox {
+display: inline;
+margin-right:1px;
+}
+
+label {
+font-size: 10px;
+}
+
+#newAdded button {
+background-color: red;
+display: inline-block;
+width: 100px;
+height: 50px;
+padding: auto;
+}
 
 </style>
 
@@ -182,18 +257,24 @@
 </div>
 
 <div id="titleArea">
-    <h2 id="titleEle"></h2>
+    <h2 id="titleEle" style="text-align: center"></h2>
 </div>
 
 <div id="editorArea" style="width:800px; margin:0 auto;">
     <form id="textform" method="post">
 
         <div class="checkBoxArea" id="checkBoxes">
-        <div class="tagbox">
-            <!--<input type="checkbox" name="checkbox" id="checkbox1" checked/>-->
-            <!--<label for="checkbox1">EXAMPLE BOX</label>-->
+            <div class="tagbox">
+                <!--<input type="checkbox" name="checkbox" id="checkbox1" checked/>-->
+                <!--<label for="checkbox1">EXAMPLE BOX</label>-->
+            </div>
         </div>
-        </div>
+
+        <button class="addbtn" type="button" class="addbtn" style="width: 20%; font-size: 14px" onclick="showModal()">
+            <span class="glyphicon glyphicon-plus"></span>New symptom
+        </button>
+
+        <div class="input-group" id="newAdded" style="margin-bottom: 5px;"></div>
 
 
         <textarea name="contnet" id="mytextarea"></textarea>
@@ -202,12 +283,41 @@
 
     </form>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button type="button" class="close" aria-label="Close" id = "closebtn"><span aria-hidden="true">&times;</span></button>
+            <div class="input-group" style="margin-bottom: 5px;">
+                <span class="input-group-addon">Symptom Name</span>
+                <input type="text" class="form-control" id="newSymName" placeholder="Please give the symptom a name">
+            </div>
+
+            <select class="selectpicker show-tick" id="depList">
+                <option>Dermatology</option>
+                <option>Neurology</option>
+                <option>Osteology</option>
+                <option>Ophthalmology</option>
+                <option>Psychiatry</option>
+                <option>General</option>
+                <option>Gastroenterology</option>
+                <option>Endocrinology</option>
+                <option>Dentistry</option>
+                <option>Pulmonology</option>
+            </select>
+            <br>
+            <button class="addbtn" type="button" class="addbtn" style="width: 20%; font-size: 12px;" onclick="confirmNew()">
+                <span class="glyphicon glyphicon-ok"></span>Confirm
+            </button>
+
+        </div>
+    </div>
+
 </div>
 
 </body>
 <script>
     function add(){
-
         window.location.replace('/ModePage');
     }
 </script>
@@ -234,72 +344,74 @@
             console.log(result);
 
             var objDis = {};
-            objDis.name = document.getElementById('titleEle');
+            objDis.name = document.getElementById('titleEle').innerHTML;
             console.log(objDis)
 
-            var data;
+            $(function(callback) {
+                $.ajax({
+                    url: '/getSymptom',
+                    type: 'POST',
+                    dataType: 'json',
+                    data : JSON.stringify(objDis),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        callback(data);
+                        console.log("success");
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                }).done(function(data) {
+                    console.log(data);
 
-            $.ajax({
-                url: '/EditDescription',
-                type: 'POST',
-                dataType: 'json',
-                data : JSON.stringify(objDis),
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    callback(data);
-                    console.log("success");
-                },
-                error: function (error) {
-                    console.log(error);
-                },
+                    for (var k in result) {
+
+                        var departmentText = (result[k].department);
+                        var symArray = (result[k].symptomList);
+                        var targetArea = document.getElementById('checkBoxes');
+
+                        var titleDiv = document.createElement("div");
+                        titleDiv.className = "tagTitle";
+
+                        var head = document.createElement("h4");
+                        head.className = "tagHead";
+                        head.appendChild(document.createTextNode(departmentText));
+
+                        titleDiv.appendChild(head);
+                        targetArea.appendChild(titleDiv);
+                        //targetArea.style.borderStyle = "solid";
+                        for (var j in symArray) {
+
+                            var tagDiv = document.createElement("div");
+                            tagDiv.className = "tagbox";
+
+                            var checkbox = document.createElement('input');
+                            checkbox.type = "checkbox";
+                            checkbox.name = "checkbox";
+                            checkbox.id = symArray[j];
+                            checkbox.value = symArray[j];
+                            var label = document.createElement('label');
+                            label.htmlFor = symArray[j];
+                            label.appendChild(document.createTextNode(symArray[j]));
+
+                            for (var z in data) {
+                                if (data[z].name == symArray[j]) {
+                                    checkbox.checked = true;
+                                }
+                            }
+
+                            tagDiv.appendChild(checkbox);
+                            tagDiv.appendChild(label);
+
+                            targetArea.appendChild(tagDiv);
+                        }
+                    }
+                });
             });
-
-            console.log(data);
-
-            for (var k in result) {
-
-                var departmentText = (result[k].department);
-                var symArray = (result[k].symptomList);
-                var targetArea = document.getElementById('checkBoxes');
-
-                var titleDiv = document.createElement("div");
-                titleDiv.className = "tagTitle";
-
-                var head = document.createElement("h4");
-                head.className = "tagHead";
-                head.appendChild(document.createTextNode(departmentText));
-
-                titleDiv.appendChild(head);
-                targetArea.appendChild(titleDiv);
-                //targetArea.style.borderStyle = "solid";
-                for (var j in symArray) {
-
-                    var tagDiv = document.createElement("div");
-                    tagDiv.className = "tagbox";
-
-                    var checkbox = document.createElement('input');
-                    checkbox.type = "checkbox";
-                    checkbox.name = "checkbox";
-                    checkbox.id = symArray[j];
-                    checkbox.value = symArray[j];
-                    var label = document.createElement('label');
-                    label.htmlFor = symArray[j];
-                    label.appendChild(document.createTextNode(symArray[j]));
-
-                    tagDiv.appendChild(checkbox);
-                    tagDiv.appendChild(label);
-
-                    targetArea.appendChild(tagDiv);
-                }
-            }
         });
     }
 
     window.onload = makeTagList;
-
-
-
-
 
 function setCookie(c_name,value,expiredays)
 {
@@ -324,6 +436,41 @@ function getCookie(c_name)
     }
     return ""
 }
+
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];
+function showModal() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+function confirmNew() {
+    var newName = document.getElementById('newSymName').value;
+    var newDep = $("#depList").find("option:selected").text();
+    console.log(newName);
+    console.log(newDep);
+
+    var newArea = document.getElementById('newAdded');
+
+    var newbtn = document.createElement("BUTTON");
+    newbtn.setAttribute('type', 'button');
+
+    newbtn.setAttribute("value", newName);
+    newbtn.setAttribute("department", newDep);
+    newbtn.appendChild(document.createTextNode(newName));
+
+    newbtn.onclick = function() {
+        console.log("hhh");
+        $(this).remove();
+    };
+
+    newArea.appendChild(newbtn);
+    console.log("level3");
+}
+
 $(document).ready(function(){
     var content;
     $(function() {
@@ -358,12 +505,40 @@ if (username != "") {
 
 
 function submitChange() {
+    var checkbox_value = "";
+    $(":checkbox").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            checkbox_value += $(this).val() + ",";
+        }
+    });
+
+    var new_obj_list = [];
+
+    var count = 0;
+
+    $('#newAdded button').each(function() {
+        var new_obj = {};
+        var new_value = $(this).val();
+        var new_dep = $(this).attr('department');
+        new_obj.name = new_value;
+        new_obj.department = new_dep;
+        new_obj_list[count] = new_obj;
+        count++;
+    });
+    console.log(new_obj_list);
+    console.log(checkbox_value);
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
-    var title = getCookie('title');
+    var title = document.getElementById('titleEle').innerHTML;
+    console.log(title);
+    var department = $("#depList").find("option:selected").text();
+    var symptoms = checkbox_value;
     obj.name = title;
     obj.description = content;
-
+    obj.department = department;
+    obj.symptoms = symptoms;
+    obj.newSymptoms = new_obj_list;
 
     console.log(obj);
     console.log("saved");
@@ -382,6 +557,8 @@ function submitChange() {
             error: function (error) {
                 console.log(error);
             },
+        }).done(function(data) {
+            console.log(data);
         });
     });
     console.log("222");

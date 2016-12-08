@@ -37,6 +37,13 @@ public class DescriptionService {
         this.create = dslContext;
     }
 
+
+    public int changeId(Disease disease, int id) {
+        return create.update(DISEASE).set(DISEASE.ID, id)
+                .where(DISEASE.ID.equal(disease.getId()))
+                .execute();
+    }
+
     private int checkDisease(Disease disease) {
         Disease temp = create.select()
                 .from(DISEASE)
@@ -62,7 +69,7 @@ public class DescriptionService {
         return symptomArray;
     }
 
-    private Disease getDisease(Disease disease) {
+    public Disease getDisease(Disease disease) {
         return create.select()
                 .from(DISEASE)
                 .where(DISEASE.NAME.equal(disease.getName()))

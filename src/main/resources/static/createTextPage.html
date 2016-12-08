@@ -293,9 +293,7 @@
             <span class="glyphicon glyphicon-plus"></span>New symptom
         </button>
 
-        <div class="input-group" id="newAdded" style="margin-bottom: 5px;">
-
-        </div>
+        <div class="input-group" id="newAdded" style="margin-bottom: 5px;"></div>
 
         <textarea name="contnet" id="mytextarea"></textarea>
 
@@ -540,23 +538,23 @@ function submitChange() {
             } else {
                 alert("Success! You have created a new disease!");
                 var tagText = title;
-                console.log(title);
-                $(function(callback) {
-                    $.ajax({
-                        url : '/getDisease',
-                        type : 'POST',
-                        data : JSON.stringify(tagText),
-                        contentType: "application/json; charset=utf-8",
-                        success : function(data) {
-                            callback(data);
-                            console.log("success");
-                        },
-                        error : function (error) {
-                            console.log(error);
-                        }
-                    });
+            console.log(title);
+            $(function(callback) {
+                $.ajax({
+                    url : '/getDisease',
+                    type : 'POST',
+                    data : JSON.stringify(tagText),
+                    contentType: "application/json; charset=utf-8",
+                    success : function(data) {
+                        callback(data);
+                        console.log("success");
+                    },
+                    error : function (error) {
+                        console.log(error);
+                    }
                 });
-                window.location.replace('/diseaseDescriptionPage');
+            });
+            window.location.replace('/diseaseDescriptionPage');
 
             }
         });

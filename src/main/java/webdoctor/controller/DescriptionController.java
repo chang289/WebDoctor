@@ -60,9 +60,13 @@ public class DescriptionController {
 //        System.out.println("edit: "+disease.getName()+disease.getDescription());
         Disease disease = new Disease();
         disease.setName(ds.getName());
+        Disease temp = DS.getDisease(disease);
+
         DS.deleteDiseaseSymptom(disease);
         DS.deleteDescription(disease);
-        return DS.descriptionCreate(ds);
+        DS.descriptionCreate(ds);
+        Disease newD = DS.getDisease(disease);
+        return DS.changeId(newD, temp.getId());
     }
 
     @RequestMapping(path = "/deleteDisease", method = RequestMethod.POST)

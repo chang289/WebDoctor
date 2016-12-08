@@ -1,10 +1,12 @@
 package webdoctor.service;
 
+import com.google.api.services.gmail.model.Message;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webdoctor.common.passwordHash;
 import webdoctor.helperClass.ArticleWithTime;
+import webdoctor.helperClass.FeedBack;
 import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
@@ -24,8 +26,13 @@ public class UserService {
     //need to add dependency
     private final DSLContext create;
 
+    private String email = "zhouyiyan1995@gmail.com";
+
     @Autowired
     ArticleService as;
+
+    @Autowired
+    EmailService es;
 
     @Autowired
     passwordHash ph;
@@ -133,5 +140,14 @@ public class UserService {
         }
     }
 
-
+    public int sendFeedback(FeedBack fb) {
+        String content = "username: " + fb.getUsername() + "\n" + fb.getContent();
+        Message m = es.sendEmail(email, email, fb.getSubject(), content);
+        if (m == null) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
 }
