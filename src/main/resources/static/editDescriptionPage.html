@@ -257,7 +257,7 @@ padding: auto;
 </div>
 
 <div id="titleArea">
-    <h2 id="titleEle"></h2>
+    <h2 id="titleEle" style="text-align: center"></h2>
 </div>
 
 <div id="editorArea" style="width:800px; margin:0 auto;">
@@ -530,8 +530,9 @@ function submitChange() {
     console.log(checkbox_value);
     var obj = {};
     var content = tinyMCE.get('mytextarea').getContent();
-    var title = document.getElementById('titleEle').value;
-    var department = $("#depList1").find("option:selected").text();
+    var title = document.getElementById('titleEle').innerHTML;
+    console.log(title);
+    var department = $("#depList").find("option:selected").text();
     var symptoms = checkbox_value;
     obj.name = title;
     obj.description = content;
@@ -556,6 +557,8 @@ function submitChange() {
             error: function (error) {
                 console.log(error);
             },
+        }).done(function(data) {
+            console.log(data);
         });
     });
     console.log("222");
