@@ -51,6 +51,17 @@ public class DescriptionService {
         }
     }
 
+    public Symptom[] getSymptomsByDisease(Disease disease) {
+        List<Symptom> symptomList = create.select(SYMPTOM.ID, SYMPTOM.NAME, SYMPTOM.DEPARTMENT).from(DISEASE_SYMPTOM)
+                .join(SYMPTOM).on(SYMPTOM.ID.equal(DISEASE_SYMPTOM.TAG_ID))
+                .join(DISEASE).on(DISEASE.ID.equal(DISEASE_SYMPTOM.DISEASE_ID))
+                .where(DISEASE.NAME.equal(disease.getName()))
+                .fetchInto(Symptom.class);
+        Symptom[] symptomArray = new Symptom[symptomList.size()];
+        symptomList.toArray(symptomArray);
+        return symptomArray;
+    }
+
     private Disease getDisease(Disease disease) {
         return create.select()
                 .from(DISEASE)
