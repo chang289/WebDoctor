@@ -1004,6 +1004,12 @@
                 }
             }).done(function(result) {
                 console.log(result);
+                if (result == 0) {
+                    alert("Delete failed!");
+                } else if (result == 1) {
+                    alert("Delete success!");
+                    window.location.replace('/UserPage');
+                }
             });
         });
     }
