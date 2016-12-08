@@ -233,6 +233,29 @@
             console.log("inside done");
             console.log(result);
 
+            var objDis = {};
+            objDis.name = document.getElementById('titleEle');
+            console.log(objDis)
+
+            var data;
+
+            $.ajax({
+                url: '/EditDescription',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(objDis),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    callback(data);
+                    console.log("success");
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+            });
+
+            console.log(data);
+
             for (var k in result) {
 
                 var departmentText = (result[k].department);
