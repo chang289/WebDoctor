@@ -57,4 +57,9 @@ public class DescriptionController {
 //        System.out.println("edit: "+disease.getName()+disease.getDescription());
         return DS.descriptionEdit(disease);
     }
+
+    @RequestMapping(path = "/DeleteDescription", method = RequestMethod.POST)
+    public @ResponseBody int deleteDescription(@RequestBody Disease disease) {
+        return DS.deleteDescription(disease);
+    }
 }

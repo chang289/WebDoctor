@@ -47,6 +47,14 @@ public class DescriptionService {
         }
     }
 
+    private Disease getDisease(Disease disease) {
+        return create.select()
+                .from(DISEASE)
+                .where(DISEASE.NAME.equal(disease.getName()))
+                .fetchOneInto(Disease.class);
+
+    }
+
     private Symptom getSymptom(String symptom) {
         return create.select().from(SYMPTOM)
                 .where(SYMPTOM.NAME.equal(symptom))
@@ -193,7 +201,6 @@ public class DescriptionService {
         if(checkDisease(disease) == 0) {
             return 0;
         } else {
-            System.out.println(disease.getDescription());
             create.update(DISEASE)
                     .set(DISEASE.DESCRIPTION,disease.getDescription())
                     .where(DISEASE.NAME.equal(disease.getName()))
@@ -201,4 +208,31 @@ public class DescriptionService {
             return 1;
         }
     }
+
+    public int deleteDescription(Disease disease) {
+        if (checkDisease(disease) == 0) {
+            return 0;
+        }
+        else {
+            Disease temp = getDisease(disease);
+            return create.deleteFrom(DISEASE)
+                    .where(DISEASE.ID.equal(temp.getId()))
+                    .execute();
+        }
+    }
+
+    public int deleteDiseaseSymptom(Disease disease) {
+        Disease temp = getDisease(disease);
+        if (getDisease(disease) == null) {
+            return 0;
+        }
+        else {
+            return create.deleteFrom(DISEASE_SYMPTOM)
+                    .where(DISEASE_SYMPTOM.DISEASE_ID.equal(getDisease(disease).getId()))
+                    .execute();
+        }
+    }
+
+
+
 }

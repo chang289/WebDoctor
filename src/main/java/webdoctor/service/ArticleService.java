@@ -56,12 +56,17 @@ public class ArticleService {
 //                .where(DISEASE.ID.equal(disease.getId()))
 //                .fetchInto(Article.class));
     }
-
-    public int postComment(Comment comment){
-       return create.insertInto(COMMENT,COMMENT.USER_ID,COMMENT.ARTICLE_ID,COMMENT.TIME_STAMP,COMMENT.CONTENT)
-               .values(comment.getUserId(),comment.getArticleId(),comment.getTimeStamp(),comment.getContent())
-               .execute();
+    public int deleteArticle(Article article) {
+        return create.deleteFrom(ARTICLE).where(ARTICLE.ID.equal(article.getId()))
+                .execute();
     }
+
+    public int deleteFavourite(Article article) {
+        return create.deleteFrom(USER_FAVOURITEARTICLE).where(USER_FAVOURITEARTICLE.ARTICLE_ID.equal(article.getId()))
+                .execute();
+    }
+
+
 
     public ArticleWithTime[] alterArticle(Article[] article) {
         ArticleWithTime[] awt = new ArticleWithTime[article.length];
