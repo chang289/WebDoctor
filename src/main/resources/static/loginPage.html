@@ -70,7 +70,9 @@ $(document).ready(function(){
     $("#signUpbtn").click(function() {
         window.location.replace('/SignUpPage');
     });
-
+    $("#skipBtn").click(function() {
+        window.location.replace('/ModePage');
+    });
 });
 
 </script>
@@ -211,7 +213,7 @@ $(document).ready(function(){
 
             <button id="loginbtn" type="button">Login!</button>
             <button id="signUpbtn" type="button" style="background-color: green">Sign Up!</button>
-
+            <button id="skipBtn" type="button" style="background-color: lightgreen" onclick="skip()">Use as guest!</button>
         </div>
 
     </form>

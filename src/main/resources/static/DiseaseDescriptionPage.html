@@ -15,21 +15,26 @@
     margin: 0;
     height: 100%;
     }
-
     .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+        background-color: lightcyan;
+        padding:1px;
+        margin:0;
+        width: 2.5%;
+        color: black;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
     }
 
     .close:hover,
     .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+        background-color: red
+    ;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.5s;
     }
-
 
     .modal {
     display: none; /* Hidden by default */
@@ -42,11 +47,10 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
-
     /*  Content */
     .modal-content {
-        background-color: lightcyan;
-        color:#777;
+    background-color: lightcyan;
+    color:#777;
     margin: auto;
     padding: 20px;
     padding-bottom: 10%;
@@ -59,77 +63,66 @@
     animation-duration: 0.6s
     }
 
-
-
     /* Add Animation */
     @-webkit-keyframes fadeIn {
     from {opacity: 0}
     to {opacity: 1}
     }
-
     @keyframes fadeIn {
     from {opacity: 0}
     to {opacity: 1}
     }
-
     .top {
-        left:0; right:0;
-        margin-top: 0;
-        margin-bottom: 20px;
-        color: darkgrey;
+    left:0; right:0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: darkgrey;
     }
     .left {
-        position: absolute;
-        float:left;
-        width: 100px;
-        margin-top: 40px;
-        color: white;
+    position: absolute;
+    float:left;
+    width: 100px;
+    margin-top: 40px;
+    color: white;
     }
     .main {
-        height:auto;
-        margin-top: 50px;
-        margin-left:300px;
-        font-size: 28px;
-        color: #fefefe;
+    height:auto;
+    margin-top: 50px;
+    margin-left:300px;
+    font-size: 28px;
+    color: #fefefe;
     }
     a {
-        color: white;
-        font-size: medium;
+    color: white;
+    font-size: medium;
     }
     .footer {
-        position:fixed;
-        bottom:0;
-        left:33cm;
+    position:fixed;
+    bottom:0;
+    right:0;
     }
-
     .upperbtn{
-        background-color: #4DB6AC;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: 1px groove #cccccc;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 50%;
+    background-color: #4DB6AC;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px groove #cccccc;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
     }
-
     .upperbtn:hover{
-
-        color: #CFD8DC;
-        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
-        transition: box-shadow 1s,text-shadow 1s,color 1s;
-
+    color: #CFD8DC;
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+    transition: box-shadow 1s,text-shadow 1s,color 1s;
     }
     .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
     }
-
     .container {
     padding: 16px;
     }
-
-
     .upperbtn {
     background-color: #4DB6AC;
     color: white;
@@ -138,33 +131,28 @@
     border: none;
     cursor: pointer;
     }
-
     #upperlevel {
     width: 100%;
     height: 50px;
     }
-
     #homesection {
     width: 240px;
     height: 123px;
     float: left;
     }
-
     #usersection {
     width: 240px;
     height: 123px;
     float: right;
     }
-
     #articleList{
-        position:relative;
-        text-decoration: none;
-        font-family: "Amiko", sans-serif;
-        padding-left:0;
-        text-align: left;
-        cursor:pointer;
-        color:#777;
-
+    position:relative;
+    text-decoration: none;
+    font-family: "Amiko", sans-serif;
+    padding-left:0;
+    text-align: left;
+    cursor:pointer;
+    color:#777;
     }
     ol span{
     position:relative;
@@ -172,14 +160,11 @@
     font-size: 20px;
     font-family: "Amiko", sans-serif;
     cursor:pointer;
-
-
     }
     ol span:hover{
     color:black;
     transition: color 1s;
     }
-
     ol span:before{
     content:"";
     position: absolute;
@@ -194,51 +179,95 @@
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
     }
-
     ol span:hover:before{
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
     }
-
     #back-top {
-        position: fixed;
-        display:none;
-        font-size: 50px;
-        color: rgba(0,0,0,0.5);
-        bottom: 5px;
-        right:30px;
-        width:auto;
+    position: fixed;
+    display:none;
+    font-size: 50px;
+    color: rgba(0,0,0,0.5);
+    bottom: 12%;
+    right:10%;
+    width:auto;
     }
     a#back-top:active {
-        background:none;
+    background:none;
     }
     a#back-top {
-        display: block; text-decoration: none;
+    display: block; text-decoration: none;
     }
     .topup {
-        bottom:5px;
+    bottom:5px;
     }
     #back-top i {
-        display: block;
+    display: block;
     }
+
+    #spanAthor{
+        font-family: "Amiko", sans-serif;
+        color:red;
+    }
+
+    #authorH3 span{
+        position:relative;
+
+    }
+    #authorH3 span:hover{
+        color:black;
+        transition: color 1s;
+        cursor:pointer;
+
+    }
+    #authorH3 span:before{
+        content:"";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000;
+        visibility: hidden;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
+    }
+    #authorH3 span:hover:before{
+        visibility: visible;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+
+
+
+    .share-buttons {
+
+        width: 20px;
+        padding: 5px;
+        border: 0;
+        box-shadow: 0;
+        display: inline;
+    }
+
 
 </style>
 
 <body style="background-color:lightcyan">
 <a name="top"></a>
 <div id="upperlevel">
-        <div class="uppersection" id="homesection">
-            <button class="upperbtn" type="button" id="homebtn" onclick="add()">
-                <span class="glyphicon glyphicon-home"></span> Home
-            </button>
-        </div>
+    <div class="uppersection" id="homesection">
+        <button class="upperbtn" type="button" id="homebtn" onclick="add()">
+            <span class="glyphicon glyphicon-home"></span> Home
+        </button>
+    </div>
 
     <div class="uppersection" id="usersection">
         <button class="upperbtn" id="userbtn" type="button" style="float: right"></button>
     </div>
 </div>
-
 
 <div class="left" style="width: 180px">
     <h1 style="font-size:30px; color:#777;font-family: 'Oswald', sans-serif;">Related articles</h1>
@@ -254,6 +283,12 @@
     <button class="upperbtn" type="button" id="editbtn" onclick="jumpToEdit()" style="width: 100px">
         <span class="glyphicon glyphicon-pencil"></span> Edit
     </button>
+<<<<<<< HEAD
+=======
+    <button class="upperbtn" type="button" id="deleteDisBtn" onclick="deleteDisease()" style="width: 100px; background-color:#EF5350">
+        <span class="glyphicon glyphicon-trash"></span> delete
+    </button>
+>>>>>>> dev
 
     <p id="description" style="color:#777; margin-left:6.3cm; padding-right: 15%"></p>
     <h1 id="symptom" style="color:#777;margin-left:6.3cm;"> Symptoms</h1>
@@ -265,12 +300,18 @@
 <div class="modal" id="my-modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-content" style="width: 800px;height:auto;margin-left: auto;margin-right: auto;margin-top: 120px;">
         <div class="modal-body">
-            <span id="closebtn" class="close">CLOSE</span>
+            <button type="button" class="close" aria-label="Close" id = "closebtn"><span aria-hidden="true">&times;</span></button>
             <div class="clearfix"></div>
             <div  class="modify-content">
+
                 <h2 id="titleH2" style="text-align: center;"></h2>
                 <h5 id="authorH3" style="text-align: center;"></h5>
                 <div id="textArea" style="text-align: left;"></div>
+                <p id="mtgh"></p>
+                <button class="upperbtn" type="button" id="favouriteBtn" style="width: auto" onclick="favourite()">
+                    <span class="glyphicon glyphicon-star" id="favouriteSpan"></span>
+                </button>
+
             </div>
 
             <div class="clearfix"></div>
@@ -281,7 +322,8 @@
 <div class="modal" id="my-modify-modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-content" style="width: 300px;height:auto;margin-left: 800px;margin-right: auto;margin-top: 150px;">
         <div class="modal-body">
-            <span id="closebtn2" class="close">CLOSE</span>
+
+            <button type="button" class="close" aria-label="Close" id = "closebtn2"><span aria-hidden="true">&times;</span></button>
             <div class="clearfix"></div>
             <div  class="modify-content">
                 <ol id="favArticles" style="color:#777; text-align: left; font-size:16px"></ol>
@@ -294,6 +336,16 @@
 
 <div class="footer">
     <a href="#top" id="back-top"><span class="glyphicon glyphicon-eject"></span></a>
+
+    <a href="https://twitter.com/share?url&amp;text=from%20@WebDoctor%20welcome%20to%20WebDoctor!%20localhost:8080
+    &amp;" target="_blank" class = "share-button">
+        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+    </a>
+
+    <!--<a href="https://plus.google.com/share?url" target="_blank" class = "share-button">-->
+        <!--<img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />-->
+    <!--</a>-->
+
 </div>
 </body>
 
@@ -315,6 +367,7 @@ function setCookie(c_name,value,expiredays)
     document.cookie=c_name+ "=" +escape(value)+
     ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
 }
+
 function getCookie(c_name)
 {
     if (document.cookie.length>0)
@@ -332,28 +385,34 @@ function getCookie(c_name)
 }
 
 var username = getCookie('username');
+var status = getCookie('status');
 var content = getCookie('content');
 var title = getCookie('title');
 console.log("!!!!!!!");
 console.log(content);
-var userbtn = document.getElementById('userbtn');
 
+if (status < 1) {
+    document.getElementById('deleteDisBtn').style.display = 'none';
+} else {
+    document.getElementById('deleteDisBtn').style.display = 'inline';
+}
+
+var userbtn = document.getElementById('userbtn');
 if (username != "") {
     userbtn.appendChild(document.createTextNode('welcome '));
     userbtn.appendChild(document.createTextNode(username));
 } else {
     userbtn.appendChild(document.createTextNode('Login'));
 }
+
 $(document).ready(function(){
     console.log("111111");
     $("#searchbysym").click(function() {
         window.location.replace('/DepartmentPage');
     });
-
     $("#nearby").click(function() {
         window.location.replace('/MapPage');
     });
-
     $("#userbtn").click(function() {
         if (username != "") {
             window.location.replace('/UserPage');
@@ -362,8 +421,6 @@ $(document).ready(function(){
         }
     });
 });
-
-
     function setCookie(c_name,value,expiredays)
     {
         var exdate=new Date()
@@ -371,7 +428,6 @@ $(document).ready(function(){
         document.cookie=c_name+ "=" +escape(value)+
         ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
     }
-
     function getCookie(c_name)
     {
         if (document.cookie.length>0)
@@ -387,43 +443,13 @@ $(document).ready(function(){
         }
         return ""
     }
-
     var username = getCookie('username');
     var userAccess = getCookie('status');
-
     var obj;
     var g;
     var res;
 
-    function generateArticle(element) {
-        console.log(element);
-        var selectedArticle = $('#' + element);;
-
-        var tagText = selectedArticle.attr('content');
-        var articleTitle = document.getElementById("titleH2");
-        var articleAuthor = document.getElementById("authorH3");
-        console.log("success22222");
-        var date = selectedArticle.attr('time');
-        console.log(date);
-        articleTitle.innerHTML = selectedArticle.attr('name');
-
-        var minorTitle = date + " ";
-        console.log("success3333");
-        articleAuthor.innerHTML = minorTitle;
-        var spanAuthor = document.createElement("span");
-
-        spanAuthor.value = selectedArticle.attr('author');
-        spanAuthor.id = 'spanAuthor';
-        spanAuthor.innerHTML = selectedArticle.attr('author');
-        articleAuthor.appendChild(spanAuthor);
-
-        var textArea = document.getElementById("textArea");
-        textArea.innerHTML = tagText;
-        modal.style.display = "block";
-    }
-
     $(function(callback) {
-
         res = $.ajax({
             url: '/Getdescription',
             type: 'POST',
@@ -442,9 +468,7 @@ $(document).ready(function(){
             obj = JSON.parse(res.responseText);
             document.getElementById("title").innerHTML = obj.name;
             document.getElementById("description").innerHTML = obj.description;
-
             console.log("i set value");
-
             var disease = obj.name;
             Diseasename = obj.name;
             console.log("------");
@@ -463,7 +487,6 @@ $(document).ready(function(){
                     error: function (error) {
                         console.log(error);
                     }
-
                 })
                 var sym = sym.done(function(result) {
                     console.log(sym.responseText);
@@ -476,7 +499,6 @@ $(document).ready(function(){
                         oTextNode = document.createTextNode(symptoms[a].name);
                         oElentment.appendChild(oTextNode);
                         oSymptom.appendChild(oElentment);
-
                     }
                 });
             var articleList = $.ajax({
@@ -495,22 +517,19 @@ $(document).ready(function(){
             }).done(function(result) {
                 for (var k in result) {
                     console.log(result);
-
                     var articleList = document.getElementById("articleList");
-
                     var li = document.createElement("li");
                     var span = document.createElement("span");
                     span.value = result[k].content;
+                    span.setAttribute("articleid", result[k].id);
                     span.setAttribute("name", result[k].title);
                     span.setAttribute("author", result[k].authorName);
-
                     span.setAttribute("time", result[k].timeStamp);
-
+                    span.setAttribute("articleId", result[k].id);
                     span.name = result[k].title;
                     console.log(result[k].content);
                     //btn.appendChild(a);
                     span.appendChild(document.createTextNode(result[k].title));
-
                     li.appendChild(span);
                     li.style.margin = "5px";
                     articleList.appendChild(li);
@@ -518,6 +537,41 @@ $(document).ready(function(){
                 }
 
                 $("#articleList").find("span").click(function() {
+                    var artObj = {};
+                    var userObj = {};
+                    userObj.username = username;
+                    var artId = $(this).attr('articleid');
+                    artObj.articleId = artId;
+                    artObj.user = userObj;
+                    console.log(artObj);
+                    $(function(callback) {
+                        $.ajax({
+                            url: '/ifFavourite',
+                            type: 'POST',
+                            dataType: 'json',
+                            data : JSON.stringify(artObj),
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                console.log("success");
+                                callback(data);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        }).done(function(result) {
+                            console.log(result);
+                            if (result == 0) {
+                                var favSpan = document.getElementById("favouriteSpan");
+                                favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                            } else if (result == 1) {
+                                var favBtn = document.getElementById("favouriteBtn");
+                                //favBtn.style.backgroundColor = "red";
+                                var favSpan = document.getElementById("favouriteSpan");
+                                favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                            }
+                        });
+                    });
+
                     var tagText = $(this).val();
                     var articleTitle = document.getElementById("titleH2");
                     var articleAuthor = document.getElementById("authorH3");
@@ -530,7 +584,6 @@ $(document).ready(function(){
                     console.log("success3333");
                     articleAuthor.innerHTML = minorTitle;
                     var spanAuthor = document.createElement("span");
-
                     spanAuthor.value = $(this).attr('author');
                     spanAuthor.id = 'spanAuthor';
                     spanAuthor.innerHTML = $(this).attr('author');
@@ -538,6 +591,8 @@ $(document).ready(function(){
 
                     var textArea = document.getElementById("textArea");
                     textArea.innerHTML = tagText;
+                    var mtgh = document.getElementById("mtgh");
+                    mtgh.innerHTML = $(this).attr('articleid');
                     modal.style.display = "block";
 
                     $("#authorH3").find("span").click(function() {
@@ -571,6 +626,8 @@ $(document).ready(function(){
                                 span.setAttribute("id", result[a].title);
                                 span.id = result[a].title;
                                 span.value = result[a].content;
+
+                                span.setAttribute("articleid", result[a].id);
                                 span.setAttribute("name", result[a].title);
                                 span.setAttribute("author", result[a].authorName);
                                 span.setAttribute("time", result[a].timeStamp);
@@ -578,13 +635,45 @@ $(document).ready(function(){
 
                                 span.name = result[a].title;
                                 span.appendChild(document.createTextNode(result[a].title));
-
                                 li.appendChild(span);
                                 li.style.margin = "5px";
                                 articleList.appendChild(li);
                                 console.log("level3");
                             }
                             $("#favArticles").find("span").click(function() {
+
+                                var artObj = {};
+                                var userObj = {};
+                                userObj.username = username;
+                                var artId = $(this).attr('articleid');
+                                artObj.articleId = artId;
+                                artObj.user = userObj;
+                                console.log(artObj);
+                                $.ajax({
+                                    url: '/ifFavourite',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data : JSON.stringify(artObj),
+                                    contentType: "application/json; charset=utf-8",
+                                    success: function (data) {
+                                        console.log("success");
+                                        callback(data);
+                                    },
+                                    error: function (error) {
+                                        console.log(error);
+                                    }
+                                }).done(function(result) {
+                                    console.log(result);
+                                    if (result == 0) {
+                                        var favSpan = document.getElementById("favouriteSpan");
+                                        favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                                    } else if (result == 1) {
+                                        var favBtn = document.getElementById("favouriteBtn");
+                                        //favBtn.style.backgroundColor = "red";
+                                        var favSpan = document.getElementById("favouriteSpan");
+                                        favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                                    }
+                                });
                                 generateArticle($(this).attr('id') );
                             });
                         });
@@ -606,7 +695,6 @@ $(document).ready(function(){
             });
         });
     });
-
     function jumpToEdit() {
         if (userAccess != 2 && userAccess != 1) {
             alert("Access denied! You don't have enough authority ");
@@ -629,7 +717,6 @@ $(document).ready(function(){
                 }
             });
         });
-
         var title = document.getElementById("title").innerHTML;
         var content = document.getElementById("description").innerHTML;
         console.log(title);
@@ -638,7 +725,6 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/EditDescriptionPage');
     }
-
     function jumpToPost() {
         if (userAccess != 2 && userAccess != 1) {
             alert("Access denied! You don't have enough authority ");
@@ -650,17 +736,165 @@ $(document).ready(function(){
         setCookie('title',title,365);
         window.location.replace('/ArticlePostPage');
     }
+    function deleteDisease() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
+        obj = {};
+        var diseaseName = document.getElementById('title').innerHTML;
+        console.log(diseaseName);
+        obj.name = diseaseName;
+        $(function(callback) {
+            $.ajax({
+                url: '/deleteDisease',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("success");
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+                if (result > 0) {
+                    alert("Delete success!");
+                    window.location.replace('/ModePage');
+                }
+            });
+        });
+    }
+
+    function deleteArticle() {
+        if (userAccess != 2 && userAccess != 1) {
+            alert("Access denied! You don't have enough authority ");
+            return;
+        }
+    }
+
+    function generateArticle(element) {
+        console.log(element);
+        var selectedArticle = document.getElementById(element);
+        console.log(selectedArticle);
+        var tagText = selectedArticle.getAttribute("content");
+        var articleTitle = document.getElementById("titleH2");
+        var articleAuthor = document.getElementById("authorH3");
+        console.log("success22222");
+        var date = selectedArticle.getAttribute("time");
+        console.log(date);
+        articleTitle.innerHTML = selectedArticle.getAttribute("name");
+        var minorTitle = date + " ";
+        console.log("success3333");
+        articleAuthor.innerHTML = minorTitle;
+        var spanAuthor = document.createElement("span");
+        spanAuthor.value = selectedArticle.getAttribute("author");
+        spanAuthor.id = 'spanAuthor';
+        spanAuthor.innerHTML = selectedArticle.getAttribute("author");
+        articleAuthor.appendChild(spanAuthor);
+        var textArea = document.getElementById("textArea");
+        textArea.innerHTML = tagText;
+        var mtgh = document.getElementById("mtgh");
+        mtgh.innerHTML = selectedArticle.getAttribute('articleid');
+        modal.style.display = "block";
+        $(function(callback) {
+            $("#authorH3").find("span").click(function() {
+                console.log("user clicked");
+                var authorName = $(this).val();
+                var obj = {};
+                obj.username = authorName;
+                modal2.style.display = "block";
+                $.ajax({
+                    url: '/getArticleByAuthor',
+                    type: 'POST',
+                    dataType: 'json',
+                    data : JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        console.log("success");
+                        callback(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                }).done(function(result) {
+                    console.log(result);
+                    var length = result.length;
+                    for (var a=0; a<length;a++) {
+                        console.log(result);
+                        var articleList = document.getElementById("favArticles");
+                        var li = document.createElement("li");
+                        var span = document.createElement("span");
+                        span.setAttribute("id", result[a].title);
+                        span.setAttribute("articleid", result[a].id);
+                        span.id = result[a].title;
+                        span.value = result[a].content;
+                        span.setAttribute("name", result[a].title);
+                        span.setAttribute("author", result[a].authorName);
+                        span.setAttribute("time", result[a].timeStamp);
+                        span.setAttribute("content", result[a].content);
+                        span.name = result[a].title;
+                        span.appendChild(document.createTextNode(result[a].title));
+                        li.appendChild(span);
+                        li.style.margin = "5px";
+                        articleList.appendChild(li);
+                        console.log("level3");
+                    }
+                    $("#favArticles").find("span").click(function() {
+                        generateArticle($(this).attr('id') );
+                    });
+                });
+            });
+        });
+    }
+
+    function favourite() {
+        var obj = {};
+        var user = {};
+        //var username = document.getElementById('spanAuthor').innerHTML;
+        var articleId = document.getElementById('mtgh').innerHTML;
+        user.username = username;
+        obj.user = user;
+        obj.articleId = articleId;
+        console.log(obj);
+        $(function(callback) {
+            $.ajax({
+                url: '/addFavourite',
+                type: 'POST',
+                dataType: 'json',
+                data : JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("success");
+                    callback(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).done(function(result) {
+                console.log(result);
+                var favSpan = document.getElementById("favouriteSpan");
+                var favBtn = document.getElementById("favouriteBtn");
+                if (result == 1) {
+                    favSpan.setAttribute("class", "glyphicon glyphicon-star");
+                    //favBtn.style.backgroundColor = "red";
+                    alert("Your have added this article to your favourite list.");
+                } else if (result == -1) {
+                    favSpan.setAttribute("class", "glyphicon glyphicon-star-empty");
+                    alert("You have removed this article from your favourite list.");
+                    //favBtn.style.backgroundColor = "#4DB6AC";
+                }
+            });
+        });
+    }
 
 $(document).ready(function(){
-
-
     $("h1").delay("1000").fadeIn();
-
-
     // hide #back-top first
     $("#back-top").hide();
-
-
     // fade in #back-top
     $(function () {
         $(window).scroll(function () {
@@ -668,11 +902,8 @@ $(document).ready(function(){
                 $('#back-top').fadeIn();
             } else {
                 $('#back-top').fadeOut();
-
             }
         });
-
-
         // scroll body to 0px on click
         $('a#back-top').click(function () {
             $('body,html').animate({
@@ -681,9 +912,12 @@ $(document).ready(function(){
             return false;
         });
     });
-
-
 });
-
 </script>
+<style>
+    #spanAthor{
+        font-family: "Amiko", sans-serif;
+        color:red;
+    }
+</style>
 </html>

@@ -79,17 +79,24 @@
 
     /* The Close Button */
     .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+        background-color: lightcyan;
+        padding:1px;
+        margin:0;
+        width: 3%;
+        color: black;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
     }
 
     .close:hover,
     .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+        background-color: red
+    ;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.5s;
     }
 
     body {
@@ -100,13 +107,6 @@
         min-height: 100% !important;
     }
 
-    input[type=text] {
-    width: 50%;
-    padding: 12px 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    }
 
     button {
         background-color: #4DB6AC;
@@ -279,12 +279,11 @@
                 <option>Endocrinology</option>
                 <option>Dentistry</option>
                 <option>Pulmonology</option>
+                <option></option>
             </select>
         </div>
 
         <div class="checkBoxArea" id="checkBoxes">
-
-
             <div class="tagbox">
                 <!--<input type="checkbox" name="checkbox" id="checkbox1" checked/>-->
                 <!--<label for="checkbox1">EXAMPLE BOX</label>-->
@@ -295,9 +294,7 @@
             <span class="glyphicon glyphicon-plus"></span>New symptom
         </button>
 
-        <div class="input-group" id="newAdded" style="margin-bottom: 5px;">
-
-        </div>
+        <div class="input-group" id="newAdded" style="margin-bottom: 5px;"></div>
 
         <textarea name="contnet" id="mytextarea"></textarea>
 
@@ -308,7 +305,7 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">CLOSE</span>
+            <button type="button" class="close" aria-label="Close" id = "closebtn"><span aria-hidden="true">&times;</span></button>
             <div class="input-group" style="margin-bottom: 5px;">
                 <span class="input-group-addon">Symptom Name</span>
                 <input type="text" class="form-control" id="newSymName" placeholder="Please give the symptom a name">
@@ -340,14 +337,20 @@
 <script>
 
      function add2(){
-
         window.location.replace('/ModePage');
-    }
+     }
 
 
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+var username = getCookie('username');
+var status = getCookie('status');
+if (status < 1) {
+    alert("Sorry, you don't have access to this page. You will be redirected to the mode page.");
+    window.location.replace('/ModePage');
+}
 
 function makeTagList(callback) {
     $.ajax({

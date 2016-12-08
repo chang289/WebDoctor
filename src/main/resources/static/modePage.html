@@ -18,6 +18,16 @@
         text-align: center;
         margin-top: 50px;
     }
+    #footer{
+
+        position:relative;
+        height: 2em;
+        width: 100%;
+        bottom: 0;
+        padding:0;
+        margin:0;
+
+    }
 
     form {
         border: 3px solid lightcyan;
@@ -26,7 +36,6 @@
     }
 
     input[type=text], input[type=password] {
-        width: 50%;
         padding: 12px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -81,6 +90,56 @@
         float: right;
     }
 
+
+    #contactbtn{
+        margin:0;
+        width:9em;
+        padding:1px auto;
+        float: right;
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 40%; /* Could be more or less, depending on screen size */
+    }
+
+    .close {
+        background-color: lightcyan;
+        padding:1px;
+        margin:0;
+        width: 2.5%;
+        color: black;
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        background-color: red;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.5s;
+    }
+
 </style>
 <body>
 <div id="upperlevel">
@@ -108,16 +167,59 @@
             <button id="nearby" type="button">See facilities nearby</button>
         </div>
 
-        <div class="container" style="background-color:lightcyan">
+        <div class="container" id="createNew" style="background-color:lightcyan">
             <a href="/CreateDescriptionPage">Create a new disease</a>
         </div>
     </form>
+
+</div>
+<div id = "footer" >
+    <button id = "contactbtn" >
+        Feedback
+    </button>
+</div>
+
+<div id = "myModal" class = "modal" >
+    <div class = "modal-content" >
+        <button type="button" class="close" aria-label="Close" id = "closebtn"><span aria-hidden="true">&times;</span></button>
+        <div class="form-group">
+            <label for = "fullname">username:</label>
+            <input type = "text" class = "form-control" id = "fullname">
+        </div>
+
+        <div class = "form-group">
+            <label for ="email" style="white-space: pre;">Subject:   </label>
+            <input type = "text" class = "form-control" id = "email">
+        </div>
+
+        <div class="form-group">
+            <label for="feedback">Your feedback:</label>
+            <textarea class="form-control" rows="5" cols="10" id="feedback" style="resize: none"></textarea>
+        </div>
+        <button id="submitFeedback" type="button" onclick="submitFeedback()">Submit Feedback!</button>
+
+    </div>
 </div>
 
 </body>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById('contactbtn');
+
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function(){
+        modal.style.display="block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+
 function getCookie(c_name)
 {
     if (document.cookie.length>0)
@@ -136,7 +238,13 @@ function getCookie(c_name)
 
 console.log("000000");
 var username = getCookie('username');
+var status = getCookie('status');
+console.log(status);
+if (status == 0) {
+    document.getElementById('createNew').style.display = 'none';
+}
 console.log(username);
+
 var userbtn = document.getElementById('userbtn');
 
 if (username != "") {
@@ -168,6 +276,37 @@ $(document).ready(function(){
         }
     });
 });
+
+function submitFeedback() {
+    var obj = {};
+    var username = document.getElementById('fullname').value;
+    var subject = document.getElementById('email').value;
+    var content = document.getElementById('feedback').value;
+    obj.username = username;
+    obj.subject = subject;
+    obj.content = content;
+    console.log(obj);
+    $(function(callback) {
+        $.ajax({
+            url: '/sendFeedback',
+            type: 'POST',
+            dataType: 'json',
+            data : JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                callback(data);
+                console.log("success");
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        }).done(function(result) {
+            console.log(result);
+            alert("Thank you for your feedback!");
+            window.location.replace('/ModePage');
+        });
+    });
+}
 
 </script>
 

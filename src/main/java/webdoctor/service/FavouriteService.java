@@ -4,11 +4,13 @@ import org.jooq.DSLContext;
 import org.jooq.types.UInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webdoctor.helperClass.ArticleWithTime;
 import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
 import webdoctor.jooq.tables.pojos.UserFavouritearticle;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static webdoctor.jooq.Tables.ARTICLE;
@@ -29,6 +31,8 @@ public class FavouriteService {
     }
 
     @Autowired
+    ArticleService as;
+    @Autowired
     UserService us;
 
     public int checkExists(UserArticle ua) {
@@ -46,13 +50,14 @@ public class FavouriteService {
         }
     }
 
-    public Article[] getFavourite(User user) {
+
+    public ArticleWithTime[] getFavourite(User user) {
         User tempUser = us.getUser(user);
         if (tempUser == null) {
             return null;
         }
         else {
-            List<Article> articleList = create.select().from(ARTICLE)
+            List<Article> articleList = create.select(ARTICLE.ID, ARTICLE.AUTHOR_NAME, ARTICLE.TITLE, ARTICLE.TIME_STAMP, ARTICLE.CONTENT, ARTICLE.DISEASE).from(ARTICLE)
                     .join(USER_FAVOURITEARTICLE)
                     .on(USER_FAVOURITEARTICLE.ARTICLE_ID.equal(ARTICLE.ID))
                     .join(USER)
@@ -61,7 +66,7 @@ public class FavouriteService {
                     .fetchInto(Article.class);
             Article[] articleArray = new Article[articleList.size()];
             articleList.toArray(articleArray);
-            return articleArray;
+            return as.alterArticle(articleArray);
         }
     }
 
@@ -69,15 +74,18 @@ public class FavouriteService {
         User user = ua.getUser();
         int articleId = ua.getArticleId();
         User tempUser = us.getUser(user);
+
         if (tempUser == null) {
             return 0;
         }
         else {
             if (checkExists(ua) == 0) {
+                System.out.println("exists");
                 return create.insertInto(USER_FAVOURITEARTICLE).values(tempUser.getId(), articleId).execute();
+
             }
             else {
-                return -1;
+                return deleteFavourite((ua));
             }
         }
     }
@@ -91,12 +99,18 @@ public class FavouriteService {
         }
         else {
             if (checkExists(ua) == 0) {
-                return -1;
+                return -2;
             }
             else {
-                return create.delete(USER_FAVOURITEARTICLE).where(USER_FAVOURITEARTICLE.USER_ID.equal(tempUser.getId()))
+                int success = create.delete(USER_FAVOURITEARTICLE).where(USER_FAVOURITEARTICLE.USER_ID.equal(tempUser.getId()))
                         .and(USER_FAVOURITEARTICLE.ARTICLE_ID.equal(articleId))
                         .execute();
+                if (success > 0) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
             }
         }
     }

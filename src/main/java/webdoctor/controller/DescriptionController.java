@@ -27,7 +27,15 @@ public class DescriptionController {
         return "createTextPage.html";
     }
 
+    @RequestMapping(path = "/diseaseDescriptionPage", method= RequestMethod.GET)
+    public String diseaseDescriptionPage() {
+        return "DiseaseDescriptionPage.html";
+    }
 
+    @RequestMapping(path = "/getSymptom", method = RequestMethod.POST)
+    public @ResponseBody Symptom[] getSymptoms(@RequestBody Disease disease) {
+        return DS.getSymptomsByDisease(disease);
+    }
 
     @RequestMapping(path = "CreateSymptom", method = RequestMethod.POST)
     public @ResponseBody int CreateSymptom(@RequestBody Symptom S) {
@@ -42,8 +50,7 @@ public class DescriptionController {
 //        System.out.println(D.getDescription());
 //        System.out.println(D.getDepartment());
 
-        return DS.descriptionCreate(D);
-
+        return DS.descriptionCreate(D, -1,null);
     }
 
     @RequestMapping(path = "CreateDescription", method = RequestMethod.GET)
@@ -52,9 +59,22 @@ public class DescriptionController {
         return json;
     }
 
+
     @RequestMapping(path = "/EditDescription", method = RequestMethod.POST)
-    public @ResponseBody int EditDescription(@RequestBody Disease disease){
+    public @ResponseBody int EditDescription(@RequestBody Disease_Symptoms ds){
 //        System.out.println("edit: "+disease.getName()+disease.getDescription());
-        return DS.descriptionEdit(disease);
+        Disease disease = new Disease();
+        disease.setName(ds.getName());
+        Disease temp = DS.getDisease(disease);
+
+        DS.deleteDiseaseSymptom(disease);
+        DS.deleteDescription(disease);
+        return DS.descriptionCreate(ds, temp.getId(), temp.getDepartment());
+
+    }
+
+    @RequestMapping(path = "/deleteDisease", method = RequestMethod.POST)
+    public @ResponseBody int deleteDescription(@RequestBody Disease disease) {
+        return DS.deleteDisease(disease);
     }
 }

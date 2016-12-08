@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import webdoctor.common.SendEmail;
 import webdoctor.helperClass.ArticleWithTime;
+import webdoctor.helperClass.FeedBack;
 import webdoctor.helperClass.UserArticle;
 import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.User;
@@ -92,5 +93,8 @@ public class UserController {
         return li.getArticleByAuthor(user);
     }
 
-
+    @RequestMapping(path = "sendFeedback", method = RequestMethod.POST)
+    public @ResponseBody int sendFeedback(@RequestBody FeedBack fb) {
+        return li.sendFeedback(fb);
+    }
 }

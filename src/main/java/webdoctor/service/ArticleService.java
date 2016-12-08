@@ -45,7 +45,6 @@ public class ArticleService {
         List<Article>article_list = create.select().from(ARTICLE)
         .where(ARTICLE.DISEASE.equal(disease.getName()))
                 .fetchInto(Article.class);
-        System.out.println(disease);
         Article [] article_array = new Article [article_list.size()];
         article_list.toArray(article_array);
         ArticleWithTime[] result = alterArticle(article_array);
@@ -57,17 +56,23 @@ public class ArticleService {
 //                .where(DISEASE.ID.equal(disease.getId()))
 //                .fetchInto(Article.class));
     }
-
-    public int postComment(Comment comment){
-       return create.insertInto(COMMENT,COMMENT.USER_ID,COMMENT.ARTICLE_ID,COMMENT.TIME_STAMP,COMMENT.CONTENT)
-               .values(comment.getUserId(),comment.getArticleId(),comment.getTimeStamp(),comment.getContent())
-               .execute();
+    public int deleteArticle(Article article) {
+        return create.deleteFrom(ARTICLE).where(ARTICLE.ID.equal(article.getId()))
+                .execute();
     }
+
+    public int deleteFavourite(Article article) {
+        return create.deleteFrom(USER_FAVOURITEARTICLE).where(USER_FAVOURITEARTICLE.ARTICLE_ID.equal(article.getId()))
+                .execute();
+    }
+
+
 
     public ArticleWithTime[] alterArticle(Article[] article) {
         ArticleWithTime[] awt = new ArticleWithTime[article.length];
         for (int i = 0; i < article.length; i++) {
             awt[i] = new ArticleWithTime();
+            awt[i].setId(article[i].getId());
             awt[i].setTitle(article[i].getTitle());
             awt[i].setAuthorName(article[i].getAuthorName());
             awt[i].setTimeStamp(article[i].getTimeStamp().toString().substring(0, article[i].getTimeStamp().toString().length() - 5));

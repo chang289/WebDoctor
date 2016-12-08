@@ -13,6 +13,7 @@ import org.jooq.impl.DSL;
 import org.jooq.util.derby.sys.Sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webdoctor.jooq.tables.pojos.Article;
 import webdoctor.jooq.tables.pojos.Disease;
 import static webdoctor.jooq.Tables.*;
 import webdoctor.helperClass.*;
@@ -29,8 +30,18 @@ public class DescriptionService {
     Gson gson = new Gson();
 
     @Autowired
+    ArticleService as;
+
+    @Autowired
     public DescriptionService(DSLContext dslContext) {
         this.create = dslContext;
+    }
+
+
+    public int changeId(Disease disease, int id) {
+        return create.update(DISEASE).set(DISEASE.ID, id)
+                .where(DISEASE.ID.equal(disease.getId()))
+                .execute();
     }
 
     private int checkDisease(Disease disease) {
@@ -45,6 +56,25 @@ public class DescriptionService {
             return 1;
             //success
         }
+    }
+
+    public Symptom[] getSymptomsByDisease(Disease disease) {
+        List<Symptom> symptomList = create.select(SYMPTOM.ID, SYMPTOM.NAME, SYMPTOM.DEPARTMENT).from(DISEASE_SYMPTOM)
+                .join(SYMPTOM).on(SYMPTOM.ID.equal(DISEASE_SYMPTOM.TAG_ID))
+                .join(DISEASE).on(DISEASE.ID.equal(DISEASE_SYMPTOM.DISEASE_ID))
+                .where(DISEASE.NAME.equal(disease.getName()))
+                .fetchInto(Symptom.class);
+        Symptom[] symptomArray = new Symptom[symptomList.size()];
+        symptomList.toArray(symptomArray);
+        return symptomArray;
+    }
+
+    public Disease getDisease(Disease disease) {
+        return create.select()
+                .from(DISEASE)
+                .where(DISEASE.NAME.equal(disease.getName()))
+                .fetchOneInto(Disease.class);
+
     }
 
     private Symptom getSymptom(String symptom) {
@@ -77,7 +107,7 @@ public class DescriptionService {
         }
     }
 
-    public int descriptionCreate(Disease_Symptoms D) {
+    public int descriptionCreate(Disease_Symptoms D, int oldID, String oldDepartment) {
 
         String disease_name = D.getName();
         String disease_description = D.getDescription();
@@ -118,11 +148,16 @@ public class DescriptionService {
             return 0;
             //existed
         }else{
-
-            create.insertInto(DISEASE,DISEASE.NAME,DISEASE.DESCRIPTION,DISEASE.DEPARTMENT)
-                    .values(disease.getName(),disease.getDescription(),disease.getDepartment())
-                    .execute();
-
+            if (oldID == -1) {
+                create.insertInto(DISEASE, DISEASE.NAME, DISEASE.DESCRIPTION, DISEASE.DEPARTMENT)
+                        .values(disease.getName(), disease.getDescription(), disease.getDepartment())
+                        .execute();
+            }
+            else {
+                create.insertInto(DISEASE, DISEASE.ID, DISEASE.NAME, DISEASE.DESCRIPTION, DISEASE.DEPARTMENT)
+                        .values(oldID, disease.getName(), disease.getDescription(), oldDepartment)
+                        .execute();
+            }
             int D_ID = create.select()
                     .from(DISEASE)
                     .where(DISEASE.NAME.equal(disease.getName()))
@@ -193,7 +228,6 @@ public class DescriptionService {
         if(checkDisease(disease) == 0) {
             return 0;
         } else {
-            System.out.println(disease.getDescription());
             create.update(DISEASE)
                     .set(DISEASE.DESCRIPTION,disease.getDescription())
                     .where(DISEASE.NAME.equal(disease.getName()))
@@ -201,4 +235,43 @@ public class DescriptionService {
             return 1;
         }
     }
+
+    public int deleteDisease(Disease disease) {
+        List<Article> articles = create.select().from(ARTICLE)
+                .where(ARTICLE.DISEASE.equal(disease.getName()))
+                .fetchInto(Article.class);
+        for (int i = 0; i < articles.size(); i++) {
+            as.deleteFavourite(articles.get(i));
+            as.deleteArticle(articles.get(i));
+        }
+        deleteDiseaseSymptom(disease);
+        return deleteDescription(disease);
+    }
+
+    public int deleteDescription(Disease disease) {
+        if (checkDisease(disease) == 0) {
+            return 0;
+        }
+        else {
+            Disease temp = getDisease(disease);
+            return create.deleteFrom(DISEASE)
+                    .where(DISEASE.ID.equal(temp.getId()))
+                    .execute();
+        }
+    }
+
+    public int deleteDiseaseSymptom(Disease disease) {
+        Disease temp = getDisease(disease);
+        if (temp == null) {
+            return 0;
+        }
+        else {
+            return create.deleteFrom(DISEASE_SYMPTOM)
+                    .where(DISEASE_SYMPTOM.DISEASE_ID.equal(temp.getId()))
+                    .execute();
+        }
+    }
+
+
+
 }

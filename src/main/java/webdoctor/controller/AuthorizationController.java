@@ -21,7 +21,7 @@ import webdoctor.service.UserService;
 public class AuthorizationController {
 
     private final String from = "zhouyiyan1995@gmail.com";
-    private final String subject = "Email from the god";
+    private final String subject = "We invite you to be our certified user";
 
     @Autowired
     Authorization A;
@@ -45,10 +45,17 @@ public class AuthorizationController {
     @RequestMapping(path = "/Certification", method = RequestMethod.POST)
     public @ResponseBody int setAuthority(@RequestBody User user) {
         User data = us.getUser(user);
-        String bodytext = "Thanks for signing up for a Webdoctor account," +
-                "click the link below to complete registration: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "/" + user.getAuthority();
-        System.out.println("authority: " + user.getAuthority());
-        System.out.println(bodytext);
+        if (Integer.parseInt(data.getAuthority()) >= Integer.parseInt(user.getAuthority())) {
+            if (data == null) {
+                return 0;
+            }
+            else {
+                setAuthority(user.getUsername(), user.getAuthority());
+                return 2;
+            }
+        }
+        String bodytext = "Thanks for using Webdoctor!" +
+                "We invite you to be our certified user. Click on the following URL to submit: \n" + "http://localhost:8080/Certification/" + user.getUsername() + "/" + user.getAuthority();
         Message message = es.sendEmail(data.getEmail(), from, subject, bodytext);
         if (data == null || message == null) {
             return 0;
@@ -59,11 +66,13 @@ public class AuthorizationController {
     }
 
     @RequestMapping(path = "/Certification/{username}/{authority}", method = RequestMethod.GET)
-    public void setAuthority(@PathVariable String username, @PathVariable String authority) {
+    public @ResponseBody String setAuthority(@PathVariable String username, @PathVariable String authority) {
+        System.out.println("authority: "+ authority );
         User user = new User();
         user.setUsername(username);
         user.setAuthority(authority);
         System.out.println("user: " + user);
         A.authorize(user);
+        return "You have been successfully authorized";
     }
 }
