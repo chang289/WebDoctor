@@ -35,6 +35,88 @@
     box-sizing: border-box;
     }
 
+
+
+    .checkBoxArea div {
+        clear: both;
+        overflow: hidden;
+    }
+
+    .checkBoxArea label {
+        width: 20%;
+        border-radius: 3px;
+        border: 1px solid #D1D3D4;
+        font-weight: normal;
+    }
+
+    .checkBoxArea input[type="checkbox"]:empty {
+        display: none;
+    }
+
+    .checkBoxArea input[type="checkbox"]:empty ~ label {
+        position: relative;
+        line-height: 2.5em;
+        text-indent: 3.25em;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .checkBoxArea input[type="checkbox"]:empty ~ label:before {
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 2.5em;
+        background: #D1D3D4;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label {
+        color: #888;
+    }
+
+    .checkBoxArea input[type="checkbox"]:hover:not(:checked) ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #C2C2C2;
+    }
+
+    .checkBoxArea input[type="checkbox"]:checked ~ label {
+        color: #777;
+        background-color: #33b751;
+    }
+
+    .checkBoxArea input[type="checkbox"]:checked ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #333;
+        background-color: #337ab7;
+    }
+
+    .checkBoxArea input[type="checkbox"]:focus ~ label:before {
+        box-shadow: 0 0 0 3px #999;
+    }
+
+    .tagbox input[type="checkbox"]:checked ~ label:before {
+        color: #333;
+        background-color: #337ab7;
+    }
+
+    .tagbox {
+        display: inline;
+        margin-right:1px;
+    }
+
+    label {
+        font-size: 10px;
+    }
+
+
     button {
         background-color: #4DB6AC;
         color: white;
@@ -105,6 +187,15 @@
 
 <div id="editorArea" style="width:800px; margin:0 auto;">
     <form id="textform" method="post">
+
+        <div class="checkBoxArea" id="checkBoxes">
+        <div class="tagbox">
+            <!--<input type="checkbox" name="checkbox" id="checkbox1" checked/>-->
+            <!--<label for="checkbox1">EXAMPLE BOX</label>-->
+        </div>
+        </div>
+
+
         <textarea name="contnet" id="mytextarea"></textarea>
 
         <button class="middlebtn" id="submitbtn" type="button" style="float: right; width: 10%" onclick="submitChange()">Submit</button>
@@ -122,6 +213,71 @@
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+    function makeTagList(callback) {
+        $.ajax({
+            url : '/CreateDescription',
+            type : 'GET',
+            data : {
+                format: 'json'
+            },
+            dataType : 'json',
+            success : function(data) {
+                console.log("success!");
+                console.log(data);
+            },
+            error : function (error) {
+                console.log(error);
+            }
+        }).done(function(result) {
+            console.log("inside done");
+            console.log(result);
+
+            for (var k in result) {
+
+                var departmentText = (result[k].department);
+                var symArray = (result[k].symptomList);
+                var targetArea = document.getElementById('checkBoxes');
+
+                var titleDiv = document.createElement("div");
+                titleDiv.className = "tagTitle";
+
+                var head = document.createElement("h4");
+                head.className = "tagHead";
+                head.appendChild(document.createTextNode(departmentText));
+
+                titleDiv.appendChild(head);
+                targetArea.appendChild(titleDiv);
+                //targetArea.style.borderStyle = "solid";
+                for (var j in symArray) {
+
+                    var tagDiv = document.createElement("div");
+                    tagDiv.className = "tagbox";
+
+                    var checkbox = document.createElement('input');
+                    checkbox.type = "checkbox";
+                    checkbox.name = "checkbox";
+                    checkbox.id = symArray[j];
+                    checkbox.value = symArray[j];
+                    var label = document.createElement('label');
+                    label.htmlFor = symArray[j];
+                    label.appendChild(document.createTextNode(symArray[j]));
+
+                    tagDiv.appendChild(checkbox);
+                    tagDiv.appendChild(label);
+
+                    targetArea.appendChild(tagDiv);
+                }
+            }
+        });
+    }
+
+    window.onload = makeTagList;
+
+
+
+
+
 function setCookie(c_name,value,expiredays)
 {
     var exdate=new Date()
